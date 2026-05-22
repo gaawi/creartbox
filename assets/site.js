@@ -91,7 +91,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Transparent masthead → solid on scroll past hero
   initTransparentMasthead();
+
+  // Floating "Edit on GitHub" button
+  initEditButton();
 });
+
+/* ----- Floating Edit button ----------------------------------------- */
+const GH_REPO = "gaawi/creartbox";
+const GH_BRANCH = "claude/determined-ptolemy-ZuICO";
+function initEditButton() {
+  if (document.querySelector(".edit-btn")) return;
+  let path = window.location.pathname || "/";
+  // strip github.io project prefix (e.g. "/creartbox/foo.html" → "foo.html")
+  path = path.replace(/^\/+/, "");
+  path = path.replace(/^creartbox\//, "");
+  if (!path || path.endsWith("/")) path += "index.html";
+  const url = `https://github.com/${GH_REPO}/edit/${GH_BRANCH}/${path}`;
+  const a = document.createElement("a");
+  a.href = url;
+  a.target = "_blank";
+  a.rel = "noopener";
+  a.className = "edit-btn";
+  a.title = "Edit this page on GitHub";
+  a.innerHTML = '<span class="pencil">✎</span><span>Edit</span>';
+  document.body.appendChild(a);
+}
 
 function initTransparentMasthead() {
   if (!document.body.classList.contains("hero-transparent")) return;

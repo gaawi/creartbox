@@ -1229,21 +1229,22 @@ body.hero-transparent .masthead.scrolled .nav-item .submenu a:hover { background
   font-size: 14px;
 }
 
-/* === Colophon (footer) === */
+/* === Colophon (footer) — pinned to dark navy regardless of theme === */
 .colophon {
-  background: var(--ink);
-  color: var(--paper);
+  background: #0e131c;
+  color: #fafaf7;
   padding: 80px 0 28px;
   margin-top: 96px;
 }
-:root[data-theme="dark"] .colophon { background: #060810; border-top: 1px solid var(--rule); }
+:root[data-theme="dark"] .colophon { background: #060810; border-top: 1px solid rgba(255,255,255,0.08); }
 
 /* Supporter logos: invert in dark mode so dark artwork stays legible */
 :root[data-theme="dark"] section img[src*="assets/logos/"]:not([alt="CreArtBox"]) {
   filter: brightness(0) invert(1);
   opacity: 0.78;
 }
-.colophon a { color: var(--paper); }
+.colophon, .colophon ul, .colophon li, .colophon p, .colophon span { color: #fafaf7; }
+.colophon a { color: #fafaf7; text-decoration: none; }
 .colophon a:hover { color: var(--yellow); }
 .colophon-grid {
   display: grid;
@@ -1427,6 +1428,34 @@ figure { margin: 0; }
 .section-s { padding: 56px 0; position: relative; }
 .section.tinted { background: var(--paper-2); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
 .section.bordered-top { border-top: 1px solid var(--ink); }
+
+/* === Floating Edit button === */
+.edit-btn {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #0e131c;
+  color: #fafaf7;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 10px 16px 10px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  opacity: 0.88;
+  transition: opacity 160ms ease, background 160ms ease, color 160ms ease;
+}
+.edit-btn:hover { opacity: 1; background: var(--yellow); color: #131820; border-color: var(--yellow); }
+.edit-btn .pencil { font-size: 13px; line-height: 1; }
+@media print { .edit-btn { display: none; } }
 
 /* === Theme toggle === */
 .themetoggle {
