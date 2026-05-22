@@ -23,11 +23,12 @@ const EVENTBRITE = {
 ---------------------------------------------------------------------- */
 const DONATE_URL = "mailto:info@creartbox.nyc?subject=Donation%20to%20CreArtBox";
 
-/* ----- Theme ---------------------------------------------------------- */
+/* ----- Theme — default is dark, toggle persists in localStorage --------- */
 (function theme() {
   const KEY = "cb-theme";
   const saved = localStorage.getItem(KEY);
-  if (saved === "dark") document.documentElement.setAttribute("data-theme", "dark");
+  // Default to dark when no preference saved; only "paper" opts out.
+  if (saved !== "paper") document.documentElement.setAttribute("data-theme", "dark");
   window.toggleTheme = function () {
     const cur = document.documentElement.getAttribute("data-theme");
     if (cur === "dark") {

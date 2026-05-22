@@ -223,13 +223,13 @@ em { font-style: italic; font-family: var(--serif); }
 .btn-stamp {
   background: var(--yellow);
   border-color: var(--yellow);
-  color: var(--ink);
+  color: #131820;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-weight: 600;
   font-size: 12.5px;
 }
-.btn-stamp:hover { background: var(--ink); color: var(--yellow); border-color: var(--ink); }
+.btn-stamp:hover { background: #131820; color: var(--yellow); border-color: #131820; }
 
 .btn-l { padding: 14px 26px; font-size: 15px; }
 .btn-s { padding: 7px 14px; font-size: 12.5px; letter-spacing: 0.06em; }
@@ -256,6 +256,12 @@ em { font-style: italic; font-family: var(--serif); }
 .yellowmark {
   background: linear-gradient(transparent 60%, var(--yellow) 60%);
   padding: 0 0.1em;
+}
+:root[data-theme="dark"] .yellowmark {
+  background: var(--yellow);
+  color: #131820;
+  padding: 0.05em 0.2em;
+  border-radius: 2px;
 }
 
 /* === Masthead === */
@@ -296,8 +302,8 @@ body.hero-transparent .nav-strip a {
   border-right-color: rgba(255,255,255,0.18);
 }
 body.hero-transparent .nav-strip a:hover { background: rgba(255,255,255,0.12); color: #fff; }
-body.hero-transparent .nav-strip a.active { background: rgba(255,255,255,0.9); color: var(--ink); text-shadow: none; }
-body.hero-transparent .nav-strip a.active::after { background: rgba(255,255,255,0.9); }
+body.hero-transparent .nav-strip a.active { background: rgba(255,255,255,0.92); color: #131820; text-shadow: none; }
+body.hero-transparent .nav-strip a.active::after { background: rgba(255,255,255,0.92); }
 
 /* When scrolled past hero, masthead snaps to solid */
 body.hero-transparent .masthead.scrolled {
@@ -523,9 +529,9 @@ body.hero-transparent .masthead.scrolled .nav-strip a.active::after { background
   gap: clamp(20px, 3vw, 40px);
   align-items: center;
   padding: clamp(28px, 4vw, 44px);
-  border: 1px solid var(--ink);
-  background: var(--ink);
-  color: var(--paper);
+  border: 1px solid #131820;
+  background: #131820;
+  color: #fafaf7;
 }
 .app-callout .app-icon {
   width: 96px;
@@ -546,7 +552,7 @@ body.hero-transparent .masthead.scrolled .nav-strip a.active::after { background
 }
 .app-callout .app-copy h3 {
   font-family: var(--serif);
-  color: var(--paper);
+  color: #fafaf7;
   font-size: clamp(28px, 3.4vw, 44px);
   line-height: 1.05;
   letter-spacing: -0.015em;
@@ -573,9 +579,9 @@ body.hero-transparent .masthead.scrolled .nav-strip a.active::after { background
   gap: 12px;
   padding: 12px 22px;
   border-radius: 999px;
-  border: 1px solid var(--paper);
-  background: var(--paper);
-  color: var(--ink);
+  border: 1px solid #fafaf7;
+  background: #fafaf7;
+  color: #131820;
   font-family: var(--sans);
   font-size: 13.5px;
   font-weight: 600;
@@ -583,7 +589,7 @@ body.hero-transparent .masthead.scrolled .nav-strip a.active::after { background
   white-space: nowrap;
   text-decoration: none;
 }
-.app-callout .btn-appstore:hover { background: var(--yellow); border-color: var(--yellow); color: var(--ink); }
+.app-callout .btn-appstore:hover { background: var(--yellow); border-color: var(--yellow); color: #131820; }
 .app-callout .btn-appstore .as-glyph {
   font-size: 22px;
   line-height: 1;
@@ -792,6 +798,7 @@ body.hero-transparent .masthead.scrolled .nav-strip a.active::after { background
 body.hero-transparent .masthead .logo-img { filter: brightness(0) invert(1); }
 body.hero-transparent .masthead.scrolled .logo-img { filter: none; }
 :root[data-theme="dark"] .masthead .logo-img { filter: brightness(0) invert(1); }
+:root[data-theme="dark"] body.hero-transparent .masthead.scrolled .logo-img { filter: brightness(0) invert(1); }
 
 .nav-strip {
   border-top: 1px solid var(--ink);
@@ -854,7 +861,13 @@ body.hero-transparent .masthead.scrolled .logo-img { filter: none; }
   padding: 80px 0 28px;
   margin-top: 96px;
 }
-:root[data-theme="dark"] .colophon { background: #0e1822; }
+:root[data-theme="dark"] .colophon { background: #060810; border-top: 1px solid var(--rule); }
+
+/* Supporter logos: invert in dark mode so dark artwork stays legible */
+:root[data-theme="dark"] section img[src*="assets/logos/"]:not([alt="CreArtBox"]) {
+  filter: brightness(0) invert(1);
+  opacity: 0.78;
+}
 .colophon a { color: var(--paper); }
 .colophon a:hover { color: var(--yellow); }
 .colophon-grid {
@@ -1004,9 +1017,19 @@ figure { margin: 0; }
 }
 
 /* === Ink blocks === */
-.ink-block { background: var(--yellow); color: var(--ink); border: 1px solid var(--ink); padding: 28px 32px; }
-.ink-block-red { background: var(--red); color: var(--paper); padding: 28px 32px; border: 1px solid var(--red); }
-.ink-block-red .label, .ink-block-red h2 { color: var(--paper); }
+.ink-block { background: var(--yellow); color: #131820; border: 1px solid #131820; padding: 28px 32px; }
+.ink-block .label { color: rgba(19,24,32,0.7); }
+.ink-block h1, .ink-block h2, .ink-block h3, .ink-block p { color: #131820; }
+.ink-block-red { background: var(--red); color: #fafaf7; padding: 28px 32px; border: 1px solid var(--red); }
+.ink-block-red .label, .ink-block-red h1, .ink-block-red h2, .ink-block-red h3, .ink-block-red p { color: #fafaf7; }
+
+/* Any inline yellow background — always show dark text */
+[style*="background:var(--yellow)"],
+[style*="background: var(--yellow)"] { color: #131820; }
+[style*="background:var(--yellow)"] .label,
+[style*="background: var(--yellow)"] .label { color: rgba(19,24,32,0.7); }
+[style*="background:var(--yellow)"] em,
+[style*="background: var(--yellow)"] em { color: #131820; }
 
 /* === Index row === */
 .index-row {
@@ -1114,7 +1137,7 @@ figure { margin: 0; }
 }
 .give-amts button.active {
   background: var(--yellow);
-  color: var(--ink);
+  color: #131820;
   font-style: normal;
   font-weight: 500;
 }
