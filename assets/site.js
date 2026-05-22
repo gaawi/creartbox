@@ -1,0 +1,172 @@
+/* === CreArtBox · site.js — small, dependency-free interactions === */
+
+/* ----- Eventbrite ticket URL config ----------------------------------
+   Each event used on the site has a stable id (data-event="..."). To
+   wire a real Eventbrite event, set its URL here. Until then, the link
+   falls back to the Eventbrite organiser page.
+---------------------------------------------------------------------- */
+const EVENTBRITE_ORG = "https://www.eventbrite.com/o/creartbox";
+const EVENTBRITE = {
+  "threshold-2026-06-06": EVENTBRITE_ORG,
+  "tworoads-2026-09-18": EVENTBRITE_ORG,
+  "afterlight-2026-10-04": EVENTBRITE_ORG,
+  "noctum-2026-11-14": EVENTBRITE_ORG,
+  "winter-2026-12-11": EVENTBRITE_ORG,
+  "awave-2027-02-06": EVENTBRITE_ORG,
+  "season-subscription": EVENTBRITE_ORG,
+};
+
+/* ----- Donate URL config --------------------------------------------
+   Drop in a Stripe Payment Link, Donorbox, or Givebutter URL.
+   The donate form on /support builds  ?amount=&frequency=  query
+   parameters on submit so Stripe Payment Links can pick them up.
+---------------------------------------------------------------------- */
+const DONATE_URL = "mailto:info@creartbox.nyc?subject=Donation%20to%20CreArtBox";
+
+/* ----- Theme ---------------------------------------------------------- */
+(function theme() {
+  const KEY = "cb-theme";
+  const saved = localStorage.getItem(KEY);
+  if (saved === "dark") document.documentElement.setAttribute("data-theme", "dark");
+  window.toggleTheme = function () {
+    const cur = document.documentElement.getAttribute("data-theme");
+    if (cur === "dark") {
+      document.documentElement.removeAttribute("data-theme");
+      localStorage.setItem(KEY, "paper");
+    } else {
+      document.documentElement.setAttribute("data-theme", "dark");
+      localStorage.setItem(KEY, "dark");
+    }
+    const btn = document.querySelector(".themetoggle");
+    if (btn) btn.textContent = document.documentElement.getAttribute("data-theme") === "dark" ? "☼" : "☾";
+  };
+})();
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Theme toggle init label
+  const tt = document.querySelector(".themetoggle");
+  if (tt) {
+    tt.textContent = document.documentElement.getAttribute("data-theme") === "dark" ? "☼" : "☾";
+    tt.addEventListener("click", window.toggleTheme);
+  }
+
+  // Mobile menu
+  const burger = document.querySelector(".nav-burger");
+  const navInner = document.querySelector(".nav-strip-inner");
+  if (burger && navInner) {
+    burger.addEventListener("click", () => navInner.classList.toggle("open"));
+  }
+
+  // Wire ticket buttons: [data-event="..."] => Eventbrite URL
+  document.querySelectorAll("[data-event]").forEach((el) => {
+    const id = el.getAttribute("data-event");
+    const url = EVENTBRITE[id] || EVENTBRITE_ORG;
+    el.setAttribute("href", url);
+    el.setAttribute("target", "_blank");
+    el.setAttribute("rel", "noopener");
+  });
+
+  // Wire donate buttons
+  document.querySelectorAll("[data-donate]").forEach((el) => {
+    el.setAttribute("href", DONATE_URL);
+  });
+
+  // Classifieds (opportunities)
+  document.querySelectorAll(".classified").forEach((c) => {
+    const btn = c.querySelector("[data-toggle-classified]");
+    if (!btn) return;
+    btn.addEventListener("click", () => {
+      const isOpen = c.classList.toggle("open");
+      btn.querySelector(".lbl").textContent = isOpen ? "Hide details" : "Read & apply";
+      btn.querySelector(".ar").textContent = isOpen ? "↑" : "↓";
+    });
+  });
+
+  // Donate calculator
+  initDonate();
+
+  // Concert filter tabs
+  initConcertTabs();
+});
+
+/* ----- Donate calculator --------------------------------------------- */
+function initDonate() {
+  const form = document.querySelector("[data-donate-form]");
+  if (!form) return;
+  let amount = 100;
+  let freq = "once";
+  let custom = "";
+
+  const freqBtns = form.querySelectorAll("[data-freq] button");
+  const amtBtns = form.querySelectorAll("[data-amt] button");
+  const customInput = form.querySelector("[data-custom]");
+  const submit = form.querySelector("[data-submit]");
+  const rows = document.querySelectorAll("[data-impact-row]");
+
+  function update() {
+    const final = Number(custom) || amount || 0;
+    submit.querySelector(".lbl").textContent =
+      "Give $" + final + (freq !== "once" ? " / " + (freq === "monthly" ? "month" : "year") : "");
+    rows.forEach((r) => {
+      const min = Number(r.getAttribute("data-impact-min"));
+      const active = final >= min;
+      r.classList.toggle("inactive", !active);
+      const c = r.querySelector(".check");
+      if (c) {
+        c.classList.toggle("on", active);
+        c.textContent = active ? "✓" : "○";
+      }
+    });
+    submit.setAttribute(
+      "href",
+      DONATE_URL + (DONATE_URL.includes("?") ? "&" : "?") + "amount=" + final + "&frequency=" + freq
+    );
+  }
+
+  freqBtns.forEach((b) => {
+    b.addEventListener("click", () => {
+      freq = b.getAttribute("data-val");
+      freqBtns.forEach((x) => x.classList.toggle("active", x === b));
+      update();
+    });
+  });
+  amtBtns.forEach((b) => {
+    b.addEventListener("click", () => {
+      amount = Number(b.getAttribute("data-val"));
+      custom = "";
+      if (customInput) customInput.value = "";
+      amtBtns.forEach((x) => x.classList.toggle("active", x === b));
+      update();
+    });
+  });
+  if (customInput) {
+    customInput.addEventListener("input", (e) => {
+      custom = e.target.value;
+      amtBtns.forEach((x) => x.classList.remove("active"));
+      update();
+    });
+  }
+  update();
+}
+
+/* ----- Concert filter tabs ------------------------------------------- */
+function initConcertTabs() {
+  const tabs = document.querySelectorAll("[data-concert-tab]");
+  const rows = document.querySelectorAll("[data-concert-series]");
+  if (!tabs.length) return;
+  tabs.forEach((t) => {
+    t.addEventListener("click", () => {
+      const v = t.getAttribute("data-concert-tab");
+      tabs.forEach((x) => x.classList.toggle("active", x === t));
+      let shown = 0;
+      rows.forEach((r) => {
+        const series = r.getAttribute("data-concert-series");
+        const show = v === "all" || series === v;
+        r.style.display = show ? "" : "none";
+        if (show) shown++;
+      });
+      const count = document.querySelector("[data-concert-count]");
+      if (count) count.textContent = "Showing " + shown + " of " + rows.length + " concerts";
+    });
+  });
+}

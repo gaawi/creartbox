@@ -1,0 +1,1277 @@
+{% render 'secretlink' %}
+
+<style>
+  /* ============================================
+     ABOUT PAGE — ELEGANT REDESIGN
+     ============================================ */
+
+  .about-wrap {
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-faint: #8a8a8a;
+    --paper: #fafaf7;
+    --paper-alt: #f2efe9;
+    --accent: #a82424;
+    --rule: #d8d4cc;
+    --serif: 'Cormorant Garamond', 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    padding: 0 0 8rem;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  .about-wrap * { box-sizing: border-box; }
+
+  /* ---------- HERO ---------- */
+  .about-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    align-items: flex-start;
+    gap: 4rem;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 5rem 3rem 2rem;
+  }
+  .about-hero__media {
+    position: relative;
+  }
+  .about-hero__img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  .about-hero__text {
+    padding-top: 1.5rem;
+  }
+  .about-hero__eyebrow {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1.5rem;
+    font-weight: 600;
+  }
+  .about-hero__title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2rem, 3.4vw, 3.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    margin: 0 0 2rem;
+  }
+  .about-hero__title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .about-hero__body {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 0 0 1.2rem;
+    font-weight: 400;
+  }
+
+  /* ---------- SECTION FRAME ---------- */
+  .about-section {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 5rem 3rem 0;
+  }
+  .about-section__head {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+  .about-section__kicker {
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 0.9rem;
+    font-weight: 600;
+  }
+  .about-section__title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    margin: 0 auto 1rem;
+    line-height: 1.15;
+  }
+  .about-section__title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .about-section__rule {
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+    margin: 1.4rem auto 0;
+    border: 0;
+  }
+  .about-section__lede {
+    font-size: 0.98rem;
+    color: var(--ink-soft);
+    max-width: 58ch;
+    margin: 1.4rem auto 0;
+    line-height: 1.7;
+  }
+
+  /* ---------- CORE ENSEMBLE ---------- */
+  .ensemble-list {
+    display: grid;
+    gap: 5rem;
+    margin-top: 1rem;
+  }
+  .ensemble-member {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+  .ensemble-member:nth-child(even) {
+    grid-template-columns: 1fr 360px;
+  }
+  .ensemble-member:nth-child(even) .ensemble-member__media {
+    order: 2;
+  }
+  .ensemble-member:nth-child(even) .ensemble-member__body {
+    order: 1;
+    text-align: right;
+  }
+  .ensemble-member:nth-child(even) .ensemble-member__body .ensemble-member__links {
+    justify-content: flex-end;
+  }
+
+  .ensemble-member__media {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+  }
+  .ensemble-member__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(0.12);
+    transition: transform 0.8s ease, filter 0.6s ease;
+  }
+  .ensemble-member:hover .ensemble-member__media img {
+    transform: scale(1.04);
+    filter: grayscale(0);
+  }
+
+  .ensemble-member__role {
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin: 0 0 0.8rem;
+  }
+  .ensemble-member__name {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(1.7rem, 2.6vw, 2.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin: 0 0 1.4rem;
+    color: var(--ink);
+  }
+  .ensemble-member__bio {
+    font-size: 0.96rem;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    max-width: 52ch;
+    margin: 0 0 1.6rem;
+  }
+  .ensemble-member:nth-child(even) .ensemble-member__bio {
+    margin-left: auto;
+  }
+  .ensemble-member__highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.2rem;
+    max-width: 52ch;
+  }
+  .ensemble-member:nth-child(even) .ensemble-member__highlights {
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+  .ensemble-member__highlights li {
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    font-weight: 500;
+    position: relative;
+    padding-right: 1.2rem;
+  }
+  .ensemble-member__highlights li:not(:last-child)::after {
+    content: '·';
+    position: absolute;
+    right: 0;
+    color: var(--rule);
+  }
+
+  .ensemble-member__links {
+    display: flex;
+    gap: 1.4rem;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+  }
+  .ensemble-member__links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+  .ensemble-member__links a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .ensemble-member__links svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ---------- EXTENDED ROSTER (active collaborators) ---------- */
+  .collab-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem 2rem;
+    margin-top: 1rem;
+  }
+  .collab-card {
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+  .collab-card:hover { transform: translateY(-4px); }
+  .collab-card__img-wrap {
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    margin: 0 0 1.2rem;
+    background: #e8e4dc;
+  }
+  .collab-card__img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(0.15);
+    transition: filter 0.4s ease, transform 0.5s ease;
+  }
+  .collab-card:hover .collab-card__img-wrap img {
+    filter: grayscale(0);
+    transform: scale(1.05);
+  }
+  .collab-card__name {
+    font-family: var(--serif);
+    font-size: 1.22rem;
+    font-weight: 400;
+    margin: 0 0 0.35rem;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .collab-card__role {
+    font-size: 0.76rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    line-height: 1.4;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  /* ---------- COMPOSERS IN RESIDENCE ---------- */
+  .composers-band {
+    background: var(--paper-alt);
+    padding: 5rem 0;
+    margin-top: 6rem;
+  }
+  .composers-band .about-section { padding-top: 0; }
+
+  .composers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem 2rem;
+    margin-top: 1rem;
+  }
+  .composer-card {
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+  .composer-card:hover { transform: translateY(-4px); }
+  .composer-card__img-wrap {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 0 auto 1.2rem;
+    max-width: 180px;
+    background: #e8e4dc;
+  }
+  .composer-card__img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(0.15);
+    transition: filter 0.4s ease, transform 0.5s ease;
+  }
+  .composer-card:hover .composer-card__img-wrap img {
+    filter: grayscale(0);
+    transform: scale(1.05);
+  }
+  /* Monogram placeholder (shown when no photo yet) */
+  .composer-card__monogram {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 2.6rem;
+    font-weight: 300;
+    color: var(--ink-faint);
+    background: linear-gradient(135deg, #efece5 0%, #e2ddd3 100%);
+    letter-spacing: 0.02em;
+  }
+  .composer-card__name {
+    font-family: var(--serif);
+    font-size: 1.22rem;
+    font-weight: 400;
+    margin: 0 0 0.35rem;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .composer-card__work {
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  /* ---------- ROSTER YEAR-BY-YEAR ---------- */
+  .roster-section {
+    padding-top: 7rem;
+  }
+  .roster-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem 3rem;
+    margin-top: 2rem;
+  }
+  .roster-year {
+    padding: 2rem 1.8rem;
+    background: #fff;
+    border: 1px solid var(--rule);
+    position: relative;
+    transition: border-color 0.25s ease, box-shadow 0.3s ease;
+  }
+  .roster-year:hover {
+    border-color: var(--accent);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.05);
+  }
+  .roster-year--current {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  .roster-year--current .roster-year__title,
+  .roster-year--current .roster-year__list li {
+    color: var(--paper);
+  }
+  .roster-year--current .roster-year__badge {
+    background: var(--accent);
+    color: #fff;
+  }
+  .roster-year__badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    background: var(--paper-alt);
+    color: var(--ink-soft);
+    margin-bottom: 0.9rem;
+    font-weight: 600;
+  }
+  .roster-year__title {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin: 0 0 1.3rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+  .roster-year--current .roster-year__title {
+    border-bottom-color: rgba(255, 255, 255, 0.18);
+  }
+  .roster-year__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.38rem;
+  }
+  .roster-year__list li {
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: var(--ink-soft);
+  }
+  .roster-year__list li strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .roster-year--current .roster-year__list li strong {
+    color: #fff;
+    font-weight: 500;
+  }
+  .roster-year__list li span {
+    font-style: italic;
+    color: var(--ink-faint);
+  }
+  .roster-year--current .roster-year__list li span {
+    color: rgba(250, 250, 247, 0.65);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1024px) {
+    .composers-grid, .collab-grid { grid-template-columns: repeat(3, 1fr); }
+    .roster-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .about-hero {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 2.5rem 1.5rem 1rem;
+    }
+    .about-hero__img { aspect-ratio: 4 / 3; }
+    .about-hero__text { padding-top: 0.5rem; }
+    .about-section { padding: 3.5rem 1.5rem 0; }
+    .about-section__head { margin-bottom: 2.5rem; }
+    .ensemble-list { gap: 3.5rem; }
+    .ensemble-member,
+    .ensemble-member:nth-child(even) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .ensemble-member:nth-child(even) .ensemble-member__media { order: 1; }
+    .ensemble-member:nth-child(even) .ensemble-member__body {
+      order: 2;
+      text-align: left;
+    }
+    .ensemble-member:nth-child(even) .ensemble-member__body .ensemble-member__links,
+    .ensemble-member:nth-child(even) .ensemble-member__highlights {
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+    .ensemble-member:nth-child(even) .ensemble-member__bio { margin-left: 0; }
+    .ensemble-member__media { max-width: 340px; }
+    .composers-band { padding: 3.5rem 0; margin-top: 4rem; }
+    .composers-grid, .collab-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem 1.2rem;
+    }
+    .composer-card__img-wrap { max-width: 140px; }
+    .roster-section { padding-top: 4rem; }
+    .roster-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+  @media (max-width: 480px) {
+    .composers-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem 1rem; }
+    .composer-card__img-wrap { max-width: 120px; }
+    .composer-card__name { font-size: 1.05rem; }
+  }
+</style>
+
+<div class="about-wrap">
+
+  <!-- ============ HERO ============ -->
+  <section class="about-hero">
+    <div class="about-hero__media">
+      <img class="about-hero__img" src="https://creartbox-media-cdn.b-cdn.net/webimg/CreArtBox-Profile-LR.jpg" alt="CreArtBox ensemble">
+    </div>
+    <div class="about-hero__text">
+      <p class="about-hero__eyebrow">About the Ensemble</p>
+      <h1 class="about-hero__title">A chamber music ensemble driven by <em>multidisciplinary</em> interaction.</h1>
+      <p class="about-hero__body">
+        CreArtBox is a chamber music ensemble founded in 2013 in New York City by flutist and composer Guillermo Laporta and pianist Josefina Urraca. Since its inception, the group has dedicated itself to producing innovative live performances that weave together classical repertoire, newly commissioned works, and visual art.
+      </p>
+      <p class="about-hero__body">
+        We are not a presenting organization. We are a quintet — five musicians committed to creating and performing our own productions, on stages from New York to Tokyo.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CORE ENSEMBLE ============ -->
+  <section class="about-section">
+    <header class="about-section__head">
+      <p class="about-section__kicker">The Quintet</p>
+      <h2 class="about-section__title">The core <em>ensemble</em></h2>
+      <hr class="about-section__rule">
+      <p class="about-section__lede">Five musicians at the heart of CreArtBox — a shared voice shaped over a decade of collaboration.</p>
+    </header>
+
+    <div class="ensemble-list">
+
+      <!-- Emilie-Anne Gendron -->
+      <article class="ensemble-member">
+        <div class="ensemble-member__media">
+          <img src="https://creartbox-media-cdn.b-cdn.net/webimg/EmilieG.webp" alt="Emilie-Anne Gendron, violin">
+        </div>
+        <div class="ensemble-member__body">
+          <p class="ensemble-member__role">Violin</p>
+          <h3 class="ensemble-member__name">Emilie-Anne Gendron</h3>
+          <p class="ensemble-member__bio">
+            Lauded by <em>The New York Times</em> as a "brilliant soloist" and by <em>Strad Magazine</em> for her "marvellous and lyrical playing," Emilie-Anne Gendron is a longtime member of the Momenta Quartet and one of the concertmasters of the Orpheus Chamber Orchestra. Her dynamic New York-based career spans recitals in Paris and Sweden, festivals across Europe and Asia, and collaborations with artists including Leon Fleisher, Richard Goode, Edgar Meyer, and Gil Shaham.
+          </p>
+          <ul class="ensemble-member__highlights">
+            <li>Momenta Quartet</li>
+            <li>Orpheus Chamber Orchestra</li>
+            <li>Juilliard DMA &amp; Artist Diploma</li>
+          </ul>
+          <ul class="ensemble-member__links">
+            <li>
+              <a href="https://creartbox.nyc/pages/emilie-anne-gendron">
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                Full Bio
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/elgendron/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+                Instagram
+              </a>
+            </li>
+            <li>
+              <a href="https://www.emilieannegendron.com" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>
+                Website
+              </a>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Matthew Cohen -->
+      <article class="ensemble-member">
+        <div class="ensemble-member__media">
+          <img src="https://creartbox-media-cdn.b-cdn.net/webimg/mathew.jpg" alt="Matthew Cohen, viola">
+        </div>
+        <div class="ensemble-member__body">
+          <p class="ensemble-member__role">Viola</p>
+          <h3 class="ensemble-member__name">Matthew Cohen</h3>
+          <p class="ensemble-member__bio">
+            Ukrainian-American violist Matthew Cohen is the newly appointed violist of the Formosa Quartet and a founding member of Ensemble Elatós. A special prize winner at the Primrose International Viola Competition and top-prize winner in Cremona and at Vivo International, he is a passionate advocate for the viola as a singular voice, championing lesser-known works and new arrangements.
+          </p>
+          <ul class="ensemble-member__highlights">
+            <li>Formosa Quartet</li>
+            <li>Ensemble Elatós</li>
+            <li>Primrose prize winner</li>
+          </ul>
+          <ul class="ensemble-member__links">
+            <li>
+              <a href="https://creartbox.nyc/pages/matthew-cohen-viola">
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                Full Bio
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/mcohenviola/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+                Instagram
+              </a>
+            </li>
+            <li>
+              <a href="https://www.matthewcohenviola.com" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>
+                Website
+              </a>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Julia Yang -->
+      <article class="ensemble-member">
+        <div class="ensemble-member__media">
+          <img src="https://creartbox-media-cdn.b-cdn.net/webimg/about-julia.jpg" alt="Julia Yang, cello">
+        </div>
+        <div class="ensemble-member__body">
+          <p class="ensemble-member__role">Cello</p>
+          <h3 class="ensemble-member__name">Julia Yang</h3>
+          <p class="ensemble-member__bio">
+            Praised for her "sense of joyful virtuosity" (<em>South Florida Classical Review</em>), cellist Julia Yang is a founding member of the Naumburg-winning Merz Trio and of Trio Phōs. Called the "stunning find of the evening" by the <em>New York Classical Review</em>, she has collaborated with Jonathan Biss, Mitsuko Uchida, and Kim Kashkashian at festivals including Marlboro, Yellow Barn, and Tippet Rise.
+          </p>
+          <ul class="ensemble-member__highlights">
+            <li>Merz Trio</li>
+            <li>Trio Phōs</li>
+            <li>Naumburg prize winner</li>
+          </ul>
+          <ul class="ensemble-member__links">
+            <li>
+              <a href="https://creartbox.nyc/pages/julia-yang">
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                Full Bio
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/juliayangcello/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+                Instagram
+              </a>
+            </li>
+            <li>
+              <a href="https://www.juliayangcello.com" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>
+                Website
+              </a>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Josefina Urraca -->
+      <article class="ensemble-member">
+        <div class="ensemble-member__media">
+          <img src="https://creartbox-media-cdn.b-cdn.net/webimg/about-josefina.png" alt="Josefina Urraca, piano">
+        </div>
+        <div class="ensemble-member__body">
+          <p class="ensemble-member__role">Piano &middot; Co-Director</p>
+          <h3 class="ensemble-member__name">Josefina Urraca</h3>
+          <p class="ensemble-member__bio">
+            Spanish pianist and co-director of CreArtBox and Festival ADAR, Josefina Urraca's playing has been praised by <em>Mundo Clásico</em> for its blend of "introspection and musical abandon." She has performed at Carnegie Hall, Salle Cortot in Paris, Sony Auditorium in Madrid, and Monten Hall in Tokyo, and trained with Dmitri Bashkirov, Maria João Pires, and Ferenc Rados across Salamanca, Paris, and New York.
+          </p>
+          <ul class="ensemble-member__highlights">
+            <li>Co-Director, CreArtBox</li>
+            <li>Co-Director, Festival ADAR</li>
+            <li>Reina Sofía &amp; Cortot alumna</li>
+          </ul>
+          <ul class="ensemble-member__links">
+            <li>
+              <a href="https://creartbox.nyc/pages/josefina-urraca">
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                Full Bio
+              </a>
+            </li>
+            <li>
+              <a href="mailto:josefinaupd@gmail.com">
+                <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Guillermo Laporta -->
+      <article class="ensemble-member">
+        <div class="ensemble-member__media">
+          <img src="https://creartbox-media-cdn.b-cdn.net/webimg/about-guillermo.png" alt="Guillermo Laporta, flute">
+        </div>
+        <div class="ensemble-member__body">
+          <p class="ensemble-member__role">Flute &middot; Executive Director</p>
+          <h3 class="ensemble-member__name">Guillermo Laporta</h3>
+          <p class="ensemble-member__bio">
+            Flutist, composer, and multimedia creator, Guillermo Laporta is the Executive Director of CreArtBox and Festival ADAR. At the heart of his practice lies the concept of the "visual concert" — multimedia performances that weave visual art and theatrical design into live chamber music. His work has been praised by <em>The New Yorker</em>, <em>Time Out</em>, and <em>Broadway World</em> for its "wholly authentic, visually and aurally compelling experience."
+          </p>
+          <ul class="ensemble-member__highlights">
+            <li>Executive Director, CreArtBox</li>
+            <li>Executive Director, Festival ADAR</li>
+            <li>Royal College of Music</li>
+          </ul>
+          <ul class="ensemble-member__links">
+            <li>
+              <a href="https://creartbox.nyc/pages/guillermo-laporta">
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                Full Bio
+              </a>
+            </li>
+            <li>
+              <a href="mailto:guillermo@creartbox.nyc">
+                <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ VISUAL ARTISTS ============ -->
+  <section class="about-section">
+    <header class="about-section__head">
+      <p class="about-section__kicker">Collaborators</p>
+      <h2 class="about-section__title">Visual <em>artists</em></h2>
+      <hr class="about-section__rule">
+      <p class="about-section__lede">The visual artists, photographers, and designers who shape the look and atmosphere of our productions.</p>
+    </header>
+
+    <div class="collab-grid">
+      <a class="collab-card" href="https://creartbox.nyc/pages/tao-ho">
+        <div class="collab-card__img-wrap">
+          <img src="https://creartbox-media-cdn.b-cdn.net/webimg/taoho.jpg" alt="Tao Ho">
+        </div>
+        <h3 class="collab-card__name">Tao Ho</h3>
+        <p class="collab-card__role">Video Artist &amp; Photographer</p>
+      </a>
+      <a class="collab-card" href="https://creartbox.nyc/pages/guillermo-ordas">
+        <div class="collab-card__img-wrap">
+          <img src="https://creartbox-media-cdn.b-cdn.net/webimg/guille-ordas.jpeg" alt="Guillermo Ordás">
+        </div>
+        <h3 class="collab-card__name">Guillermo Ordás</h3>
+        <p class="collab-card__role">Visual Artist &amp; Cinematographer</p>
+      </a>
+      <a class="collab-card" href="https://creartbox.nyc/pages/sarah-k-williams">
+        <div class="collab-card__img-wrap">
+          <img src="https://creartbox-media-cdn.b-cdn.net/webimg/sarah.jpg" alt="Sarah K. Williams">
+        </div>
+        <h3 class="collab-card__name">Sarah K. Williams</h3>
+        <p class="collab-card__role">Visual Artist &amp; Chef</p>
+      </a>
+      <a class="collab-card" href="https://creartbox.nyc/pages/mizuko-kaji">
+        <div class="collab-card__img-wrap">
+          <img src="https://creartbox-media-cdn.b-cdn.net/webimg/mizuko.jpg" alt="Mizuko Kaji">
+        </div>
+        <h3 class="collab-card__name">Mizuko Kaji</h3>
+        <p class="collab-card__role">Visual Artist</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ COMPOSERS 2025/26 ============ -->
+  <div class="composers-band">
+    <section class="about-section">
+      <header class="about-section__head">
+        <p class="about-section__kicker">Season 2025 / 2026</p>
+        <h2 class="about-section__title">Composers in <em>Residence</em></h2>
+        <hr class="about-section__rule">
+        <p class="about-section__lede">This season, thirteen composers contribute new voices to our programs — from world premieres to newly commissioned works performed across our New York Series and touring productions.</p>
+      </header>
+
+      <div class="composers-grid">
+
+        <a class="composer-card" href="#">
+          <div class="composer-card__img-wrap">
+            <img src="https://creartbox-media-cdn.b-cdn.net/webimg/composers-digital-hall/brittney-benton.jpg" alt="Brittney Benton">
+          </div>
+          <h3 class="composer-card__name">Brittney Benton</h3>
+          <p class="composer-card__work">Piano Trio No. 1</p>
+        </a>
+
+        <a class="composer-card" href="#">
+          <div class="composer-card__img-wrap">
+            <img src="https://creartbox-media-cdn.b-cdn.net/webimg/composers-digital-hall/alex-burtzos.jpg" alt="Alex Burtzos">
+          </div>
+          <h3 class="composer-card__name">Alex Burtzos</h3>
+          <p class="composer-card__work">I S L A N D I</p>
+        </a>
+
+        <a class="composer-card" href="#">
+          <div class="composer-card__img-wrap">
+            <img src="https://creartbox-media-cdn.b-cdn.net/webimg/composers-digital-hall/oliver-caplan.jpg" alt="Oliver Caplan">
+          </div>
+          <h3 class="composer-card__name">Oliver Caplan</h3>
+          <p class="composer-card__work">Canciones de Monteverdi</p>
+        </a>
+
+        <a class="composer-card" href="#">
+          <div class="composer-card__img-wrap">
+            <img src="https://creartbox-media-cdn.b-cdn.net/webimg/composers-digital-hall/luke-carlson.jpg" alt="Luke Carlson">
+          </div>
+          <h3 class="composer-card__name">Luke Carlson</h3>
+          <p class="composer-card__work">Render</p>
+        </a>
+
+        <a class="composer-card" href="#">
+          <div class="composer-card__img-wrap">
+            <img src="https://creartbox-media-cdn.b-cdn.net/webimg/composers-digital-hall/devin-cholodenko.jpg" alt="Devin Cholodenko">
+          </div>
+          <h3 class="composer-card__name">Devin Cholodenko</h3>
+          <p class="composer-card__work">Twilight at Dawn</p>
+        </a>
+
+        <a class="composer-card" href="#">
+          <div class="composer-card__img-wrap">
+            <img src="https://creartbox-media-cdn.b-cdn.net/webimg/composers-digital-hall/gilad-cohen.jpg" alt="Gilad Cohen">
+          </div>
+          <h3 class="composer-card__name">Gilad Cohen</h3>
+          <p class="composer-card__work">Ten Variations</p>
+        </a>
+
+        <a class="composer-card" href="#">
+          <div class="composer-card__img-wrap">
+            <img src="https://creartbox-media-cdn.b-cdn.net/webimg/composers-digital-hall/yurui-rain.jpg" alt="Yurui (Rain) Hou">
+          </div>
+          <h3 class="composer-card__name">Yurui (Rain) Hou</h3>
+          <p class="composer-card__work">Flickered</p>
+        </a>
+
+        <a class="composer-card" href="#">
+          <div class="composer-card__img-wrap">
+            <img src="https://creartbox-media-cdn.b-cdn.net/webimg/composers-digital-hall/eric-moe.jpg" alt="Eric Moe">
+          </div>
+          <h3 class="composer-card__name">Eric Moe</h3>
+          <p class="composer-card__work">Laminar Flow in Upsidedown Creek</p>
+        </a>
+
+        <a class="composer-card" href="#">
+          <div class="composer-card__img-wrap">
+            <img src="https://creartbox-media-cdn.b-cdn.net/webimg/composers-digital-hall/paul-novak.jpg" alt="Paul Novak">
+          </div>
+          <h3 class="composer-card__name">Paul Novak</h3>
+          <p class="composer-card__work">Entwining</p>
+        </a>
+
+        <a class="composer-card" href="#">
+          <div class="composer-card__img-wrap">
+            <img src="https://creartbox-media-cdn.b-cdn.net/webimg/composers-digital-hall/samantha-sack.jpg" alt="Samantha Leigh Sacks">
+          </div>
+          <h3 class="composer-card__name">Samantha Leigh Sacks</h3>
+          <p class="composer-card__work">Forcing Revelation</p>
+        </a>
+
+        <a class="composer-card" href="#">
+          <div class="composer-card__img-wrap">
+            <img src="https://creartbox-media-cdn.b-cdn.net/webimg/composers-digital-hall/zygmind-somogyi.jpg" alt="Zygmund de Somogyi">
+          </div>
+          <h3 class="composer-card__name">Zygmund de Somogyi</h3>
+          <p class="composer-card__work">A Lighthouse Feverdream</p>
+        </a>
+
+        <a class="composer-card" href="#">
+          <div class="composer-card__img-wrap">
+            <img src="https://creartbox-media-cdn.b-cdn.net/webimg/composers-digital-hall/eli-tausen.jpg" alt="Eli Tausen á Lava">
+          </div>
+          <h3 class="composer-card__name">Eli Tausen á Lava</h3>
+          <p class="composer-card__work">Mururin</p>
+        </a>
+
+        <a class="composer-card" href="#">
+          <div class="composer-card__img-wrap">
+            <img src="https://creartbox-media-cdn.b-cdn.net/webimg/composers-digital-hall/sam-wu.jpg" alt="Sam Wu">
+          </div>
+          <h3 class="composer-card__name">Sam Wu</h3>
+          <p class="composer-card__work">Mass Transit</p>
+        </a>
+
+      </div>
+
+      <!-- Continuing composers from prior seasons -->
+      <div style="margin-top: 4rem;">
+        <p class="about-section__kicker" style="text-align: center; margin-bottom: 2rem;">Continuing Residency</p>
+        <div class="composers-grid" style="grid-template-columns: repeat(3, minmax(0, 280px)); justify-content: center;">
+          <a class="composer-card" href="https://creartbox.nyc/pages/hannah-selin">
+            <div class="composer-card__img-wrap">
+              <img src="https://creartbox-media-cdn.b-cdn.net/webimg/HannahSelin.webp" alt="Hannah Selin">
+            </div>
+            <h3 class="composer-card__name">Hannah Selin</h3>
+            <p class="composer-card__work">Composer &amp; Visual Artist</p>
+          </a>
+          <a class="composer-card" href="#">
+            <div class="composer-card__img-wrap">
+              <img src="https://creartbox-media-cdn.b-cdn.net/webimg/andrea-casarrubios.jpeg" alt="Andrea Casarrubios">
+            </div>
+            <h3 class="composer-card__name">Andrea Casarrubios</h3>
+            <p class="composer-card__work">Composer &amp; Cellist</p>
+          </a>
+          <a class="composer-card" href="https://creartbox.nyc/pages/michael-grebla">
+            <div class="composer-card__img-wrap">
+              <img src="https://creartbox-media-cdn.b-cdn.net/webimg/michael-grebla.jpeg" alt="Michael Grebla">
+            </div>
+            <h3 class="composer-card__name">Michael Grebla</h3>
+            <p class="composer-card__work">Composer</p>
+          </a>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- ============ ROSTER YEAR BY YEAR ============ -->
+  <section class="about-section roster-section">
+    <header class="about-section__head">
+      <p class="about-section__kicker">Since 2013</p>
+      <h2 class="about-section__title">Roster, <em>year by year</em></h2>
+      <hr class="about-section__rule">
+      <p class="about-section__lede">The artists, composers, dancers, and visual collaborators who have shaped each season of CreArtBox.</p>
+    </header>
+
+    <div class="roster-grid">
+
+      <!-- 2025/26 CURRENT -->
+      <div class="roster-year roster-year--current">
+        <span class="roster-year__badge">Current Season</span>
+        <h3 class="roster-year__title">2025 / 26 Roster</h3>
+        <ul class="roster-year__list">
+          <li><strong>Emilie-Anne Gendron</strong>, <span>violin</span></li>
+          <li><strong>Matthew Cohen</strong>, <span>viola</span></li>
+          <li><strong>Julia Yang</strong>, <span>cello</span></li>
+          <li><strong>Guillermo Laporta</strong>, <span>flute</span></li>
+          <li><strong>Josefina Urraca</strong>, <span>piano</span></li>
+          <li><strong>Tao Ho</strong>, <span>video artist &amp; photographer</span></li>
+          <li><strong>Guillermo Ordás</strong>, <span>visual artist &amp; cinematographer</span></li>
+          <li><strong>Sarah K. Williams</strong>, <span>visual artist &amp; chef</span></li>
+          <li><strong>Mizuko Kaji</strong>, <span>visual artist</span></li>
+          <li><strong>Andrea Casarrubios</strong>, <span>composer &amp; cellist</span></li>
+          <li><strong>Hannah Selin</strong>, <span>composer</span></li>
+          <li><strong>Michael Grebla</strong>, <span>composer</span></li>
+          <li><strong>Brittney Benton</strong>, <span>composer</span></li>
+          <li><strong>Alex Burtzos</strong>, <span>composer</span></li>
+          <li><strong>Oliver Caplan</strong>, <span>composer</span></li>
+          <li><strong>Luke Carlson</strong>, <span>composer</span></li>
+          <li><strong>Devin Cholodenko</strong>, <span>composer</span></li>
+          <li><strong>Gilad Cohen</strong>, <span>composer</span></li>
+          <li><strong>Yurui (Rain) Hou</strong>, <span>composer</span></li>
+          <li><strong>Eric Moe</strong>, <span>composer</span></li>
+          <li><strong>Paul Novak</strong>, <span>composer</span></li>
+          <li><strong>Samantha Leigh Sacks</strong>, <span>composer</span></li>
+          <li><strong>Zygmund de Somogyi</strong>, <span>composer</span></li>
+          <li><strong>Eli Tausen á Lava</strong>, <span>composer</span></li>
+          <li><strong>Sam Wu</strong>, <span>composer</span></li>
+        </ul>
+      </div>
+
+      <!-- 2024/25 -->
+      <div class="roster-year">
+        <span class="roster-year__badge">Season</span>
+        <h3 class="roster-year__title">2024 / 25 Roster</h3>
+        <ul class="roster-year__list">
+          <li><strong>Almudena Arribas</strong>, <span>viola</span></li>
+          <li><strong>Andrea Casarrubios</strong>, <span>composer &amp; cello</span></li>
+          <li><strong>Berta Ares</strong>, <span>violin</span></li>
+          <li><strong>Bryan Murray</strong>, <span>baritone</span></li>
+          <li><strong>Diego Arribas</strong>, <span>visual artist</span></li>
+          <li><strong>Emilie-Anne Gendron</strong>, <span>violin</span></li>
+          <li><strong>Hannah Selin</strong>, <span>composer</span></li>
+          <li><strong>Gabrielle Revlock</strong>, <span>dancer</span></li>
+          <li><strong>Giulio Tanasini</strong>, <span>viola da gamba</span></li>
+          <li><strong>Guillermo Laporta</strong>, <span>flute</span></li>
+          <li><strong>Guillermo Ordás</strong>, <span>cinematographer</span></li>
+          <li><strong>Jone de la Fuente</strong>, <span>violin</span></li>
+          <li><strong>Josefina Urraca</strong>, <span>piano</span></li>
+          <li><strong>Julia Yang</strong>, <span>cello</span></li>
+          <li><strong>Matthew Cohen</strong>, <span>viola</span></li>
+          <li><strong>María del Buey</strong>, <span>researcher &amp; actress</span></li>
+          <li><strong>Nacho Laguna</strong>, <span>tiorba</span></li>
+          <li><strong>Natania Hoffman</strong>, <span>cello</span></li>
+          <li><strong>Reynard Loki</strong>, <span>percussion &amp; performer</span></li>
+          <li><strong>Sarah K. Williams</strong>, <span>visual artist</span></li>
+          <li><strong>Sarah Zucchero</strong>, <span>dancer</span></li>
+          <li><strong>Tao Ho</strong>, <span>video artist &amp; photographer</span></li>
+        </ul>
+      </div>
+
+      <!-- 2023/24 -->
+      <div class="roster-year">
+        <span class="roster-year__badge">Season</span>
+        <h3 class="roster-year__title">2023 / 24 Roster</h3>
+        <ul class="roster-year__list">
+          <li><strong>Almudena Arribas</strong>, <span>viola</span></li>
+          <li><strong>Andrea Casarrubios</strong>, <span>composer</span></li>
+          <li><strong>Emilie-Anne Gendron</strong>, <span>violin</span></li>
+          <li><strong>Hannah Selin</strong>, <span>composer</span></li>
+          <li><strong>Harriet Langley</strong>, <span>violin</span></li>
+          <li><strong>Guillermo Laporta</strong>, <span>flute</span></li>
+          <li><strong>Guillermo Ordás</strong>, <span>cinematographer</span></li>
+          <li><strong>Jason Thomas Aylward</strong>, <span>conductor</span></li>
+          <li><strong>Jone de la Fuente</strong>, <span>violin</span></li>
+          <li><strong>Josefina Urraca</strong>, <span>piano</span></li>
+          <li><strong>Julia Yang</strong>, <span>cello</span></li>
+          <li><strong>Mari Lee</strong>, <span>violin</span></li>
+          <li><strong>Matthew Cohen</strong>, <span>viola</span></li>
+          <li><strong>Michael Grebla</strong>, <span>composer</span></li>
+          <li><strong>Natania Hoffman</strong>, <span>cello</span></li>
+          <li><strong>Nathan Schram</strong>, <span>composer</span></li>
+          <li><strong>Sarah K. Williams</strong>, <span>video artist</span></li>
+          <li><strong>Tao Ho</strong>, <span>video artist</span></li>
+        </ul>
+      </div>
+
+      <!-- 2022/23 -->
+      <div class="roster-year">
+        <span class="roster-year__badge">Season</span>
+        <h3 class="roster-year__title">2022 / 23 Roster</h3>
+        <ul class="roster-year__list">
+          <li><strong>Almudena Arribas</strong>, <span>viola</span></li>
+          <li><strong>Annamaria Kowalsky</strong>, <span>composer</span></li>
+          <li><strong>Brian Wysocki</strong>, <span>composer</span></li>
+          <li><strong>Bryan Murray</strong>, <span>baritone</span></li>
+          <li><strong>Celeste Oram</strong>, <span>composer</span></li>
+          <li><strong>Clare Monfredo</strong>, <span>cello</span></li>
+          <li><strong>Emilie-Anne Gendron</strong>, <span>violin</span></li>
+          <li><strong>Emmanuel Bach</strong>, <span>violin</span></li>
+          <li><strong>Hannah Selin</strong>, <span>composer</span></li>
+          <li><strong>Guillermo Laporta</strong>, <span>flute</span></li>
+          <li><strong>Jason Thomas Aylward</strong>, <span>conductor</span></li>
+          <li><strong>John Backstrom</strong>, <span>actor</span></li>
+          <li><strong>Johnna Wu</strong>, <span>violin</span></li>
+          <li><strong>Jone de la Fuente</strong>, <span>violin</span></li>
+          <li><strong>Josefina Urraca</strong>, <span>piano</span></li>
+          <li><strong>JP Jofre</strong>, <span>composer</span></li>
+          <li><strong>Julia Yang</strong>, <span>cello</span></li>
+          <li><strong>Mari Lee</strong>, <span>violin</span></li>
+          <li><strong>Mary Taylor Hennings</strong>, <span>dancer</span></li>
+          <li><strong>Matt Harvey</strong>, <span>cinematographer</span></li>
+          <li><strong>Matthew Cohen</strong>, <span>viola</span></li>
+          <li><strong>Natania Hoffman</strong>, <span>cello</span></li>
+          <li><strong>Noah Kho</strong>, <span>cello</span></li>
+          <li><strong>Peter Cheng</strong>, <span>dancer</span></li>
+          <li><strong>Rebecca Madeira</strong>, <span>soprano</span></li>
+          <li><strong>Sammy Rivas</strong>, <span>actor</span></li>
+          <li><strong>Sarah K. Williams</strong>, <span>video artist</span></li>
+          <li><strong>Tao Ho</strong>, <span>video artist</span></li>
+          <li><strong>Yezu Woo</strong>, <span>violin</span></li>
+          <li><strong>Žilvinas Brazauskas</strong>, <span>clarinet</span></li>
+        </ul>
+      </div>
+
+      <!-- 2021/22 -->
+      <div class="roster-year">
+        <span class="roster-year__badge">Season</span>
+        <h3 class="roster-year__title">2021 / 22 Roster</h3>
+        <ul class="roster-year__list">
+          <li><strong>Annamaria Kowalsky</strong>, <span>composer</span></li>
+          <li><strong>Brian Shank</strong>, <span>composer</span></li>
+          <li><strong>Brian Wysocki</strong>, <span>composer</span></li>
+          <li><strong>Cullyn Murphy</strong>, <span>composer</span></li>
+          <li><strong>Guillermo Laporta</strong>, <span>flute</span></li>
+          <li><strong>Josefina Urraca</strong>, <span>piano</span></li>
+          <li><strong>Jane Yoon</strong>, <span>harp</span></li>
+          <li><strong>Keir GoGwilt</strong>, <span>violin</span></li>
+          <li><strong>Mari Lee</strong>, <span>violin</span></li>
+          <li><strong>Marcos Fernández</strong>, <span>composer</span></li>
+          <li><strong>Marieken Cochius</strong>, <span>painter</span></li>
+          <li><strong>Mary Taylor Hennings</strong>, <span>dancer</span></li>
+          <li><strong>Nathaniel Sullivan</strong>, <span>baritone</span></li>
+          <li><strong>Nuno Marques</strong>, <span>piano</span></li>
+          <li><strong>Robert Sirvent</strong>, <span>video artist</span></li>
+          <li><strong>Sara C. Sun</strong>, <span>video artist</span></li>
+          <li><strong>Sarah K. Williams</strong>, <span>video artist</span></li>
+          <li><strong>Tao Ho</strong>, <span>video artist</span></li>
+          <li><strong>Yezu Woo</strong>, <span>violin</span></li>
+          <li><strong>Yi Qun Xu</strong>, <span>cello</span></li>
+        </ul>
+      </div>
+
+      <!-- 2020/21 -->
+      <div class="roster-year">
+        <span class="roster-year__badge">Season</span>
+        <h3 class="roster-year__title">2020 / 21 Roster</h3>
+        <ul class="roster-year__list">
+          <li><strong>Beatriz Blanco</strong>, <span>cello</span></li>
+          <li><strong>Guillermo Laporta</strong>, <span>flute</span></li>
+          <li><strong>Hsiao-Chu Hsia</strong>, <span>dancer</span></li>
+          <li><strong>Josefina Urraca</strong>, <span>piano</span></li>
+          <li><strong>Julia Yang</strong>, <span>cello</span></li>
+          <li><strong>Laude Fernández</strong>, <span>host</span></li>
+          <li><strong>Mari Lee</strong>, <span>violin</span></li>
+          <li><strong>Marcos Fernández</strong>, <span>composer</span></li>
+          <li><strong>Marieken Cochius</strong>, <span>painter</span></li>
+          <li><strong>Nathaniel Sullivan</strong>, <span>baritone</span></li>
+          <li><strong>Robert Sirvent</strong>, <span>video artist</span></li>
+          <li><strong>Sara C. Sun</strong>, <span>video artist</span></li>
+          <li><strong>Sarah K. Williams</strong>, <span>video artist</span></li>
+        </ul>
+      </div>
+
+      <!-- 2019/20 -->
+      <div class="roster-year">
+        <span class="roster-year__badge">Season</span>
+        <h3 class="roster-year__title">2019 / 20 Roster</h3>
+        <ul class="roster-year__list">
+          <li><strong>Ariadne Greif</strong>, <span>soprano</span></li>
+          <li><strong>Arte Quartet</strong>, <span>guest ensemble</span></li>
+          <li><strong>Can Wang</strong>, <span>dancer</span></li>
+          <li><strong>Evan O. Adams</strong>, <span>composer</span></li>
+          <li><strong>Jacopo Rampini</strong>, <span>actor</span></li>
+          <li><strong>Gregory Robbins</strong>, <span>double bass</span></li>
+          <li><strong>Guillermo Laporta</strong>, <span>flute</span></li>
+          <li><strong>Jonathan Cohen</strong>, <span>clarinet</span></li>
+          <li><strong>Josefina Urraca</strong>, <span>piano</span></li>
+          <li><strong>Julie Berndt</strong>, <span>actress</span></li>
+          <li><strong>Mary Taylor Hennings</strong>, <span>dancer</span></li>
+          <li><strong>Michelle Ross</strong>, <span>violin</span></li>
+          <li><strong>Nathaniel Sullivan</strong>, <span>baritone</span></li>
+          <li><strong>Nuno Marques</strong>, <span>piano</span></li>
+          <li><strong>Parhelion Trio</strong>, <span>guest ensemble</span></li>
+          <li><strong>Philip Lasser</strong>, <span>composer</span></li>
+        </ul>
+      </div>
+
+      <!-- 2018/19 -->
+      <div class="roster-year">
+        <span class="roster-year__badge">Season</span>
+        <h3 class="roster-year__title">2018 / 19 Roster</h3>
+        <ul class="roster-year__list">
+          <li><strong>Ariadne Greif</strong>, <span>soprano</span></li>
+          <li><strong>Brigid Coleridge</strong>, <span>violin</span></li>
+          <li><strong>Can Wang</strong>, <span>dancer</span></li>
+          <li><strong>Doug Perry</strong>, <span>percussion</span></li>
+          <li><strong>Edjo Wheeler</strong>, <span>sculpture</span></li>
+          <li><strong>Guillermo Laporta</strong>, <span>flute</span></li>
+          <li><strong>Isis de Coura</strong>, <span>set &amp; costume designer</span></li>
+          <li><strong>Jacopo Rampini</strong>, <span>actor</span></li>
+          <li><strong>Jonathan Cohen</strong>, <span>clarinet</span></li>
+          <li><strong>Josefina Urraca</strong>, <span>piano</span></li>
+          <li><strong>Julia Yang</strong>, <span>cello</span></li>
+          <li><strong>Julie Berndt</strong>, <span>actress</span></li>
+          <li><strong>Mari Lee</strong>, <span>violin</span></li>
+          <li><strong>Mary Taylor Hennings</strong>, <span>dancer</span></li>
+          <li><strong>Rosalie van Wamel</strong>, <span>dancer</span></li>
+          <li><strong>Tagore González</strong>, <span>scene direction &amp; choreography</span></li>
+          <li><strong>Wei Dai</strong>, <span>composer</span></li>
+        </ul>
+      </div>
+
+      <!-- 2017/18 -->
+      <div class="roster-year">
+        <span class="roster-year__badge">Season</span>
+        <h3 class="roster-year__title">2017 / 18 Roster</h3>
+        <ul class="roster-year__list">
+          <li><strong>Alex Shiozaki</strong>, <span>violin</span></li>
+          <li><strong>Brigid Coleridge</strong>, <span>violin</span></li>
+          <li><strong>Colin Brook</strong>, <span>viola</span></li>
+          <li><strong>Doug Perry</strong>, <span>percussion</span></li>
+          <li><strong>Gregory Robbins</strong>, <span>double bass</span></li>
+          <li><strong>Guillermo Laporta</strong>, <span>flute</span></li>
+          <li><strong>Janna Baty</strong>, <span>soprano</span></li>
+          <li><strong>Jonathan Cohen</strong>, <span>clarinet</span></li>
+          <li><strong>Josefina Urraca</strong>, <span>piano</span></li>
+          <li><strong>Joshua Penman</strong>, <span>composer</span></li>
+          <li><strong>JP Jofre</strong>, <span>guest artist, bandoneonist &amp; composer</span></li>
+          <li><strong>Julia Yang</strong>, <span>cello</span></li>
+          <li><strong>Le Train Bleu</strong>, <span>guest ensemble</span></li>
+          <li><strong>Marcos Fernández</strong>, <span>composer</span></li>
+          <li><strong>Marissa Maislen</strong>, <span>dance, acrobatics &amp; choreographer</span></li>
+          <li><strong>Melanie Clapies</strong>, <span>violin</span></li>
+          <li><strong>Nuno Marques</strong>, <span>piano</span></li>
+          <li><strong>Ransom Wilson</strong>, <span>guest artist &amp; conductor</span></li>
+          <li><strong>Tim Gocklin</strong>, <span>oboe</span></li>
+          <li><strong>Victor Cacesse</strong>, <span>percussion</span></li>
+        </ul>
+      </div>
+
+      <!-- 2016/17 -->
+      <div class="roster-year">
+        <span class="roster-year__badge">Season</span>
+        <h3 class="roster-year__title">2016 / 17 Roster</h3>
+        <ul class="roster-year__list">
+          <li><strong>Clara Vázquez Ledesma</strong>, <span>violin</span></li>
+          <li><strong>Guillermo Laporta</strong>, <span>flute</span></li>
+          <li><strong>Jacopo Rampini</strong>, <span>actor</span></li>
+          <li><strong>Johnna Wu</strong>, <span>violin</span></li>
+          <li><strong>Jonathan Cohen</strong>, <span>clarinet</span></li>
+          <li><strong>Josefina Urraca</strong>, <span>piano</span></li>
+          <li><strong>Joshua Penman</strong>, <span>composer</span></li>
+          <li><strong>Julia Yang</strong>, <span>cello</span></li>
+          <li><strong>Luke DuBois</strong>, <span>video artist</span></li>
+          <li><strong>Marissa Maislen</strong>, <span>dance, acrobatics &amp; choreographer</span></li>
+          <li><strong>Mindy Asher</strong>, <span>cello</span></li>
+          <li><strong>Mizuko Kaji</strong>, <span>costume designer</span></li>
+          <li><strong>Nick Gallas</strong>, <span>clarinet</span></li>
+          <li><strong>Pam Larson</strong>, <span>video artist</span></li>
+          <li><strong>Robby Bowen</strong>, <span>percussion</span></li>
+          <li><strong>Sebastian Currier</strong>, <span>composer</span></li>
+          <li><strong>Todd Reynolds</strong>, <span>composer</span></li>
+          <li><strong>Yves Dharamraj</strong>, <span>cello</span></li>
+        </ul>
+      </div>
+
+      <!-- 2015/16 -->
+      <div class="roster-year">
+        <span class="roster-year__badge">Season</span>
+        <h3 class="roster-year__title">2015 / 16 Roster</h3>
+        <ul class="roster-year__list">
+          <li><strong>Anton Rist</strong>, <span>clarinet</span></li>
+          <li><strong>Clara Vázquez Ledesma</strong>, <span>violin</span></li>
+          <li><strong>Guillermo Laporta</strong>, <span>flute</span></li>
+          <li><strong>Jen Fok</strong>, <span>light design</span></li>
+          <li><strong>Josefina Urraca</strong>, <span>piano</span></li>
+          <li><strong>Marcos Fernández</strong>, <span>composer</span></li>
+          <li><strong>Rick Cekovsky</strong>, <span>actor</span></li>
+          <li><strong>Yves Dharamraj</strong>, <span>cello</span></li>
+        </ul>
+      </div>
+
+      <!-- 2014/15 -->
+      <div class="roster-year">
+        <span class="roster-year__badge">Season</span>
+        <h3 class="roster-year__title">2014 / 15 Roster</h3>
+        <ul class="roster-year__list">
+          <li><strong>Anton Rist</strong>, <span>clarinet</span></li>
+          <li><strong>Colin Brook</strong>, <span>viola</span></li>
+          <li><strong>Guillermo Laporta</strong>, <span>flute</span></li>
+          <li><strong>Jen Fok</strong>, <span>light design</span></li>
+          <li><strong>Josefina Urraca</strong>, <span>piano</span></li>
+          <li><strong>Keir GoGwilt</strong>, <span>violin</span></li>
+          <li><strong>Morgelyn Tenbeth-ward</strong>, <span>dancer &amp; choreographer</span></li>
+          <li><strong>Miho Zaitsu</strong>, <span>cello</span></li>
+          <li><strong>Rick Cekovsky</strong>, <span>actor</span></li>
+          <li><strong>Yves Dharamraj</strong>, <span>cello</span></li>
+        </ul>
+      </div>
+
+      <!-- 2013/14 -->
+      <div class="roster-year">
+        <span class="roster-year__badge">Founding Season</span>
+        <h3 class="roster-year__title">2013 / 14 Roster</h3>
+        <ul class="roster-year__list">
+          <li><strong>Doori Na</strong>, <span>violin</span></li>
+          <li><strong>Guillermo Laporta</strong>, <span>flute</span></li>
+          <li><strong>Jane Yoon</strong>, <span>harp</span></li>
+          <li><strong>Josefina Urraca</strong>, <span>piano</span></li>
+          <li><strong>JP Jofre</strong>, <span>bandoneon &amp; composer</span></li>
+          <li><strong>Keir GoGwilt</strong>, <span>violin</span></li>
+          <li><strong>Morgelyn Tenbeth-ward</strong>, <span>dancer &amp; choreographer</span></li>
+          <li><strong>Nathan Schram</strong>, <span>viola</span></li>
+          <li><strong>Rick Cekovsky</strong>, <span>actor</span></li>
+          <li><strong>Tagore González</strong>, <span>scene direction &amp; choreography</span></li>
+          <li><strong>Yves Dharamraj</strong>, <span>cello</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+</div>
