@@ -87,15 +87,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Concert filter tabs
   initConcertTabs();
+
+  // Transparent masthead → solid on scroll past hero
+  initTransparentMasthead();
 });
+
+function initTransparentMasthead() {
+  if (!document.body.classList.contains("hero-transparent")) return;
+  const masthead = document.querySelector(".masthead");
+  if (!masthead) return;
+  const onScroll = () => {
+    const threshold = Math.min(window.innerHeight * 0.6, 540);
+    masthead.classList.toggle("scrolled", window.scrollY > threshold);
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+}
 
 /* ----- Donate calculator --------------------------------------------- */
 function initDonate() {
   const form = document.querySelector("[data-donate-form]");
   if (!form) return;
-  let amount = 100;
+  let amount = 250;
   let freq = "once";
   let custom = "";
+  const activeAmt = form.querySelector("[data-amt] button.active");
+  if (activeAmt) amount = Number(activeAmt.getAttribute("data-val")) || amount;
 
   const freqBtns = form.querySelectorAll("[data-freq] button");
   const amtBtns = form.querySelectorAll("[data-amt] button");
