@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/styles.css?v=3">
+<link rel="stylesheet" href="../assets/styles.css?v=4">
 <script id="cb-theme-init">(function(){try{var s=localStorage.getItem("cb-theme");if(s!=="paper")document.documentElement.setAttribute("data-theme","dark");}catch(e){document.documentElement.setAttribute("data-theme","dark");}})();</script>
 </head>
 <body>
@@ -25,14 +25,75 @@
   </div>
   <nav class="nav-strip">
     <div class="nav-strip-inner">
-      <a href="../index.html">Home</a>
-      <a href="../about.html">About</a>
-      <a href="../concerts.html">Calendar</a>
-      <a href="../archive.html" class="active">Archive</a>
-      <a href="../projects.html">Projects</a>
-      <a href="../opportunities.html">Opportunities</a>
-      <a href="../media.html">Media</a>
-      <a href="../support.html">Donate</a>
+      <div class="nav-item"><a href="../index.html">Home</a></div>
+      <div class="nav-item">
+        <a href="../about.html">About</a>
+        <div class="submenu">
+          <a href="../about.html#bio">Biography</a>
+          <a href="../about.html#ensemble">The Ensemble</a>
+          <a href="../about.html#staff">Staff &amp; Collaborators</a>
+          <a href="../about.html#history">History</a>
+          <a href="../about.html#supporters">Supporters</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../concerts.html">Calendar</a>
+        <div class="submenu">
+          <a href="../concerts.html">Upcoming concerts</a>
+          <a href="../concerts.html#nys">New York Series</a>
+          <a href="https://festivaladar.com" target="_blank" rel="noopener">Festival ADAR</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../archive.html" class="active">Archive</a>
+        <div class="submenu">
+          <a href="../archive.html#y2026">2026 – 2025</a>
+          <a href="../archive.html#y2024">2024 – 2022</a>
+          <a href="../archive.html#y2021">2021 – 2018</a>
+          <a href="../archive.html#y2017">Before 2018</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../projects.html">Projects</a>
+        <div class="submenu">
+          <a href="../projects.html#acm">Architecture of a Common Man</a>
+          <a href="../projects.html">Two Roads</a>
+          <a href="../projects.html">AWAVE</a>
+          <a href="../projects.html">Visuality</a>
+          <a href="../projects.html">Noctum</a>
+          <a href="../projects.html#adar">Festival ADAR</a>
+          <a href="../projects.html#streaming">Digital Concert Hall</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../opportunities.html">Opportunities</a>
+        <div class="submenu">
+          <a href="../opportunities.html#composer-in-residence">Composer-in-Residence</a>
+          <a href="../opportunities.html#scores-international">Call for Scores · International</a>
+          <a href="../opportunities.html#scores-american">Call for Scores · American</a>
+          <a href="../opportunities.html#visual-artists">Call for Visual Artists</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../media.html">Media</a>
+        <div class="submenu">
+          <a href="../media.html#videos">Videos</a>
+          <a href="../media.html#audio">Audio</a>
+          <a href="../media.html#photos">Photographs</a>
+          <a href="../media.html#magazine">CreArt Magazine</a>
+          <a href="../media.html#podcast">Live Podcast</a>
+          <a href="../media.html#social">Social</a>
+          <a href="https://apps.apple.com/us/app/creartbox/id6746415261" target="_blank" rel="noopener">iOS app</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../support.html">Donate</a>
+        <div class="submenu">
+          <a href="../support.html">Donate</a>
+          <a href="../support.html#sponsor">Sponsorship</a>
+          <a href="../support.html">Mail a check</a>
+        </div>
+      </div>
     </div>
   </nav>
 </header>
@@ -56,7 +117,15 @@
 
     <figure class="event-hero"><img src="../assets/img/archive/20220408_002.jpg" alt="Childhood Memories"></figure>
 
-    
+    <section class="event-description"><p>Childhood memories are delicate treasures that reside deep within our hearts. They are fragments of innocence, painted with the vibrant colors of joy and wonder. These memories transport us to a time when the world was a magical place filled with endless possibilities.</p></section>
+
+    <section class="event-gallery"><h2 class="event-h2">Gallery</h2><div class="g-grid"><a class="g-item" href="../assets/img/archive/20220408_003.jpg" target="_blank"><img src="../assets/img/archive/20220408_003.jpg" alt="Childhood Memories" loading="lazy"></a><a class="g-item" href="../assets/img/archive/20220408_004.jpg" target="_blank"><img src="../assets/img/archive/20220408_004.jpg" alt="Childhood Memories" loading="lazy"></a><a class="g-item" href="../assets/img/archive/20220408_006.jpg" target="_blank"><img src="../assets/img/archive/20220408_006.jpg" alt="Childhood Memories" loading="lazy"></a><a class="g-item" href="../assets/img/archive/20220408_007.jpg" target="_blank"><img src="../assets/img/archive/20220408_007.jpg" alt="Childhood Memories" loading="lazy"></a></div></section>
+
+    <section class="event-program"><h2 class="event-h2">Programme</h2><ul class="pgm-list"><li><span class="pgm-composer">Joseph Haydn</span><span class="pgm-work"></span></li><li><span class="pgm-composer"></span><span class="pgm-work">Trio in E Major Hob.XV/28</span></li><li><span class="pgm-composer"></span><span class="pgm-work">Allegro Moderato [8’]</span></li><li><span class="pgm-composer"></span><span class="pgm-work">Allegretto [4’]</span></li><li><span class="pgm-composer"></span><span class="pgm-work">Finale: Allegro [7’]</p></span></li><li><span class="pgm-composer">Annamaria Kowalsky *</span><span class="pgm-work"></span></li><li><span class="pgm-composer"></span><span class="pgm-work">Autopoiesis</span></li><li><span class="pgm-composer"></span><span class="pgm-work"><em>for cello solo</em> [3’]</p></span></li><li><span class="pgm-composer">Dmitri Shostakovich</span><span class="pgm-work"></span></li><li><span class="pgm-composer"></span><span class="pgm-work">Piano trio n. 1 in c minor Op.8</span></li><li><span class="pgm-composer"></span><span class="pgm-work">Andante [13’]</p></span></li><li><span class="pgm-composer">Annamaria Kowalsky *</span><span class="pgm-work"></span></li><li><span class="pgm-composer"></span><span class="pgm-work">Perpetuo</span></li><li><span class="pgm-composer"></span><span class="pgm-work"><em>for solo violin</em> [5’]</p></span></li><li><span class="pgm-composer">Franz Schubert</span><span class="pgm-work"></span></li><li><span class="pgm-composer"></span><span class="pgm-work">Notturno in E-flat major, Op. 148</span></li><li><span class="pgm-composer"></span><span class="pgm-work"><em>for violin, cello &amp; piano</em> [15’]</p></span></li><li><span class="pgm-composer">Annamaria Kowalsky *</span><span class="pgm-work"></span></li><li><span class="pgm-composer"></span><span class="pgm-work">Childhood Memories</span></li><li><span class="pgm-composer"></span><span class="pgm-work">for toy piano [3’]</p></span></li><li><span class="pgm-composer">Timo Andres *</span><span class="pgm-work"></span></li><li><span class="pgm-composer"></span><span class="pgm-work">Piano Trio</span></li><li><span class="pgm-composer"></span><span class="pgm-work"><em>for violin, cello &amp; piano</em></span></li><li><span class="pgm-composer"></span><span class="pgm-work">III. Coda (made of wood) [7’]</p></span></li></ul></section>
+
+    <section class="event-artists"><h2 class="event-h2">Performers</h2><ul class="art-list"><li><span class="art-name">Mari Lee, violin</span></li><li><span class="art-name">Yi Qun Xu, cello</span></li><li><span class="art-name">Josefina Urraca, piano</span></li></ul></section>
+
+    <section class="event-funders"><div class="fund-row"><div class="fund-h">Funded by</div><p class="fund-p">This project was made possible by the New York State Council on the Arts with the support of the Office of the Governor and the New York State Legislature.</p></div><div class="fund-row"><div class="fund-h">In partnership with</div></div></section>
 
     <div class="event-foot">
       <a href="../archive.html" class="btn">← Back to the archive</a>
@@ -83,6 +152,6 @@
   </div>
 </footer>
 
-<script src="../assets/site.js?v=3"></script>
+<script src="../assets/site.js?v=4"></script>
 </body>
 </html>
