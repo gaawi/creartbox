@@ -1584,7 +1584,22 @@ figure { margin: 0; }
   padding: 14px 0;
 }
 .section-title .head .bar { height: 1px; background: var(--ink); opacity: 0.2; }
-.section-title h2 { margin-top: 36px; max-width: 16ch; }
+.section-title h2 { margin-top: 24px; max-width: 22ch; }
+/* The poetic subtitle that now lives inside the rule-line:
+   serif italic in sentence case (overrides .label.ital's uppercase). */
+.section-title .head .label.ital {
+  font-family: var(--serif);
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink-2);
+}
+.section-title .head .label.ital em { font-style: italic; color: var(--accent); }
+@media (max-width: 640px) {
+  .section-title .head .label.ital { font-size: 15px; }
+}
 
 /* === Generic two-column rows === */
 .two-col { display: grid; grid-template-columns: 1fr 2fr; gap: 64px; }
