@@ -644,6 +644,82 @@ body.hero-transparent .masthead.scrolled .nav-strip a.active::after { background
   .app-callout .btn-store, .app-callout .btn-appstore { width: 100%; justify-content: flex-start; }
 }
 
+/* === Video grid (Media page) === */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.video-card { margin: 0; }
+.video-card .video-wrap {
+  border: 1px solid var(--rule);
+  background: #000;
+}
+.video-card .video-wrap iframe { border: 0; }
+@media (max-width: 900px) { .video-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .video-grid { grid-template-columns: 1fr; } }
+
+/* === Audio platforms (Media page) === */
+.audio-platforms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+.audio-platform {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 22px;
+  align-items: center;
+  padding: 28px 30px;
+  border: 1px solid var(--rule);
+  background: rgba(243, 241, 234, 0.04);
+  text-decoration: none;
+  color: inherit;
+  transition: background 200ms ease, border-color 200ms ease;
+}
+.audio-platform:hover { background: rgba(243, 241, 234, 0.09); border-color: var(--ink-soft); }
+:root[data-theme="dark"] .audio-platform { background: rgba(255,255,255,0.03); }
+:root[data-theme="dark"] .audio-platform:hover { background: rgba(255,255,255,0.07); }
+.audio-logo {
+  width: 96px; height: 96px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.audio-logo svg { width: 72%; height: 72%; display: block; }
+.audio-logo-bandcamp { background: #1da0c3; color: #fff; }
+.audio-logo-spotify  { background: #1ed760; color: #0f1115; }
+.audio-platform-meta .audio-kicker {
+  font-family: var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.audio-platform-meta .audio-name {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 4px 0 8px;
+  line-height: 1;
+}
+.audio-platform-meta .audio-action {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+@media (max-width: 760px) {
+  .audio-platforms { grid-template-columns: 1fr; }
+  .audio-platform { grid-template-columns: 72px 1fr; padding: 20px 22px; gap: 18px; }
+  .audio-logo { width: 72px; height: 72px; }
+}
+
 /* === Open-call summary cards (opportunities.html) === */
 .calls-grid {
   display: grid;
@@ -2142,6 +2218,8 @@ figure { margin: 0; }
   /* Beat inline grid-template-columns on bio articles + ink-block kids */
   article[style*="grid-template-columns"],
   div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; gap: 28px !important; }
+  /* Ensemble bios + similar 2-col cards: photo always sits ABOVE the name on mobile */
+  article[style*="grid-template-columns"] > figure { order: -1 !important; }
   /* Featured-concert ink-block card on Calendar page */
   .section .wrap > div[style*="grid-template-columns:1.2fr 1fr"],
   .section .wrap > div[style*="grid-template-columns: 1.2fr 1fr"] { grid-template-columns: 1fr !important; }
