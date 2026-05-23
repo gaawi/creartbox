@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=9">
+<link rel="stylesheet" href="assets/styles.css?v=10">
 <script id="cb-theme-init">(function(){try{var s=localStorage.getItem("cb-theme");if(s!=="paper")document.documentElement.setAttribute("data-theme","dark");}catch(e){document.documentElement.setAttribute("data-theme","dark");}})();</script>
 </head>
 <body>
@@ -131,21 +131,50 @@
 </section>
 
 <!-- ============ BIO ESSAY ============ -->
-<section class="section">
+<section class="section" id="bio">
   <div class="wrap">
     <div class="two-col-wide">
       <div>
-        <span class="label">§ 01 · The biography</span>
-        <h2 class="h-title" style="margin-top:14px">An <em>ensemble</em>, and an idea.</h2>
+        <span class="label">§ 01 · Press kit</span>
+        <h2 class="h-title" style="margin-top:14px">Biography</h2>
+
+        <div class="bio-tabs" data-bio-tabs>
+          <button data-bio-tab="long" class="active"><span class="bt-label">Long</span><span class="bt-meta" data-bio-count="long">≈ 440 words</span></button>
+          <button data-bio-tab="medium"><span class="bt-label">Medium</span><span class="bt-meta" data-bio-count="medium">≈ 160 words</span></button>
+          <button data-bio-tab="short"><span class="bt-label">Short</span><span class="bt-meta" data-bio-count="short">≈ 90 words</span></button>
+        </div>
+
+        <div class="bio-downloads">
+          <a href="assets/press/creartbox-bio-long.txt" download class="btn btn-s" data-bio-download="long">Download long <span class="ar">↓</span></a>
+          <a href="assets/press/creartbox-bio-medium.txt" download class="btn btn-s" data-bio-download="medium" style="display:none">Download medium <span class="ar">↓</span></a>
+          <a href="assets/press/creartbox-bio-short.txt" download class="btn btn-s" data-bio-download="short" style="display:none">Download short <span class="ar">↓</span></a>
+          <a href="assets/press/creartbox-ensemble-hires.jpg" download class="btn btn-s">Hi-res photo <span class="ar">↓</span></a>
+        </div>
+
+        <p class="body-s" style="margin-top:18px;font-style:italic">For other formats or press inquiries, write to <a href="mailto:press@creartbox.nyc" style="border-bottom:1px solid currentColor">press@creartbox.nyc</a>.</p>
       </div>
       <div>
-        <div class="cols-2" style="font-size:17.5px;line-height:1.62;color:var(--ink)">
-          <p class="dropcap">Recognized by <em>The New Yorker</em> as one of its "art and music top picks," praised by <em>Time Out</em> as "an ensemble devoted to multidisciplinary events," and described by <em>BroadwayWorld</em> as "wholly authentic, visually and aurally compelling," CreArtBox is celebrated for its ability to enhance the listening experience of live music through theatrical design while preserving the integrity of each composition.</p>
-          <p>The ensemble maintains a well-established concert series in New York City, tours nationally with recurring engagements on the West Coast, and performs internationally in countries such as Japan, Spain, and the United Kingdom. It has been awarded numerous prizes, including the Queens Council on the Arts New Work Grant, the New York Foundation for the Arts Fellowship, and support from the National Endowment for the Arts, the New York State Council on the Arts, the Amphion Foundation, the Alice M. Ditson Fund, and the Aaron Copland Fund for Music.</p>
-          <p>CreArtBox also runs an open call for scores and a composer residency program, fostering the creation of new works and mentoring emerging voices. Over the past decade, the ensemble has presented works by a wide range of voices, from Pulitzer Prize winners like Caroline Shaw and David Lang to contemporary creators such as Timo Andres, Anna Clyne, Joshua Penman, Andrea Casarrubios, Hannah Selin, Nico Muhly, Dai Wei, Brian Wysocki, Annamaria Kowalsky, and Cullyn Murphy, among many others.</p>
-          <p>Each core member brings a distinctive artistic trajectory: Laporta has combined a career as a flutist with theater directing and lighting design; Urraca is an acclaimed solo and chamber pianist with deep ties to Spanish repertoire; Gendron performs internationally as both a soloist and as a member of the Momenta Quartet; Cohen collaborates widely with leading ensembles and is a member of the Formosa Quartet; and Yang is a prize-winning cellist and a member of the award-winning Merz Trio. Together, they shape CreArtBox into a platform where rigorous performance, innovation, and accessibility meet.</p>
-          <p>The project was originally conceived in 2006 in Europe as <em>Cre.Art Project</em> by Laporta and clarinetist/performance creator Tagore Gonzalez, and later re-established in New York City in 2013. Since then, CreArtBox has produced a series of theatrical and interdisciplinary works, including <em>Architecture of a Common Man</em> (2023), the opera-ballet <em>Two Roads</em> (2020), <em>Visuality</em> (2012/14), the opera <em>Noctum</em> (2011), the musical <em>London the Show</em> (2009), and <em>Cre.Art Project I</em> (2006).</p>
-          <p>In addition to its American-based activities, CreArtBox co-produces <em>Festival ADAR</em>, an international arts festival held since 2021 in Asturias, Spain, dedicated to revitalizing rural communities through music, contemporary creation, artist residencies, and site-specific projects.</p>
+        <div class="bio-version" data-bio-version="long">
+          <div class="cols-2" style="font-size:17.5px;line-height:1.62;color:var(--ink)">
+            <p class="dropcap">Recognized by <em>The New Yorker</em> as one of its "art and music top picks," praised by <em>Time Out</em> as "an ensemble devoted to multidisciplinary events," and described by <em>BroadwayWorld</em> as "wholly authentic, visually and aurally compelling," CreArtBox is celebrated for its ability to enhance the listening experience of live music through theatrical design while preserving the integrity of each composition.</p>
+            <p>The ensemble maintains a well-established concert series in New York City, tours nationally with recurring engagements on the West Coast, and performs internationally in countries such as Japan, Spain, and the United Kingdom. It has been awarded numerous prizes, including the Queens Council on the Arts New Work Grant, the New York Foundation for the Arts Fellowship, and support from the National Endowment for the Arts, the New York State Council on the Arts, the Amphion Foundation, the Alice M. Ditson Fund, and the Aaron Copland Fund for Music.</p>
+            <p>CreArtBox also runs an open call for scores and a composer residency program, fostering the creation of new works and mentoring emerging voices. Over the past decade, the ensemble has presented works by a wide range of voices, from Pulitzer Prize winners like Caroline Shaw and David Lang to contemporary creators such as Timo Andres, Anna Clyne, Joshua Penman, Andrea Casarrubios, Hannah Selin, Nico Muhly, Dai Wei, Brian Wysocki, Annamaria Kowalsky, and Cullyn Murphy, among many others.</p>
+            <p>Each core member brings a distinctive artistic trajectory: Laporta has combined a career as a flutist with theater directing and lighting design; Urraca is an acclaimed solo and chamber pianist with deep ties to Spanish repertoire; Gendron performs internationally as both a soloist and as a member of the Momenta Quartet; Cohen collaborates widely with leading ensembles and is a member of the Formosa Quartet; and Yang is a prize-winning cellist and a member of the award-winning Merz Trio. Together, they shape CreArtBox into a platform where rigorous performance, innovation, and accessibility meet.</p>
+            <p>The project was originally conceived in 2006 in Europe as <em>Cre.Art Project</em> by Laporta and clarinetist/performance creator Tagore Gonzalez, and later re-established in New York City in 2013. Since then, CreArtBox has produced a series of theatrical and interdisciplinary works, including <em>Architecture of a Common Man</em> (2023), the opera-ballet <em>Two Roads</em> (2020), <em>Visuality</em> (2012/14), the opera <em>Noctum</em> (2011), the musical <em>London the Show</em> (2009), and <em>Cre.Art Project I</em> (2006).</p>
+            <p>In addition to its American-based activities, CreArtBox co-produces <em>Festival ADAR</em>, an international arts festival held since 2021 in Asturias, Spain, dedicated to revitalizing rural communities through music, contemporary creation, artist residencies, and site-specific projects.</p>
+          </div>
+        </div>
+        <div class="bio-version" data-bio-version="medium" hidden>
+          <div style="font-size:17.5px;line-height:1.62;color:var(--ink);max-width:38em">
+            <p class="dropcap">CreArtBox is a New York–based chamber music and multimedia ensemble led by flutist <em>Guillermo Laporta</em> and pianist <em>Josefina Urraca</em>, with core members Emilie-Anne Gendron, Matthew Cohen, and Julia Yang. Recognized by <em>The New Yorker</em> as one of its "art and music top picks" and by <em>Time Out</em> as "an ensemble devoted to multidisciplinary events," CreArtBox creates immersive performances that merge classical and contemporary music with original stage design and visual art.</p>
+            <p>The ensemble runs a concert series in New York City, tours nationally with recurring West Coast engagements, and has appeared internationally in Japan, Spain, and the United Kingdom. Its work has been supported by the National Endowment for the Arts, the New York State Council on the Arts, the Queens Council on the Arts, the Amphion Foundation, the Alice M. Ditson Fund, and the Aaron Copland Fund for Music.</p>
+            <p>CreArtBox also commissions new music through its composer residency program and open call for scores, and produces theatrical works such as <em>Architecture of a Common Man</em>, <em>Two Roads</em>, and <em>Visuality</em>. In addition, it co-produces <em>Festival ADAR</em> in Asturias, Spain, dedicated to revitalizing rural communities through music, artist residencies, and site-specific projects.</p>
+          </div>
+        </div>
+        <div class="bio-version" data-bio-version="short" hidden>
+          <div style="font-size:17.5px;line-height:1.62;color:var(--ink);max-width:38em">
+            <p class="dropcap">CreArtBox is a New York–based chamber music and multimedia ensemble directed by flutist <em>Guillermo Laporta</em> and pianist <em>Josefina Urraca</em>, with core members Emilie-Anne Gendron, Matthew Cohen, and Julia Yang. Praised by <em>The New Yorker</em> and <em>Time Out</em>, the ensemble creates immersive performances that blend classical and contemporary music with design and visual art. With a NYC concert series, national and international touring, and a composer residency program, CreArtBox also produces original theatrical works and co-produces <em>Festival ADAR</em> in Asturias, Spain, dedicated to rural revitalization through music and creation.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -397,6 +426,6 @@
   </div>
 </footer>
 
-<script src="assets/site.js?v=9"></script>
+<script src="assets/site.js?v=10"></script>
 </body>
 </html>

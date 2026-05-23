@@ -94,7 +94,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Floating "Edit on GitHub" button
   initEditButton();
+
+  // Bio version tabs
+  initBioTabs();
 });
+
+function initBioTabs() {
+  const tabs = document.querySelectorAll("[data-bio-tab]");
+  if (!tabs.length) return;
+  const versions = document.querySelectorAll("[data-bio-version]");
+  const downloads = document.querySelectorAll("[data-bio-download]");
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const v = tab.getAttribute("data-bio-tab");
+      tabs.forEach((t) => t.classList.toggle("active", t === tab));
+      versions.forEach((d) => { d.hidden = d.getAttribute("data-bio-version") !== v; });
+      downloads.forEach((d) => { d.style.display = d.getAttribute("data-bio-download") === v ? "" : "none"; });
+    });
+  });
+}
 
 /* ----- Floating Edit button ----------------------------------------- */
 const GH_REPO = "gaawi/creartbox";
