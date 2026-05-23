@@ -16,12 +16,26 @@ const EVENTBRITE = {
   "season-subscription": EVENTBRITE_ORG,
 };
 
-/* ----- Donate URL config --------------------------------------------
-   Drop in a Stripe Payment Link, Donorbox, or Givebutter URL.
-   The donate form on /support builds  ?amount=&frequency=  query
-   parameters on submit so Stripe Payment Links can pick them up.
----------------------------------------------------------------------- */
-const DONATE_URL = "mailto:info@creartbox.nyc?subject=Donation%20to%20CreArtBox";
+/* ----- Donate URL config — Stripe Payment Links ----------------------
+   Three Stripe Payment Links (one per frequency). The donate form picks
+   the right one based on the selected frequency and appends the amount
+   as a Stripe pre-fill param (Stripe accepts ?prefilled_promo_code= but
+   amounts via Payment Links require pre-built variants OR Checkout). For
+   custom amounts the donate form falls back to a generic Payment Link.
+
+   To wire real Stripe URLs:
+     1. In your Stripe dashboard, create three Payment Links with
+        "Customer chooses amount" enabled — one for one-time, one for
+        monthly, one for annual.
+     2. Replace the URLs below.
+
+   Until then, the buttons open an email so you don't lose donors. */
+const DONATE_LINKS = {
+  once:    "mailto:info@creartbox.nyc?subject=Donation%20to%20CreArtBox%20%28one-time%29",
+  monthly: "mailto:info@creartbox.nyc?subject=Donation%20to%20CreArtBox%20%28monthly%29",
+  annual:  "mailto:info@creartbox.nyc?subject=Donation%20to%20CreArtBox%20%28annual%29",
+};
+const DONATE_URL = DONATE_LINKS.once;
 
 /* ----- Theme — default is dark, toggle persists in localStorage --------- */
 (function theme() {
@@ -153,10 +167,9 @@ function initDonate() {
         c.textContent = active ? "✓" : "○";
       }
     });
-    submit.setAttribute(
-      "href",
-      DONATE_URL + (DONATE_URL.includes("?") ? "&" : "?") + "amount=" + final + "&frequency=" + freq
-    );
+    const base = DONATE_LINKS[freq] || DONATE_URL;
+    const sep = base.includes("?") ? "&" : "?";
+    submit.setAttribute("href", base + sep + "amount=" + final + "&frequency=" + freq);
   }
 
   freqBtns.forEach((b) => {
