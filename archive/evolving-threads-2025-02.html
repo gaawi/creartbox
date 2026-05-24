@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/styles.css?v=4">
 <script id="cb-theme-init">(function(){try{var s=localStorage.getItem("cb-theme");if(s!=="paper")document.documentElement.setAttribute("data-theme","dark");}catch(e){document.documentElement.setAttribute("data-theme","dark");}})();</script>
 </head>
 <body>
@@ -25,14 +25,75 @@
   </div>
   <nav class="nav-strip">
     <div class="nav-strip-inner">
-      <a href="../index.html">Home</a>
-      <a href="../about.html">About</a>
-      <a href="../concerts.html">Calendar</a>
-      <a href="../archive.html" class="active">Archive</a>
-      <a href="../projects.html">Projects</a>
-      <a href="../opportunities.html">Opportunities</a>
-      <a href="../media.html">Media</a>
-      <a href="../support.html">Donate</a>
+      <div class="nav-item"><a href="../index.html">Home</a></div>
+      <div class="nav-item">
+        <a href="../about.html">About</a>
+        <div class="submenu">
+          <a href="../about.html#bio">Biography</a>
+          <a href="../about.html#ensemble">The Ensemble</a>
+          <a href="../about.html#staff">Staff &amp; Collaborators</a>
+          <a href="../about.html#history">History</a>
+          <a href="../about.html#supporters">Supporters</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../concerts.html">Calendar</a>
+        <div class="submenu">
+          <a href="../concerts.html">Upcoming concerts</a>
+          <a href="../concerts.html#nys">New York Series</a>
+          <a href="https://festivaladar.com" target="_blank" rel="noopener">Festival ADAR</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../archive.html" class="active">Archive</a>
+        <div class="submenu">
+          <a href="../archive.html#y2026">2026 – 2025</a>
+          <a href="../archive.html#y2024">2024 – 2022</a>
+          <a href="../archive.html#y2021">2021 – 2018</a>
+          <a href="../archive.html#y2017">Before 2018</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../projects.html">Projects</a>
+        <div class="submenu">
+          <a href="../projects.html#acm">Architecture of a Common Man</a>
+          <a href="../projects.html">Two Roads</a>
+          <a href="../projects.html">AWAVE</a>
+          <a href="../projects.html">Visuality</a>
+          <a href="../projects.html">Noctum</a>
+          <a href="../projects.html#adar">Festival ADAR</a>
+          <a href="../projects.html#streaming">Digital Concert Hall</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../opportunities.html">Opportunities</a>
+        <div class="submenu">
+          <a href="../opportunities.html#composer-in-residence">Composer-in-Residence</a>
+          <a href="../opportunities.html#scores-international">Call for Scores · International</a>
+          <a href="../opportunities.html#scores-american">Call for Scores · American</a>
+          <a href="../opportunities.html#visual-artists">Call for Visual Artists</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../media.html">Media</a>
+        <div class="submenu">
+          <a href="../media.html#videos">Videos</a>
+          <a href="../media.html#audio">Audio</a>
+          <a href="../media.html#photos">Photographs</a>
+          <a href="../media.html#magazine">CreArt Magazine</a>
+          <a href="../media.html#podcast">Live Podcast</a>
+          <a href="../media.html#social">Social</a>
+          <a href="https://apps.apple.com/us/app/creartbox/id6746415261" target="_blank" rel="noopener">iOS app</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="../support.html">Donate</a>
+        <div class="submenu">
+          <a href="../support.html">Donate</a>
+          <a href="../support.html#sponsor">Sponsorship</a>
+          <a href="../support.html">Mail a check</a>
+        </div>
+      </div>
     </div>
   </nav>
 </header>
@@ -56,7 +117,37 @@
 
     <figure class="event-hero"><img src="../assets/img/archive/20250207_03.jpg" alt="Evolving Threads"></figure>
 
+    <section class="event-description"><p>Music is a story, and every note is a clue. Mozart opens—clean, sharp, every note landing like it’s meant to be there, no wasted motion. Then Mahler rolls in, dark and stormy, his Piano Quartet in A minor pulling you into a world he didn’t even finish. It’s raw, unresolved, like a conversation cut short. Brahms follows with the Piano Quartet No. 3 in C minor, Op. 60. Its Andante movement is tender and introspective, offering a glimpse of warmth and longing amidst the stormy undercurrents of the work. And then there’s Debussy, whose Violin Sonata shimmers with impressionistic colors, weaving elegance and mystery into every phrase. Finally, Caroline Shaw opens with Thousandth Orange, bridging the past and the present with music that feels alive—vivid, layered, and brimming with curiosity.</p></section>
+
+    <section class="event-gallery"><h2 class="event-h2">Gallery</h2><div class="g-grid"><a class="g-item" href="../assets/img/archive/20250207_01.jpg" target="_blank"><img src="../assets/img/archive/20250207_01.jpg" alt="Evolving Threads" loading="lazy"></a><a class="g-item" href="../assets/img/archive/20250207_02.jpg" target="_blank"><img src="../assets/img/archive/20250207_02.jpg" alt="Evolving Threads" loading="lazy"></a><a class="g-item" href="../assets/img/archive/20250207_03.jpg" target="_blank"><img src="../assets/img/archive/20250207_03.jpg" alt="Evolving Threads" loading="lazy"></a><a class="g-item" href="../assets/img/archive/20250207_04.jpg" target="_blank"><img src="../assets/img/archive/20250207_04.jpg" alt="Evolving Threads" loading="lazy"></a><a class="g-item" href="../assets/img/archive/20250207_05.jpg" target="_blank"><img src="../assets/img/archive/20250207_05.jpg" alt="Evolving Threads" loading="lazy"></a><a class="g-item" href="../assets/img/archive/20250207_06.jpg" target="_blank"><img src="../assets/img/archive/20250207_06.jpg" alt="Evolving Threads" loading="lazy"></a><a class="g-item" href="../assets/img/archive/20250207_07.jpg" target="_blank"><img src="../assets/img/archive/20250207_07.jpg" alt="Evolving Threads" loading="lazy"></a><a class="g-item" href="../assets/img/archive/20250207_08.jpg" target="_blank"><img src="../assets/img/archive/20250207_08.jpg" alt="Evolving Threads" loading="lazy"></a></div></section>
+
+    <section class="event-program"><h2 class="event-h2">Programme</h2><div class="program-prose"><p><strong>W. A. Mozart</strong> piano quartet in E flat Major KV 493<br>Allegro<br>Larghetto<br>Allegretto</p>
+<p><strong>Johannes Brahms </strong>piano quartet in C minor op.60<br>Andante</p>
+<p><strong>Caroline Shaw </strong>Thousandth orange</p>
+<p><strong>Claude Debussy</strong> sonata for violin and piano L.140<br>Allegro Vivo<br>Intermède: Fantasque et léger<br>Finale: Très animé</p>
+<p><strong>Gustav Mahler</strong> piano quartet in A minor</p>
+
+<ul>
+<li>Josefina Urraca, Piano<br>
+</li>
+<li>Julia Yang, Cello</li>
+<li>Emilie-Anne Gendron, Violin</li>
+<li>Mathew Cohen, Viola</li>
+<li>Guillermo Laporta, stage design</li>
+</ul>
+<div class="archive-suported">
+
+  <img alt="" class="logosvg" src="https://creartbox-media-cdn.b-cdn.net/webimg/fthlogo.png"><br>
+  This organization is funded in part by the Howard Gilman Foundation administered by Flushing Town Hall.
+
+<img alt="" class="logosvg" src="https://creartbox-media-cdn.b-cdn.net/webimg/nysca%20black.svg" width="100%"> 
+<p>This project was made possible by the New York State Council on the Arts with the support of the Office of the Governor and the New York State Legislature.</p>
+
+  <img alt="" class="logosvg" src="https://creartbox-media-cdn.b-cdn.net/webimg/logocoplan.svg" width="100%"></div></section>
+
     
+
+    <section class="event-funders"><div class="fund-row"><div class="fund-h">Funded by</div></div></section>
 
     <div class="event-foot">
       <a href="../archive.html" class="btn">← Back to the archive</a>
@@ -83,6 +174,6 @@
   </div>
 </footer>
 
-<script src="../assets/site.js"></script>
+<script src="../assets/site.js?v=4"></script>
 </body>
 </html>

@@ -1345,6 +1345,17 @@ body.hero-transparent .masthead.scrolled .nav-strip a.active::after { background
   margin: 0;
 }
 .event-program { margin: 0 0 56px; max-width: 760px; }
+.event-program .program-prose {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+.event-program .program-prose p { margin: 0 0 14px; }
+.event-program .program-prose strong { color: var(--ink); font-weight: 600; }
+.event-program .program-prose em { color: var(--accent); font-style: italic; }
+.event-program .program-prose br { display: block; content: ""; margin-top: 4px; }
+.event-program .program-prose a { color: var(--accent); border-bottom: 1px solid currentColor; }
 .event-h2 {
   font-family: var(--serif);
   font-size: clamp(24px, 2.6vw, 36px);
