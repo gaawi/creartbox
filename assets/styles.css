@@ -2069,35 +2069,64 @@ figure { margin: 0; }
   .masthead-inner { grid-template-columns: 1fr auto; gap: 12px; }
   .masthead-left { display: none; }
   .masthead-title::before, .masthead-title::after { display: none; }
-  .nav-strip-inner { flex-direction: column; display: none; }
+
+  /* Fullscreen mobile menu — no submenus, just the 8 top-level items */
+  .nav-strip-inner {
+    flex-direction: column;
+    display: none;
+    position: fixed;
+    top: 64px;       /* sit below the masthead */
+    left: 0; right: 0;
+    bottom: 0;
+    height: calc(100vh - 64px);
+    background: var(--paper);
+    z-index: 99;
+    padding: 16px 0 32px;
+    overflow-y: auto;
+    margin: 0;
+    max-width: none;
+    border-top: 1px solid var(--ink);
+  }
   .nav-strip-inner.open { display: flex; }
+
   .nav-strip a { flex: 0 0 auto; border-right: none; border-bottom: 1px solid var(--rule); text-align: left; padding: 12px var(--gutter); }
   .nav-burger { display: inline-block; }
-  /* Mobile: even when the masthead is transparent over the hero, the OPEN
-     menu should sit on a solid background (the transparent variant on
-     mobile is unreadable over the photo). */
+
+  /* Top-level items: bigger, more spacious */
+  .nav-strip-inner .nav-item {
+    flex: 0 0 auto;
+    border-right: none;
+    border-bottom: 1px solid var(--rule);
+    display: block;
+  }
+  .nav-strip-inner .nav-item > a {
+    display: block;
+    text-align: left;
+    padding: 22px var(--gutter);
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    color: var(--ink);
+  }
+  .nav-strip-inner .nav-item > a.active { background: transparent; color: var(--accent); }
+  .nav-strip-inner .nav-item > a:hover { background: var(--paper-2); }
+  /* Hide submenus entirely on mobile */
+  .nav-strip-inner .nav-item .submenu,
+  .nav-strip-inner .nav-item > .submenu { display: none !important; }
+
+  /* Solid background on hero-transparent page too */
   body.hero-transparent .nav-strip-inner.open {
     background: var(--paper);
     color: var(--ink);
     border-top: 1px solid var(--ink);
   }
-  body.hero-transparent .nav-strip-inner.open .nav-item > a,
-  body.hero-transparent .nav-strip-inner.open .nav-item .submenu a {
-    color: var(--ink-2);
+  body.hero-transparent .nav-strip-inner.open .nav-item > a {
+    color: var(--ink);
     text-shadow: none;
   }
-  body.hero-transparent .nav-strip-inner.open .nav-item > a.active {
-    background: var(--ink);
-    color: var(--paper);
-  }
-  body.hero-transparent .nav-strip-inner.open .nav-item .submenu {
-    background: transparent;
-    border: none;
-  }
-  body.hero-transparent .nav-strip-inner.open .nav-item .submenu a:hover {
-    background: var(--paper-2);
-    color: var(--accent);
-  }
+  body.hero-transparent .nav-strip-inner.open .nav-item > a.active { color: var(--accent); }
   .colophon-grid { grid-template-columns: 1fr 1fr; }
   .cols-2, .cols-3 { column-count: 1; }
   .prog-table td { padding: 14px 8px; }
