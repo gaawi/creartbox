@@ -985,57 +985,55 @@ body.hero-transparent .masthead.scrolled .nav-strip a.active::after { background
 /* === Archive section wrapper === */
 .archive-section { padding: 24px 0 96px; position: relative; }
 
-/* === Archive list — exact match to original creartbox.nyc layout ===
-   Outer grid: 2 events per row.
-   Each event card: text on the left (2fr) + image on the right (1fr).
-   Cards marked "big" span the full row and get a taller image.
-   "nophoto" cards are single-column (no image area). */
+/* === Archive list — clean horizontal cards ===
+   Each event is a single full-width card: image on the left, text on
+   the right. Big productions get a wider image column. nophoto cards
+   are text-only full-width rows. */
 .archive-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
   margin-bottom: 56px;
 }
 .archive-card {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 20px;
-  padding: 22px;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
   background: rgba(243, 241, 234, 0.05);
   border: 1px solid var(--rule);
   text-decoration: none;
   color: inherit;
   transition: background 200ms ease, border-color 200ms ease;
   align-items: stretch;
+  overflow: hidden;
 }
-.archive-card:hover { background: rgba(243, 241, 234, 0.08); border-color: var(--ink-soft); }
+.archive-card:hover { background: rgba(243, 241, 234, 0.09); border-color: var(--ink-soft); }
 :root[data-theme="dark"] .archive-card { background: rgba(255,255,255,0.03); }
 :root[data-theme="dark"] .archive-card:hover { background: rgba(255,255,255,0.07); }
 .archive-card .ac-media {
   position: relative;
   overflow: hidden;
-  border: 1px solid var(--rule);
   background: var(--paper-2);
-  height: 280px;
-  order: 2;
+  border-right: 1px solid var(--rule);
+  min-height: 320px;
 }
 .archive-card .ac-media img {
+  position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover; object-position: center;
   display: block;
   transition: transform 0.7s ease;
 }
 .archive-card:hover .ac-media img { transform: scale(1.04); }
-.archive-card.big { grid-column: 1 / -1; }
-.archive-card.big .ac-media { height: 540px; }
+.archive-card.big { grid-template-columns: 1.6fr 1fr; }
+.archive-card.big .ac-media { min-height: 480px; }
 .archive-card.nophoto { grid-template-columns: 1fr; }
 .archive-card.nophoto .ac-media { display: none; }
 .archive-card .ac-body {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  padding: 4px 8px 4px 0;
-  order: 1;
+  justify-content: center;
+  padding: 32px 36px;
 }
 .archive-card .ac-date {
   font-family: var(--sans);
@@ -1441,118 +1439,9 @@ body.hero-transparent .masthead.scrolled .nav-strip a.active::after { background
 @media (max-width: 980px) { .archive-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 640px) { .archive-grid { grid-template-columns: 1fr; gap: 28px; } }
 
-.archive-card {
-  display: flex;
-  flex-direction: column;
-  color: inherit;
-  text-decoration: none;
-}
-.archive-card .ac-media {
-  position: relative;
-  aspect-ratio: 4/3;
-  overflow: hidden;
-  background: var(--paper-2);
-  border: 1px solid var(--rule);
-}
-.archive-card .ac-media img {
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-  transition: transform 0.6s ease;
-}
-.archive-card:hover .ac-media img { transform: scale(1.04); }
+/* (Legacy .archive-card block removed — the canonical definitions live
+   higher up in the file, under "Archive list — clean horizontal cards") */
 
-/* "nophoto" cards: a typographic block instead of an image */
-.archive-card .ac-media.nophoto {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--paper-2);
-  border-color: var(--rule);
-}
-.archive-card .ac-media.nophoto .ac-monogram {
-  font-family: var(--serif);
-  font-size: clamp(48px, 6vw, 88px);
-  font-weight: 300;
-  font-style: italic;
-  letter-spacing: -0.02em;
-  color: var(--ink-soft);
-  text-align: center;
-  line-height: 1;
-}
-
-/* Date stamp pinned to top-left of image */
-.archive-card .ac-date {
-  position: absolute;
-  top: 12px; left: 12px;
-  background: var(--paper);
-  padding: 8px 12px 6px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid var(--ink);
-  min-width: 64px;
-}
-.archive-card .ac-date .y {
-  font-family: var(--sans);
-  font-size: 9.5px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  color: var(--ink-soft);
-  text-transform: uppercase;
-  line-height: 1.4;
-}
-.archive-card .ac-date .m {
-  font-family: var(--sans);
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  color: var(--accent);
-  text-transform: uppercase;
-  margin-top: 2px;
-}
-.archive-card .ac-date .d {
-  font-family: var(--serif);
-  font-size: 28px;
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  margin-top: 2px;
-}
-
-.archive-card .ac-body { padding: 14px 0 0; }
-.archive-card .ac-series {
-  font-family: var(--sans);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 10.5px;
-  color: var(--accent);
-  font-weight: 600;
-}
-.archive-card .ac-title {
-  font-family: var(--serif);
-  font-size: 22px;
-  line-height: 1.18;
-  font-weight: 300;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  margin: 6px 0 0;
-}
-.archive-card .ac-venue {
-  font-family: var(--sans);
-  font-size: 13.5px;
-  color: var(--ink-2);
-  margin-top: 6px;
-  line-height: 1.45;
-}
-.archive-card .ac-program {
-  font-family: var(--sans);
-  font-size: 12.5px;
-  color: var(--ink-soft);
-  margin-top: 6px;
-  line-height: 1.5;
-  font-style: italic;
-}
 .archive-row .ar-date {
   font-family: var(--sans);
   font-weight: 600;
