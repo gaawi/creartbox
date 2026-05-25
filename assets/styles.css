@@ -2190,24 +2190,28 @@ figure { margin: 0; }
    ARCHIVE — original Shopify eventarchive layout (verbatim)
    ============================================================ */
 
+/* Archive page uses a solid black background regardless of theme */
+body.archive-page {
+  background: #000;
+  color: #ececea;
+}
+body.archive-page .masthead,
+body.archive-page .colophon {
+  background: #000;
+}
+
 .archive-hero { padding: 64px 0 24px; }
+body.archive-page .archive-hero,
+body.archive-page .archive-hero .lede,
+body.archive-page .archive-hero .label,
+body.archive-page .archive-hero .folio,
+body.archive-page .archive-hero .h-mast { color: #ececea; }
 
 .page-wrap-gaawi {
-  background-image: url("img/archive/backmus.jpg");
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
+  background: #000;
   padding: 40px 4% 80px;
+  color: #ececea;
 }
-:root[data-theme="dark"] .page-wrap-gaawi { background-blend-mode: multiply; background-color: rgba(10,12,18,0.55); }
-:root[data-theme="paper"] .page-wrap-gaawi { background-blend-mode: lighten; background-color: rgba(250,250,247,0.55); }
-
-.text-archive { margin: 5%; }
-@media (min-width: 768px) {
-  .text-archive { margin: 5% 50% 0 4%; font-size: 2em; }
-}
-.text-archive .highlight { color: var(--ink); line-height: 1.4; }
-.text-archive .highlight b { font-weight: 600; }
 
 h1.yearhuge {
   font-size: 16em;
@@ -2216,12 +2220,11 @@ h1.yearhuge {
   margin: 0;
   margin-bottom: -100px;
   font-family: var(--serif);
-  color: var(--ink);
-  opacity: 0.85;
+  color: #6a665d;
+  opacity: 0.9;
   letter-spacing: -0.04em;
   line-height: 1;
 }
-:root[data-theme="dark"] h1.yearhuge { color: #b6b3a8; opacity: 0.75; }
 .andbefore {
   font-size: 45px;
   margin: 85px;
@@ -2251,11 +2254,11 @@ h1.yearhuge {
   display: grid;
   grid-template-columns: 2fr 1fr;
   padding: 20px 20px;
-  background: rgba(246, 246, 246, 0.85);
+  background: #131820;
   margin: 11px;
-  color: #1a1a1a;
+  color: #ececea;
+  border: 1px solid rgba(255,255,255,0.06);
 }
-:root[data-theme="dark"] .eventpast { background: rgba(20, 24, 32, 0.82); color: #ececea; }
 .eventpast h3 {
   font-family: var(--serif);
   font-weight: 400;
@@ -2319,17 +2322,15 @@ h1.yearhuge {
 
 .partofpast {
   font-size: 13px !important;
-  color: #a82424;
+  color: #e07b7b;
 }
-:root[data-theme="dark"] .partofpast { color: #e07b7b; }
 
 .calendardatepast {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
   font-weight: 100;
   font-size: 1em;
   padding-bottom: 4px;
 }
-:root[data-theme="dark"] .calendardatepast { border-bottom-color: rgba(255,255,255,0.18); }
 .calendardatepast span { margin-right: 5px; }
 .yearpast {
   display: block;
@@ -2364,7 +2365,7 @@ p.descriptionpast {
   border: none;
   text-decoration: underline;
   padding: 0;
-  color: #6e6a6a;
+  color: #b0b0aa;
   background: none;
   letter-spacing: 1px;
   font-family: var(--sans);
@@ -2373,7 +2374,6 @@ p.descriptionpast {
   margin-top: 10px;
   display: inline-block;
 }
-:root[data-theme="dark"] .myBtn_multi { color: #b0b0aa; }
 .myBtn_multi:hover { color: var(--accent); }
 
 /* Modal */
@@ -2390,17 +2390,16 @@ p.descriptionpast {
   background-color: rgba(0,0,0,0.55);
 }
 .modal-content {
-  background-color: #fffffff2;
+  background-color: #1a1f2a;
   margin: 30px 0 0 5%;
   padding: 24px;
-  border: 1px solid #888;
+  border: 1px solid #2a2f3a;
   width: 90%;
   font-size: 14px;
   line-height: 1.7;
   text-align: left;
-  color: #1a1a1a;
+  color: #ececea;
 }
-:root[data-theme="dark"] .modal-content { background-color: #1a1f2a; color: #ececea; border-color: #2a2f3a; }
 @media (min-width: 768px) {
   .modal-content { margin: 120px 0 0 20%; width: 60%; }
 }
