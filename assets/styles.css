@@ -1283,10 +1283,10 @@ body.hero-transparent .masthead.scrolled .nav-strip a.active::after { background
   margin-bottom: 12px;
 }
 
-/* === Two-column layout: sticky sidebar + main === */
+/* === Two-column layout: main on left + sticky sidebar on right === */
 .event-layout {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 1fr 320px;
   gap: 56px;
   align-items: start;
   margin-top: 48px;
@@ -1347,25 +1347,57 @@ body.hero-transparent .masthead.scrolled .nav-strip a.active::after { background
   letter-spacing: 0.06em;
   color: var(--ink-soft);
 }
+
+/* Program nested inside the sidebar: more compact than when in main */
+.event-sidebar .event-program {
+  margin: 0;
+  max-width: none;
+}
+.event-sidebar .event-program .event-h2 {
+  font-size: 20px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+}
+.event-sidebar .event-program .program-prose {
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+.event-sidebar .event-program .program-prose p { margin: 0 0 10px; }
+.event-sidebar .pgm-list li {
+  grid-template-columns: 1fr;
+  gap: 2px;
+  padding: 10px 0;
+}
+.event-sidebar .pgm-composer { font-size: 15px; }
+.event-sidebar .pgm-work { font-size: 13px; }
+
 .event-sidebar .event-foot {
   flex-direction: column;
   gap: 10px;
   align-items: stretch;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
 }
 .event-sidebar .event-foot .btn {
   width: 100%;
   text-align: center;
 }
+.event-sidebar .event-funders { margin: 0; padding-top: 0; border-top: 0; }
+
 .event-main > section { margin-bottom: 48px; }
 .event-main > section:last-child { margin-bottom: 0; }
 .event-main .event-description { max-width: none; }
-.event-main .event-program { max-width: none; }
 .event-main .event-artists { max-width: none; }
 
 @media (max-width: 900px) {
   .event-layout { grid-template-columns: 1fr; gap: 40px; margin-top: 0; }
-  .event-sidebar { position: static; order: 2; }
-  .event-main { order: 1; }
+  .event-sidebar { position: static; }
+  /* On mobile, give the program room to breathe with its full-size styling */
+  .event-sidebar .event-program .event-h2 { font-size: clamp(24px, 2.6vw, 36px); margin-bottom: 24px; padding-bottom: 12px; }
+  .event-sidebar .event-program .program-prose { font-size: 16px; line-height: 1.7; }
+  .event-sidebar .pgm-list li { grid-template-columns: 1fr; gap: 4px; }
+  .event-sidebar .pgm-composer { font-size: 18px; }
+  .event-sidebar .pgm-work { font-size: 15px; }
 }
 
 .event-head {
