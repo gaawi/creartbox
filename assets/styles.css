@@ -1254,7 +1254,7 @@ body.hero-transparent .masthead.scrolled .nav-strip a.active::after { background
 }
 
 /* === Individual event page === */
-.event-page { padding: 56px 0 80px; }
+.event-page { padding: 40px 0 80px; }
 .back-to-archive {
   font-family: var(--sans);
   text-transform: uppercase;
@@ -1263,9 +1263,110 @@ body.hero-transparent .masthead.scrolled .nav-strip a.active::after { background
   color: var(--ink-soft);
   font-weight: 600;
   display: inline-block;
-  margin-bottom: 36px;
+  margin-bottom: 28px;
 }
 .back-to-archive:hover { color: var(--ink); }
+
+/* Header sits above the layout (full width) */
+.event-header {
+  border-top: 1px solid var(--rule);
+  padding-top: 28px;
+  margin-bottom: 32px;
+}
+.event-header .event-series {
+  font-family: var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* === Two-column layout: sticky sidebar + main === */
+.event-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 56px;
+  align-items: start;
+  margin-top: 48px;
+}
+.event-sidebar {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  font-family: var(--sans);
+}
+.event-meta {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--ink);
+}
+.meta-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.meta-h {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.meta-v {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.meta-v .meta-month {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-right: 4px;
+}
+.meta-v .meta-day {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.meta-v .meta-year {
+  font-family: var(--sans);
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+}
+.event-sidebar .event-foot {
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
+}
+.event-sidebar .event-foot .btn {
+  width: 100%;
+  text-align: center;
+}
+.event-main > section { margin-bottom: 48px; }
+.event-main > section:last-child { margin-bottom: 0; }
+.event-main .event-description { max-width: none; }
+.event-main .event-program { max-width: none; }
+.event-main .event-artists { max-width: none; }
+
+@media (max-width: 900px) {
+  .event-layout { grid-template-columns: 1fr; gap: 40px; margin-top: 0; }
+  .event-sidebar { position: static; order: 2; }
+  .event-main { order: 1; }
+}
 
 .event-head {
   display: grid;
@@ -1389,16 +1490,97 @@ body.hero-transparent .masthead.scrolled .nav-strip a.active::after { background
   color: var(--ink-2);
   line-height: 1.5;
 }
-/* === Event page · gallery, artists, funders === */
+/* === Event-page media (hero + gallery merged) ===
+   Desktop: masonry-feel gallery grid with a large first item.
+   Mobile: Instagram-style full-width horizontal scroll-snap carousel. */
+.event-media { margin: 0 0 48px; }
+.event-media .g-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 140px;
+  gap: 8px;
+}
+.event-media .g-item {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  grid-column: span 2;
+  grid-row: span 2;
+  position: relative;
+}
+.event-media .g-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+.event-media .g-item:hover img { transform: scale(1.04); }
+/* First photo: extra large (hero feel) */
+.event-media .g-item:first-child {
+  grid-column: span 4;
+  grid-row: span 3;
+}
+/* Second photo: tall */
+.event-media .g-item:nth-child(2) {
+  grid-column: span 2;
+  grid-row: span 3;
+}
+/* Single photo: span the entire row */
+.event-media.single .g-item { grid-column: 1 / -1; grid-row: span 4; }
+
+/* Mobile: convert grid to a horizontal scroll-snap carousel */
+@media (max-width: 768px) {
+  .event-media {
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    width: 100vw;
+  }
+  .event-media .g-grid {
+    display: flex;
+    grid-template-columns: none;
+    grid-auto-rows: none;
+    gap: 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    aspect-ratio: 1 / 1;
+  }
+  .event-media .g-grid::-webkit-scrollbar { display: none; }
+  .event-media .g-item,
+  .event-media .g-item:first-child,
+  .event-media .g-item:nth-child(2),
+  .event-media.single .g-item {
+    grid-column: auto;
+    grid-row: auto;
+    flex: 0 0 100vw;
+    width: 100vw;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    scroll-snap-align: center;
+    border: 0;
+  }
+}
+
+/* Tablet (between 769 and 1023): 4-col simplified grid */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .event-media .g-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 120px;
+  }
+  .event-media .g-item { grid-column: span 2; grid-row: span 2; }
+  .event-media .g-item:first-child { grid-column: span 4; grid-row: span 3; }
+  .event-media .g-item:nth-child(2) { grid-column: span 2; grid-row: span 2; }
+}
+
+/* Backwards compatibility: legacy .event-gallery container (not used by new pages) */
 .event-gallery { margin: 0 0 56px; }
-.g-grid {
+.event-gallery .g-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 12px;
 }
-.g-item { display: block; overflow: hidden; border: 1px solid var(--rule); aspect-ratio: 4/3; }
-.g-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
-.g-item:hover img { transform: scale(1.05); }
+.event-gallery .g-item { aspect-ratio: 4/3; }
 
 .event-artists { margin: 0 0 56px; max-width: 760px; }
 .creative-row {
