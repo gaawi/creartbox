@@ -108,7 +108,48 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Bio version tabs
   initBioTabs();
+
+  // Archive "View Program" modals
+  initArchiveModals();
 });
+
+function initArchiveModals() {
+  const btns = document.querySelectorAll(".myBtn_multi");
+  if (!btns.length) return;
+  btns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const modal = btn.nextElementSibling && btn.nextElementSibling.classList.contains("modal")
+        ? btn.nextElementSibling
+        : btn.parentElement.querySelector(".modal");
+      if (modal) {
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden";
+      }
+    });
+  });
+  document.querySelectorAll(".close_multi").forEach((c) => {
+    c.addEventListener("click", () => {
+      const m = c.closest(".modal");
+      if (m) m.style.display = "none";
+      document.body.style.overflow = "";
+    });
+  });
+  document.querySelectorAll(".modal").forEach((m) => {
+    m.addEventListener("click", (e) => {
+      if (e.target === m) {
+        m.style.display = "none";
+        document.body.style.overflow = "";
+      }
+    });
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      document.querySelectorAll(".modal").forEach((m) => (m.style.display = "none"));
+      document.body.style.overflow = "";
+    }
+  });
+}
 
 function initBioTabs() {
   const tabs = document.querySelectorAll("[data-bio-tab]");
