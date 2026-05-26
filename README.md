@@ -14,7 +14,7 @@ program tables, drop caps, multi-column body, dark "ink" footer.
 ```
 .
 ├── index.html         Home (cover, mission, next concert, calls, donate strip)
-├── about.html         About — bio, ensemble, board & staff, history, supporters
+├── about.html         About - bio, ensemble, board & staff, history, supporters
 ├── concerts.html      Season 26/27, featured concert, calendar, touring
 ├── projects.html      Productions catalogue (Two Roads, AWAVE, Visuality,
 │                       Noctum, London the Show, Cre.Art Project), ADAMR, streaming
@@ -97,7 +97,7 @@ const EVENTBRITE = {
 ```
 
 Set the real Eventbrite URLs there and every ticket button across the
-site picks them up — no HTML changes.
+site picks them up - no HTML changes.
 
 To **add a new concert**, in `concerts.html`:
 
@@ -145,7 +145,7 @@ hand-editing, a Supabase-backed flow drops in cleanly:
 1. Create tables `events`, `news`, `opportunities`, `supporters`.
 2. Add a small build step (a Node script or a GitHub Action) that
    reads from Supabase at build time and writes the HTML fragments
-   into the existing pages — the design stays the same.
+   into the existing pages - the design stays the same.
 3. Alternatively, fetch on the client at runtime: include
    `@supabase/supabase-js` from a CDN in `assets/site.js` and replace
    the static `<tbody>` of the concerts table with rows rendered from

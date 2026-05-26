@@ -1,4 +1,4 @@
-/* === CreArtBox · site.js — small, dependency-free interactions === */
+/* === CreArtBox · site.js - small, dependency-free interactions === */
 
 /* ----- Eventbrite ticket URL config ----------------------------------
    Each event used on the site has a stable id (data-event="..."). To
@@ -16,7 +16,7 @@ const EVENTBRITE = {
   "season-subscription": EVENTBRITE_ORG,
 };
 
-/* ----- Donate URL config — Stripe Payment Links ----------------------
+/* ----- Donate URL config - Stripe Payment Links ----------------------
    Three Stripe Payment Links (one per frequency). The donate form picks
    the right one based on the selected frequency and appends the amount
    as a Stripe pre-fill param (Stripe accepts ?prefilled_promo_code= but
@@ -25,7 +25,7 @@ const EVENTBRITE = {
 
    To wire real Stripe URLs:
      1. In your Stripe dashboard, create three Payment Links with
-        "Customer chooses amount" enabled — one for one-time, one for
+        "Customer chooses amount" enabled - one for one-time, one for
         monthly, one for annual.
      2. Replace the URLs below.
 
@@ -37,7 +37,7 @@ const DONATE_LINKS = {
 };
 const DONATE_URL = DONATE_LINKS.once;
 
-/* ----- Theme — default is dark, toggle persists in localStorage --------- */
+/* ----- Theme - default is dark, toggle persists in localStorage --------- */
 (function theme() {
   const KEY = "cb-theme";
   const saved = localStorage.getItem(KEY);

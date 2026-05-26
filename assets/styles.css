@@ -1,4 +1,4 @@
-/* === CreArtBox · Modern — Fraunces display + Inter UI === */
+/* === CreArtBox · Modern - Fraunces display + Inter UI === */
 
 :root {
   /* Off-white paper, near-black ink, burgundy accent, CreArtBox yellow */
@@ -120,7 +120,7 @@ h1, h2, h3, h4 {
 }
 em { font-style: italic; font-family: var(--serif); }
 
-/* Flatter hierarchy — page heros calmer, section heads more present */
+/* Flatter hierarchy - page heros calmer, section heads more present */
 .h-mast {
   font-size: clamp(38px, 5.4vw, 84px);
   line-height: 1.02;
@@ -527,7 +527,7 @@ body.hero-transparent .masthead.scrolled .nav-strip a.active::after { background
 }
 .archive-row:last-of-type { border-bottom: 1px solid var(--rule); }
 
-/* === App callout — bigger, multi-platform === */
+/* === App callout - bigger, multi-platform === */
 .app-callout {
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -630,7 +630,7 @@ body.hero-transparent .masthead.scrolled .nav-strip a.active::after { background
 .app-callout .btn-store .as-stack b { font-size: 15px; font-weight: 600; letter-spacing: -0.005em; margin-top: 3px; }
 .app-callout .btn-store.btn-store-ghost { background: transparent; color: #fafaf7; border-color: rgba(255,255,255,0.45); }
 .app-callout .btn-store.btn-store-ghost:hover { background: #fafaf7; color: #131820; border-color: #fafaf7; }
-/* Legacy class — old pages still use it */
+/* Legacy class - old pages still use it */
 .app-callout .btn-appstore { display: inline-flex; align-items: center; gap: 12px; padding: 14px 24px; border-radius: 999px; border: 1px solid #fafaf7; background: #fafaf7; color: #131820; font-family: var(--sans); font-weight: 600; white-space: nowrap; text-decoration: none; }
 .app-callout .btn-appstore:hover { background: var(--yellow); border-color: var(--yellow); color: #131820; }
 .app-callout .btn-appstore .as-glyph { font-size: 24px; line-height: 1; margin-top: -2px; }
@@ -985,7 +985,7 @@ body.hero-transparent .masthead.scrolled .nav-strip a.active::after { background
 /* === Archive section wrapper === */
 .archive-section { padding: 24px 0 96px; position: relative; }
 
-/* === Archive list — clean horizontal cards ===
+/* === Archive list - clean horizontal cards ===
    Each event is a single full-width card: image on the left, text on
    the right. Big productions get a wider image column. nophoto cards
    are text-only full-width rows. */
@@ -1664,8 +1664,8 @@ body.hero-transparent .masthead.scrolled .nav-strip a.active::after { background
 @media (max-width: 980px) { .archive-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 640px) { .archive-grid { grid-template-columns: 1fr; gap: 28px; } }
 
-/* (Legacy .archive-card block removed — the canonical definitions live
-   higher up in the file, under "Archive list — clean horizontal cards") */
+/* (Legacy .archive-card block removed - the canonical definitions live
+   higher up in the file, under "Archive list - clean horizontal cards") */
 
 .archive-row .ar-date {
   font-family: var(--sans);
@@ -1824,7 +1824,7 @@ body.hero-transparent .masthead.scrolled .logo-img { filter: none; }
 .nav-item .submenu a:last-child { border-bottom: none; }
 .nav-item .submenu a:hover { background: var(--paper-2); color: var(--accent); }
 
-/* Hero-transparent variant — submenu uses dark glass */
+/* Hero-transparent variant - submenu uses dark glass */
 body.hero-transparent .nav-item .submenu {
   background: rgba(15, 17, 21, 0.95);
   border-color: rgba(255,255,255,0.18);
@@ -1868,7 +1868,7 @@ body.hero-transparent .masthead.scrolled .nav-item .submenu a:hover { background
   background: var(--ink);
 }
 
-/* Mobile burger — hidden on desktop */
+/* Mobile burger - hidden on desktop */
 .nav-burger {
   display: none;
   background: transparent;
@@ -1880,7 +1880,7 @@ body.hero-transparent .masthead.scrolled .nav-item .submenu a:hover { background
   font-size: 14px;
 }
 
-/* === Colophon (footer) — pinned to dark navy regardless of theme === */
+/* === Colophon (footer) - pinned to dark navy regardless of theme === */
 .colophon {
   background: #0e131c;
   color: #fafaf7;
@@ -2051,7 +2051,7 @@ figure { margin: 0; }
 .ink-block-red { background: var(--red); color: #fafaf7; padding: 28px 32px; border: 1px solid var(--red); }
 .ink-block-red .label, .ink-block-red h1, .ink-block-red h2, .ink-block-red h3, .ink-block-red p, .ink-block-red em { color: #fafaf7; }
 
-/* Any inline yellow background — always show dark text including italics */
+/* Any inline yellow background - always show dark text including italics */
 [style*="background:var(--yellow)"],
 [style*="background: var(--yellow)"] { color: #131820; }
 [style*="background:var(--yellow)"] .label,
@@ -2295,7 +2295,7 @@ figure { margin: 0; }
   .masthead-left { display: none; }
   .masthead-title::before, .masthead-title::after { display: none; }
 
-  /* Fullscreen mobile menu — no submenus, just the 8 top-level items */
+  /* Fullscreen mobile menu - no submenus, just the 8 top-level items */
   .nav-strip-inner {
     flex-direction: column;
     display: none;
@@ -2401,7 +2401,7 @@ figure { margin: 0; }
 }
 
 /* ============================================================
-   ARCHIVE — original Shopify eventarchive layout (verbatim)
+   ARCHIVE - original Shopify eventarchive layout (verbatim)
    ============================================================ */
 
 /* Archive page uses a solid black background regardless of theme */
@@ -2670,7 +2670,7 @@ p.descriptionpast {
 i.fa { font-style: normal; }
 
 /* ============================================================
-   CONCERT LANDING PAGES — /concerts/<slug>.html
+   CONCERT LANDING PAGES - /concerts/<slug>.html
    ============================================================ */
 .concert-landing .event-header { padding-top: 36px; }
 .concert-landing .event-header .event-series {
