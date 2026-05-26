@@ -111,7 +111,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Archive "View Program" modals
   initArchiveModals();
+
+  // Archive cards: full-card click target
+  initArchiveCardLinks();
 });
+
+function initArchiveCardLinks() {
+  document.querySelectorAll(".eventpast").forEach((card) => {
+    const link = card.querySelector(".explore a.button");
+    const modalBtn = card.querySelector(".myBtn_multi");
+    if (!link && !modalBtn) return;
+    card.classList.add("eventpast-linked");
+    card.style.cursor = "pointer";
+    card.addEventListener("click", (e) => {
+      // Let clicks on actual links, buttons, or inside a modal pass through
+      if (e.target.closest("a, button, .modal")) return;
+      if (link) {
+        if (e.metaKey || e.ctrlKey || e.button === 1) {
+          window.open(link.href, "_blank");
+        } else {
+          window.location.href = link.href;
+        }
+      } else if (modalBtn) {
+        modalBtn.click();
+      }
+    });
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("role", "link");
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        if (link) {
+          window.location.href = link.href;
+        } else if (modalBtn) {
+          modalBtn.click();
+        }
+      }
+    });
+  });
+}
 
 function initArchiveModals() {
   const btns = document.querySelectorAll(".myBtn_multi");

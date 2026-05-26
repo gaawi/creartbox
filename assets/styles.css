@@ -2472,6 +2472,20 @@ h1.yearhuge {
   margin: 11px;
   color: #ececea;
   border: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+.eventpast.eventpast-linked:hover,
+.eventpast.eventpast-linked:focus-visible {
+  background: #1a1f2a;
+  border-color: var(--accent);
+  outline: none;
+}
+.eventpast.eventpast-linked:hover h3,
+.eventpast.eventpast-linked:focus-visible h3 {
+  color: var(--accent);
+}
+.eventpast.eventpast-linked:hover .imgpastevents {
+  filter: brightness(1.05);
 }
 .eventpast h3 {
   font-family: var(--serif);
