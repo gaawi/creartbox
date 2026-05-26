@@ -2654,3 +2654,136 @@ p.descriptionpast {
 /* Faux fa-map-marker (we don't load FontAwesome) */
 .fa-map-marker::before { content: "📍"; margin-right: 4px; }
 i.fa { font-style: normal; }
+
+/* ============================================================
+   CONCERT LANDING PAGES — /concerts/<slug>.html
+   ============================================================ */
+.concert-landing .event-header { padding-top: 36px; }
+.concert-landing .event-header .event-series {
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+.concert-when-where {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-top: 16px;
+  letter-spacing: 0.04em;
+}
+
+.concert-hero { margin: 36px 0 0; padding: 0; }
+.concert-hero img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16/7;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+}
+
+/* Ticket CTA card */
+.ticket-cta {
+  border: 1px solid var(--ink);
+  background: var(--paper-2);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+:root[data-theme="dark"] .ticket-cta { background: #131820; border-color: var(--ink); }
+.btn-ticket {
+  display: block;
+  background: var(--accent);
+  color: #131820 !important;
+  border: 1px solid var(--accent);
+  padding: 14px 18px;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: filter 0.15s;
+}
+.btn-ticket:hover { filter: brightness(1.08); }
+.btn-ticket .ar { margin-left: 6px; }
+.ticket-note {
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.ticket-note a { color: var(--ink); border-bottom: 1px solid currentColor; }
+
+/* Premiere star in program list */
+.pgm-premiere { color: var(--accent); font-weight: 700; margin-right: 4px; }
+.pgm-mins {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin-left: 6px;
+  letter-spacing: 0.04em;
+}
+.pgm-legend {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin: 16px 0 0;
+  font-style: italic;
+}
+
+/* Festival sub-events list */
+.event-subevents { margin: 0 0 48px; }
+.sub-list { list-style: none; padding: 0; margin: 0; }
+.sub-list li {
+  display: grid;
+  grid-template-columns: 90px 1fr 1fr;
+  gap: 20px;
+  padding: 14px 0;
+  border-top: 1px solid var(--rule);
+  align-items: baseline;
+}
+.sub-list li:last-child { border-bottom: 1px solid var(--rule); }
+.sub-date {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.sub-title {
+  font-family: var(--serif);
+  font-size: 17px;
+  color: var(--ink);
+  font-weight: 400;
+  line-height: 1.3;
+}
+.sub-venue { font-family: var(--sans); font-size: 13px; color: var(--ink-2); }
+@media (max-width: 640px) {
+  .sub-list li { grid-template-columns: 1fr; gap: 4px; padding: 16px 0; }
+}
+
+/* About-CreArtBox block on landing pages */
+.event-about {
+  margin: 64px 0 0;
+  padding: 36px 0 0;
+  border-top: 1px solid var(--rule);
+}
+.event-about p {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-2);
+  margin: 0 0 14px;
+  max-width: 60em;
+}
+.about-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
