@@ -2801,3 +2801,69 @@ i.fa { font-style: normal; }
   flex-wrap: wrap;
   margin-top: 24px;
 }
+
+/* ============================================================
+   PROJECTS PAGE - category cards
+   ============================================================ */
+.vc-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+.vc-card:hover { border-color: var(--accent); }
+.vc-card:hover .vc-title { color: var(--accent); }
+:root[data-theme="dark"] .vc-card { background: rgba(255,255,255,0.03); }
+.vc-img { aspect-ratio: 4/3; overflow: hidden; }
+.vc-img img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.6s ease;
+}
+.vc-card:hover .vc-img img { transform: scale(1.04); }
+.vc-meta {
+  padding: 18px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.vc-year {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.vc-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--ink);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  transition: color 0.15s;
+}
+.vc-sub {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+.vc-card-more {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: transparent;
+  border-style: dashed;
+}
+.vc-card-more .vc-meta { padding: 36px 18px; }
+
+.projects-toc .btn {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 12px;
+}
