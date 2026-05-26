@@ -4,10 +4,10 @@ The CreArtBox website, migrated from Shopify to a static site hosted on
 GitHub Pages. Eventbrite handles ticketing; the donate form posts to a
 configurable payment URL (Stripe Payment Link, Donorbox, Givebutter, etc).
 
-The design is the "Programme" aesthetic from the Claude design handoff:
+The design is the "Program" aesthetic from the Claude design handoff:
 cream paper, navy ink, yellow stamp; sticky masthead with newspaper-style
 nav strip; EB Garamond throughout; framed plates with figure captions;
-programme tables, drop caps, multi-column body, dark "ink" footer.
+program tables, drop caps, multi-column body, dark "ink" footer.
 
 ## File layout
 
@@ -102,7 +102,7 @@ site picks them up — no HTML changes.
 To **add a new concert**, in `concerts.html`:
 
 1. Copy one of the `<tr data-concert-series="...">` rows in the season
-   table. Edit the date, title, programme, venue, and `data-event` id.
+   table. Edit the date, title, program, venue, and `data-event` id.
 2. Add the new id to the `EVENTBRITE` map in `assets/site.js`.
 
 ## Wiring the donate form

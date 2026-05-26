@@ -1969,7 +1969,7 @@ figure { margin: 0; }
   content: "";
 }
 
-/* === Programme table === */
+/* === Program table === */
 .prog-table { width: 100%; border-collapse: collapse; }
 .prog-table tr { border-top: 1px solid var(--ink); }
 .prog-table tr:last-child { border-bottom: 1px solid var(--ink); }
@@ -2390,7 +2390,7 @@ figure { margin: 0; }
   .hero-fullbleed .hero-cta .btn { flex: 1; justify-content: center; }
   /* Masthead title logo a touch smaller */
   .masthead-title .logo-img { height: 30px; }
-  /* Programme table cells stack */
+  /* Program table cells stack */
   .prog-table { display: block; }
   .prog-table tbody, .prog-table tr, .prog-table td { display: block; width: 100%; }
   .prog-table tr { border-top: 1px solid var(--ink); padding: 18px 0; }
