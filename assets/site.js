@@ -114,7 +114,59 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Archive cards: full-card click target
   initArchiveCardLinks();
+
+  // Video modal (media page)
+  initVideoModal();
 });
+
+function initVideoModal() {
+  const modal = document.getElementById("video-modal");
+  if (!modal) return;
+  const frame = modal.querySelector(".video-modal-frame");
+  const caption = modal.querySelector(".video-modal-caption");
+
+  function open(btn) {
+    const src = btn.getAttribute("data-video-src");
+    const yt = btn.getAttribute("data-video-yt");
+    const title = btn.getAttribute("data-video-title") || "";
+    let embedUrl = src;
+    if (!embedUrl && yt) {
+      embedUrl = "https://www.youtube-nocookie.com/embed/" + yt + "?autoplay=1&rel=0";
+    }
+    if (!embedUrl) return;
+    // Bunny iframe.mediadelivery.net player vs direct .mp4
+    let html;
+    if (/\.(mp4|webm|m3u8)(\?|$)/i.test(embedUrl)) {
+      html = '<video src="' + embedUrl + '" controls autoplay playsinline></video>';
+    } else {
+      html = '<iframe src="' + embedUrl + '" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe>';
+    }
+    frame.innerHTML = html;
+    caption.textContent = title;
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+  function close() {
+    frame.innerHTML = "";
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  document.querySelectorAll(".video-trigger").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      open(btn);
+    });
+  });
+  modal.querySelectorAll("[data-video-close]").forEach((el) => {
+    el.addEventListener("click", close);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("open")) close();
+  });
+}
 
 function initArchiveCardLinks() {
   document.querySelectorAll(".eventpast").forEach((card) => {
