@@ -124,30 +124,65 @@ function initVideoModal() {
   if (!modal) return;
   const frame = modal.querySelector(".video-modal-frame");
   const caption = modal.querySelector(".video-modal-caption");
+  let hlsInstance = null;
+
+  function loadHlsLib() {
+    return new Promise((resolve) => {
+      if (window.Hls) return resolve(window.Hls);
+      const s = document.createElement("script");
+      s.src = "https://cdn.jsdelivr.net/npm/hls.js@1.5.13/dist/hls.min.js";
+      s.onload = () => resolve(window.Hls);
+      s.onerror = () => resolve(null);
+      document.head.appendChild(s);
+    });
+  }
+
+  async function playHls(url) {
+    const video = document.createElement("video");
+    video.controls = true;
+    video.autoplay = true;
+    video.playsInline = true;
+    frame.innerHTML = "";
+    frame.appendChild(video);
+    if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      video.src = url;
+    } else {
+      const Hls = await loadHlsLib();
+      if (Hls && Hls.isSupported()) {
+        hlsInstance = new Hls();
+        hlsInstance.loadSource(url);
+        hlsInstance.attachMedia(video);
+      } else {
+        video.src = url;
+      }
+    }
+  }
 
   function open(btn) {
     const src = btn.getAttribute("data-video-src");
     const yt = btn.getAttribute("data-video-yt");
     const title = btn.getAttribute("data-video-title") || "";
-    let embedUrl = src;
-    if (!embedUrl && yt) {
-      embedUrl = "https://www.youtube-nocookie.com/embed/" + yt + "?autoplay=1&rel=0";
-    }
-    if (!embedUrl) return;
-    // Bunny iframe.mediadelivery.net player vs direct .mp4
-    let html;
-    if (/\.(mp4|webm|m3u8)(\?|$)/i.test(embedUrl)) {
-      html = '<video src="' + embedUrl + '" controls autoplay playsinline></video>';
+
+    if (src && /\.m3u8(\?|$)/i.test(src)) {
+      playHls(src);
+    } else if (src && /\.(mp4|webm)(\?|$)/i.test(src)) {
+      frame.innerHTML = '<video src="' + src + '" controls autoplay playsinline></video>';
+    } else if (src) {
+      frame.innerHTML = '<iframe src="' + src + '" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe>';
+    } else if (yt) {
+      const embedUrl = "https://www.youtube-nocookie.com/embed/" + yt + "?autoplay=1&rel=0";
+      frame.innerHTML = '<iframe src="' + embedUrl + '" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe>';
     } else {
-      html = '<iframe src="' + embedUrl + '" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe>';
+      return;
     }
-    frame.innerHTML = html;
     caption.textContent = title;
     modal.classList.add("open");
     modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
   }
+
   function close() {
+    if (hlsInstance) { hlsInstance.destroy(); hlsInstance = null; }
     frame.innerHTML = "";
     modal.classList.remove("open");
     modal.setAttribute("aria-hidden", "true");
