@@ -2443,9 +2443,9 @@ figure { margin: 0; }
   .nav-strip-inner .nav-item > a {
     display: block;
     text-align: left;
-    padding: 22px var(--gutter);
+    padding: 14px var(--gutter);
     font-family: var(--serif);
-    font-size: 28px;
+    font-size: 20px;
     font-weight: 400;
     letter-spacing: -0.01em;
     text-transform: none;
