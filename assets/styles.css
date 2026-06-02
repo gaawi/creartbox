@@ -2411,18 +2411,18 @@ figure { margin: 0; }
   .masthead-left { display: none; }
   .masthead-title::before, .masthead-title::after { display: none; }
 
-  /* Fullscreen mobile menu - no submenus, just the 8 top-level items */
+  /* Fullscreen mobile menu - drawer style */
   .nav-strip-inner {
     flex-direction: column;
     display: none;
     position: fixed;
-    top: 64px;       /* sit below the masthead */
+    top: 64px;
     left: 0; right: 0;
     bottom: 0;
     height: calc(100vh - 64px);
     background: var(--paper);
     z-index: 99;
-    padding: 16px 0 32px;
+    padding: 12px 0 40px;
     overflow-y: auto;
     margin: 0;
     max-width: none;
@@ -2430,31 +2430,45 @@ figure { margin: 0; }
   }
   .nav-strip-inner.open { display: flex; }
 
-  .nav-strip a { flex: 0 0 auto; border-right: none; border-bottom: 1px solid var(--rule); text-align: left; padding: 12px var(--gutter); }
+  .nav-strip a { flex: 0 0 auto; border-right: none; border-bottom: none; text-align: left; padding: 0; }
   .nav-burger { display: inline-block; }
 
-  /* Top-level items: compact */
+  /* Each nav-item is a group (top-level + its inline submenu) */
   .nav-strip-inner .nav-item {
     flex: 0 0 auto;
+    display: block;
+    padding: 14px var(--gutter) 16px;
     border-right: none;
     border-bottom: 1px solid var(--rule);
-    display: block;
+    position: relative;
   }
+  .nav-strip-inner .nav-item:last-child { border-bottom: none; }
+
+  /* Active item: yellow side indicator */
+  .nav-strip-inner .nav-item:has(> a.active)::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 14px; bottom: 16px;
+    width: 3px;
+    background: var(--accent);
+  }
+
+  /* Top-level link */
   .nav-strip-inner .nav-item > a {
     display: block;
     text-align: left;
-    padding: 10px var(--gutter) 4px;
+    padding: 0 0 6px;
     font-family: var(--serif);
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 500;
     letter-spacing: -0.01em;
     text-transform: none;
     color: var(--ink);
+    line-height: 1.25;
   }
-  .nav-strip-inner .nav-item > a.active { background: transparent; color: var(--accent); }
-  .nav-strip-inner .nav-item > a:hover { background: var(--paper-2); }
+  .nav-strip-inner .nav-item > a.active { color: var(--accent); background: transparent; }
 
-  /* Inline (always-visible) submenus on mobile */
+  /* Always-visible submenu */
   .nav-strip-inner .nav-item .submenu,
   .nav-strip-inner .nav-item > .submenu {
     display: block !important;
@@ -2462,24 +2476,26 @@ figure { margin: 0; }
     background: transparent;
     border: 0;
     box-shadow: none;
-    padding: 0 var(--gutter) 8px;
+    padding: 4px 0 0;
     margin: 0;
     width: auto;
     min-width: 0;
   }
   .nav-strip-inner .nav-item .submenu a {
     display: block;
-    padding: 3px 0;
+    padding: 6px 0;
     font-family: var(--sans);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     letter-spacing: 0;
     text-transform: none;
-    color: var(--ink-soft);
+    color: var(--ink-2);
     border: 0;
     background: transparent;
+    line-height: 1.35;
   }
-  .nav-strip-inner .nav-item .submenu a:hover {
+  .nav-strip-inner .nav-item .submenu a:hover,
+  .nav-strip-inner .nav-item .submenu a:active {
     background: transparent;
     color: var(--accent);
   }
