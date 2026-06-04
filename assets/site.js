@@ -117,7 +117,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Video modal (media page)
   initVideoModal();
+
+  // "Show all photos" modal (archive subpages)
+  initAllPhotosModal();
 });
+
+function initAllPhotosModal() {
+  const btn = document.getElementById("allphotos-btn");
+  const modal = document.getElementById("allphotos-modal");
+  if (!btn || !modal) return;
+  function open() {
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+  function close() {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+  btn.addEventListener("click", open);
+  modal.querySelectorAll("[data-allphotos-close]").forEach((el) => {
+    el.addEventListener("click", close);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("open")) close();
+  });
+}
 
 function initVideoModal() {
   const modal = document.getElementById("video-modal");
