@@ -1676,23 +1676,27 @@ button.video-card:hover .video-play {
 /* Single photo: span the entire row */
 .event-media.single .g-item { grid-column: 1 / -1; grid-row: span 4; }
 
-/* Mobile: convert grid to a horizontal scroll-snap carousel */
+/* Mobile: convert grid to a horizontal scroll-snap carousel
+   The next slide peeks at the right so users see there's more to swipe. */
 @media (max-width: 768px) {
   .event-media {
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     width: 100vw;
+    position: relative;
   }
   .event-media .g-grid {
     display: flex;
     grid-template-columns: none;
     grid-auto-rows: none;
-    gap: 0;
+    gap: 8px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     aspect-ratio: 1 / 1;
+    padding: 0 6vw;
+    scroll-padding: 0 6vw;
   }
   .event-media .g-grid::-webkit-scrollbar { display: none; }
   .event-media .g-item,
@@ -1701,14 +1705,40 @@ button.video-card:hover .video-play {
   .event-media.single .g-item {
     grid-column: auto;
     grid-row: auto;
-    flex: 0 0 100vw;
-    width: 100vw;
+    flex: 0 0 88vw;
+    width: 88vw;
     height: 100%;
     aspect-ratio: 1 / 1;
     scroll-snap-align: center;
+    scroll-snap-stop: always;
     border: 0;
   }
+  /* Single-photo events: full width, no peek (nothing else to swipe to) */
+  .event-media.single .g-grid { padding: 0; scroll-padding: 0; }
+  .event-media.single .g-item { flex-basis: 100vw; width: 100vw; }
+
+  /* "1 / N" counter pill - JS updates the current index */
+  .g-counter {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: rgba(0, 0, 0, 0.62);
+    color: #fff;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 5px 10px;
+    border-radius: 12px;
+    pointer-events: none;
+    z-index: 2;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .event-media.single .g-counter { display: none; }
 }
+/* Hide counter on desktop (carousel collapses to grid) */
+@media (min-width: 769px) { .g-counter { display: none; } }
 
 /* Tablet (between 769 and 1023): 4-col simplified grid */
 @media (min-width: 769px) and (max-width: 1023px) {

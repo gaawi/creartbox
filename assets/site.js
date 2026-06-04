@@ -120,7 +120,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // "Show all photos" modal (archive subpages)
   initAllPhotosModal();
+
+  // Mobile gallery counter (event-media carousel)
+  initEventMediaCounter();
 });
+
+function initEventMediaCounter() {
+  document.querySelectorAll(".event-media .g-grid").forEach((grid) => {
+    const items = grid.querySelectorAll(".g-item");
+    if (items.length < 2) return;
+    const section = grid.closest(".event-media");
+    if (!section) return;
+    // Add counter pill
+    const counter = document.createElement("div");
+    counter.className = "g-counter";
+    counter.textContent = "1 / " + items.length;
+    section.appendChild(counter);
+    // Update on scroll
+    let raf = null;
+    grid.addEventListener("scroll", () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = null;
+        const center = grid.scrollLeft + grid.clientWidth / 2;
+        let active = 0;
+        let bestDist = Infinity;
+        items.forEach((it, i) => {
+          const mid = it.offsetLeft + it.clientWidth / 2;
+          const d = Math.abs(mid - center);
+          if (d < bestDist) { bestDist = d; active = i; }
+        });
+        counter.textContent = (active + 1) + " / " + items.length;
+      });
+    }, { passive: true });
+  });
+}
 
 function initAllPhotosModal() {
   const btn = document.getElementById("allphotos-btn");
