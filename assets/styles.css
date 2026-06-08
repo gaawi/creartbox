@@ -2991,6 +2991,76 @@ i.fa { font-style: normal; }
   margin-top: 24px;
 }
 
+/* Festival schedule table (used on ADAR archive pages) */
+.event-schedule { margin: 0 0 40px; }
+.sched-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--sans);
+  font-size: 14px;
+}
+.sched-table thead th {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-align: left;
+  padding: 8px 12px 8px 0;
+  border-bottom: 1px solid var(--ink);
+}
+.sched-table tbody td {
+  padding: 14px 12px 14px 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+.sched-day {
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  width: 90px;
+}
+.sched-time {
+  color: var(--ink-2);
+  white-space: nowrap;
+  width: 110px;
+  font-variant-numeric: tabular-nums;
+}
+.sched-kind {
+  color: var(--ink);
+  font-weight: 500;
+  white-space: nowrap;
+  width: 130px;
+}
+.sched-venue {
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+.sched-note {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+@media (max-width: 640px) {
+  .sched-table thead { display: none; }
+  .sched-table tbody td { display: block; padding: 2px 0; border: 0; }
+  .sched-table tbody tr {
+    display: block;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sched-day { width: auto; }
+  .sched-time { width: auto; display: inline !important; margin-left: 8px; }
+  .sched-kind { width: auto; font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-soft); font-weight: 600; }
+  .sched-venue { font-size: 15px; }
+}
+
 /* ============================================================
    "Show all photos" modal (archive subpages)
    ============================================================ */
