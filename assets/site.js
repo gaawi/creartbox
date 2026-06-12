@@ -37,33 +37,10 @@ const DONATE_LINKS = {
 };
 const DONATE_URL = DONATE_LINKS.once;
 
-/* ----- Theme - default is dark, toggle persists in localStorage --------- */
-(function theme() {
-  const KEY = "cb-theme";
-  const saved = localStorage.getItem(KEY);
-  // Default to dark when no preference saved; only "paper" opts out.
-  if (saved !== "paper") document.documentElement.setAttribute("data-theme", "dark");
-  window.toggleTheme = function () {
-    const cur = document.documentElement.getAttribute("data-theme");
-    if (cur === "dark") {
-      document.documentElement.removeAttribute("data-theme");
-      localStorage.setItem(KEY, "paper");
-    } else {
-      document.documentElement.setAttribute("data-theme", "dark");
-      localStorage.setItem(KEY, "dark");
-    }
-    const btn = document.querySelector(".themetoggle");
-    if (btn) btn.textContent = document.documentElement.getAttribute("data-theme") === "dark" ? "☼" : "☾";
-  };
-})();
+/* Dark mode is the only mode. Set the attribute once and forget. */
+document.documentElement.setAttribute("data-theme", "dark");
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Theme toggle init label
-  const tt = document.querySelector(".themetoggle");
-  if (tt) {
-    tt.textContent = document.documentElement.getAttribute("data-theme") === "dark" ? "☼" : "☾";
-    tt.addEventListener("click", window.toggleTheme);
-  }
 
   // Mobile menu
   const burger = document.querySelector(".nav-burger");

@@ -2230,21 +2230,6 @@ figure { margin: 0; }
 .section.tinted { background: var(--paper-2); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
 .section.bordered-top { border-top: 1px solid var(--ink); }
 
-/* === Theme toggle === */
-.themetoggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  border: none;
-  background: transparent;
-  color: var(--ink-soft);
-  font-size: 16px;
-  font-family: inherit;
-  padding: 4px;
-}
-.themetoggle:hover { color: var(--ink); }
-
 /* === Section title block === */
 .section-title { margin-bottom: 48px; }
 .section-title .head {
@@ -2664,7 +2649,7 @@ h1.yearhuge {
   display: grid;
   grid-template-columns: 2fr 1fr;
   padding: 20px 20px;
-  background: #131820;
+  background: #121212;
   margin: 11px;
   color: #ececea;
   border: 1px solid rgba(255,255,255,0.06);
@@ -2672,7 +2657,7 @@ h1.yearhuge {
 }
 .eventpast.eventpast-linked:hover,
 .eventpast.eventpast-linked:focus-visible {
-  background: #1a1f2a;
+  background: #1a1a1a;
   border-color: var(--accent);
   outline: none;
 }
@@ -2800,44 +2785,99 @@ p.descriptionpast {
 }
 .myBtn_multi:hover { color: var(--accent); }
 
-/* Modal */
+/* "View Program" modal on archive index — centered card on dark backdrop */
 .modal {
   display: none;
   position: fixed;
   z-index: 100;
-  padding-top: 100px;
-  left: 0;
-  top: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.55);
+  background-color: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 24px 16px;
+  align-items: flex-start;
+  justify-content: center;
 }
+.modal[style*="block"] { display: flex; }
 .modal-content {
-  background-color: #1a1f2a;
-  margin: 30px 0 0 5%;
-  padding: 24px;
-  border: 1px solid #2a2f3a;
-  width: 90%;
-  font-size: 14px;
+  position: relative;
+  background-color: #141414;
+  border: 1px solid #262626;
+  border-top: 3px solid var(--accent);
+  margin: clamp(24px, 6vh, 80px) auto;
+  padding: 44px clamp(20px, 4vw, 44px) 36px;
+  width: 100%;
+  max-width: 640px;
+  font-family: var(--sans);
+  font-size: 15px;
   line-height: 1.7;
   text-align: left;
   color: #ececea;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
 }
-@media (min-width: 768px) {
-  .modal-content { margin: 120px 0 0 20%; width: 60%; }
+.modal-content::before {
+  content: "Program";
+  display: block;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: -8px 0 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #262626;
 }
-.modal-content strong { font-weight: 700; }
-.modal-content em, .modal-content i { font-style: italic; opacity: 0.85; }
+.modal-content strong {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 17px;
+  color: var(--ink);
+  display: block;
+  margin-top: 14px;
+  margin-bottom: 2px;
+  letter-spacing: -0.005em;
+}
+.modal-content strong:first-of-type { margin-top: 0; }
+.modal-content em, .modal-content i {
+  font-style: italic;
+  color: #b4b6bd;
+  font-size: 14px;
+}
+.modal-content p { margin: 0 0 4px; }
+.modal-content br { margin-bottom: 2px; }
 .close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  color: #6e7079;
+  float: none;
+  font-size: 26px;
+  font-weight: 400;
   line-height: 1;
+  cursor: pointer;
+  padding: 6px 10px;
+  background: transparent;
+  border: 0;
+  transition: color 0.15s;
+  z-index: 1;
 }
-.close:hover, .close:focus { color: var(--ink); }
+.close:hover, .close:focus { color: var(--accent); }
+@media (max-width: 600px) {
+  .modal { padding: 0; align-items: stretch; }
+  .modal-content {
+    margin: auto 0 0;
+    max-width: 100%;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    max-height: 88vh;
+    overflow-y: auto;
+  }
+}
 
 /* Embedded video container (used for Ten Pages 2023) */
 .eventpast .embed-container {
@@ -2900,7 +2940,7 @@ i.fa { font-style: normal; }
   flex-direction: column;
   gap: 12px;
 }
-:root[data-theme="dark"] .ticket-cta { background: #131820; border-color: var(--ink); }
+:root[data-theme="dark"] .ticket-cta { background: #121212; border-color: var(--ink); }
 .btn-ticket {
   display: block;
   background: var(--accent);
