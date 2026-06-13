@@ -9,18 +9,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=41">
+<link rel="stylesheet" href="assets/styles.css?v=42">
 <script id="cb-theme-init">document.documentElement.setAttribute("data-theme","dark");</script>
 </head>
 <body class="hero-transparent">
 
 <header class="masthead">
   <div class="masthead-inner">
-    <div class="masthead-left"><span>Established 2013, New York City</span></div>
+    <div class="masthead-left"><button class="nav-burger" aria-label="Menu">Menu</button><span class="established">Established 2013, New York City</span></div>
     <a class="masthead-title" href="index.html"><img class="logo-img" src="assets/logos/logo-creartbox.png" alt="CreArtBox"></a>
-    <div class="masthead-right">
-      <button class="nav-burger" aria-label="Menu">Menu</button>
-    </div>
+    <div class="masthead-right"><a class="masthead-tickets" href="concerts.html">Get tickets</a></div>
   </div>
   <nav class="nav-strip">
       <div class="nav-strip-inner">
@@ -148,66 +146,70 @@
       <h2 class="h-feature">Watch &amp; listen</h2>
     </div>
 
-    <div class="feat-grid">
-      <a class="feat-card" href="https://www.youtube.com/creartbox" target="_blank" rel="noopener">
-        <div class="feat-media"><img src="assets/img/ensemble.jpg" alt="Pictures at an Exhibition"></div>
+    <div class="feat-slider">
+      <button class="feat-vid video-trigger" data-video-src="https://vz-a6a9f576-8c5.b-cdn.net/62d677e1-e80a-4bdf-bd3c-3973893802e1/playlist.m3u8" data-video-yt="nCMm7-sNm2s" data-video-title="Brahms · Piano Quartet No. 3 in C minor, Op. 60 (III. Andante)">
+        <div class="video-thumb"><img src="https://vz-a6a9f576-8c5.b-cdn.net/62d677e1-e80a-4bdf-bd3c-3973893802e1/thumbnail.jpg" alt="Brahms · Piano Quartet No. 3" loading="lazy"><span class="video-play" aria-hidden="true"></span></div>
         <div class="feat-meta">
-          <div class="feat-kicker">Dec 2023 · DiMenna Center</div>
-          <div class="feat-title">Pictures at an Exhibition</div>
-          <div class="feat-sub">Live at The DiMenna Center for Classical Music</div>
-          <span class="feat-action">View Video →</span>
+          <div class="feat-kicker">DiMenna Center</div>
+          <div class="feat-title">Brahms · Piano Quartet No. 3</div>
+          <div class="feat-sub">III. Andante</div>
         </div>
-      </a>
+      </button>
 
-      <a class="feat-card" href="https://www.youtube.com/creartbox" target="_blank" rel="noopener">
-        <div class="feat-media"><img src="assets/img/arch-mountains.jpg" alt="Debussy Second Sonata"></div>
+      <button class="feat-vid video-trigger" data-video-src="https://vz-a6a9f576-8c5.b-cdn.net/fd38ec57-081a-4b2c-8bb7-d124b1496169/playlist.m3u8" data-video-yt="lh27Qv-SHrY" data-video-title="Caroline Shaw · Thousandth Orange">
+        <div class="video-thumb"><img src="https://vz-a6a9f576-8c5.b-cdn.net/fd38ec57-081a-4b2c-8bb7-d124b1496169/thumbnail.jpg" alt="Caroline Shaw · Thousandth Orange" loading="lazy"><span class="video-play" aria-hidden="true"></span></div>
         <div class="feat-meta">
-          <div class="feat-kicker">Dec 2023 · Culture Lab</div>
-          <div class="feat-title">Debussy Second Sonata</div>
-          <div class="feat-sub">Live at Culture Lab, LIC</div>
-          <span class="feat-action">View Video →</span>
-        </div>
-      </a>
-
-      <a class="feat-card" href="https://www.youtube.com/creartbox" target="_blank" rel="noopener">
-        <div class="feat-media"><img src="assets/img/arch-fragile.jpg" alt="Shostakovich Piano Trio"></div>
-        <div class="feat-meta">
-          <div class="feat-kicker">Sep 2022 · Blue Gallery</div>
-          <div class="feat-title">Shostakovich · Piano Trio Op. 8 No. 1</div>
-          <div class="feat-sub">The Fragile Form Trilogy</div>
-          <span class="feat-action">Watch on YouTube →</span>
-        </div>
-      </a>
-
-      <a class="feat-card" href="projects.html">
-        <div class="feat-media"><img src="assets/img/tworoads-1.jpg" alt="Two Roads opera-ballet"></div>
-        <div class="feat-meta">
-          <div class="feat-kicker">2020 · Opera Ballet</div>
-          <div class="feat-title">Two Roads</div>
-          <div class="feat-sub">The Tank Theater, Manhattan</div>
-          <span class="feat-action">Explore →</span>
-        </div>
-      </a>
-
-      <a class="feat-card" href="https://www.youtube.com/creartbox" target="_blank" rel="noopener">
-        <div class="feat-media"><img src="assets/img/feat-circlenoir.jpg" alt="Circle Noir Series"></div>
-        <div class="feat-meta">
-          <div class="feat-kicker">2023 · Brooklyn</div>
-          <div class="feat-title">Circle Noir Series</div>
-          <div class="feat-sub">The William Vale, Brooklyn</div>
-          <span class="feat-action">View Video →</span>
-        </div>
-      </a>
-
-      <a class="feat-card" href="https://play.creartbox.nyc" target="_blank" rel="noopener">
-        <div class="feat-media"><img src="assets/img/thousandth-orange.jpg" alt="Caroline Shaw Thousandth Orange"></div>
-        <div class="feat-meta">
-          <div class="feat-kicker">Now streaming</div>
+          <div class="feat-kicker">2025 · DiMenna Center</div>
           <div class="feat-title">Caroline Shaw · Thousandth Orange</div>
-          <div class="feat-sub">play.creartbox.nyc · Digital Concert Hall</div>
-          <span class="feat-action">Watch →</span>
+          <div class="feat-sub">Flute, string trio &amp; piano</div>
         </div>
-      </a>
+      </button>
+
+      <button class="feat-vid video-trigger" data-video-src="https://vz-a6a9f576-8c5.b-cdn.net/73ab8300-a9b0-403a-9c15-25e00fddfd55/playlist.m3u8" data-video-yt="KXR3KoNDwhI" data-video-title="Vivaldi · La Notte">
+        <div class="video-thumb"><img src="https://vz-a6a9f576-8c5.b-cdn.net/73ab8300-a9b0-403a-9c15-25e00fddfd55/thumbnail.jpg" alt="Vivaldi · La Notte" loading="lazy"><span class="video-play" aria-hidden="true"></span></div>
+        <div class="feat-meta">
+          <div class="feat-kicker">Concerto · La Notte</div>
+          <div class="feat-title">Vivaldi · La Notte</div>
+          <div class="feat-sub">Flute, strings &amp; piano</div>
+        </div>
+      </button>
+
+      <button class="feat-vid video-trigger" data-video-src="https://vz-a6a9f576-8c5.b-cdn.net/64946dd5-307a-4ab6-9027-c02023c7cfd9/playlist.m3u8" data-video-yt="TQXg1sAj6QY" data-video-title="Debussy · Sonata for flute, viola, and harp">
+        <div class="video-thumb"><img src="https://vz-a6a9f576-8c5.b-cdn.net/64946dd5-307a-4ab6-9027-c02023c7cfd9/thumbnail.jpg" alt="Debussy · Sonata for flute, viola, and harp" loading="lazy"><span class="video-play" aria-hidden="true"></span></div>
+        <div class="feat-meta">
+          <div class="feat-kicker">Chamber arrangement</div>
+          <div class="feat-title">Debussy · Sonata</div>
+          <div class="feat-sub">Flute, viola &amp; harp</div>
+        </div>
+      </button>
+
+      <button class="feat-vid video-trigger" data-video-src="" data-video-yt="aAfqHD0m-VY" data-video-title="Arvo Pärt · Pari Intervallo">
+        <div class="video-thumb"><img src="https://i.ytimg.com/vi/aAfqHD0m-VY/hqdefault.jpg" alt="Arvo Pärt · Pari Intervallo" loading="lazy"><span class="video-play" aria-hidden="true"></span></div>
+        <div class="feat-meta">
+          <div class="feat-kicker">CreArt Music Festival</div>
+          <div class="feat-title">Arvo Pärt · Pari Intervallo</div>
+          <div class="feat-sub">Flute, string trio &amp; piano</div>
+        </div>
+      </button>
+
+      <button class="feat-vid video-trigger" data-video-src="" data-video-yt="JNTy18Ka61Y" data-video-title="Ravel · Kaddish">
+        <div class="video-thumb"><img src="https://i.ytimg.com/vi/JNTy18Ka61Y/hqdefault.jpg" alt="Ravel · Kaddish" loading="lazy"><span class="video-play" aria-hidden="true"></span></div>
+        <div class="feat-meta">
+          <div class="feat-kicker">Cello &amp; piano</div>
+          <div class="feat-title">Ravel · Kaddish</div>
+          <div class="feat-sub">Played in the dark</div>
+        </div>
+      </button>
+    </div>
+
+    <!-- Video modal -->
+    <div class="video-modal" id="video-modal" aria-hidden="true" role="dialog">
+      <div class="video-modal-bg" data-video-close></div>
+      <div class="video-modal-content">
+        <button class="video-modal-close" data-video-close aria-label="Close">×</button>
+        <div class="video-modal-frame"><!-- iframe injected by JS --></div>
+        <div class="video-modal-caption"></div>
+      </div>
     </div>
 
     <div style="margin-top:40px;display:flex;gap:10px;flex-wrap:wrap">
