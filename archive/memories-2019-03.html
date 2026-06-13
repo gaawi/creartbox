@@ -169,5 +169,21 @@
 </footer>
 
 <script src="../assets/site.js?v=24"></script>
+<div class="audio-dock" id="audio-dock" hidden aria-label="Audio player">
+  <div class="ad-info">
+    <div class="ad-composer" data-ad-composer>—</div>
+    <div class="ad-title" data-ad-title>Select a track</div>
+  </div>
+  <div class="ad-controls">
+    <button type="button" class="ad-btn" data-ad-prev aria-label="Previous track">⟵</button>
+    <button type="button" class="ad-btn ad-play" data-ad-play aria-label="Play / pause"><span class="ad-glyph"></span></button>
+    <button type="button" class="ad-btn" data-ad-next aria-label="Next track">⟶</button>
+  </div>
+  <div class="ad-progress" data-ad-progress>
+    <div class="ad-bar"><div class="ad-fill" data-ad-fill></div></div>
+    <div class="ad-time"><span data-ad-t-cur>0:00</span> <span data-ad-t-dur>0:00</span></div>
+  </div>
+  <button type="button" class="ad-close" data-ad-close aria-label="Close player">×</button>
+</div>
 </body>
 </html>

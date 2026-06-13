@@ -58,6 +58,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Copy-bio buttons under each bio version
   initBioCopy();
 
+  // Persistent audio dock (background play across pages)
+  initAudioDock();
+
   // Wire ticket buttons: [data-event="..."] => Eventbrite URL
   document.querySelectorAll("[data-event]").forEach((el) => {
     const id = el.getAttribute("data-event");
@@ -593,4 +596,157 @@ function initConcertTabs() {
       if (count) count.textContent = "Showing " + shown + " of " + rows.length + " concerts";
     });
   });
+}
+
+/* ============================================================
+   PERSISTENT AUDIO DOCK
+   - Track list (#featured-tracks) on the media page selects + plays
+   - A single <audio> element lives on every page (created on demand)
+   - Playlist + index + currentTime persist across navigation via
+     sessionStorage (currentTime) + localStorage (queue + playing state)
+   ============================================================ */
+const AUDIO_KEY = "cb-audio-v1";
+function readAudioState() {
+  try {
+    const raw = localStorage.getItem(AUDIO_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (_) { return null; }
+}
+function writeAudioState(s) {
+  try { localStorage.setItem(AUDIO_KEY, JSON.stringify(s)); } catch (_) {}
+}
+function fmtTime(t) {
+  if (!isFinite(t) || t < 0) t = 0;
+  const m = Math.floor(t / 60);
+  const s = Math.floor(t % 60);
+  return m + ":" + (s < 10 ? "0" : "") + s;
+}
+
+function initAudioDock() {
+  const dock = document.getElementById("audio-dock");
+  if (!dock) return;
+
+  // Build the single <audio> tag and reuse it
+  let audio = document.getElementById("cb-audio-el");
+  if (!audio) {
+    audio = document.createElement("audio");
+    audio.id = "cb-audio-el";
+    audio.preload = "metadata";
+    document.body.appendChild(audio);
+  }
+
+  // Hydrate queue: prefer the page's track list, else fall back to saved state
+  const tracksUI = Array.from(document.querySelectorAll("#featured-tracks .track"));
+  let queue = tracksUI.map((li) => ({
+    src: li.getAttribute("data-track-src"),
+    composer: li.getAttribute("data-track-composer") || "",
+    title: li.getAttribute("data-track-title") || "",
+    note: li.getAttribute("data-track-note") || "",
+  }));
+  let saved = readAudioState();
+  if (!queue.length && saved && saved.queue) queue = saved.queue;
+
+  let idx = (saved && Number.isInteger(saved.idx)) ? saved.idx : -1;
+  // currentTime resumes within the same browser session
+  const resumeT = parseFloat(sessionStorage.getItem("cb-audio-t") || "0") || 0;
+  let wasPlaying = !!(saved && saved.playing);
+
+  const elComposer = dock.querySelector("[data-ad-composer]");
+  const elTitle = dock.querySelector("[data-ad-title]");
+  const elFill = dock.querySelector("[data-ad-fill]");
+  const elCur = dock.querySelector("[data-ad-t-cur]");
+  const elDur = dock.querySelector("[data-ad-t-dur]");
+  const btnPlay = dock.querySelector("[data-ad-play]");
+  const btnPrev = dock.querySelector("[data-ad-prev]");
+  const btnNext = dock.querySelector("[data-ad-next]");
+  const btnClose = dock.querySelector("[data-ad-close]");
+  const bar = dock.querySelector("[data-ad-progress] .ad-bar");
+
+  function showDock() {
+    dock.hidden = false;
+    document.body.classList.add("has-audio-dock");
+  }
+  function hideDock() {
+    dock.hidden = true;
+    document.body.classList.remove("has-audio-dock");
+  }
+  function reflectListUI() {
+    tracksUI.forEach((li, i) => li.classList.toggle("playing", i === idx && !audio.paused));
+  }
+  function load(i, autoplay) {
+    if (i < 0 || i >= queue.length) return;
+    idx = i;
+    const t = queue[i];
+    if (audio.src !== t.src) audio.src = t.src;
+    elComposer.textContent = t.composer || "—";
+    elTitle.textContent = t.title || "";
+    showDock();
+    persist();
+    if (autoplay) audio.play().catch(() => {});
+  }
+  function togglePlay() {
+    if (idx < 0 && queue.length) { load(0, true); return; }
+    if (audio.paused) audio.play().catch(() => {}); else audio.pause();
+  }
+  function next() {
+    if (idx + 1 < queue.length) load(idx + 1, true);
+  }
+  function prev() {
+    if (audio.currentTime > 3) { audio.currentTime = 0; return; }
+    if (idx > 0) load(idx - 1, true);
+  }
+  function persist() {
+    writeAudioState({ queue, idx, playing: !audio.paused });
+  }
+
+  // Wire up the page track list (clicks)
+  tracksUI.forEach((li, i) => {
+    li.addEventListener("click", (e) => {
+      e.preventDefault();
+      // If clicking the same track that's playing, toggle
+      if (i === idx) togglePlay();
+      else load(i, true);
+    });
+    // Also stop propagation on the inner button (kept for a11y)
+    const inner = li.querySelector(".track-play");
+    if (inner) inner.addEventListener("click", (e) => { e.stopPropagation(); li.click(); });
+  });
+
+  // Dock controls
+  btnPlay.addEventListener("click", togglePlay);
+  btnNext.addEventListener("click", next);
+  btnPrev.addEventListener("click", prev);
+  btnClose.addEventListener("click", () => {
+    audio.pause();
+    audio.removeAttribute("src");
+    sessionStorage.removeItem("cb-audio-t");
+    localStorage.removeItem(AUDIO_KEY);
+    hideDock();
+  });
+
+  // Progress bar scrubbing
+  bar.addEventListener("click", (e) => {
+    const r = bar.getBoundingClientRect();
+    const pct = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
+    if (isFinite(audio.duration)) audio.currentTime = pct * audio.duration;
+  });
+
+  audio.addEventListener("timeupdate", () => {
+    if (isFinite(audio.duration) && audio.duration > 0) {
+      elFill.style.width = (audio.currentTime / audio.duration * 100) + "%";
+    }
+    elCur.textContent = fmtTime(audio.currentTime);
+    sessionStorage.setItem("cb-audio-t", String(audio.currentTime));
+  });
+  audio.addEventListener("loadedmetadata", () => { elDur.textContent = fmtTime(audio.duration); });
+  audio.addEventListener("play", () => { dock.classList.add("playing"); reflectListUI(); persist(); });
+  audio.addEventListener("pause", () => { dock.classList.remove("playing"); reflectListUI(); persist(); });
+  audio.addEventListener("ended", () => { next(); });
+
+  // Hydrate UI from saved state on load
+  if (queue.length && idx >= 0 && idx < queue.length) {
+    load(idx, false);
+    if (resumeT > 0) audio.currentTime = resumeT;
+    if (wasPlaying) audio.play().catch(() => {});
+  }
 }

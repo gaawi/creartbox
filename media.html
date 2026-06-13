@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=53">
+<link rel="stylesheet" href="assets/styles.css?v=54">
 <script id="cb-theme-init">document.documentElement.setAttribute("data-theme","dark");</script>
 </head>
 <body>
@@ -201,11 +201,57 @@
   <div class="wrap">
     <div class="section-title">
       <hr class="rule">
-      <div class="head"><span class="label">Section III</span><span class="bar"></span><span class="label ital">Listen on the platforms</span></div>
+      <div class="head"><span class="label">Section III</span><span class="bar"></span><span class="label ital">Featured recordings &amp; platforms</span></div>
       <hr class="rule">
       <h2 class="h-feature"><em>Audio</em>.</h2>
     </div>
-    <div class="audio-platforms">
+
+    <div class="audio-featured">
+      <div class="audio-featured-head">
+        <span class="label">Featured · X is the new Y</span>
+        <h3 class="h-title" style="margin-top:8px;font-size:clamp(22px,2.6vw,30px)">Live at The DiMenna Center · Dec 11, 2024</h3>
+        <p class="body-s" style="margin-top:8px;color:var(--ink-soft);max-width:60em">Selected tracks from the X is the new Y programme: Hannah Selin's world premiere <em>The Soft Moon</em>, Frank Martin's Ballade, Mozart's K.493 and Dvořák's American Quartet - performed by Gendron, Cohen, Yang, Laporta and Urraca.</p>
+      </div>
+      <ol class="track-list" id="featured-tracks">
+        <li class="track" data-track-src="https://creartbox-media-cdn.b-cdn.net/webimg/projects_photos/20241211/audio/01Softmoon.mp3" data-track-composer="Hannah Selin" data-track-title="The Soft Moon" data-track-note="World premiere · CreArtBox commission">
+          <button type="button" class="track-play" aria-label="Play"><span class="tp-glyph" aria-hidden="true"></span></button>
+          <div class="track-meta"><div class="track-composer">Hannah Selin</div><div class="track-title">The Soft Moon <span class="track-note">★ World premiere</span></div></div>
+          <span class="track-num">01</span>
+        </li>
+        <li class="track" data-track-src="https://creartbox-media-cdn.b-cdn.net/webimg/projects_photos/20241211/audio/02FrankMartin.mp3" data-track-composer="Frank Martin" data-track-title="Ballade for flute, strings &amp; piano" data-track-note="1939">
+          <button type="button" class="track-play" aria-label="Play"><span class="tp-glyph" aria-hidden="true"></span></button>
+          <div class="track-meta"><div class="track-composer">Frank Martin</div><div class="track-title">Ballade <span class="track-note">for flute, strings &amp; piano · 1939</span></div></div>
+          <span class="track-num">02</span>
+        </li>
+        <li class="track" data-track-src="https://creartbox-media-cdn.b-cdn.net/webimg/projects_photos/20241211/audio/03MozartI.mp3" data-track-composer="W. A. Mozart" data-track-title="Piano Quartet No. 2 in E♭ K.493 - I. Allegro" data-track-note="1786">
+          <button type="button" class="track-play" aria-label="Play"><span class="tp-glyph" aria-hidden="true"></span></button>
+          <div class="track-meta"><div class="track-composer">W. A. Mozart</div><div class="track-title">Piano Quartet No. 2 in E♭, K. 493 <span class="track-note">I. Allegro</span></div></div>
+          <span class="track-num">03</span>
+        </li>
+        <li class="track" data-track-src="https://creartbox-media-cdn.b-cdn.net/webimg/projects_photos/20241211/audio/07DvorakI.mp3" data-track-composer="Antonín Dvořák" data-track-title="String Quartet No. 12 &#34;American&#34; - I. Allegro ma non troppo" data-track-note="1893">
+          <button type="button" class="track-play" aria-label="Play"><span class="tp-glyph" aria-hidden="true"></span></button>
+          <div class="track-meta"><div class="track-composer">Antonín Dvořák</div><div class="track-title">American Quartet <span class="track-note">I. Allegro ma non troppo</span></div></div>
+          <span class="track-num">04</span>
+        </li>
+        <li class="track" data-track-src="https://creartbox-media-cdn.b-cdn.net/webimg/projects_photos/20241211/audio/08DvorakII.mp3" data-track-composer="Antonín Dvořák" data-track-title="String Quartet No. 12 &#34;American&#34; - II. Lento" data-track-note="1893">
+          <button type="button" class="track-play" aria-label="Play"><span class="tp-glyph" aria-hidden="true"></span></button>
+          <div class="track-meta"><div class="track-composer">Antonín Dvořák</div><div class="track-title">American Quartet <span class="track-note">II. Lento</span></div></div>
+          <span class="track-num">05</span>
+        </li>
+        <li class="track" data-track-src="https://creartbox-media-cdn.b-cdn.net/webimg/projects_photos/20241211/audio/09DvorakIII.mp3" data-track-composer="Antonín Dvořák" data-track-title="String Quartet No. 12 &#34;American&#34; - III. Molto vivace" data-track-note="1893">
+          <button type="button" class="track-play" aria-label="Play"><span class="tp-glyph" aria-hidden="true"></span></button>
+          <div class="track-meta"><div class="track-composer">Antonín Dvořák</div><div class="track-title">American Quartet <span class="track-note">III. Molto vivace</span></div></div>
+          <span class="track-num">06</span>
+        </li>
+        <li class="track" data-track-src="https://creartbox-media-cdn.b-cdn.net/webimg/projects_photos/20241211/audio/10DvorakIV.mp3" data-track-composer="Antonín Dvořák" data-track-title="String Quartet No. 12 &#34;American&#34; - IV. Finale. Vivace ma non troppo" data-track-note="1893">
+          <button type="button" class="track-play" aria-label="Play"><span class="tp-glyph" aria-hidden="true"></span></button>
+          <div class="track-meta"><div class="track-composer">Antonín Dvořák</div><div class="track-title">American Quartet <span class="track-note">IV. Finale</span></div></div>
+          <span class="track-num">07</span>
+        </li>
+      </ol>
+    </div>
+
+    <div class="audio-platforms" style="margin-top:48px">
       <a class="audio-platform" href="https://creartbox.bandcamp.com" target="_blank" rel="noopener" aria-label="CreArtBox on Bandcamp">
         <div class="audio-logo audio-logo-bandcamp">
           <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M0 60h160l-64 136H-64L0 60z" transform="translate(64 0)"/></svg>
@@ -408,5 +454,21 @@
 </footer>
 
 <script src="assets/site.js?v=31"></script>
+<div class="audio-dock" id="audio-dock" hidden aria-label="Audio player">
+  <div class="ad-info">
+    <div class="ad-composer" data-ad-composer>—</div>
+    <div class="ad-title" data-ad-title>Select a track</div>
+  </div>
+  <div class="ad-controls">
+    <button type="button" class="ad-btn" data-ad-prev aria-label="Previous track">⟵</button>
+    <button type="button" class="ad-btn ad-play" data-ad-play aria-label="Play / pause"><span class="ad-glyph"></span></button>
+    <button type="button" class="ad-btn" data-ad-next aria-label="Next track">⟶</button>
+  </div>
+  <div class="ad-progress" data-ad-progress>
+    <div class="ad-bar"><div class="ad-fill" data-ad-fill></div></div>
+    <div class="ad-time"><span data-ad-t-cur>0:00</span> <span data-ad-t-dur>0:00</span></div>
+  </div>
+  <button type="button" class="ad-close" data-ad-close aria-label="Close player">×</button>
+</div>
 </body>
 </html>
