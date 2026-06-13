@@ -4140,3 +4140,19 @@ body.has-audio-dock .colophon { margin-bottom: 0; }
   .ad-title { font-size: 14px; }
   body.has-audio-dock { padding-bottom: 110px; }
 }
+
+/* Calendar: tighten the gap between "The season." and the filter row on mobile */
+@media (max-width: 720px) {
+  .section-title { margin-bottom: 20px; }
+  .section-title h2 { margin-top: 18px; }
+  /* Filter tab row */
+  [data-concert-tab] { font-size: 13px !important; padding: 8px 12px !important; }
+  .section .wrap > div[style*="justify-content:flex-end"][style*="margin-bottom:24px"] {
+    justify-content: stretch !important;
+    margin-bottom: 12px !important;
+  }
+  .section .wrap > div[style*="justify-content:flex-end"][style*="margin-bottom:24px"] > [data-concert-tab] {
+    flex: 1 1 0 !important;
+    text-align: center;
+  }
+}
