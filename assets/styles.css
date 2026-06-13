@@ -1174,6 +1174,54 @@ button.video-card:focus-visible .video-play::before,
 .bio-version { animation: bioFade 260ms ease; }
 @keyframes bioFade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 
+/* Mobile: bio tabs as a horizontal segmented control (three rectangular chips) */
+@media (max-width: 860px) {
+  .bio-tabs {
+    flex-direction: row;
+    border-top: 0;
+    border: 1px solid var(--rule);
+    margin-top: 24px;
+  }
+  .bio-tabs button {
+    flex: 1 1 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 8px;
+    border-bottom: 0;
+    border-right: 1px solid var(--rule);
+    text-align: center;
+  }
+  .bio-tabs button:last-child { border-right: 0; }
+  .bio-tabs button .bt-label {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .bio-tabs button .bt-meta {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+  }
+  .bio-tabs button.active {
+    background: var(--ink);
+  }
+  .bio-tabs button.active .bt-label,
+  .bio-tabs button.active .bt-meta { color: var(--paper); }
+  .bio-tabs button:hover .bt-label { color: var(--ink); }
+  .bio-downloads {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .bio-downloads .btn { flex: 1 1 auto; justify-content: center; }
+}
+
 /* === Archive section wrapper === */
 .archive-section { padding: 24px 0 96px; position: relative; }
 
