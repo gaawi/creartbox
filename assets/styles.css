@@ -1208,10 +1208,11 @@ button.video-card:focus-visible .video-play::before,
     color: var(--ink-soft);
   }
   .bio-tabs button.active {
-    background: var(--ink);
+    background: var(--accent) !important;
+    border-color: var(--accent);
   }
-  .bio-tabs button.active .bt-label,
-  .bio-tabs button.active .bt-meta { color: var(--paper); }
+  .bio-tabs button.active .bt-label { color: #131820 !important; }
+  .bio-tabs button.active .bt-meta  { color: #131820 !important; opacity: 0.75; }
   .bio-tabs button:hover .bt-label { color: var(--ink); }
   .bio-downloads {
     flex-direction: row;
