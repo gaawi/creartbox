@@ -112,11 +112,23 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function initEventMediaCounter() {
-  document.querySelectorAll(".event-media .g-grid").forEach((grid) => {
-    const items = grid.querySelectorAll(".g-item");
+  // Selector covers archive event carousels AND the Media-page Photographs grid
+  const targets = [
+    { gridSel: ".event-media .g-grid", containerSel: ".event-media", itemSel: ".g-item" },
+    { gridSel: "#photos .grid-3",       containerSel: "#photos",      itemSel: ":scope > div" },
+  ];
+  targets.forEach((t) => attachCounter(t.gridSel, t.containerSel, t.itemSel));
+}
+
+function attachCounter(gridSel, containerSel, itemSel) {
+  document.querySelectorAll(gridSel).forEach((grid) => {
+    const items = grid.querySelectorAll(itemSel);
     if (items.length < 2) return;
-    const section = grid.closest(".event-media");
+    const section = grid.closest(containerSel);
     if (!section) return;
+    // Need a positioned container for the absolute counter
+    const cs = getComputedStyle(section);
+    if (cs.position === "static") section.style.position = "relative";
     // Add counter pill
     const counter = document.createElement("div");
     counter.className = "g-counter";

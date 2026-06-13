@@ -1920,6 +1920,36 @@ button.video-card:focus-visible .video-play::before,
 /* Hide counter on desktop (carousel collapses to grid) */
 @media (min-width: 769px) { .g-counter { display: none; } }
 
+/* === Media page · Photographs slider (Instagram-style on mobile) === */
+@media (max-width: 768px) {
+  #photos .wrap {
+    position: relative;
+  }
+  #photos .grid-3 {
+    display: flex !important;
+    grid-template-columns: none !important;
+    gap: 8px !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin: 0 calc(50% - 50vw);
+    width: 100vw;
+    padding: 0 6vw 4px;
+    scroll-padding: 0 6vw;
+  }
+  #photos .grid-3::-webkit-scrollbar { display: none; }
+  #photos .grid-3 > .imedia,
+  #photos .grid-3 > div {
+    flex: 0 0 86vw;
+    width: 86vw;
+    aspect-ratio: 4 / 5 !important;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    height: auto;
+  }
+}
+
 /* Tablet (between 769 and 1023): 4-col simplified grid */
 @media (min-width: 769px) and (max-width: 1023px) {
   .event-media .g-grid {
