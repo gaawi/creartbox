@@ -55,6 +55,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Ensemble member cards: open full bio in a modal on mobile
   initMemberCards();
 
+  // Copy-bio buttons under each bio version
+  initBioCopy();
+
   // Wire ticket buttons: [data-event="..."] => Eventbrite URL
   document.querySelectorAll("[data-event]").forEach((el) => {
     const id = el.getAttribute("data-event");
@@ -186,6 +189,7 @@ function initMemberCards() {
     '</div>';
   document.body.appendChild(modal);
   const body = modal.querySelector(".member-modal-body");
+  const mql = window.matchMedia("(max-width: 860px)");
 
   function close() {
     modal.classList.remove("open");
@@ -197,7 +201,8 @@ function initMemberCards() {
     modal.classList.add("open");
     modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
-    modal.querySelector(".member-modal-content").scrollTop = 0;
+    const content = modal.querySelector(".member-modal-content");
+    if (content) content.scrollTop = 0;
   }
   modal.querySelectorAll("[data-mm-close]").forEach((el) =>
     el.addEventListener("click", close)
@@ -207,12 +212,80 @@ function initMemberCards() {
   });
 
   articles.forEach((art) => {
-    art.addEventListener("click", (e) => {
-      // Only on narrow viewports (matches the CSS card layout)
-      if (window.innerWidth > 860) return;
-      // Don't intercept clicks on links/buttons inside the card
+    // Promote the role label into an instrument chip on the photo
+    const labelEl = art.querySelector(".label");
+    const fig = art.querySelector("figure");
+    if (labelEl && fig && !fig.querySelector(".member-instrument")) {
+      const instrument = (labelEl.textContent.split("·")[0] || "").trim();
+      if (instrument) {
+        const chip = document.createElement("div");
+        chip.className = "member-instrument";
+        chip.textContent = instrument;
+        fig.appendChild(chip);
+      }
+    }
+    // Make the entire card a tap target on mobile (role=button for a11y)
+    art.setAttribute("tabindex", "0");
+    art.setAttribute("role", "button");
+    const handler = (e) => {
+      if (!mql.matches) return;
       if (e.target.closest("a, button")) return;
+      e.preventDefault();
       open(art);
+    };
+    art.addEventListener("click", handler);
+    art.addEventListener("keydown", (e) => {
+      if (!mql.matches) return;
+      if (e.key === "Enter" || e.key === " ") {
+        if (e.target.closest("a, button")) return;
+        e.preventDefault();
+        open(art);
+      }
+    });
+  });
+}
+
+function initBioCopy() {
+  const buttons = document.querySelectorAll(".bio-copy");
+  if (!buttons.length) return;
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const key = btn.getAttribute("data-bio-copy");
+      const version = document.querySelector(
+        '[data-bio-version="' + key + '"]'
+      );
+      if (!version) return;
+      // Pull plain text from the inner paragraphs, preserving paragraph breaks
+      const paras = Array.from(version.querySelectorAll("p")).map((p) =>
+        p.textContent.replace(/\s+/g, " ").trim()
+      );
+      const text = paras.join("\n\n");
+      const label = btn.querySelector(".bc-label");
+      const original = label ? label.textContent : "Copy bio";
+      let ok = false;
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          ok = true;
+        } else {
+          // Fallback for older browsers / non-https
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "fixed";
+          ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.select();
+          ok = document.execCommand("copy");
+          document.body.removeChild(ta);
+        }
+      } catch (_) { ok = false; }
+      btn.classList.add("copied");
+      if (label) label.textContent = ok ? "Copied" : "Copy failed";
+      setTimeout(() => {
+        btn.classList.remove("copied");
+        if (label) label.textContent = original;
+      }, 2000);
     });
   });
 }

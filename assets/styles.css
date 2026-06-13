@@ -1174,6 +1174,57 @@ button.video-card:focus-visible .video-play::before,
 .bio-version { animation: bioFade 260ms ease; }
 @keyframes bioFade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 
+/* Copy-bio button (under each long/medium/short version) */
+.bio-copy {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-top: 20px;
+  padding: 11px 18px;
+  background: transparent;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
+}
+.bio-copy::before {
+  content: "";
+  display: inline-block;
+  width: 12px; height: 14px;
+  margin-right: -4px;
+  border: 1.5px solid currentColor;
+  border-radius: 1px;
+  position: relative;
+  vertical-align: -2px;
+  box-shadow: inset 3px -3px 0 -1.5px var(--paper), 3px -3px 0 -1.5px currentColor;
+}
+.bio-copy .bc-hint {
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  color: var(--ink-soft);
+  font-style: italic;
+  font-size: 12px;
+}
+.bio-copy:hover { background: var(--ink); color: var(--paper); }
+.bio-copy:hover .bc-hint { color: var(--paper); opacity: 0.72; }
+.bio-copy.copied {
+  background: var(--accent) !important;
+  border-color: var(--accent);
+  color: #131820 !important;
+}
+.bio-copy.copied .bc-hint { color: #131820 !important; opacity: 0.7; }
+.bio-copy.copied::before { display: none; }
+.bio-copy.copied .bc-label::before {
+  content: "✓ ";
+  font-weight: 700;
+}
+
 /* Mobile: bio tabs as a horizontal segmented control (three rectangular chips) */
 @media (max-width: 860px) {
   .bio-tabs {
@@ -3719,4 +3770,98 @@ i.fa { font-style: normal; }
 .member-modal-body::after { content: none !important; }
 @media (max-width: 600px) {
   .member-modal-content { margin: 0; min-height: 100vh; width: 100vw; max-height: 100vh; }
+}
+
+/* Instrument chip on each ensemble card (visible BEFORE opening the modal) */
+.member-instrument {
+  display: none;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #131820;
+  background: var(--accent);
+  padding: 5px 9px;
+  z-index: 2;
+}
+@media (max-width: 860px) {
+  #ensemble article > figure { position: relative; }
+  .member-instrument { display: inline-block; }
+}
+/* Hide the chip if cloned into the modal (the role label inside is enough) */
+.member-modal-body .member-instrument { display: none !important; }
+
+/* ============================================================
+   Staff / collaborators on mobile: match the ensemble 2-col grid
+   ============================================================ */
+@media (max-width: 860px) {
+  #staff .grid-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+  #staff .grid-4 > div {
+    border: 1px solid var(--rule);
+    padding: 0;
+    background: transparent;
+  }
+  #staff .grid-4 > div > .imedia {
+    aspect-ratio: 1/1 !important;
+  }
+  #staff .grid-4 > div > div {
+    padding: 10px 12px 14px;
+    margin-top: 0 !important;
+  }
+  #staff .grid-4 > div > div > div:first-child {
+    font-family: var(--serif);
+    font-size: 17px !important;
+    line-height: 1.2;
+  }
+  #staff .grid-4 > div > div .label.ital {
+    font-size: 11px;
+    margin-top: 4px !important;
+  }
+}
+
+/* ============================================================
+   History timeline: readable mobile layout
+   ============================================================ */
+@media (max-width: 860px) {
+  #history .wrap > div[style*="grid-template-columns:140px 1fr 2.2fr"],
+  #history .wrap > div[style*="grid-template-columns: 140px 1fr 2.2fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+    padding: 20px 0 !important;
+  }
+  /* Date label becomes a small amber kicker, not italic gray */
+  #history .wrap > div[style*="grid-template-columns:140px 1fr 2.2fr"] > .label,
+  #history .wrap > div[style*="grid-template-columns: 140px 1fr 2.2fr"] > .label {
+    font-family: var(--sans);
+    font-size: 11px !important;
+    font-style: normal !important;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  /* Title bigger and tighter */
+  #history .wrap > div[style*="grid-template-columns:140px 1fr 2.2fr"] > h3,
+  #history .wrap > div[style*="grid-template-columns: 140px 1fr 2.2fr"] > h3 {
+    font-family: var(--serif);
+    font-size: 22px !important;
+    line-height: 1.2 !important;
+    color: var(--ink);
+    margin: 2px 0 0 !important;
+  }
+  #history .wrap > div[style*="grid-template-columns:140px 1fr 2.2fr"] > p,
+  #history .wrap > div[style*="grid-template-columns: 140px 1fr 2.2fr"] > p {
+    font-family: var(--sans);
+    font-size: 14.5px !important;
+    line-height: 1.55;
+    color: var(--ink-2);
+    margin: 6px 0 0 !important;
+  }
 }
