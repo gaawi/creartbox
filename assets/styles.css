@@ -205,6 +205,12 @@ em { font-style: italic; font-family: var(--serif); }
 }
 .folio.left { left: var(--gutter); }
 .folio.right { right: var(--gutter); }
+/* The decorative "CreArtBox · Archive" / "2009 - today" corner labels
+   crowd the hero header on small screens and overlap .page-folio-head.
+   Hide them on mobile - the .page-folio-head label keeps the wayfinding. */
+@media (max-width: 860px) {
+  .folio { display: none; }
+}
 
 /* === Buttons === */
 .btn {

@@ -147,6 +147,9 @@ function initPagePills() {
   // dropdown submenu. Mobile-only (CSS hides it on desktop).
   const main = document.querySelector("main");
   if (!main) return;
+  // Skip pages that already have their own functional sub-nav
+  // (e.g. concerts.html filter tabs) — page-pills would duplicate them.
+  if (main.querySelector("[data-concert-tab]")) return;
   // Find the nav-item whose top-level link is marked active.
   let activeItem = null;
   document.querySelectorAll(".nav-strip-inner .nav-item").forEach((item) => {
