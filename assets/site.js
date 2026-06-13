@@ -747,6 +747,23 @@ function initAudioDock() {
   if (queue.length && idx >= 0 && idx < queue.length) {
     load(idx, false);
     if (resumeT > 0) audio.currentTime = resumeT;
-    if (wasPlaying) audio.play().catch(() => {});
+    if (wasPlaying) {
+      // Show a brief "Resuming…" toast inside the dock
+      const toast = document.createElement("div");
+      toast.className = "ad-toast";
+      toast.textContent = "Resuming your audio";
+      dock.appendChild(toast);
+      // Force layout, then trigger animation class on next frame
+      requestAnimationFrame(() => toast.classList.add("ad-toast-in"));
+      const playPromise = audio.play();
+      if (playPromise && typeof playPromise.then === "function") {
+        playPromise.catch(() => {
+          // Autoplay was blocked - tell the user to tap play
+          toast.textContent = "Tap play to resume";
+        });
+      }
+      setTimeout(() => toast.classList.remove("ad-toast-in"), 2200);
+      setTimeout(() => toast.remove(), 2800);
+    }
   }
 }
