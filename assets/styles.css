@@ -3564,3 +3564,158 @@ i.fa { font-style: normal; }
   .stg-year { font-size: 9px; letter-spacing: 0.14em; }
   .stg-sub { font-size: 11px; line-height: 1.4; }
 }
+
+/* ============================================================
+   Ensemble cards on mobile: 2-col grid + modal for full bio
+   ============================================================ */
+@media (max-width: 860px) {
+  #ensemble .wrap {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 12px;
+    row-gap: 18px;
+  }
+  #ensemble .wrap > *:not(article) { grid-column: 1 / -1; }
+
+  #ensemble article {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+    padding: 0 !important;
+    border: 1px solid var(--rule) !important;
+    border-bottom: 1px solid var(--rule) !important;
+    align-items: stretch !important;
+    cursor: pointer;
+    background: transparent;
+    transition: border-color var(--t-fast), transform var(--t-fast);
+  }
+  #ensemble article:hover { border-color: var(--accent); }
+  #ensemble article:active { transform: scale(0.99); }
+
+  /* Photo: square crop, sits on top with no gap */
+  #ensemble article > figure {
+    order: -1 !important;
+    margin: 0 !important;
+  }
+  #ensemble article > figure .imedia {
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 0;
+  }
+
+  /* Compact caption block */
+  #ensemble article > div {
+    padding: 10px 12px 14px;
+  }
+  #ensemble article .label {
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    color: var(--ink-soft) !important;
+  }
+  #ensemble article h3.member-name {
+    font-size: 17px;
+    line-height: 1.2;
+    margin: 4px 0 0 !important;
+  }
+  /* Hide everything else on the card; the modal reveals it */
+  #ensemble article > div > p,
+  #ensemble article > div > ul,
+  #ensemble article > div > a,
+  #ensemble article > div > div { display: none !important; }
+
+  /* Hint "tap for more" */
+  #ensemble article > div::after {
+    content: "Tap for bio →";
+    display: block;
+    margin-top: 10px;
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+}
+
+/* Member modal (mobile only — desktop still uses the inline layout) */
+.member-modal { display: none; position: fixed; inset: 0; z-index: 1000; }
+.member-modal.open { display: block; }
+.member-modal-bg {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  cursor: pointer;
+}
+.member-modal-content {
+  position: relative;
+  width: min(560px, 94vw);
+  max-height: 90vh;
+  margin: 5vh auto;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 36px 24px 28px;
+  overflow-y: auto;
+  color: var(--ink);
+}
+.member-modal-close {
+  position: absolute;
+  top: 6px; right: 8px;
+  background: transparent;
+  border: 0;
+  color: var(--ink-soft);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 8px 12px;
+  z-index: 2;
+}
+.member-modal-close:hover { color: var(--accent); }
+/* Inside the modal: undo the card collapsing, show everything */
+.member-modal-body figure { margin: 0 0 18px !important; }
+.member-modal-body figure .imedia { aspect-ratio: 4/5 !important; max-width: 240px; margin: 0 auto; }
+.member-modal-body .label {
+  font-size: 10px !important;
+  letter-spacing: 0.18em !important;
+  color: var(--red) !important;
+  text-transform: uppercase;
+}
+.member-modal-body h3.member-name {
+  font-family: var(--serif);
+  font-size: 26px;
+  line-height: 1.15;
+  font-weight: 400;
+  margin: 6px 0 0;
+}
+.member-modal-body p {
+  display: block !important;
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin: 14px 0 0;
+}
+.member-modal-body ul {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 0;
+  font-family: var(--sans);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.member-modal-body a,
+.member-modal-body > div > a,
+.member-modal-body > div > div {
+  display: inline-flex !important;
+}
+.member-modal-body > div > div {
+  margin-top: 14px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.member-modal-body::after { content: none !important; }
+@media (max-width: 600px) {
+  .member-modal-content { margin: 0; min-height: 100vh; width: 100vw; max-height: 100vh; }
+}

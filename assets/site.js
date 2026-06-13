@@ -52,6 +52,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Mobile per-page pill sub-nav (built from the active page's dropdown)
   initPagePills();
 
+  // Ensemble member cards: open full bio in a modal on mobile
+  initMemberCards();
+
   // Wire ticket buttons: [data-event="..."] => Eventbrite URL
   document.querySelectorAll("[data-event]").forEach((el) => {
     const id = el.getAttribute("data-event");
@@ -164,6 +167,54 @@ function initPagePills() {
   });
   nav.appendChild(row);
   main.insertBefore(nav, main.firstChild);
+}
+
+function initMemberCards() {
+  const articles = document.querySelectorAll("#ensemble article");
+  if (!articles.length) return;
+
+  // Build the modal once
+  const modal = document.createElement("div");
+  modal.className = "member-modal";
+  modal.setAttribute("aria-hidden", "true");
+  modal.setAttribute("role", "dialog");
+  modal.innerHTML =
+    '<div class="member-modal-bg" data-mm-close></div>' +
+    '<div class="member-modal-content">' +
+      '<button class="member-modal-close" data-mm-close aria-label="Close">×</button>' +
+      '<div class="member-modal-body"></div>' +
+    '</div>';
+  document.body.appendChild(modal);
+  const body = modal.querySelector(".member-modal-body");
+
+  function close() {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+  function open(article) {
+    body.innerHTML = article.innerHTML;
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    modal.querySelector(".member-modal-content").scrollTop = 0;
+  }
+  modal.querySelectorAll("[data-mm-close]").forEach((el) =>
+    el.addEventListener("click", close)
+  );
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("open")) close();
+  });
+
+  articles.forEach((art) => {
+    art.addEventListener("click", (e) => {
+      // Only on narrow viewports (matches the CSS card layout)
+      if (window.innerWidth > 860) return;
+      // Don't intercept clicks on links/buttons inside the card
+      if (e.target.closest("a, button")) return;
+      open(art);
+    });
+  });
 }
 
 function initAllPhotosModal() {
