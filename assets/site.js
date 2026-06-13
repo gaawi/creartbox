@@ -49,6 +49,9 @@ document.addEventListener("DOMContentLoaded", function () {
     burger.addEventListener("click", () => navInner.classList.toggle("open"));
   }
 
+  // Mobile per-page pill sub-nav (built from the active page's dropdown)
+  initPagePills();
+
   // Wire ticket buttons: [data-event="..."] => Eventbrite URL
   document.querySelectorAll("[data-event]").forEach((el) => {
     const id = el.getAttribute("data-event");
@@ -131,6 +134,36 @@ function initEventMediaCounter() {
       });
     }, { passive: true });
   });
+}
+
+function initPagePills() {
+  // Build a horizontal pill sub-nav for the current page from its
+  // dropdown submenu. Mobile-only (CSS hides it on desktop).
+  const main = document.querySelector("main");
+  if (!main) return;
+  // Find the nav-item whose top-level link is marked active.
+  let activeItem = null;
+  document.querySelectorAll(".nav-strip-inner .nav-item").forEach((item) => {
+    const top = item.querySelector(":scope > a");
+    if (top && top.classList.contains("active")) activeItem = item;
+  });
+  if (!activeItem) return;
+  const links = activeItem.querySelectorAll(".submenu a");
+  if (!links.length) return;
+
+  const nav = document.createElement("nav");
+  nav.className = "page-pills";
+  const row = document.createElement("div");
+  row.className = "page-pills-row";
+  links.forEach((a) => {
+    const pill = document.createElement("a");
+    pill.href = a.getAttribute("href");
+    pill.textContent = a.textContent.trim();
+    if (a.target) { pill.target = a.target; pill.rel = a.rel || "noopener"; }
+    row.appendChild(pill);
+  });
+  nav.appendChild(row);
+  main.insertBefore(nav, main.firstChild);
 }
 
 function initAllPhotosModal() {

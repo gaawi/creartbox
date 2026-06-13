@@ -2330,6 +2330,50 @@ figure { margin: 0; }
   font-size: 20px;
 }
 
+/* === Per-page pill sub-nav (mobile only) === */
+.page-pills { display: none; }
+@media (max-width: 980px) {
+  .page-pills {
+    display: block;
+    position: sticky;
+    top: 64px;
+    z-index: 40;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    margin: 0 0 8px;
+  }
+  .page-pills-row {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding: 10px var(--gutter);
+  }
+  .page-pills-row::-webkit-scrollbar { display: none; }
+  .page-pills a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--ink-2);
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 7px 15px;
+    text-decoration: none;
+    transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
+  }
+  .page-pills a:active,
+  .page-pills a:hover {
+    background: var(--accent);
+    color: #131820;
+    border-color: var(--accent);
+  }
+}
+
 /* === Classifieds (opportunities) === */
 .classified {
   border: 1px solid var(--ink);
@@ -2472,55 +2516,24 @@ figure { margin: 0; }
   .nav-strip-inner .nav-item > a {
     display: block;
     text-align: left;
-    padding: 0 0 6px;
+    padding: 2px 0;
     font-family: var(--serif);
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 500;
     letter-spacing: -0.01em;
     text-transform: none;
     color: var(--ink);
-    line-height: 1.25;
+    line-height: 1.3;
+    background: none !important;
   }
-  .nav-strip-inner .nav-item > a.active { color: var(--accent); background: transparent; }
+  .nav-strip-inner .nav-item > a.active { color: var(--accent); background: none !important; }
+  /* Kill the desktop active caret/diamond inside the drawer */
+  .nav-strip-inner .nav-item > a.active::after,
+  .nav-strip-inner .nav-strip a.active::after { display: none !important; content: none !important; }
 
-  /* Always-visible submenu */
+  /* No dropdowns on mobile — top-level links only */
   .nav-strip-inner .nav-item .submenu,
-  .nav-strip-inner .nav-item > .submenu {
-    display: block !important;
-    position: static;
-    background: transparent !important;
-    border: 0 !important;
-    box-shadow: none;
-    padding: 4px 0 0;
-    margin: 0;
-    width: auto;
-    min-width: 0;
-    /* Override desktop hover-only visibility */
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-    transform: none !important;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-  .nav-strip-inner .nav-item .submenu a {
-    display: block;
-    padding: 6px 0 !important;
-    font-family: var(--sans);
-    font-size: 14px !important;
-    font-weight: 400 !important;
-    letter-spacing: 0 !important;
-    text-transform: none !important;
-    color: var(--ink-2) !important;
-    border: 0 !important;
-    background: transparent !important;
-    line-height: 1.35;
-  }
-  .nav-strip-inner .nav-item .submenu a:hover,
-  .nav-strip-inner .nav-item .submenu a:active {
-    background: transparent !important;
-    color: var(--accent) !important;
-  }
+  .nav-strip-inner .nav-item > .submenu { display: none !important; }
 
   /* Solid background on hero-transparent page too */
   body.hero-transparent .nav-strip-inner.open {
@@ -2563,7 +2576,12 @@ figure { margin: 0; }
   .section { padding: 56px 0; }
   .section-s { padding: 36px 0; }
   .impact-row { grid-template-columns: 3em 7em 1fr; }
-  .give-amts { grid-template-columns: repeat(2, 1fr); }
+  .give-amts { grid-template-columns: repeat(3, 1fr); }
+  .give-amts button { padding: 14px 6px; font-size: 18px; }
+  .give-freq button { padding: 12px 8px; font-size: 15px; }
+  .give-card { padding: 24px 18px; }
+  .give-custom input { padding: 14px 14px; font-size: 17px; }
+  .give-custom .sym { padding: 0 14px; font-size: 18px; }
   /* Hero text fits better on small screens */
   .hero-fullbleed h1 { font-size: clamp(34px, 9vw, 60px); }
   .hero-fullbleed .hero-content { padding-bottom: 32px; }
