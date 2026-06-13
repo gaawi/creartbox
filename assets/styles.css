@@ -2465,6 +2465,8 @@ figure { margin: 0; }
     color: #131820;
     border-color: var(--accent);
   }
+  /* The in-page Projects TOC duplicates the mobile pill sub-nav — hide it */
+  .projects-toc { display: none !important; }
 }
 
 /* === Classifieds (opportunities) === */
