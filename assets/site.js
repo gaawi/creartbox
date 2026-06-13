@@ -114,8 +114,8 @@ document.addEventListener("DOMContentLoaded", function () {
 function initEventMediaCounter() {
   // Selector covers archive event carousels AND the Media-page Photographs grid
   const targets = [
-    { gridSel: ".event-media .g-grid", containerSel: ".event-media", itemSel: ".g-item" },
-    { gridSel: "#photos .grid-3",       containerSel: "#photos",      itemSel: ":scope > div" },
+    { gridSel: ".event-media .g-grid",  containerSel: ".event-media", itemSel: ".g-item" },
+    { gridSel: ".photo-cat .photo-row", containerSel: ".photo-cat",   itemSel: ":scope > div" },
   ];
   targets.forEach((t) => attachCounter(t.gridSel, t.containerSel, t.itemSel));
 }

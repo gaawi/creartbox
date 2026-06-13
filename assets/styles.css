@@ -1932,11 +1932,12 @@ button.video-card:focus-visible .video-play::before,
 @media (min-width: 769px) { .g-counter { display: none; } }
 
 /* === Media page · Photographs slider (Instagram-style on mobile) === */
+.photo-cat { position: relative; }
+.photo-cat-head { margin-bottom: 20px; }
+.photo-cat-head .label { color: var(--accent); }
+
 @media (max-width: 768px) {
-  #photos .wrap {
-    position: relative;
-  }
-  #photos .grid-3 {
+  .photo-cat .photo-row {
     display: flex !important;
     grid-template-columns: none !important;
     gap: 8px !important;
@@ -1949,9 +1950,9 @@ button.video-card:focus-visible .video-play::before,
     padding: 0 6vw 4px;
     scroll-padding: 0 6vw;
   }
-  #photos .grid-3::-webkit-scrollbar { display: none; }
-  #photos .grid-3 > .imedia,
-  #photos .grid-3 > div {
+  .photo-cat .photo-row::-webkit-scrollbar { display: none; }
+  .photo-cat .photo-row > .imedia,
+  .photo-cat .photo-row > div {
     flex: 0 0 86vw;
     width: 86vw;
     aspect-ratio: 4 / 5 !important;
