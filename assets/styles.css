@@ -726,7 +726,7 @@ button.video-card:focus-visible .video-thumb img {
   width: 0; height: 0;
   border-style: solid;
   border-width: 28px 0 28px 44px;
-  border-color: transparent transparent transparent var(--accent);
+  border-color: transparent transparent transparent #fff;
 }
 button.video-card:hover .video-play,
 button.video-card:focus-visible .video-play,
@@ -738,7 +738,7 @@ button.video-card:hover .video-play::before,
 button.video-card:focus-visible .video-play::before,
 .feat-vid:hover .video-play::before,
 .feat-vid:focus-visible .video-play::before {
-  border-left-color: var(--accent);
+  border-left-color: #fff;
 }
 @media (max-width: 768px) {
   .video-play::before { border-width: 22px 0 22px 34px; }
