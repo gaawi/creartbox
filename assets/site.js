@@ -748,22 +748,38 @@ function initAudioDock() {
     load(idx, false);
     if (resumeT > 0) audio.currentTime = resumeT;
     if (wasPlaying) {
-      // Show a brief "Resuming…" toast inside the dock
-      const toast = document.createElement("div");
-      toast.className = "ad-toast";
-      toast.textContent = "Resuming your audio";
-      dock.appendChild(toast);
-      // Force layout, then trigger animation class on next frame
-      requestAnimationFrame(() => toast.classList.add("ad-toast-in"));
+      // Show an in-dock "Resuming your audio…" loading state, then
+      // morph into the normal player view once playback resumes.
+      const overlay = document.createElement("div");
+      overlay.className = "ad-resuming-overlay";
+      overlay.innerHTML =
+        '<span class="ad-resuming-label">Resuming your audio</span>' +
+        '<span class="ad-resuming-dots"><i></i><i></i><i></i></span>' +
+        '<span class="ad-resuming-bar"><i></i></span>';
+      dock.appendChild(overlay);
+      dock.classList.add("ad-is-resuming");
+
+      let cleared = false;
+      const clear = () => {
+        if (cleared) return;
+        cleared = true;
+        dock.classList.remove("ad-is-resuming");
+        overlay.classList.add("ad-resuming-out");
+        setTimeout(() => overlay.remove(), 320);
+      };
+      // Clear when audio is actually rolling — or after a safety timeout.
+      audio.addEventListener("playing", clear, { once: true });
+      setTimeout(clear, 2400);
+
       const playPromise = audio.play();
       if (playPromise && typeof playPromise.then === "function") {
         playPromise.catch(() => {
-          // Autoplay was blocked - tell the user to tap play
-          toast.textContent = "Tap play to resume";
+          // Autoplay blocked — turn the loader into a hint
+          overlay.querySelector(".ad-resuming-label").textContent = "Tap play to resume";
+          overlay.querySelector(".ad-resuming-bar").style.display = "none";
+          overlay.querySelector(".ad-resuming-dots").style.display = "none";
         });
       }
-      setTimeout(() => toast.classList.remove("ad-toast-in"), 2200);
-      setTimeout(() => toast.remove(), 2800);
     }
   }
 }
