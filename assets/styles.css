@@ -2103,6 +2103,8 @@ button.video-card:focus-visible .video-play::before,
 .masthead-title .logo-img {
   height: 38px;
   width: auto;
+  max-width: 100%;
+  object-fit: contain;
   display: block;
 }
 body.hero-transparent .masthead .logo-img { filter: brightness(0) invert(1); }
