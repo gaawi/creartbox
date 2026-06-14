@@ -4239,3 +4239,58 @@ body.has-audio-dock .colophon { margin-bottom: 0; }
   0%   { transform: translateX(-100%); }
   100% { transform: translateX(280%); }
 }
+
+/* ============================================================
+   Calendar filter — segmented control (same language as .bio-tabs)
+   ============================================================ */
+.filter-tabs {
+  display: flex;
+  border: 1px solid var(--rule);
+  margin: 0 0 24px;
+  overflow: hidden;
+}
+.filter-tabs button {
+  flex: 1 1 0;
+  padding: 12px 10px;
+  background: transparent;
+  border: 0;
+  border-right: 1px solid var(--rule);
+  cursor: pointer;
+  font-family: var(--sans);
+  color: var(--ink-2);
+  transition: background var(--t-fast), color var(--t-fast);
+}
+.filter-tabs button:last-child { border-right: 0; }
+.filter-tabs .ft-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: inherit;
+}
+.filter-tabs button:hover .ft-label { color: var(--ink); }
+.filter-tabs button.active {
+  background: var(--accent) !important;
+  border-color: var(--accent);
+}
+.filter-tabs button.active .ft-label { color: #131820 !important; }
+
+/* On desktop the segmented control doesn't need full width;
+   sit it on the right edge to keep the previous layout. */
+@media (min-width: 721px) {
+  .filter-tabs {
+    margin-left: auto;
+    width: auto;
+    max-width: 560px;
+  }
+  .filter-tabs button { padding: 11px 18px; }
+}
+
+/* On mobile the calendar header gap rule already targeted the old
+   inline div; the new .filter-tabs is full-width by default. Drop
+   the older overrides that hid the row at <=720px. */
+@media (max-width: 720px) {
+  .section .wrap > div[style*="justify-content:flex-end"][style*="margin-bottom:24px"] {
+    /* old selector no longer matches anything — kept here as a safe no-op */
+  }
+}
