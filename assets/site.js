@@ -112,6 +112,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Mobile gallery counter (event-media carousel)
   initEventMediaCounter();
+
+  // Composer roster cards open a bio modal
+  initComposerRoster();
 });
 
 function initEventMediaCounter() {
@@ -782,4 +785,161 @@ function initAudioDock() {
       }
     }
   }
+}
+
+/* === Composer roster: tap a name to open a bio modal ================= */
+const COMPOSERS = {
+  "Brittney Benton": {
+    photo: "https://images.squarespace-cdn.com/content/v1/61882168ea70585aab41a750/c201892f-260d-41e0-8529-61fc9ccee630/Brittney+Benton+Headshot.png",
+    website: "https://brittneybentonmusic.wixsite.com/composer",
+    base: "Las Vegas, NV",
+    bio: "Driven by storytelling and imagery, Brittney Benton's music takes listeners through a lush melodic and harmonic soundscape filled with personality. She holds a Bachelor's degree in Music Composition with a Minor in Music Technology from the University of Nevada, Las Vegas. Her works have been performed by the Bellevue Chamber Chorus, ZOFO, the Beo String Quartet, the Lowell Chamber Orchestra, and the Armenian State Symphony Orchestra."
+  },
+  "Alex Burtzos": {
+    photo: "https://images.squarespace-cdn.com/content/v1/57630abfbe659492f03a09d1/797ad90a-8d2a-4c04-b72e-6a179863ffae/Alex+Burtzos+2024+-+3.jpg",
+    website: "https://alexburtzosmusic.com",
+    base: "New York City / Orlando",
+    bio: "Alex Burtzos is an American composer, conductor, and educator based in New York City and Orlando whose music has been performed across four continents by leading contemporary soloists and ensembles. He is the founder and artistic director of ICEBERG New Music, a NYC composer collective established in 2016, and serves as Associate Professor and Endowed Chair of Composition at the University of Central Florida."
+  },
+  "Oliver Caplan": {
+    photo: "https://www.olivercaplan.com/images/oliver.jpg",
+    website: "https://www.olivercaplan.com/",
+    base: "Medford, Massachusetts",
+    bio: "Oliver Caplan is an award-winning American composer who offers a voice of hope in an uncertain world. Inspired by the resiliency of the human spirit and the beauty of the natural world, his music celebrates stories of social justice, conservation, and community."
+  },
+  "Luke Carlson": {
+    photo: "https://www.lukecarlsonmusic.com/css/images/headshot-1.jpg",
+    website: "https://www.lukecarlsonmusic.com/",
+    base: "Branson, Missouri",
+    bio: "Luke Carlson (b. 1983) is an American composer and conductor whose music has been praised by the New York Times as \"personal and strong,\" by the Philadelphia Inquirer as \"magical\" and \"otherworldly,\" and by the Washington Classical Review for its \"fascinating timbres.\" He serves as Associate Professor of Music at the College of the Ozarks."
+  },
+  "Devin Cholodenko": {
+    photo: "https://images.squarespace-cdn.com/content/v1/60528ee1b13334437997346f/b2efdd45-30a2-4891-8617-d1dd4334e66d/Devin+Cholodenko+Portraits.jpg",
+    website: "https://www.devincholodenko.com/",
+    base: "Miami, Florida",
+    bio: "Devin Cholodenko is a composer of eclectic taste and signature style whose work centers on introspection and inner emotional experience, drawing inspiration from time, memory, nature, classical mythology, and identity. His music has been performed by ensembles including the JACK Quartet, HUB New Music, and Momenta Quartet."
+  },
+  "Gilad Cohen": {
+    photo: "https://images.squarespace-cdn.com/content/v1/5ec82ae63a4a862322e61ce6/1590602918491-9VN9GPR2SW5BOZCBBCAS/headshot.giladcohen.jpg",
+    website: "https://giladcohen.com/",
+    base: "New Jersey",
+    bio: "Gilad Cohen (b. 1980) is a composer, performer, and theorist whose work spans concert music, rock, and theater. His compositions draw on a wide range of influences, blending rock rhythms, impressionism, klezmer, and Arabic musical traditions. He holds a Ph.D. in Composition from Princeton University and serves as Associate Professor of Music at Ramapo College of New Jersey."
+  },
+  "Yurui (Rain) Hou": {
+    photo: "https://www.newyorkcomposerscircle.org/composers/images/yurui-rain-hou/2025%20Yurui%20Rain%20Hou-1-topaz.jpg",
+    website: null,
+    base: "New York City",
+    bio: "Yurui \"Rain\" Hou is a composer and fiction writer based in New York City, currently a student at Columbia University majoring in creative writing and minoring in music, while also studying composition with Melinda Wagner at The Juilliard School. Her works have been recognized as a finalist of the ASCAP Foundation Morton Gould Young Composer Competition and first-place winner of the Belvedere Chamber Music Festival 2024 Composition Contest."
+  },
+  "Eric Moe": {
+    photo: "https://www.music.pitt.edu/sites/default/files/person-images/moe.jpg",
+    website: "https://www.ericmoe.net/",
+    base: "Pittsburgh, Pennsylvania",
+    bio: "Eric Moe is the Andrew W. Mellon Professor of Composition and codirector of Music on the Edge at the University of Pittsburgh. A composer and pianist whose work the New York Times has praised for its \"winning exuberance,\" he writes acoustic and electroacoustic music that often incorporates theatrical elements such as video, text, and staging."
+  },
+  "Paul Novak": {
+    photo: "https://paulnovakmusic.com/uploads/5/8/8/4/58843725/dsc-0569-v2_orig.jpg",
+    website: "https://paulnovakmusic.com",
+    base: "Chicago",
+    bio: "Paul Novak is a Chicago-based composer and flutist whose \"spellbinding\" (Washington Post) music immerses listeners in shimmering, subtly crafted worlds of color, motion, light, and magic. His recent projects engage with dreams and memory, queer identity, climate change and the natural world, and psychosomatic illness."
+  },
+  "Zygmund de Somogyi": {
+    photo: "https://static.wixstatic.com/media/555625_347f5c70bc7f4c2e8e3c97e892f4836c~mv2.jpeg",
+    website: "https://www.zdscomposer.co.uk/",
+    base: "London, UK",
+    bio: "Zygmund de Somogyi is a British-Filipino composer and interdisciplinary artist whose work draws on punk rock influences and DIY ethics. They compose across contemporary classical, opera, theatre, film, and electronic music, exploring themes of online folklore, collaborative worldbuilding, queer identity, and metamodern aesthetics."
+  },
+  "Eli Tausen á Lava": {
+    photo: "https://images.squarespace-cdn.com/content/v1/5c54a0eb92441b3bc683209a/77892be6-bd3a-4170-beab-d3bdfaacc6b4/Eli_Tausen_%C3%A1_Lava_Promo_Export_AKHC+1.jpg",
+    website: "https://elitausenalava.com/",
+    base: "Tórshavn, Faroe Islands",
+    bio: "Eli Tausen á Lava is a Faroese composer, producer, pianist, and electronic musician, and a Nordic Council Music Prize nominee. Classically trained at the Malmö Academy of Music with a Master's from NYU, he has collaborated with the BBC Scottish Symphony Orchestra, George Enescu Philharmonic, and Helsingborg Symphony Orchestra."
+  }
+};
+
+function initComposerRoster() {
+  const roots = document.querySelectorAll(".roster-list li, .season-names span");
+  if (!roots.length) return;
+
+  // Build the modal once per page
+  let modal = document.querySelector(".composer-modal");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.className = "composer-modal";
+    modal.setAttribute("aria-hidden", "true");
+    modal.setAttribute("role", "dialog");
+    modal.innerHTML =
+      '<div class="composer-modal-bg" data-cm-close></div>' +
+      '<div class="composer-modal-content">' +
+        '<button class="composer-modal-close" data-cm-close aria-label="Close">×</button>' +
+        '<div class="composer-modal-body"></div>' +
+      '</div>';
+    document.body.appendChild(modal);
+    modal.querySelectorAll("[data-cm-close]").forEach((el) =>
+      el.addEventListener("click", close)
+    );
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("open")) close();
+    });
+  }
+  const body = modal.querySelector(".composer-modal-body");
+
+  function close() {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+  function open(name, data) {
+    const photoHtml = data.photo
+      ? '<div class="cm-photo"><img src="' + data.photo + '" alt="' + name + '" loading="lazy"></div>'
+      : '';
+    const baseHtml = data.base
+      ? '<div class="cm-meta">' + data.base + '</div>'
+      : '';
+    const websiteHtml = data.website
+      ? '<a class="cm-link" href="' + data.website + '" target="_blank" rel="noopener">Visit website <span class="ar">→</span></a>'
+      : '';
+    body.innerHTML =
+      photoHtml +
+      '<div class="cm-text">' +
+        '<h3 class="cm-name">' + name + '</h3>' +
+        baseHtml +
+        '<p class="cm-bio">' + data.bio + '</p>' +
+        websiteHtml +
+      '</div>';
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    const content = modal.querySelector(".composer-modal-content");
+    if (content) content.scrollTop = 0;
+  }
+
+  roots.forEach((el) => {
+    // Use the name span inside .roster-list li, or the span text directly
+    const nameEl = el.querySelector(".rl-name") || el;
+    const name = (nameEl.textContent || "").trim();
+    const data = COMPOSERS[name];
+    if (!data) return;
+
+    el.classList.add("has-composer-bio");
+    el.setAttribute("tabindex", "0");
+    el.setAttribute("role", "button");
+
+    // Inject thumbnail photo into the roster row (about §04 only)
+    if (el.matches(".roster-list li") && data.photo && !el.querySelector(".rl-thumb")) {
+      const thumb = document.createElement("span");
+      thumb.className = "rl-thumb";
+      thumb.innerHTML = '<img src="' + data.photo + '" alt="" loading="lazy">';
+      el.prepend(thumb);
+    }
+
+    const onActivate = (e) => {
+      e.preventDefault();
+      open(name, data);
+    };
+    el.addEventListener("click", onActivate);
+    el.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") onActivate(e);
+    });
+  });
 }
