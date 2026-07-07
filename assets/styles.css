@@ -3192,6 +3192,15 @@ i.fa { font-style: normal; }
   object-fit: cover;
   border: 1px solid var(--rule);
 }
+/* Portrait poster hero: show the full artwork, centered, uncropped */
+.concert-hero-poster { display: flex; justify-content: center; }
+.concert-hero-poster img {
+  width: auto;
+  max-width: min(100%, 460px);
+  max-height: 82vh;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
 
 /* Ticket CTA card */
 .ticket-cta {
