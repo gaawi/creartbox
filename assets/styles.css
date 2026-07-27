@@ -4550,3 +4550,26 @@ body.has-audio-dock .colophon { margin-bottom: 0; }
   .composer-modal .cm-photo { aspect-ratio: 1 / 1; }
   .composer-modal .cm-name { font-size: 24px; }
 }
+
+/* === Archive event funder logos (DCLA + NYSCA) === */
+.past-funders {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 12px 0 2px;
+  flex-wrap: wrap;
+}
+.past-funders .pf-label {
+  font-family: var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(236,236,234,0.55);
+}
+.past-funders img {
+  height: 30px;
+  width: auto;
+  max-width: 130px;
+  opacity: 0.9;
+}
