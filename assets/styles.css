@@ -4551,25 +4551,30 @@ body.has-audio-dock .colophon { margin-bottom: 0; }
   .composer-modal .cm-name { font-size: 24px; }
 }
 
-/* === Archive event funder logos (DCLA + NYSCA) === */
-.past-funders {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 12px 0 2px;
-  flex-wrap: wrap;
+/* === Archive event funder logos (DCLA + NYSCA), in the event sidebar === */
+.event-funders-logos {
+  margin: 24px 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
 }
-.past-funders .pf-label {
+.event-funders-logos .pf-label {
   font-family: var(--sans);
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
-  color: rgba(236,236,234,0.55);
+  color: var(--ink-soft);
+  margin-bottom: 12px;
 }
-.past-funders img {
-  height: 30px;
+.event-funders-logos .pf-logos {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.event-funders-logos img {
+  height: 42px;
   width: auto;
-  max-width: 130px;
+  max-width: 100%;
   opacity: 0.9;
 }
