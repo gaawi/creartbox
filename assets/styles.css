@@ -3238,8 +3238,6 @@ i.fa { font-style: normal; }
 }
 .ticket-note a { color: var(--ink); border-bottom: 1px solid currentColor; }
 
-/* Premiere star in program list */
-.pgm-premiere { color: var(--accent); font-weight: 700; margin-right: 4px; }
 .pgm-mins {
   font-family: var(--sans);
   font-size: 12px;
@@ -4598,4 +4596,17 @@ body.has-audio-dock .colophon { margin-bottom: 0; }
   .prog-table tr.season-divider td { padding: 28px 0 4px; gap: 12px; }
   .prog-table tr.season-divider hr.rule:last-child { display: none; }
   .prog-table tr.season-divider td { grid-template-columns: max-content auto; }
+}
+
+/* === Open-call winner tag in program lists (replaces the old ★) === */
+.pgm-winner {
+  display: block;
+  font-family: var(--sans);
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 5px;
 }
