@@ -4598,8 +4598,8 @@ body.has-audio-dock .colophon { margin-bottom: 0; }
   .prog-table tr.season-divider td { grid-template-columns: max-content auto; }
 }
 
-/* === Open-call winner tag in program lists (replaces the old ★) === */
-.pgm-winner {
+/* === Program-list tag: open-call winner and/or premiere (replaces the old ★) === */
+.pgm-tag {
   display: block;
   font-family: var(--sans);
   font-style: normal;
