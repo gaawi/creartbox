@@ -584,6 +584,25 @@ function initConcertTabs() {
   const tabs = document.querySelectorAll("[data-concert-tab]");
   const rows = document.querySelectorAll("[data-concert-series]");
   if (!tabs.length) return;
+  const dividers = document.querySelectorAll("[data-season-divider]");
+
+  // A season divider only makes sense while at least one concert still
+  // sits under it, so hide any whose whole block got filtered out.
+  function syncDividers() {
+    dividers.forEach((d) => {
+      let any = false;
+      let el = d.nextElementSibling;
+      while (el && !el.hasAttribute("data-season-divider")) {
+        if (el.hasAttribute("data-concert-series") && el.style.display !== "none") {
+          any = true;
+          break;
+        }
+        el = el.nextElementSibling;
+      }
+      d.style.display = any ? "" : "none";
+    });
+  }
+
   tabs.forEach((t) => {
     t.addEventListener("click", () => {
       const v = t.getAttribute("data-concert-tab");
@@ -595,6 +614,7 @@ function initConcertTabs() {
         r.style.display = show ? "" : "none";
         if (show) shown++;
       });
+      syncDividers();
       const count = document.querySelector("[data-concert-count]");
       if (count) count.textContent = "Showing " + shown + " of " + rows.length + " concerts";
     });

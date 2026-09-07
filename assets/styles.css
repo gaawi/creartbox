@@ -4578,3 +4578,24 @@ body.has-audio-dock .colophon { margin-bottom: 0; }
   max-width: 100%;
   opacity: 0.9;
 }
+
+/* === Season divider inside the calendar table === */
+.prog-table tr.season-divider td {
+  padding: 40px 0 12px;
+  border-top: 0;
+  display: grid;
+  grid-template-columns: auto max-content auto;
+  align-items: center;
+  gap: 18px;
+}
+.prog-table tr.season-divider .label {
+  white-space: nowrap;
+  color: var(--accent);
+}
+.prog-table tr.season-divider hr.rule { width: 100%; margin: 0; }
+@media (max-width: 860px) {
+  .prog-table tr.season-divider { border-top: 0; padding: 0; }
+  .prog-table tr.season-divider td { padding: 28px 0 4px; gap: 12px; }
+  .prog-table tr.season-divider hr.rule:last-child { display: none; }
+  .prog-table tr.season-divider td { grid-template-columns: max-content auto; }
+}
