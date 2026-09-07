@@ -4610,3 +4610,37 @@ body.has-audio-dock .colophon { margin-bottom: 0; }
   color: var(--accent);
   margin-top: 5px;
 }
+
+/* === Programme list inside a calendar row (generated from the concert page) === */
+.row-program {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+}
+.row-program li {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr);
+  gap: 4px 14px;
+  padding: 3px 0;
+  font-size: 14px;
+  line-height: 1.45;
+  align-items: baseline;
+}
+.row-program .rp-composer {
+  font-family: var(--sans);
+  color: var(--ink);
+  font-style: normal;
+}
+.row-program .rp-work {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--ink-2);
+}
+@media (max-width: 860px) {
+  .row-program li {
+    grid-template-columns: 1fr;
+    gap: 1px;
+    padding: 5px 0;
+  }
+  .row-program .rp-composer { font-size: 13px; }
+}

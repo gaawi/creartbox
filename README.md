@@ -77,6 +77,24 @@ For the production custom domain `creartbox.nyc`:
 3. In **Settings → Pages**, confirm the custom domain and tick "Enforce
    HTTPS" once the certificate provisions.
 
+## Calendar programmes (single source of truth)
+
+The programme shown for each row of `concerts.html` is **generated** from
+that concert's own page, so the index and the concert page can never
+disagree. After editing any programme, run:
+
+```bash
+python3 tools/sync_calendar_programs.py          # rewrite the index
+python3 tools/sync_calendar_programs.py --check  # fail if out of sync
+```
+
+Edit programmes only on the concert page (`concerts/*.html`, inside
+`<section class="event-program">`), never in `concerts.html`.
+
+Rows whose concert page has no structured programme - a residency, or a
+date still to be announced - keep a hand-written line and are marked
+`data-program-manual` in `concerts.html`; the script leaves those alone.
+
 ## Wiring tickets to Eventbrite
 
 All "Get tickets" buttons carry a `data-event="..."` attribute. The
