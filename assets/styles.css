@@ -2107,10 +2107,11 @@ button.video-card:focus-visible .video-play::before,
   object-fit: contain;
   display: block;
 }
-body.hero-transparent .masthead .logo-img { filter: brightness(0) invert(1); }
-body.hero-transparent .masthead.scrolled .logo-img { filter: none; }
-:root[data-theme="dark"] .masthead .logo-img { filter: brightness(0) invert(1); }
-:root[data-theme="dark"] body.hero-transparent .masthead.scrolled .logo-img { filter: brightness(0) invert(1); }
+/* No filter on the masthead logotype. The brand SVGs are already drawn for a
+   dark ground (papel or white wordmark + amber wedge); brightness(0) invert(1)
+   was a workaround for the old dark PNG and it destroyed the amber wedge, which
+   is the brand's single signal colour. */
+.masthead .logo-img { filter: none; }
 
 .nav-strip {
   border-top: 1px solid var(--ink);
