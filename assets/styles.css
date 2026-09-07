@@ -4763,3 +4763,30 @@ h1 em, h2 em, h3 em {
   font-style: normal;
   font-weight: inherit;
 }
+
+/* === 02 LOGOTIPO · aire y mínimos =============================
+   Zona de respeto: el margen libre a cada lado equivale a la altura
+   de la caja de texto. Mínimo horizontal en pantalla: 120 px; por
+   debajo se cambia de versión (monograma), no se reduce más. */
+.masthead-title { padding: 0 38px; }
+.masthead-title .logo-img {
+  height: 38px;
+  width: auto;
+  min-width: 120px;          /* mínimo normativo en pantalla */
+  max-width: none;           /* la proporción 7.18:1 no se recorta */
+  object-fit: contain;
+  display: block;
+}
+@media (max-width: 980px) {
+  /* aire proporcional a la caja, que baja a 30px */
+  .masthead-title { padding: 0 16px; }
+  .masthead-title .logo-img { height: 30px; }
+}
+@media (max-width: 560px) {
+  .masthead-title { padding: 0 10px; }
+  .masthead-title .logo-img { height: 26px; }
+}
+
+/* El pie lleva la cuña, no el logotipo */
+.colophon-mark { margin-bottom: 18px; line-height: 1; }
+.colophon-mark img { height: 24px; width: auto; display: block; opacity: 0.9; }
