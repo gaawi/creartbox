@@ -4791,3 +4791,67 @@ h1 em, h2 em, h3 em {
 /* El pie lleva la cuña, no el logotipo */
 .colophon-mark { margin-bottom: 18px; line-height: 1; }
 .colophon-mark img { height: 24px; width: auto; display: block; opacity: 0.9; }
+
+/* === 04 COLOR · una sola señal ================================
+   The legacy --yellow (#fbda41) survived alongside the brand amber, so
+   the hero button and the masthead button were two different yellows.
+   There is one signal: both collapse onto --senal. */
+:root,
+:root[data-theme="dark"] {
+  --yellow:      var(--senal);
+  --yellow-deep: var(--senal);
+}
+
+/* Text on the signal is black, never papel (1.4:1) */
+.btn-stamp,
+.hero-fullbleed .hero-cta .btn-stamp,
+.masthead-tickets,
+.app-callout .btn-store:hover,
+.app-callout .btn-appstore:hover,
+.ink-block { color: var(--sobre-senal); }
+
+.btn-stamp:hover,
+.hero-fullbleed .hero-cta .btn-stamp:hover { color: var(--senal); }
+
+/* === 06 COMPOSICIÓN · sin esquinas redondeadas ================
+   Squared corners throughout: buttons, badges and chips. */
+.btn, .btn-l, .btn-s, .btn-block, .btn-stamp, .btn-ticket,
+.masthead-tickets,
+.app-callout .btn-store, .app-callout .btn-appstore,
+.stamp, .call-status, .status-strip, .g-counter,
+.allphotos-modal-close,
+.filter-tabs, .filter-tabs button,
+.bio-tabs, .bio-tabs button,
+.page-pills-row a,
+.nav-burger,
+button.myBtn_multi, .eventpast a.button {
+  border-radius: 0;
+}
+
+/* Audio dock transport: squared like the rest of the buttons */
+.audio-dock .ad-btn,
+.audio-dock .ad-play,
+.audio-dock .ad-close { border-radius: 0; }
+
+/* --- Masthead fit on narrow screens ---------------------------
+   min-width:120px + max-width:none kept the logotype from shrinking and
+   pushed the tickets button off-screen. The manual sets the 120px floor
+   by width, so the row is tightened instead and the logotype scales
+   proportionally (object-fit keeps 7.18:1 intact). */
+@media (max-width: 700px) {
+  .masthead-inner { gap: 8px; padding: 12px 14px; }
+  .masthead-title { padding: 0 8px; }
+  .masthead-title .logo-img {
+    height: auto;
+    width: 100%;
+    max-width: 190px;
+    min-width: 0;
+  }
+  .masthead-tickets { font-size: 10px; padding: 8px 10px; letter-spacing: 0.06em; }
+  .masthead-left .nav-burger { font-size: 11px; padding: 7px 10px; }
+}
+@media (max-width: 380px) {
+  .masthead-inner { padding: 10px 10px; gap: 6px; }
+  .masthead-title { padding: 0 6px; }
+  .masthead-tickets { font-size: 9.5px; padding: 7px 8px; }
+}
