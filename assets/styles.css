@@ -4644,3 +4644,122 @@ body.has-audio-dock .colophon { margin-bottom: 0; }
   }
   .row-program .rp-composer { font-size: 13px; }
 }
+
+/* ============================================================
+   BRAND v1.1 · Manual de identidad CreArtBox (sept 2026)
+   Normativa cerrada: color, tipografía y ritmo.
+
+   Colour uses the manual's HEX values, not its oklch block. The two
+   disagree, and the manual's own contrast figures (amber/sala 11.5:1,
+   black/amber 11.5:1, papel/amber 1.5:1) match #FFC403 (12.6 / 12.6 /
+   1.4) and not oklch(62% 0.19 32), which resolves to #E14C33 - the
+   vermilion the manual says v1.0 removed for being foreign to the brand.
+   ============================================================ */
+
+:root {
+  /* superficies */
+  --sala:        #070706;   /* fondo de página */
+  --foso:        #100F0E;   /* tarjetas, superficies */
+  --filete:      #2B2825;   /* bordes y separadores */
+  --filete-alto: #3D3934;
+
+  /* tinta */
+  --papel:       #F2EFE8;   /* texto principal */
+  --papel-medio: #C9C3B9;   /* cuerpo */
+  --papel-dim:   #9C968C;   /* secundario */
+  --papel-tenue: #8A847A;   /* mínimo para texto */
+  --papel-mudo:  #6B655D;   /* solo filetes e iconos */
+
+  /* señal: una sola por pantalla */
+  --senal:       #FFC403;
+  --senal-adar:  #4FA3E3;
+  --sobre-senal: #0B0705;
+
+  /* tipografía */
+  --display: "Literata", Georgia, serif;
+  --texto:   "Archivo", Helvetica, Arial, sans-serif;
+
+  /* ritmo */
+  --ancho-max: 1120px;
+  --medida:    36em;
+  --aire-secc: clamp(64px, 9vw, 120px);
+}
+
+/* Festival ADAR hereda el sistema con un único cambio de señal */
+.adar { --senal: var(--senal-adar); --accent: var(--senal-adar); }
+
+/* --- Legacy semantic tokens remapped onto the brand -------------
+   The stylesheet is built on --ink / --paper / --accent / --rule, so
+   remapping them adopts the palette site-wide without rewriting rules.
+   The site is dark-only, so both blocks resolve to the brand. */
+:root,
+:root[data-theme="dark"] {
+  --paper:    var(--sala);
+  --paper-2:  var(--foso);
+  --paper-3:  #191715;
+  --ink:      var(--papel);
+  --ink-2:    var(--papel-medio);
+  --ink-soft: var(--papel-dim);
+  --quiet:    var(--papel-tenue);
+  --rule:     var(--filete);
+  --rule-2:   #1C1A18;
+  --accent:   var(--senal);
+  --serif:    var(--display);
+  --sans:     var(--texto);
+  --maxw:     var(--ancho-max);
+  --bg: var(--sala);
+  --fg: var(--papel-medio);
+}
+
+/* --- Escala tipográfica ---------------------------------------- */
+body {
+  font-family: var(--texto);
+  font-size: 17px;
+  line-height: 1.62;
+  font-weight: 400;
+  color: var(--papel-medio);
+}
+
+h1, h2, h3, .obra,
+.h-mast, .h-feature, .h-title, .event-title, .eventpast h3 {
+  font-family: var(--display);
+  font-weight: 500;
+  color: var(--papel);
+  letter-spacing: -0.015em;
+}
+
+/* Cursiva reservada a títulos de obra y cabeceras de prensa:
+   nunca en un titular de sección. */
+h1 em, h2 em, h3 em,
+.h-mast em, .h-feature em, .h-title em, .event-title em { font-style: normal; }
+
+/* Cifras siempre tabulares */
+.dato, table, time, .pgm-mins, .row-program, .num, .meta-v,
+.calendardatepast, .prog-table { font-variant-numeric: tabular-nums; }
+
+/* Etiqueta versal: 11px, peso 600, +.16em */
+.label, .etiqueta, .ft-label, .pgm-tag, .season-label, .pf-label {
+  font-family: var(--texto);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Texto sobre la señal es negro, nunca papel (1.4:1) */
+.btn-ticket, .btn-stamp,
+.filter-tabs button.active, .bio-tabs button.active {
+  color: var(--sobre-senal);
+}
+
+/* Section headlines stay roman even where older rules set italic with
+   higher specificity (hero, app callout). Italics are reserved for work
+   titles and press headlines, per 07 VOZ. */
+.hero-fullbleed h1 em,
+.hero-fullbleed h1 em,
+.app-callout .app-copy h3 em,
+.section-title .h-feature em,
+.h-mast em, .h-feature em, .h-title em, .event-title em,
+h1 em, h2 em, h3 em {
+  font-style: normal;
+  font-weight: inherit;
+}
