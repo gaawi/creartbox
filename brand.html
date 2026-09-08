@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,300..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=91">
+<link rel="stylesheet" href="assets/styles.css?v=94">
 <script id="cb-theme-init">document.documentElement.setAttribute("data-theme","dark");</script>
 </head>
 <body>
@@ -150,31 +150,75 @@
       </figure>
     </div>
 
-    <div class="grid-2" style="margin-top:56px">
-      <div>
-        <h3 class="brand-sub">How to place it</h3>
-        <table class="brand-table">
-          <tbody>
-            <tr><td class="bt-h">Respect zone</td><td>Clear space on every side equal to the height of the text box. Nothing enters it, including the edge of the page.</td></tr>
-            <tr><td class="bt-h">Minimum width</td><td>120&nbsp;px on screen, 30&nbsp;mm in print. Below that, use the monogram.</td></tr>
-            <tr><td class="bt-h">Proportion</td><td>7.18:1 for the horizontal wordmark. Scale it, never stretch it.</td></tr>
-            <tr><td class="bt-h">Over an image</td><td>Use the reversed logo on a dark or darkened area. The wedge keeps its amber.</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <h3 class="brand-sub">What not to do</h3>
-        <ul class="brand-donts">
-          <li>Do not stretch, squash or rotate it.</li>
-          <li>Do not recolour it. The palette below is the whole permitted range.</li>
-          <li>Do not add effects: no shadow, no glow, no outline, no gradient.</li>
-          <li>Do not reduce its opacity. If it is too loud, use a quieter ink, not a transparent one.</li>
-          <li>Do not rebuild the wordmark in another typeface, and do not set it as running text.</li>
-          <li>Do not put it on a busy part of a photograph.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+    <table class="brand-table" style="margin-top:56px;max-width:820px">
+      <tbody>
+        <tr><td class="bt-h">Respect zone</td><td>Clear space on every side equal to the height of the text box. Nothing enters it, including the edge of the page.</td></tr>
+        <tr><td class="bt-h">Minimum width</td><td>120&nbsp;px on screen, 30&nbsp;mm in print. Below that, use the monogram.</td></tr>
+        <tr><td class="bt-h">Proportion</td><td>7.18:1 for the horizontal wordmark. Scale it, never stretch it.</td></tr>
+        <tr><td class="bt-h">Over an image</td><td>Use the reversed logo on a dark or darkened area. The wedge keeps its amber.</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="brand-sub" style="margin-top:56px">Do</h3>
+    <ul class="ex-grid">
+        <li class="ex ex-good ">
+          <div class="ex-art"><img src="brand/logo-creartbox-reversed.svg" alt=""><span class="ex-badge" aria-hidden="true">&#x2713;</span></div>
+          <p class="ex-cap"><b>Right.</b> The reversed logo on the near-black ground, at rest, with clear space around it.</p>
+        </li>
+        <li class="ex ex-good ex-on-light">
+          <div class="ex-art"><img src="brand/logo-creartbox-primary.svg" alt=""><span class="ex-badge" aria-hidden="true">&#x2713;</span></div>
+          <p class="ex-cap"><b>Right.</b> The primary logo on a light ground, for print and pale surfaces.</p>
+        </li>
+        <li class="ex ex-good ex-photo ex-photo-good">
+          <div class="ex-art" style="background-image:url(assets/img/arch-adar2022.jpg)"><img src="brand/logo-creartbox-reversed.svg" alt=""><span class="ex-badge" aria-hidden="true">&#x2713;</span></div>
+          <p class="ex-cap"><b>Right.</b> Over a photograph, darken the area first. The logo sits on a scrim, not on the picture.</p>
+        </li>
+    </ul>
+
+    <h3 class="brand-sub" style="margin-top:44px">Don&#x27;t</h3>
+    <p class="body" style="margin:0 0 22px;max-width:var(--medida)">Each of these is the real logo file with one thing done to it. If a layout looks like any of them, the file is not the problem.</p>
+    <ul class="ex-grid">
+        <li class="ex ex-bad ex-stretch">
+          <div class="ex-art"><img src="brand/logo-creartbox-reversed.svg" alt=""><span class="ex-badge" aria-hidden="true">&#x2717;</span></div>
+          <p class="ex-cap"><b>Stretched.</b> Scale it, never distort it. The proportion is 7.18:1 and it is fixed.</p>
+        </li>
+        <li class="ex ex-bad ex-squash">
+          <div class="ex-art"><img src="brand/logo-creartbox-reversed.svg" alt=""><span class="ex-badge" aria-hidden="true">&#x2717;</span></div>
+          <p class="ex-cap"><b>Squashed.</b> The same error the other way. Set width or height, never both.</p>
+        </li>
+        <li class="ex ex-bad ex-rotate">
+          <div class="ex-art"><img src="brand/logo-creartbox-reversed.svg" alt=""><span class="ex-badge" aria-hidden="true">&#x2717;</span></div>
+          <p class="ex-cap"><b>Rotated.</b> The logo is always level.</p>
+        </li>
+        <li class="ex ex-bad ex-recolour">
+          <div class="ex-art"><img src="brand/logo-creartbox-reversed.svg" alt=""><span class="ex-badge" aria-hidden="true">&#x2717;</span></div>
+          <p class="ex-cap"><b>Recoloured.</b> Off-white and amber, or a single flat colour. Nothing else.</p>
+        </li>
+        <li class="ex ex-bad ex-glow">
+          <div class="ex-art"><img src="brand/logo-creartbox-reversed.svg" alt=""><span class="ex-badge" aria-hidden="true">&#x2717;</span></div>
+          <p class="ex-cap"><b>Effects.</b> No shadow, no glow, no outline, no gradient.</p>
+        </li>
+        <li class="ex ex-bad ex-fade">
+          <div class="ex-art"><img src="brand/logo-creartbox-reversed.svg" alt=""><span class="ex-badge" aria-hidden="true">&#x2717;</span></div>
+          <p class="ex-cap"><b>Faded.</b> To make it quieter, use a quieter ink - not transparency.</p>
+        </li>
+        <li class="ex ex-bad ex-retype">
+          <div class="ex-art"><span class="ex-fake">Cre<i>A</i>rtBox</span><span class="ex-badge" aria-hidden="true">&#x2717;</span></div>
+          <p class="ex-cap"><b>Retyped.</b> Do not rebuild the wordmark in another typeface. Use the file.</p>
+        </li>
+        <li class="ex ex-bad ex-tiny">
+          <div class="ex-art"><img src="brand/logo-creartbox-reversed.svg" alt=""><span class="ex-badge" aria-hidden="true">&#x2717;</span></div>
+          <p class="ex-cap"><b>Too small.</b> Below 120&nbsp;px wide, or 30&nbsp;mm in print, use the monogram instead.</p>
+        </li>
+        <li class="ex ex-bad ex-zone">
+          <div class="ex-art"><div class="ex-cram"><img src="brand/logo-creartbox-reversed.svg" alt=""><span>Text crowding the mark, hard against the edge of the frame.</span></div><span class="ex-badge" aria-hidden="true">&#x2717;</span></div>
+          <p class="ex-cap"><b>Respect zone breached.</b> Keep clear space on every side equal to the height of the text box.</p>
+        </li>
+        <li class="ex ex-bad ex-photo">
+          <div class="ex-art" style="background-image:url(assets/img/arch-adar2022.jpg)"><img src="brand/logo-creartbox-reversed.svg" alt=""><span class="ex-badge" aria-hidden="true">&#x2717;</span></div>
+          <p class="ex-cap"><b>On a busy picture.</b> Unreadable, and it damages both the photograph and the mark.</p>
+        </li>
+    </ul>
 </section>
 
 <!-- ============ COLOUR ============ -->
