@@ -4790,7 +4790,7 @@ h1 em, h2 em, h3 em {
 
 /* El pie lleva la cuña, no el logotipo */
 .colophon-mark { margin-bottom: 18px; line-height: 1; }
-.colophon-mark img { height: 24px; width: auto; display: block; opacity: 0.9; }
+.colophon-mark img { height: 24px; width: auto; display: block; }
 
 /* === 04 COLOR · una sola señal ================================
    The legacy --yellow (#fbda41) survived alongside the brand amber, so
@@ -4855,3 +4855,12 @@ button.myBtn_multi, .eventpast a.button {
   .masthead-title { padding: 0 6px; }
   .masthead-tickets { font-size: 9.5px; padding: 7px 8px; }
 }
+
+/* Colophon on palette: the old #060810 was a blue-tinted black and the
+   text a different off-white, both from before the brand tokens. */
+:root[data-theme="dark"] .colophon,
+.colophon { background: var(--sala); border-top: 1px solid var(--filete); }
+.colophon, .colophon ul, .colophon li, .colophon p, .colophon span { color: var(--papel-dim); }
+.colophon a { color: var(--papel); }
+.colophon a:hover { color: var(--senal); }
+.colophon h4 { color: var(--papel-dim); }
