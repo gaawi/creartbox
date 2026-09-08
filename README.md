@@ -99,6 +99,41 @@ Where a programme, venue or on-sale date is not known, leave it out.
 The site states facts and stays silent otherwise: no "to be announced",
 no "TBA", no "coming soon".
 
+## The home page's "next event"
+
+Also generated, from the **first row** of `concerts.html` and that
+concert's own page - title, series, hero image, opening paragraph and
+sidebar facts:
+
+```bash
+python3 tools/sync_next_event.py          # rewrite the block
+python3 tools/sync_next_event.py --check  # fail if out of date
+```
+
+It lives between `<!-- NEXT EVENT ... -->` markers in `index.html`; do
+not edit inside them. To change what the home page says, edit the
+concert page and run the script.
+
+Calendar rows are in date order, so this stays honest only if the
+calendar does: **move a concert to the archive once it has happened**
+and the next one is promoted automatically. The block advertised
+Festival ADAR 2026 for a month after the festival ended because it was
+maintained by hand.
+
+## Performer biographies
+
+`tools/link_performer_bios.py` links every performer name in
+`concerts/*.html` and `archive/*.html` to its biography on `about.html`,
+and normalises the lists (role in its own column, one player per row):
+
+```bash
+python3 tools/link_performer_bios.py          # rewrite the pages
+python3 tools/link_performer_bios.py --check  # fail if out of date
+```
+
+Names are linked only when the about page actually has that biography;
+add the player to `MEMBERS` in the script when one is written.
+
 ## Wiring tickets to Eventbrite
 
 All "Get tickets" buttons carry a `data-event="..."` attribute. The
