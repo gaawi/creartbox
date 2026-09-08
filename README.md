@@ -120,6 +120,28 @@ and the next one is promoted automatically. The block advertised
 Festival ADAR 2026 for a month after the festival ended because it was
 maintained by hand.
 
+## The brand page
+
+`brand.html` is the public identity page: the marks, the palette with
+real contrast figures, the type and layout rules, and every file as a
+download. Two blocks in it are generated, along with the zip:
+
+```bash
+python3 tools/build_brand_page.py          # rewrite the blocks + zip
+python3 tools/build_brand_page.py --check  # fail if out of date
+```
+
+- the palette is read from the **brand block in `assets/styles.css`**, so
+  the hexes and the contrast ratios on the page are the ones that ship;
+- the download grid is read from **the files in `brand/`**, with their
+  real dimensions, aspect, colours and weight;
+- `downloads/creartbox-brand-assets.zip` is rebuilt from the same files
+  (with fixed timestamps, so `--check` is stable).
+
+Drop a new SVG into `brand/` and run the script: it appears on the page,
+on the correct light or dark card, and goes into the zip. The prose
+between the markers is hand-written and left alone.
+
 ## Performer biographies
 
 `tools/link_performer_bios.py` links every performer name in
