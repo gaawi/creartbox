@@ -4864,3 +4864,24 @@ button.myBtn_multi, .eventpast a.button {
 .colophon a { color: var(--papel); }
 .colophon a:hover { color: var(--senal); }
 .colophon h4 { color: var(--papel-dim); }
+
+/* Buttons: .btn sets white-space:nowrap, which is right for the short
+   inline links but makes a long label run out of its box - the ticket
+   button in the concert sidebar is only as wide as the sidebar. Block
+   buttons wrap instead, and no button is allowed past its container. */
+.btn, .btn-l, .btn-s, .btn-ticket, .btn-block { max-width: 100%; }
+.btn-ticket, .btn-block { white-space: normal; overflow-wrap: break-word; }
+
+/* Performer names link to the biography on the about page. They stay
+   set as names - the rule appears on hover only. */
+.art-name a,
+.art-name a:visited { color: inherit; text-decoration: none; border-bottom: 1px solid var(--filete-alto); }
+.art-name a:hover,
+.art-name a:focus-visible { color: var(--senal); border-bottom-color: var(--senal); }
+
+/* The masthead is sticky, so an element jumped to by its anchor lands
+   underneath it. Every id target keeps the masthead's height clear:
+   119px with the nav strip, 61px once it collapses. :where() keeps the
+   specificity at zero, so any rule can still override it. */
+:where([id]) { scroll-margin-top: 131px; }
+@media (max-width: 900px) { :where([id]) { scroll-margin-top: 73px; } }
