@@ -4885,3 +4885,7 @@ button.myBtn_multi, .eventpast a.button {
    specificity at zero, so any rule can still override it. */
 :where([id]) { scroll-margin-top: 131px; }
 @media (max-width: 900px) { :where([id]) { scroll-margin-top: 73px; } }
+
+/* Archive programme overlays sit above the masthead (100) and below the
+   audio dock (900). They are moved to the body on init, so this holds. */
+.modal { z-index: 800; }

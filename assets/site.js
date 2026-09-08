@@ -457,11 +457,20 @@ function initArchiveModals() {
   const btns = document.querySelectorAll(".myBtn_multi");
   if (!btns.length) return;
   btns.forEach((btn) => {
+    // The programme markup sits inside its archive card, and the card is
+    // inside .calendarpast, which has a z-index and so opens a stacking
+    // context. A fixed overlay cannot escape one: the modal was painting
+    // under the neighbouring cards and under the masthead. Move it to the
+    // body, as the other modals on the site already are, and its z-index
+    // means what it says.
+    const modal = btn.nextElementSibling && btn.nextElementSibling.classList.contains("modal")
+      ? btn.nextElementSibling
+      : btn.parentElement.querySelector(".modal");
+    if (modal && modal.parentElement !== document.body) {
+      document.body.appendChild(modal);
+    }
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      const modal = btn.nextElementSibling && btn.nextElementSibling.classList.contains("modal")
-        ? btn.nextElementSibling
-        : btn.parentElement.querySelector(".modal");
       if (modal) {
         modal.style.display = "block";
         document.body.style.overflow = "hidden";
@@ -478,6 +487,15 @@ function initArchiveModals() {
   document.querySelectorAll(".modal").forEach((m) => {
     m.addEventListener("click", (e) => {
       if (e.target === m) {
+        m.style.display = "none";
+        document.body.style.overflow = "";
+      }
+    });
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    document.querySelectorAll(".modal").forEach((m) => {
+      if (m.style.display === "block") {
         m.style.display = "none";
         document.body.style.overflow = "";
       }
