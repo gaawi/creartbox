@@ -9,8 +9,9 @@ any programme:
     python3 tools/sync_calendar_programs.py --check    # fail if out of sync
 
 Rows whose concert page has no structured programme (a residency, or a
-date whose programme is not announced yet) are left alone; their list is
-marked data-program-manual in concerts.html.
+date not yet programmed) are left alone; their list is marked
+data-program-manual in concerts.html. Where nothing is known, the row
+carries no programme line at all - the site does not announce absences.
 """
 
 import os

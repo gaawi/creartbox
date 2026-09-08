@@ -92,8 +92,12 @@ Edit programmes only on the concert page (`concerts/*.html`, inside
 `<section class="event-program">`), never in `concerts.html`.
 
 Rows whose concert page has no structured programme - a residency, or a
-date still to be announced - keep a hand-written line and are marked
+date not yet programmed - keep a hand-written line and are marked
 `data-program-manual` in `concerts.html`; the script leaves those alone.
+
+Where a programme, venue or on-sale date is not known, leave it out.
+The site states facts and stays silent otherwise: no "to be announced",
+no "TBA", no "coming soon".
 
 ## Wiring tickets to Eventbrite
 
