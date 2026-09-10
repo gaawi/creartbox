@@ -142,6 +142,29 @@ Drop a new SVG into `brand/` and run the script: it appears on the page,
 on the correct light or dark card, and goes into the zip. The prose
 between the markers is hand-written and left alone.
 
+## Concert posters
+
+One A3 poster per New York Series production - the ensemble's own new
+programmes, the same set the calendar marks:
+
+```bash
+python3 tools/build_posters.py          # write posters/*.html
+python3 tools/build_posters.py --check  # fail if out of date
+node tools/render_posters.js            # then PDF + PNG at 150dpi
+```
+
+Title, date, time, venue, programme and players are read from the
+concert page, so a poster cannot advertise a programme the site no
+longer lists. Edit the concert page and run both steps again.
+
+The foot carries the NYC Cultural Affairs and NYSCA logos with the
+credit line the archive pages use. Both logos are white artwork, which
+is why they sit straight on the black ground.
+
+The renderer waits on `document.fonts.ready` and reports if Literata
+failed to load, since a poster caught in the fallback face looks fine
+until it reaches a printer.
+
 ## Performer biographies
 
 `tools/link_performer_bios.py` links every performer name in
