@@ -5098,8 +5098,19 @@ button.myBtn_multi, .eventpast a.button {
 .event-description p + p { margin-top: 1.6em; }
 
 /* A row offers tickets only once its concert page does. Outline, so the
-   amber Explore stamp stays the one solid block in the cell. */
-.prog-table .row-tickets { display: inline-flex; margin-top: 8px; }
+   amber Explore stamp stays the one solid block in the cell.
+
+   The cell is white-space:nowrap, so as an inline box the second button
+   sat on the same line as the first with no gap between them, and its
+   margin-top lifted it into the first. It gets its own line instead. */
+.prog-table .row-tickets {
+  display: flex;
+  width: fit-content;
+  margin: 8px 0 0 auto;
+}
+@media (max-width: 640px) {
+  .prog-table .row-tickets { margin-left: 0; }
+}
 
 /* ------------------------------------------------------------
    About CreArtBox on an event page: the teaser film and a short
