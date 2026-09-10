@@ -5100,3 +5100,51 @@ button.myBtn_multi, .eventpast a.button {
 /* A row offers tickets only once its concert page does. Outline, so the
    amber Explore stamp stays the one solid block in the cell. */
 .prog-table .row-tickets { display: inline-flex; margin-top: 8px; }
+
+/* ------------------------------------------------------------
+   About CreArtBox on an event page: the teaser film and a short
+   gallery, for a visitor who arrived straight from a link.
+   ------------------------------------------------------------ */
+.ab-film {
+  display: block; width: 100%; margin: 26px 0 0; padding: 0;
+  background: none; border: 1px solid var(--filete); cursor: pointer; text-align: left;
+}
+.ab-film:hover { border-color: var(--filete-alto); }
+.ab-film .video-thumb { display: block; position: relative; }
+.ab-film .video-thumb img { display: block; width: 100%; height: auto; }
+.ab-film .ab-film-label {
+  display: block; padding: 11px 14px; background: var(--foso);
+  font-family: var(--texto); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--papel-dim);
+}
+.ab-film:hover .ab-film-label { color: var(--senal); }
+
+.ab-gallery {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-top: 6px;
+}
+.ab-gallery .ab-shot { display: block; overflow: hidden; }
+.ab-gallery img {
+  display: block; width: 100%; aspect-ratio: 1/1; object-fit: cover;
+  filter: grayscale(0.35); transition: filter var(--t-fast), transform var(--t-fast);
+}
+.ab-gallery .ab-shot:hover img { filter: none; transform: scale(1.04); }
+@media (max-width: 700px) {
+  .ab-gallery { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* The two-minute film, under the mission on the home page. */
+.home-film {
+  display: block; width: 100%; margin: 8px 0 32px; padding: 0;
+  background: none; border: 1px solid var(--filete); cursor: pointer; text-align: left;
+}
+.home-film:hover { border-color: var(--filete-alto); }
+.home-film .video-thumb { display: block; position: relative; }
+.home-film .video-thumb img { display: block; width: 100%; height: auto; }
+.home-film .home-film-label {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  padding: 15px 20px; background: var(--foso);
+  font-family: var(--texto); font-size: 13px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--papel);
+}
+.home-film .hf-dur { color: var(--papel-dim); font-weight: 500; }
+.home-film:hover .home-film-label { color: var(--senal); }

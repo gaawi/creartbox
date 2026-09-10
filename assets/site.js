@@ -335,7 +335,24 @@ function initAllPhotosModal() {
 }
 
 function initVideoModal() {
-  const modal = document.getElementById("video-modal");
+  let modal = document.getElementById("video-modal");
+  // Concert pages carry video triggers but not the dialog, so build it
+  // on demand rather than pasting the same markup into every page.
+  if (!modal && document.querySelector(".video-trigger")) {
+    modal = document.createElement("div");
+    modal.className = "video-modal";
+    modal.id = "video-modal";
+    modal.setAttribute("aria-hidden", "true");
+    modal.setAttribute("role", "dialog");
+    modal.innerHTML =
+      '<div class="video-modal-bg" data-video-close></div>' +
+      '<div class="video-modal-content">' +
+        '<button class="video-modal-close" data-video-close aria-label="Close">\u00d7</button>' +
+        '<div class="video-modal-frame"></div>' +
+        '<div class="video-modal-caption"></div>' +
+      '</div>';
+    document.body.appendChild(modal);
+  }
   if (!modal) return;
   const frame = modal.querySelector(".video-modal-frame");
   const caption = modal.querySelector(".video-modal-caption");
@@ -346,8 +363,14 @@ function initVideoModal() {
       if (window.Hls) return resolve(window.Hls);
       const s = document.createElement("script");
       s.src = "https://cdn.jsdelivr.net/npm/hls.js@1.5.13/dist/hls.min.js";
-      s.onload = () => resolve(window.Hls);
-      s.onerror = () => resolve(null);
+      // A hung request fires neither load nor error, and the viewer is
+      // left looking at an empty dialog for ever. Give up after eight
+      // seconds and let the browser try the stream itself.
+      let settled = false;
+      const done = (v) => { if (!settled) { settled = true; resolve(v); } };
+      const timer = setTimeout(() => done(null), 8000);
+      s.onload = () => { clearTimeout(timer); done(window.Hls); };
+      s.onerror = () => { clearTimeout(timer); done(null); };
       document.head.appendChild(s);
     });
   }
