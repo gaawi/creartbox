@@ -5056,3 +5056,16 @@ button.myBtn_multi, .eventpast a.button {
    ------------------------------------------------------------ */
 .prog-table .when .num { color: var(--senal); }
 .prog-table td .label  { color: var(--senal); }
+
+/* The ensemble's own new productions, marked in the calendar. Solid
+   signal, so it outranks the amber label it sits beside. */
+.prog-table .row-new {
+  display: inline-block; margin-left: 10px;
+  background: var(--senal); color: var(--sobre-senal);
+  font-family: var(--texto); font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 3px 7px; line-height: 1; white-space: nowrap;
+}
+@media (max-width: 700px) {
+  .prog-table .row-new { margin-left: 0; margin-top: 6px; }
+}

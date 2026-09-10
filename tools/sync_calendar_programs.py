@@ -25,6 +25,11 @@ WHEN_RE = re.compile(
     r'<div class="meta-h">When</div>\s*<div class="meta-v">([^<]*)</div>', re.S)
 TIME_RE = re.compile(r"\b\d{1,2}:\d{2}\s*(?:am|pm)\b", re.I)
 ROW_TIME_RE = re.compile(r'<span class="row-time">.*?</span>', re.S)
+SERIES_RE = re.compile(r'class="event-series">([^<]*)', re.S)
+ROW_LABEL_RE = re.compile(r'(<div class="label" style="margin-bottom:8px">)(.*?)(</div>)', re.S)
+ROW_NEW_RE = re.compile(r'\s*<span class="row-new">.*?</span>', re.S)
+# the ensemble's own productions, as opposed to touring an existing programme
+NEW_PRODUCTION_SERIES = "New York Series"
 HREF_RE = re.compile(r'class="title-cell"><a href="([^"]+)"')
 TITLE_RE = re.compile(r'class="title-cell"><a[^>]*>([^<]+)</a>')
 UL_RE = re.compile(r'<ul[^>]*>.*?</ul>', re.S)
@@ -86,6 +91,25 @@ def sync_time(row, page):
     return row.replace("</td>", cell + "</td>", 1)
 
 
+def is_new_production(page):
+    """True for the ensemble's own New York Series productions."""
+    if not os.path.exists(page):
+        return False
+    series = SERIES_RE.search(open(page, encoding="utf-8").read())
+    return bool(series) and series.group(1).strip().startswith(NEW_PRODUCTION_SERIES)
+
+
+def sync_new_production(row, page):
+    """Mark those rows in the calendar, and only those."""
+    label = ROW_LABEL_RE.search(row)
+    if not label:
+        return row
+    text = ROW_NEW_RE.sub("", label.group(2))
+    if is_new_production(page):
+        text += ' <span class="row-new">New production</span>'
+    return row.replace(label.group(0), label.group(1) + text + label.group(3), 1)
+
+
 def render(items):
     lis = "".join(
         '<li><span class="rp-composer">{}</span>'
@@ -109,7 +133,12 @@ def main():
         title = TITLE_RE.search(row)
         title = title.group(1) if title else href.group(1)
 
-        # the time is synced whether or not the programme is generated
+        # both of these are synced whether or not the programme is generated
+        marked = sync_new_production(row, href.group(1))
+        if marked != row:
+            out = out.replace(row, marked, 1)
+            row = marked
+
         timed = sync_time(row, href.group(1))
         if timed != row:
             out = out.replace(row, timed, 1)
