@@ -21,6 +21,10 @@ import sys
 INDEX = "concerts.html"
 
 ROW_RE = re.compile(r'<tr data-concert-series="[^"]+">.*?</tr>', re.S)
+WHEN_RE = re.compile(
+    r'<div class="meta-h">When</div>\s*<div class="meta-v">([^<]*)</div>', re.S)
+TIME_RE = re.compile(r"\b\d{1,2}:\d{2}\s*(?:am|pm)\b", re.I)
+ROW_TIME_RE = re.compile(r'<span class="row-time">.*?</span>', re.S)
 HREF_RE = re.compile(r'class="title-cell"><a href="([^"]+)"')
 TITLE_RE = re.compile(r'class="title-cell"><a[^>]*>([^<]+)</a>')
 UL_RE = re.compile(r'<ul[^>]*>.*?</ul>', re.S)
@@ -57,6 +61,31 @@ def programme_of(page):
     return items or None
 
 
+def time_of(page):
+    """The clock time from the concert page's own When row, if it has one."""
+    if not os.path.exists(page):
+        return None
+    when = WHEN_RE.search(open(page, encoding="utf-8").read())
+    if not when:
+        return None
+    found = TIME_RE.search(when.group(1))
+    return found.group(0) if found else None
+
+
+def sync_time(row, page):
+    """Put that time in the row's date cell, so the two cannot disagree."""
+    wanted = time_of(page)
+    current = ROW_TIME_RE.search(row)
+    if not wanted:
+        # the page dropped its time: take it out of the index too
+        return ROW_TIME_RE.sub("", row) if current else row
+    cell = '<span class="row-time">{}</span>'.format(wanted)
+    if current:
+        return row.replace(current.group(0), cell, 1)
+    # sits under the weekday, at the end of the date cell
+    return row.replace("</td>", cell + "</td>", 1)
+
+
 def render(items):
     lis = "".join(
         '<li><span class="rp-composer">{}</span>'
@@ -79,6 +108,12 @@ def main():
             continue
         title = TITLE_RE.search(row)
         title = title.group(1) if title else href.group(1)
+
+        # the time is synced whether or not the programme is generated
+        timed = sync_time(row, href.group(1))
+        if timed != row:
+            out = out.replace(row, timed, 1)
+            row = timed
 
         items = programme_of(href.group(1))
         if items is None:

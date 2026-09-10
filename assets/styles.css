@@ -5041,3 +5041,10 @@ button.myBtn_multi, .eventpast a.button {
   content: ""; position: absolute; inset: 0; background: rgba(7, 7, 6, 0.66);
 }
 .ex-photo-good .ex-art img { position: relative; }
+
+/* The concert time, under the weekday in the calendar's date cell. */
+.prog-table .when .row-time {
+  display: block; margin-top: 2px;
+  font-family: var(--texto); font-size: 13px; color: var(--papel-dim);
+  font-variant-numeric: tabular-nums;
+}
