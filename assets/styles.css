@@ -5054,7 +5054,10 @@ button.myBtn_multi, .eventpast a.button {
    Scoped to .prog-table so .label keeps its quiet grey everywhere
    else on the site.
    ------------------------------------------------------------ */
-.prog-table .when .num { color: var(--senal); }
+/* The day number carries its weight by size, not colour: in amber it
+   competed with the series label and the new-production chip, and the
+   page ended up with three things shouting. */
+.prog-table .when .num { color: var(--papel); }
 .prog-table td .label  { color: var(--senal); }
 
 /* The ensemble's own new productions, marked in the calendar. Solid
@@ -5069,3 +5072,20 @@ button.myBtn_multi, .eventpast a.button {
 @media (max-width: 700px) {
   .prog-table .row-new { margin-left: 0; margin-top: 6px; }
 }
+
+/* A new production carries an amber edge down its row. On every row it
+   would mean nothing; on these four it is the ribbon. */
+/* The gutter is reserved on every date cell so the bar sits inside the
+   table. Hanging it off the left edge widened the page by 54px. */
+.prog-table .when { padding-left: 16px; }
+.prog-table tr[data-new-production] .when { position: relative; }
+.prog-table tr[data-new-production] .when::before {
+  content: ""; position: absolute; left: 0; top: 4px; bottom: 4px;
+  width: 3px; background: var(--senal);
+}
+
+/* The dropdowns are min-width:220px anchored left, so on the last nav
+   item the panel hangs past the right edge of the page and widens it -
+   98px of horizontal scroll at 1024px, 4px at 1280. It opens leftwards
+   instead. Only the last item can overhang the page. */
+.nav-strip-inner .nav-item:last-child > .submenu { left: auto; right: 0; }

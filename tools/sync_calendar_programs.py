@@ -20,7 +20,7 @@ import sys
 
 INDEX = "concerts.html"
 
-ROW_RE = re.compile(r'<tr data-concert-series="[^"]+">.*?</tr>', re.S)
+ROW_RE = re.compile(r'<tr[^>]* data-concert-series="[^"]+">.*?</tr>', re.S)
 WHEN_RE = re.compile(
     r'<div class="meta-h">When</div>\s*<div class="meta-v">([^<]*)</div>', re.S)
 TIME_RE = re.compile(r"\b\d{1,2}:\d{2}\s*(?:am|pm)\b", re.I)
@@ -100,12 +100,21 @@ def is_new_production(page):
 
 
 def sync_new_production(row, page):
-    """Mark those rows in the calendar, and only those."""
+    """Mark those rows in the calendar, and only those.
+
+    The row carries a flag as well as the chip, so the amber edge is a
+    plain attribute selector rather than :has() on the chip.
+    """
+    new = is_new_production(page)
+    row = row.replace(" data-new-production", "", 1)
+    if new:
+        row = row.replace("<tr data-concert-series=",
+                          "<tr data-new-production data-concert-series=", 1)
     label = ROW_LABEL_RE.search(row)
     if not label:
         return row
     text = ROW_NEW_RE.sub("", label.group(2))
-    if is_new_production(page):
+    if new:
         text += ' <span class="row-new">New production</span>'
     return row.replace(label.group(0), label.group(1) + text + label.group(3), 1)
 
