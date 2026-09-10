@@ -199,6 +199,19 @@ def main():
             if not check:
                 os.remove(path)
 
+    # A funder credit is an obligation, not decoration: warn loudly if a
+    # New York Series page is missing the logos the archive pages carry.
+    uncredited = [
+        path for path in sorted(glob.glob("concerts/*.html"))
+        if read(path) and "event-funders-logos" not in open(path, encoding="utf-8").read()
+    ]
+    if uncredited:
+        print("MISSING the NYSCA / Cultural Affairs logos:")
+        for path in uncredited:
+            print("  -", path)
+        if check:
+            return 1
+
     if check:
         if stale:
             print("posters out of date:")

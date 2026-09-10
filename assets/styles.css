@@ -5096,3 +5096,7 @@ button.myBtn_multi, .eventpast a.button {
 /* Programme notes run to several paragraphs and .event-description p
    had margin:0, so they ran together as one block of text. */
 .event-description p + p { margin-top: 1.6em; }
+
+/* A row offers tickets only once its concert page does. Outline, so the
+   amber Explore stamp stays the one solid block in the cell. */
+.prog-table .row-tickets { display: inline-flex; margin-top: 8px; }

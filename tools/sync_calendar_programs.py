@@ -28,6 +28,9 @@ ROW_TIME_RE = re.compile(r'<span class="row-time">.*?</span>', re.S)
 SERIES_RE = re.compile(r'class="event-series">([^<]*)', re.S)
 ROW_LABEL_RE = re.compile(r'(<div class="label" style="margin-bottom:8px">)(.*?)(</div>)', re.S)
 ROW_NEW_RE = re.compile(r'\s*<span class="row-new">.*?</span>', re.S)
+TICKETS_RE = re.compile(r'href="(https://www\.eventbrite\.com/e/[^"]+)"[^>]*class="btn btn-ticket"')
+ACTIONS_RE = re.compile(r'(<td class="actions">)(.*?)(</td>)', re.S)
+ROW_TICKETS_RE = re.compile(r'\s*<a class="btn btn-s row-tickets".*?</a>', re.S)
 # the ensemble's own productions, as opposed to touring an existing programme
 NEW_PRODUCTION_SERIES = "New York Series"
 HREF_RE = re.compile(r'class="title-cell"><a href="([^"]+)"')
@@ -119,6 +122,27 @@ def sync_new_production(row, page):
     return row.replace(label.group(0), label.group(1) + text + label.group(3), 1)
 
 
+def sync_tickets(row, page):
+    """Offer tickets from the calendar as soon as the concert page does."""
+    url = None
+    if os.path.exists(page):
+        found = TICKETS_RE.search(open(page, encoding="utf-8").read())
+        url = found.group(1) if found else None
+    cell = ACTIONS_RE.search(row)
+    if not cell:
+        return row
+    body = ROW_TICKETS_RE.sub("", cell.group(2))
+    # Where a seat can be bought, buying is the loud button and Explore
+    # steps back to an outline. Everywhere else Explore keeps the stamp.
+    if url:
+        body = body.replace('class="btn btn-stamp btn-s"', 'class="btn btn-s"', 1)
+        body += ('<a class="btn btn-stamp btn-s row-tickets" href="{}" target="_blank" '
+                 'rel="noopener">Tickets <span class="ar">&#8594;</span></a>'.format(url))
+    else:
+        body = body.replace('class="btn btn-s"', 'class="btn btn-stamp btn-s"', 1)
+    return row.replace(cell.group(0), cell.group(1) + body + cell.group(3), 1)
+
+
 def render(items):
     lis = "".join(
         '<li><span class="rp-composer">{}</span>'
@@ -147,6 +171,11 @@ def main():
         if marked != row:
             out = out.replace(row, marked, 1)
             row = marked
+
+        ticketed = sync_tickets(row, href.group(1))
+        if ticketed != row:
+            out = out.replace(row, ticketed, 1)
+            row = ticketed
 
         timed = sync_time(row, href.group(1))
         if timed != row:
