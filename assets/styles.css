@@ -5048,3 +5048,11 @@ button.myBtn_multi, .eventpast a.button {
   font-family: var(--texto); font-size: 13px; color: var(--papel-dim);
   font-variant-numeric: tabular-nums;
 }
+
+/* ------------------------------------------------------------
+   Calendar: the day number and the series label carry the signal.
+   Scoped to .prog-table so .label keeps its quiet grey everywhere
+   else on the site.
+   ------------------------------------------------------------ */
+.prog-table .when .num { color: var(--senal); }
+.prog-table td .label  { color: var(--senal); }
