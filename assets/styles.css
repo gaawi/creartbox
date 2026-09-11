@@ -5442,3 +5442,53 @@ button.myBtn_multi, .eventpast a.button {
 
 /* The concert page points at the booklet, next to the programme it lists */
 .pgm-book { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+
+/* The home page's next production, and the dates behind it ------------ */
+.next-title { margin: 0; font-size: clamp(34px, 4.4vw, 52px); line-height: 1.04; }
+.upnext { margin-top: 54px; }
+.upnext-head { display: flex; align-items: center; gap: 18px; }
+.upnext-head .rule { flex: 1; margin: 0; }
+.upnext-list {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 32px;
+}
+.upnext-list a {
+  display: block;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule);
+  transition: border-color var(--t-fast);
+}
+.upnext-list a:hover { border-top-color: var(--senal); }
+.un-date {
+  display: block;
+  font-family: var(--texto);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--senal);
+}
+.un-title {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--display);
+  font-size: 21px;
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.upnext-list a:hover .un-title { color: var(--senal); }
+.un-where {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--texto);
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 860px) {
+  .upnext-list { grid-template-columns: 1fr; gap: 0; }
+}
