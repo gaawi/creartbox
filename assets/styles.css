@@ -5215,6 +5215,27 @@ button.myBtn_multi, .eventpast a.button {
 .pr-links li { padding: 7px 0; border-top: 1px solid var(--filete); }
 .pr-links a { font-family: var(--texto); font-size: 15px; color: var(--papel); }
 .pr-links a:hover { color: var(--senal); }
+/* A quote sits between paragraphs of the release, set off by a rule
+   rather than a box so it survives being printed. */
+.pr-quote { margin: 34px 0; padding-left: 22px; border-left: 2px solid var(--senal); }
+.pr-quote p {
+  font-family: var(--display);
+  font-size: 21px;
+  line-height: 1.45;
+  color: var(--papel);
+  margin: 0;
+}
+.pr-quote cite {
+  display: block;
+  margin-top: 14px;
+  font-family: var(--texto);
+  font-style: normal;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--papel-dim);
+}
+
 .pr-end { margin-top: 40px !important; color: var(--papel-dim) !important; letter-spacing: 0.2em; }
 
 @media print {
@@ -5229,6 +5250,9 @@ button.myBtn_multi, .eventpast a.button {
   .pr-standfirst, .pr-dateline, .pr-links a { color: #333; }
   .pr-head, .pr-h2, .pr-body strong { color: #000; }
   .pr-flag { color: #000; }
+  .pr-quote p { color: #000; }
+  .pr-quote cite { color: #333; }
+  .pr-quote { border-left-color: #000; }
 }
 
 /* Press release links, above the calendar's filter tabs. */
