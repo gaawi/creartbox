@@ -5295,6 +5295,27 @@ button.myBtn_multi, .eventpast a.button {
   min-width: 0;
   transition: transform 120ms linear;
 }
+
+/* The turning leaf: a sheet with a page on each side, swinging on the
+   gutter. It sits above the book, which meanwhile shows the page being
+   left behind and the one being uncovered. */
+.pv-stage { perspective: 2400px; }
+.pv-flip {
+  position: absolute;
+  z-index: 3;
+  transform-style: preserve-3d;
+  will-change: transform;
+  pointer-events: none;
+}
+.pv-face {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  backface-visibility: hidden;
+  overflow: hidden;
+}
+.pv-face img { width: 100%; height: 100%; display: block; object-fit: fill; }
+.pv-back { transform: rotateY(180deg); }
 /* The leaf shrink-wraps its page, and the page is capped on both axes:
    by height so the controls stay on screen, by width so a spread never
    pushes past the stage on a narrow window. */
@@ -5416,6 +5437,7 @@ button.myBtn_multi, .eventpast a.button {
 
 @media (prefers-reduced-motion: reduce) {
   .pv-book { transition: none; }
+  .pv-flip { display: none; }
 }
 
 /* The concert page points at the booklet, next to the programme it lists */

@@ -77,22 +77,31 @@
     });
   }
 
-  function render() {
+  function leaf(p) {
+    var fig = document.createElement("div");
+    fig.className = "pv-leaf";
+    var img = document.createElement("img");
+    // the rendered size, so the box is reserved before the file lands
+    img.width = PW;
+    img.height = PH;
+    img.src = src(p);
+    img.alt = TITLE + ", page " + p;
+    img.draggable = false;
+    fig.appendChild(img);
+    return fig;
+  }
+
+  /* Draw an arbitrary pair of pages. During a turn this is the book with
+     the turning leaf taken out of it: the page the reader is leaving on
+     one side, the page being uncovered on the other. */
+  function draw(pages) {
     book.innerHTML = "";
-    book.classList.toggle("is-spread", VIEWS[index].length === 2);
-    VIEWS[index].forEach(function (p) {
-      var fig = document.createElement("div");
-      fig.className = "pv-leaf";
-      var img = document.createElement("img");
-      // the rendered size, so the box is reserved before the file lands
-      img.width = PW;
-      img.height = PH;
-      img.src = src(p);
-      img.alt = TITLE + ", page " + p;
-      img.draggable = false;
-      fig.appendChild(img);
-      book.appendChild(fig);
-    });
+    book.classList.toggle("is-spread", pages.length === 2);
+    pages.forEach(function (p) { book.appendChild(leaf(p)); });
+  }
+
+  function render() {
+    draw(VIEWS[index]);
     countEl.textContent = label();
     btnPrev.disabled = index === 0;
     btnNext.disabled = index === VIEWS.length - 1;
@@ -100,12 +109,98 @@
     preload();
   }
 
+  /* ---- turning a page ------------------------------------------------
+     The leaf swings on the gutter with the page the reader is leaving on
+     its front and the page arriving on its back, which is how the paper
+     itself behaves. Everything else - a cover opening, a phone with one
+     page on screen, a reader who asked for less motion - gets a short
+     dissolve instead, because there is no second face to show.
+     -------------------------------------------------------------------- */
+  var still = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var turning = null;
+  var TURN_MS = 620;
+
+  function settle() {
+    if (!turning) return;
+    turning.cancel();
+    turning = null;
+    var flip = stage.querySelector(".pv-flip");
+    if (flip) flip.remove();
+    render();
+  }
+
+  function dissolve() {
+    render();
+    if (still.matches || !book.animate) return;
+    book.animate(
+      [{ opacity: 0.35, transform: "scale(0.985)" }, { opacity: 1, transform: "none" }],
+      { duration: 260, easing: "ease-out" }
+    );
+  }
+
+  function turn(from, to, forward) {
+    var old = VIEWS[from], now = VIEWS[to];
+    if (still.matches || !book.animate || old.length < 2 || now.length < 2) {
+      dissolve();
+      return;
+    }
+
+    // the book without the leaf that is in the air
+    draw(forward ? [old[0], now[1]] : [now[0], old[1]]);
+
+    var slot = book.children[forward ? 1 : 0];
+    var box = slot.getBoundingClientRect();
+    var frame = stage.getBoundingClientRect();
+
+    var flip = document.createElement("div");
+    flip.className = "pv-flip";
+    flip.style.width = box.width + "px";
+    flip.style.height = box.height + "px";
+    flip.style.left = (box.left - frame.left) + "px";
+    flip.style.top = (box.top - frame.top) + "px";
+    flip.style.transformOrigin = forward ? "left center" : "right center";
+    flip.appendChild(face("pv-front", forward ? old[1] : old[0]));
+    flip.appendChild(face("pv-back", forward ? now[0] : now[1]));
+    stage.appendChild(flip);
+
+    var end = forward ? "rotateY(-180deg)" : "rotateY(180deg)";
+    turning = flip.animate(
+      [
+        { transform: "rotateY(0deg)", boxShadow: "0 18px 44px rgba(0,0,0,.5)" },
+        { transform: end.replace("180", "90"), boxShadow: "0 30px 70px rgba(0,0,0,.62)", offset: 0.5 },
+        { transform: end, boxShadow: "0 18px 44px rgba(0,0,0,.5)" }
+      ],
+      { duration: TURN_MS, easing: "cubic-bezier(.42,0,.25,1)" }
+    );
+    turning.onfinish = function () {
+      turning = null;
+      flip.remove();
+      render();
+    };
+  }
+
+  function face(cls, page) {
+    var d = document.createElement("div");
+    d.className = "pv-face " + cls;
+    var img = document.createElement("img");
+    img.src = src(page);
+    img.alt = "";
+    img.draggable = false;
+    d.appendChild(img);
+    return d;
+  }
+
   function go(i) {
     var next = Math.max(0, Math.min(VIEWS.length - 1, i));
     if (next === index) return;
-    index = next;
+    settle();
     if (zoomed) setZoom(false);
-    render();
+    var from = index, forward = next > index;
+    index = next;
+    countEl.textContent = label();
+    btnPrev.disabled = index === 0;
+    btnNext.disabled = index === VIEWS.length - 1;
+    turn(from, next, forward);
   }
 
   btnPrev.addEventListener("click", function () { go(index - 1); });
