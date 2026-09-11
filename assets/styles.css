@@ -2814,6 +2814,9 @@ figure { margin: 0; }
   .app-callout .app-cta { align-items: flex-start; }
   /* Tables on mobile */
   .prog-table td.actions { text-align: left; padding-left: 0; }
+  /* The cell is nowrap, so a long ticket label holds the column open and
+     pushes the whole table past the viewport. It wraps instead. */
+  .prog-table .row-tickets { white-space: normal; }
 }
 @media (max-width: 640px) {
   .colophon-grid { grid-template-columns: 1fr; gap: 36px; padding-bottom: 36px; }

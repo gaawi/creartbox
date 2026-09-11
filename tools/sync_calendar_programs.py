@@ -30,7 +30,8 @@ ROW_LABEL_RE = re.compile(r'(<div class="label" style="margin-bottom:8px">)(.*?)
 ROW_NEW_RE = re.compile(r'\s*<span class="row-new">.*?</span>', re.S)
 TICKETS_RE = re.compile(r'href="(https://www\.eventbrite\.com/e/[^"]+)"[^>]*class="btn btn-ticket"')
 ACTIONS_RE = re.compile(r'(<td class="actions">)(.*?)(</td>)', re.S)
-ROW_TICKETS_RE = re.compile(r'\s*<a class="btn btn-s row-tickets".*?</a>', re.S)
+ROW_TICKETS_RE = re.compile(r'\s*<a class="btn[^"]*\brow-tickets\b[^"]*".*?</a>', re.S)
+EXPLORE_CLASS_RE = re.compile(r'(<a href="[^"]*" class=")btn[^"]*(">Explore</a>)')
 # the ensemble's own productions, as opposed to touring an existing programme
 NEW_PRODUCTION_SERIES = "New York Series"
 HREF_RE = re.compile(r'class="title-cell"><a href="([^"]+)"')
@@ -132,14 +133,19 @@ def sync_tickets(row, page):
     if not cell:
         return row
     body = ROW_TICKETS_RE.sub("", cell.group(2))
+    # Explore is the only thing left in the cell, so its class is set
+    # outright rather than by swapping whichever variant is there now -
+    # that swap was matching the tickets button and duplicating it.
     # Where a seat can be bought, buying is the loud button and Explore
     # steps back to an outline. Everywhere else Explore keeps the stamp.
+    explore = "btn btn-s" if url else "btn btn-stamp btn-s"
+    body = EXPLORE_CLASS_RE.sub(lambda m: m.group(1) + explore + m.group(2), body, count=1)
     if url:
-        body = body.replace('class="btn btn-stamp btn-s"', 'class="btn btn-s"', 1)
+        # The button says where it goes: the reader leaves the site and
+        # lands on a vendor's checkout. TICKETS_RE only matches Eventbrite,
+        # so naming it here cannot be wrong.
         body += ('<a class="btn btn-stamp btn-s row-tickets" href="{}" target="_blank" '
-                 'rel="noopener">Tickets <span class="ar">&#8594;</span></a>'.format(url))
-    else:
-        body = body.replace('class="btn btn-s"', 'class="btn btn-stamp btn-s"', 1)
+                 'rel="noopener">Tickets &#183; Eventbrite <span class="ar">&#8594;</span></a>'.format(url))
     return row.replace(cell.group(0), cell.group(1) + body + cell.group(3), 1)
 
 
