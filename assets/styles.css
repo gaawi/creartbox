@@ -5257,3 +5257,166 @@ button.myBtn_multi, .eventpast a.button {
 
 /* Press release links, above the calendar's filter tabs. */
 .season-actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 26px 0 4px; }
+
+/* ------------------------------------------------------------
+   PROGRAMME VIEWER · programs/*.html
+   The booklet is read as it is printed: a cover, then spreads.
+   Pages are images, so the whole thing is laid out on aspect-ratio
+   boxes and nothing shifts while they load.
+   ------------------------------------------------------------ */
+.pv-page { padding: 40px 0 var(--aire-secc); }
+.pv-head { margin: 22px 0 28px; }
+.pv-title {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(38px, 6vw, 64px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 10px 0 0;
+}
+.pv-sub { font-family: var(--texto); font-size: 15px; color: var(--papel-dim); margin-top: 12px; }
+
+.pv { margin-top: 8px; }
+.pv-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--foso);
+  border: 1px solid var(--filete);
+  padding: clamp(12px, 2.4vw, 28px);
+  overflow: hidden;
+}
+.pv-book {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  min-width: 0;
+  transition: transform 120ms linear;
+}
+/* The leaf shrink-wraps its page, and the page is capped on both axes:
+   by height so the controls stay on screen, by width so a spread never
+   pushes past the stage on a narrow window. */
+.pv-leaf {
+  flex: 0 1 auto;
+  min-width: 0;
+  background: #fff;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5);
+}
+.pv-book.is-spread .pv-leaf { max-width: 50%; }
+.pv-leaf img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: min(72vh, 820px);
+}
+/* Facing pages meet at the gutter, with a seam where the fold is */
+.pv-book.is-spread .pv-leaf:first-child { box-shadow: -14px 18px 40px rgba(0,0,0,.45); }
+.pv-book.is-spread .pv-leaf:last-child  { box-shadow: 14px 18px 40px rgba(0,0,0,.45); border-left: 1px solid rgba(0,0,0,.22); }
+
+.pv-nav {
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--filete-alto);
+  background: var(--sala);
+  color: var(--papel);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
+}
+.pv-nav::before { content: "\2039"; }
+.pv-next::before { content: "\203A"; }
+.pv-nav:hover:not(:disabled) { background: var(--senal); color: var(--sobre-senal); border-color: var(--senal); }
+.pv-nav:disabled { opacity: 0.28; cursor: default; }
+
+.pv-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.pv-btn {
+  font-family: var(--texto);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 9px 14px;
+  border: 1px solid var(--filete-alto);
+  background: none;
+  color: var(--papel);
+  cursor: pointer;
+  transition: border-color var(--t-fast), color var(--t-fast);
+}
+.pv-btn:hover { border-color: var(--senal); color: var(--senal); }
+.pv-btn[aria-pressed="true"] { background: var(--senal); border-color: var(--senal); color: var(--sobre-senal); }
+.pv-dl { text-decoration: none; }
+.pv-count {
+  font-family: var(--texto);
+  font-size: 13px;
+  color: var(--papel-dim);
+  font-variant-numeric: tabular-nums;
+  margin: 0 auto 0 6px;
+}
+
+.pv-thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px solid var(--filete);
+  background: var(--foso);
+}
+.pv-thumb {
+  position: relative;
+  padding: 0;
+  border: 1px solid transparent;
+  background: none;
+  cursor: pointer;
+  line-height: 0;
+}
+.pv-thumb img { width: 100%; height: auto; display: block; }
+.pv-thumb span {
+  display: block;
+  font-family: var(--texto);
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--papel-dim);
+  text-align: center;
+}
+.pv-thumb.on { border-color: var(--senal); }
+.pv-thumb.on span { color: var(--senal); }
+
+.pv-hint { font-family: var(--texto); font-size: 13px; color: var(--papel-tenue); margin: 14px 0 0; }
+
+.pv.is-zoomed .pv-stage { cursor: zoom-out; }
+.pv.is-zoomed .pv-nav { display: none; }
+
+/* In full screen the viewer paints its own ground and fills the height */
+.pv.is-full { background: var(--sala); padding: 20px; display: flex; flex-direction: column; justify-content: center; }
+.pv.is-full .pv-leaf img { max-height: 84vh; }
+.pv.is-full .pv-hint { display: none; }
+
+@media (max-width: 760px) {
+  /* One page at a time, and the arrows sit under it rather than
+     stealing width from a screen that has none to spare. */
+  .pv-stage { flex-wrap: wrap; justify-content: center; padding: 12px; }
+  .pv-book { flex: 1 0 100%; order: -1; }
+  .pv-leaf img { max-height: 68vh; }
+  .pv-nav { width: 44%; height: 42px; }
+  .pv-count { margin: 0; width: 100%; text-align: center; order: -1; }
+  .pv-bar { justify-content: center; }
+  .pv-thumbs { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pv-book { transition: none; }
+}
+
+/* The concert page points at the booklet, next to the programme it lists */
+.pgm-book { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }

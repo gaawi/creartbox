@@ -165,6 +165,29 @@ The renderer waits on `document.fonts.ready` and reports if Literata
 failed to load, since a poster caught in the fallback face looks fine
 until it reaches a printer.
 
+## Printed programmes
+
+The booklet handed out at the door is also readable on the site. Drop the
+PDF in `downloads/`, declare it in `PROGRAMS` in the script, and run:
+
+```bash
+pip install pymupdf                              # once
+python3 tools/build_program_viewer.py            # render pages + write the page
+python3 tools/build_program_viewer.py --check    # fail if out of date
+```
+
+It renders one JPEG per page at 2.5x plus a thumbnail into
+`assets/programs/<slug>/`, and writes `programs/<slug>.html`. Replacing
+the PDF and re-running is the whole update: the reader and the download
+come from the same file, so they cannot disagree. Pages left over from a
+longer previous version are deleted.
+
+`assets/program-viewer.js` reads it as it is printed - the cover alone,
+then facing pages, then whatever is left - and turns one page at a time
+below 761px. Arrow keys, swipe, thumbnails, zoom and full screen are
+there; nothing is parsed in the browser, so it works with the PDF
+unopened.
+
 ## Performer biographies
 
 `tools/link_performer_bios.py` links every performer name in
