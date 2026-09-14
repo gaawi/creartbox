@@ -5502,14 +5502,6 @@ button.myBtn_multi, .eventpast a.button {
   line-height: 1.66;
   color: var(--papel-medio);
 }
-/* the opening paragraph carries the page, so it is set larger */
-.artist-bio .bio-version p:first-child {
-  font-family: var(--display);
-  font-size: 21px;
-  line-height: 1.5;
-  color: var(--papel);
-}
-
 /* Three lengths of the same biography, for a reader or for a press desk
    that needs one of them to paste. */
 .bio-switch {
@@ -5553,3 +5545,15 @@ button.myBtn_multi, .eventpast a.button {
 /* The name on an ensemble card leads to that player's page */
 .member-name a { color: inherit; transition: color var(--t-fast); }
 .member-name a:hover, .member-name a:focus-visible { color: var(--senal); }
+
+/* Under every biography, whichever length is on screen */
+.bio-note {
+  margin: 8px 0 0 !important;
+  padding-top: 18px;
+  border-top: 1px solid var(--filete);
+  font-size: 14px !important;
+  line-height: 1.6;
+  color: var(--papel-tenue) !important;
+}
+.bio-note a { color: var(--papel-dim); border-bottom: 1px solid var(--filete-alto); }
+.bio-note a:hover { color: var(--senal); border-bottom-color: var(--senal); }

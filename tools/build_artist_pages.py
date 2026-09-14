@@ -45,6 +45,7 @@ ARTISTS = [
         "role": "Flute · Executive Director",
         "photo": "assets/img/guillermo-laporta.png",
         "links": [],
+        "contact": ("guillermo@creartbox.nyc", "mailto:guillermo@creartbox.nyc"),
         # CreArtBox's own text. He publishes no personal biography.
         "short": [
             "Flutist, composer, and multimedia creator. Executive Director of CreArtBox "
@@ -58,6 +59,7 @@ ARTISTS = [
     },
     {
         "slug": "josefina-urraca",
+        "contact": ("josefinaurraca.com", "https://josefinaurraca.com"),
         "card": (
             "Josefina Urraca is a Spanish pianist and co-director of CreArtBox and the "
             "Festival ADAR. Her playing has been praised by <em>Mundo Clásico</em> for its "
@@ -122,6 +124,7 @@ ARTISTS = [
     },
     {
         "slug": "emilie-anne-gendron",
+        "contact": ("emilieannegendron.com", "https://www.emilieannegendron.com"),
         "card": (
             "Violinist Emilie-Anne Gendron, lauded by the <em>New York Times</em> as a "
             "&quot;brilliant soloist&quot; and by <em>Strad Magazine</em> for her "
@@ -212,6 +215,7 @@ ARTISTS = [
     },
     {
         "slug": "matthew-cohen",
+        "contact": ("cohenviola.com", "https://www.cohenviola.com"),
         "card": (
             "Ukrainian-American violist Matthew Cohen is a dynamic and versatile artist whose "
             "captivating performances have made him one of the most sought-after violists of "
@@ -305,6 +309,7 @@ ARTISTS = [
     },
     {
         "slug": "julia-yang",
+        "contact": ("juliayangcello.com", "https://www.juliayangcello.com"),
         "card": (
             "Praised for &quot;her sense of joyful virtuosity&quot; as concerto soloist "
             "(<em>South Florida Classical Review</em>), Julia Yang is a courageous and soulful "
@@ -406,8 +411,8 @@ ARTISTS = [
 # How long "short" and "medium" are, counted in characters of plain text
 # (tags and entities do not count). A version never cuts mid-sentence: it
 # takes as many of the artist's own sentences as fit, and stops.
-SHORT_CHARS = 600
-MEDIUM_CHARS = 1400
+SHORT_CHARS = 500
+MEDIUM_CHARS = 1500
 
 # a full stop that ends a sentence, rather than one inside an abbreviation
 SENTENCE_RE = re.compile(r"(?<=[.!?])\s+(?=[A-Z&<\u201c\u0022(])")
@@ -509,8 +514,15 @@ def page(artist):
                   '          <span class="label">Biography</span>\n'
                   + "\n".join(picks) + "\n        </div>\n")
 
+    label, url = artist["contact"]
+    external = ' target="_blank" rel="noopener"' if url.startswith("http") else ""
+    note = (
+        '          <p class="bio-note">These biographies are published as the artist '
+        'wrote them and are not to be altered. For another version, or for a longer one, '
+        'write to {name} directly: <a href="{url}"{ext}>{label}</a>.</p>'.format(
+            name=html.escape(artist["name"].split()[0]), url=url, ext=external, label=label))
     bio = ('        <section class="artist-bio" data-bio-set>\n'
-           + "\n".join(blocks) + "\n        </section>")
+           + "\n".join(blocks) + "\n" + note + "\n        </section>")
 
     return """<!doctype html>
 <html lang="en">
@@ -524,7 +536,7 @@ def page(artist):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,300..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/styles.css?v=122">
+<link rel="stylesheet" href="../assets/styles.css?v=124">
 <script id="cb-theme-init">document.documentElement.setAttribute("data-theme","dark");</script>
 </head>
 <body>
