@@ -538,6 +538,20 @@ function initBioTabs() {
   if (!tabs.length) return;
   const versions = document.querySelectorAll("[data-bio-version]");
   const downloads = document.querySelectorAll("[data-bio-download]");
+
+  /* Each tab says how long its own version is, counted off the page
+     itself, so the figure cannot drift from the text it describes. */
+  versions.forEach((v) => {
+    const key = v.getAttribute("data-bio-version");
+    const meta = document.querySelector('[data-bio-count="' + key + '"]');
+    if (!meta) return;
+    const text = [...v.querySelectorAll("p")]
+      .map((p) => p.textContent.trim())
+      .join(" ")
+      .replace(/\s+/g, " ")
+      .trim();
+    meta.textContent = text.length + " characters";
+  });
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
       const v = tab.getAttribute("data-bio-tab");

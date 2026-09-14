@@ -165,6 +165,24 @@ The renderer waits on `document.fonts.ready` and reports if Literata
 failed to load, since a poster caught in the fallback face looks fine
 until it reaches a printer.
 
+## The CreArtBox biography
+
+The same text sits on `about.html` and in six press downloads, so it is
+written once, in `BIOS` in the script, and pushed to all of them:
+
+```bash
+python3 tools/build_org_bio.py            # the page and the .txt files
+node tools/render_press_bios.js           # then the three PDFs
+python3 tools/build_org_bio.py --check    # fail if out of date
+```
+
+Three lengths, the same ceilings as the artist pages: short at most 500
+characters, medium at most 1500, long unbounded. Unlike the artist pages
+these are three separate texts rather than cuts of one, because a press
+desk picks between them; the script refuses to write a version that is
+over its limit rather than trimming one behind your back. The tab on the
+page counts the text it is describing, so the figure cannot drift.
+
 ## Artist pages
 
 One page per member of the ensemble under `artists/`, each with the short
