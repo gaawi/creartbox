@@ -35,27 +35,110 @@ SITE = "https://creartbox.nyc"
 ARTISTS = [
     {
         "slug": "guillermo-laporta",
+        "contact": ("guillermolaporta.com", "https://guillermolaporta.com"),
         "card": (
-            "Flutist, composer, and multimedia creator. Executive Director of CreArtBox "
-            "and Festival ADAR. At the heart of his practice lies the concept of the "
-            "&quot;visual concert&quot; - multimedia performances that weave visual art and "
-            "theatrical design into live chamber music."),
+            "Guillermo Laporta is a flutist, composer, and performing arts entrepreneur "
+            "whose multidisciplinary artistic practice presents innovative connections "
+            "between music, theater, dance, and video."),
         "anchor": "member-laporta",
         "name": "Guillermo Laporta",
         "role": "Flute · Executive Director",
         "photo": "assets/img/guillermo-laporta.png",
-        "links": [],
-        "contact": ("guillermo@creartbox.nyc", "mailto:guillermo@creartbox.nyc"),
-        # CreArtBox's own text. He publishes no personal biography.
-        "short": [
-            "Flutist, composer, and multimedia creator. Executive Director of CreArtBox "
-            "and Festival ADAR. At the heart of his practice lies the concept of the "
-            "&quot;visual concert&quot; - multimedia performances that weave visual art and "
-            "theatrical design into live chamber music. His work has been praised by "
-            "<em>The New Yorker</em>, <em>Time Out</em>, and <em>Broadway World</em>."
+        "links": [("Website", "https://guillermolaporta.com")],
+        "short": [],
+        "long": [
+            "Guillermo Laporta is a flutist, composer, and performing arts entrepreneur whose "
+            "multidisciplinary artistic practice presents innovative connections between music, "
+            "theater, dance, and video. Through his work as a performer, composer, and cultural "
+            "producer, Laporta creates immersive experiences that challenge traditional "
+            "boundaries of classical music presentation and advance the accessibility of "
+            "world-class art to diverse audiences regardless of economic circumstance.",
+            "At the center of Laporta&#x27;s artistic identity lies the concept of the "
+            "&quot;visual concert&quot; - multimedia performances that intricately weave visual "
+            "art and theatrical design into the fabric of live classical and contemporary "
+            "chamber music. These immersive productions enhance the audience&#x27;s auditory "
+            "experience while respecting the integrity of the original musical compositions, "
+            "enveloping listeners in atmospheres created through innovative lighting design, "
+            "projections, and spatial composition.",
+            "Through these works, Guillermo advances a distinctive artistic philosophy that "
+            "positions visual and theatrical elements as integral to the concert experience "
+            "rather than supplementary. This approach has earned critical recognition for "
+            "creating &quot;a wholly authentic, visually and aurally compelling experience&quot; "
+            "(<em>Broadway World</em>) and &quot;a full scale set design and a unique visual "
+            "approach&quot; (<em>I Care if You Listen</em>).",
+            "Guillermo co-founded CreArtBox in New York City in 2013 with pianist Josefina "
+            "Urraca, transforming it into a nationally recognized nonprofit arts organization. "
+            "As Executive Producer and Co-Artistic Director, he has built CreArtBox from a small "
+            "ensemble into a leading cultural force with a roster of more than 20 professional "
+            "artists.",
+            "Under Guillermo&#x27;s leadership, CreArtBox has established itself as a "
+            "distinctive voice in contemporary classical music through innovative programming "
+            "that blends classical and contemporary chamber music with original multimedia "
+            "concepts. He has curated and produced more than 20 performances annually across "
+            "multiple seasons and venues, including The DiMenna Center for Classical Music, "
+            "Culture Lab Queens, Mark Morris Center, The William Vale, and community "
+            "partnerships with Greenwich House, New York Society for Ethical Culture, the "
+            "Brooklyn Public Library, and the Queens Library Culture Pass program. These efforts "
+            "have earned the organization sustained support from the New York State Council on "
+            "the Arts (NYSCA) and critical recognition from <em>The New Yorker</em> "
+            "(&quot;art and music top pick&quot;), <em>Broadway World</em>, and <em>Time "
+            "Out</em>.",
+            "The project traces its origins to 2006 in Europe, where Guillermo and "
+            "clarinetist/performance creator Tagore González founded Cre.Art Project. That same "
+            "year, Guillermo received the Montehermoso Contemporary Creation Award, a national "
+            "prize that launched the concept of the visual concert and supported the creation of "
+            "<em>Cre.Art Project 1</em>, an early chamber-music production integrating "
+            "quadraphonic electroacoustic music, video art, and choreography. During the "
+            "Spain-based period (2006-2012), the group developed several multidisciplinary "
+            "works, including <em>Cre.Art Project 1</em>, <em>Noctum</em> (2011), and "
+            "<em>London: The Show</em> (2009), a production with a budget exceeding $100,000 and "
+            "a team of more than 25 artists, which Guillermo produced at age 22. These projects "
+            "established the foundation for the multimedia and interdisciplinary identity that "
+            "continues to define CreArtBox today.",
+            "In 2020, Guillermo founded the Association for the Development of the Arts in Rural "
+            "Areas (ADAR), establishing a platform dedicated to cultivating world-class musical "
+            "projects in rural Spain. As founder and co-director, Guillermo has created the "
+            "flagship Festival ADAR, an itinerant arts festival that brings internationally "
+            "recognized classical music performances, artist talks, composer commissions, and "
+            "multimedia collaborations to underserved rural communities.",
+            "Through ADAR, Guillermo has developed innovative programming that transforms rural "
+            "landscapes into immersive artistic environments, connecting isolated communities "
+            "with global audiences while providing meaningful performance and commissioning "
+            "opportunities for professional musicians. His work through ADAR advances rural "
+            "cultural development and demonstrates his commitment to expanding access to "
+            "world-class artistic experiences beyond traditional urban centers.",
+            "Guillermo studied the Postgraduate in Advanced Performance and the Undergraduate "
+            "degree at the Royal College of Music in London with Jaime Martín, Paul Edmond "
+            "Davies, and Sue Thomas, as well as the Superior Degree in Musikene (Spain) with "
+            "Miguel Ángel Angulo.",
+            "He was co-principal flute of the Oviedo Filarmonía Orchestra from 2009 to 2012, one "
+            "of Spain&#x27;s major professional symphonic orchestras. Throughout his career as a "
+            "flutist, he has performed a wide repertoire of symphonic, operatic, and chamber "
+            "works with prestigious ensembles including the BBC Orchestra, Orquesta del "
+            "Principado de Asturias, Le Train Bleu Ensemble, New York International Orchestra, "
+            "and Orquesta Sinfónica de Euskadi.",
+            "He has shared the stage with renowned musicians including Sir Roger Norrington, "
+            "Andrew Litton, Pablo González, Vladimir Ashkenazy, Truls Mørk, Natalia Gutman, the "
+            "Labèque sisters, Ainhoa Arteta, Jiri Barta, and Heinrich Schiff, performing in "
+            "prestigious venues around the world including Carnegie Hall and Lincoln Center. He "
+            "has collaborated with numerous artists for record labels including Warner Music, "
+            "EMI, and Naxos.",
+            "He served as Principal Flute of the Herald Chamber Orchestra (2012-2015) and the "
+            "New York International Chamber Orchestra (2013-2018), and maintains an active "
+            "performance schedule as a freelance flutist and chamber musician. Since 2020, he "
+            "serves as Associate Producer for the Aspect Chamber Music Series, an innovative "
+            "concert experience known as &quot;Music in Context&quot; that integrates refined "
+            "programming with talks by world-renowned speakers and musicians, transforming "
+            "traditional recitals into intimate, thought-provoking performances.",
+            "Beyond his musical endeavors, Guillermo has contributed to numerous productions as "
+            "a lighting designer, set designer, and video artist. Off-Broadway and theater "
+            "credits include the opera <em>As One</em> (2018), <em>8 Million Protagonists</em> "
+            "(2014), the musical <em>Pedro Pan</em> (2016, 2018), and <em>Painted Alice</em> "
+            "(2019), among many others, presented at venues including the 14th Street Y Theater, "
+            "The Chain Theater, Toronto Playhouse, Queens Theater, Here Arts Center, and the "
+            "Robert Moss Theater.",
         ],
-        "long": [],
-        "note": "Guillermo Laporta has no published long biography.",
+        "note": "As published on guillermolaporta.com.",
     },
     {
         "slug": "josefina-urraca",
@@ -469,6 +552,12 @@ TAGS_RE = re.compile(r'\s*<ul style="list-style:none;padding:0;margin:18px 0 0;'
 BUTTONS_RE = re.compile(r'(<div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">)(.*?)(</div>)', re.S)
 FULL_BIO_RE = re.compile(r'\s*<a href="artists/[^"]+" class="btn btn-s btn-stamp">.*?</a>', re.S)
 NAME_RE = re.compile(r'(<h3 class="member-name">)(.*?)(</h3>)', re.S)
+# a card whose only button is a bare link, with no row around it
+BARE_BTN_RE = re.compile(
+    r'\s*<a href="([^"]*)" class="btn btn-s" style="margin-top:16px">(.*?)</a>', re.S)
+EMPTY_ROW_RE = re.compile(
+    r'\s*<div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">\s*</div>', re.S)
+ROW_OPEN = '<div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">' 
 NAME_LINK_RE = re.compile(r'(<h3 class="member-name">)<a href="artists/[^"]+">(.*?)</a>(?=</h3>)', re.S)
 
 
@@ -635,16 +724,32 @@ def sync_card(src, artist):
     # the list of affiliations under it goes
     body = TAGS_RE.sub("", body)
 
-    buttons = BUTTONS_RE.search(body)
     link = ('<a href="artists/{}.html" class="btn btn-s btn-stamp">Full biography '
             '<span class="ar">&#8594;</span></a>'.format(artist["slug"]))
+
+    # start from a card with none of our buttons in it, wherever a previous
+    # run left one, so re-running cannot strand a row outside the column
+    body = FULL_BIO_RE.sub("", body)
+    body = EMPTY_ROW_RE.sub("", body)
+
+    buttons = BUTTONS_RE.search(body)
     if buttons:
-        inner = FULL_BIO_RE.sub("", buttons.group(2))
-        body = body.replace(buttons.group(0),
-                            buttons.group(1) + link + inner + buttons.group(3), 1)
+        body = body.replace(
+            buttons.group(0),
+            buttons.group(1) + link + buttons.group(2) + buttons.group(3), 1)
     else:
-        body += ('\n        <div style="margin-top:16px;display:flex;gap:8px;'
-                 'flex-wrap:wrap">' + link + "</div>\n      ")
+        # Laporta and Urraca carry one bare link instead of a row of them.
+        # Adding a row after the text column dropped the button into the
+        # article's grid as a third cell, on a line of its own; it goes in
+        # a row with the link already there.
+        bare = BARE_BTN_RE.search(body)
+        if not bare:
+            print("  !! nowhere to put the link on", artist["name"])
+            return src.replace(card.group(0), body + card.group(2), 1)
+        row = (ROW_OPEN + link
+               + '<a href="{}" class="btn btn-s">{}</a>'.format(bare.group(1), bare.group(2))
+               + "</div>")
+        body = body.replace(bare.group(0), "\n        " + row, 1)
     return src.replace(card.group(0), body + card.group(2), 1)
 
 
