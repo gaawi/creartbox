@@ -165,6 +165,29 @@ The renderer waits on `document.fonts.ready` and reports if Literata
 failed to load, since a poster caught in the fallback face looks fine
 until it reaches a printer.
 
+## Artist pages
+
+One page per member of the ensemble under `artists/`, each with the short
+biography and the full one:
+
+```bash
+python3 tools/build_artist_pages.py          # write artists/*.html
+python3 tools/build_artist_pages.py --check  # fail if out of date
+```
+
+The biographies live in `ARTISTS` in the script, and every word in them is
+the artist's own. The long one is reproduced exactly as it stands on their
+website or in the press document they supplied; the short one is theirs
+too, trimmed rather than rewritten. **Nothing may be added.** If a fact is
+not in the source it does not go on the page - ask the artist.
+
+The script also keeps the ensemble cards on `about.html` in step: the same
+short biography, a link through to the full page, and no list of
+affiliations under it.
+
+`tools/link_performer_bios.py` links performer names on the concert and
+archive pages to these pages.
+
 ## Printed programmes
 
 The booklet handed out at the door is also readable on the site. Drop the

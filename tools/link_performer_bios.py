@@ -24,13 +24,13 @@ import glob
 import re
 import sys
 
-# core ensemble -> anchor on about.html
+# core ensemble -> their page under artists/
 MEMBERS = {
-    "Guillermo Laporta": "member-laporta",
-    "Josefina Urraca": "member-urraca",
-    "Emilie-Anne Gendron": "member-gendron",
-    "Matthew Cohen": "member-cohen",
-    "Julia Yang": "member-yang",
+    "Guillermo Laporta": "guillermo-laporta",
+    "Josefina Urraca": "josefina-urraca",
+    "Emilie-Anne Gendron": "emilie-anne-gendron",
+    "Matthew Cohen": "matthew-cohen",
+    "Julia Yang": "julia-yang",
 }
 
 # spellings that drifted from the ones the about page uses
@@ -113,7 +113,7 @@ def render(items, prefix):
         anchor = MEMBERS.get(name)
         label = name
         if anchor:
-            label = '<a href="{}about.html#{}">{}</a>'.format(prefix, anchor, name)
+            label = '<a href="{}artists/{}.html">{}</a>'.format(prefix, anchor, name)
         li = '<li><span class="art-name">{}</span>'.format(label)
         if role:
             li += '<span class="art-role">{}</span>'.format(role)

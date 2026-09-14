@@ -5492,3 +5492,32 @@ button.myBtn_multi, .eventpast a.button {
 @media (max-width: 860px) {
   .upnext-list { grid-template-columns: 1fr; gap: 0; }
 }
+
+/* ------------------------------------------------------------
+   ARTIST PAGES · artists/*.html
+   ------------------------------------------------------------ */
+.artist-lede p {
+  font-family: var(--display);
+  font-size: 21px;
+  line-height: 1.5;
+  color: var(--papel);
+  margin: 0 0 1.2em;
+}
+.artist-bio { margin-top: 44px; }
+.artist-bio p {
+  margin: 0 0 1.6em;
+  font-size: 17px;
+  line-height: 1.66;
+  color: var(--papel-medio);
+}
+.artist-source {
+  font-size: 13px !important;
+  color: var(--papel-tenue) !important;
+  font-style: italic;
+  border-top: 1px solid var(--filete);
+  padding-top: 14px;
+}
+.artist-portrait { margin: 0 0 20px; }
+.artist-portrait img { width: 100%; height: auto; display: block; }
+.artist-links { display: flex; flex-direction: column; gap: 8px; }
+.artist-links .btn { justify-content: space-between; }
