@@ -201,9 +201,10 @@ not in the source it does not go on the page - ask the artist.
 
 Each page offers the biography at three lengths, chosen by the switch in
 the sidebar: **full**, **medium** (`MEDIUM_CHARS`, 1500) and **short**
-(`SHORT_CHARS`, 500). The shorter two are not separate texts - they are
-the opening of the full one, cut at a sentence break and never mid-word,
-so a press desk can take any of them and quote it as the artist wrote it.
+(`SHORT_CHARS`, 500). An artist who supplies their own three gets those
+verbatim, under `versions`; for everyone else the shorter two are the
+opening of the full one, cut at a sentence break and never mid-word. Either
+way a press desk can take any of them and quote it as the artist wrote it.
 Change either constant and re-run to move the boundaries. All three are
 in the page, so the switch never waits on the network, and each button
 says how long its own version is.

@@ -15,10 +15,10 @@ Nothing here may be embellished. If a fact is not in the source it does
 not go on the page; ask the artist instead.
 
 Each page offers the biography at three lengths - full, medium and short
-- and the switch in the sidebar picks one. The shorter two are not
-rewritten: they are the opening of the full text, cut at a sentence
-break, so a press desk can take any of them and quote it as the artist
-wrote it.
+- and the switch in the sidebar picks one. An artist who writes their own
+three gets those, in "versions"; for everyone else the shorter two are
+the opening of the full text, cut at a sentence break. Either way a press
+desk can take any of them and quote it as the artist wrote it.
 
 The script also keeps the ensemble cards on about.html in step: one
 paragraph, the name linking through to the page, and no list of
@@ -37,107 +37,140 @@ ARTISTS = [
         "slug": "guillermo-laporta",
         "contact": ("guillermolaporta.com", "https://guillermolaporta.com"),
         "card": (
-            "Guillermo Laporta is a flutist, composer, and performing arts entrepreneur "
-            "whose multidisciplinary artistic practice presents innovative connections "
-            "between music, theater, dance, and video."),
+            "Guillermo Laporta is a Spanish flutist, composer, and designer based in New "
+            "York City, co-founder and Artistic Director of CreArtBox and of Festival ADAR."),
         "anchor": "member-laporta",
         "name": "Guillermo Laporta",
         "role": "Flute · Executive Director",
         "photo": "assets/img/guillermo-laporta.png",
         "links": [("Website", "https://guillermolaporta.com")],
         "short": [],
-        "long": [
-            "Guillermo Laporta is a flutist, composer, and performing arts entrepreneur whose "
-            "multidisciplinary artistic practice presents innovative connections between music, "
-            "theater, dance, and video. Through his work as a performer, composer, and cultural "
-            "producer, Laporta creates immersive experiences that challenge traditional "
-            "boundaries of classical music presentation and advance the accessibility of "
-            "world-class art to diverse audiences regardless of economic circumstance.",
-            "At the center of Laporta&#x27;s artistic identity lies the concept of the "
-            "&quot;visual concert&quot; - multimedia performances that intricately weave visual "
-            "art and theatrical design into the fabric of live classical and contemporary "
-            "chamber music. These immersive productions enhance the audience&#x27;s auditory "
-            "experience while respecting the integrity of the original musical compositions, "
-            "enveloping listeners in atmospheres created through innovative lighting design, "
-            "projections, and spatial composition.",
-            "Through these works, Guillermo advances a distinctive artistic philosophy that "
-            "positions visual and theatrical elements as integral to the concert experience "
-            "rather than supplementary. This approach has earned critical recognition for "
-            "creating &quot;a wholly authentic, visually and aurally compelling experience&quot; "
-            "(<em>Broadway World</em>) and &quot;a full scale set design and a unique visual "
-            "approach&quot; (<em>I Care if You Listen</em>).",
-            "Guillermo co-founded CreArtBox in New York City in 2013 with pianist Josefina "
-            "Urraca, transforming it into a nationally recognized nonprofit arts organization. "
-            "As Executive Producer and Co-Artistic Director, he has built CreArtBox from a small "
-            "ensemble into a leading cultural force with a roster of more than 20 professional "
-            "artists.",
-            "Under Guillermo&#x27;s leadership, CreArtBox has established itself as a "
-            "distinctive voice in contemporary classical music through innovative programming "
-            "that blends classical and contemporary chamber music with original multimedia "
-            "concepts. He has curated and produced more than 20 performances annually across "
-            "multiple seasons and venues, including The DiMenna Center for Classical Music, "
-            "Culture Lab Queens, Mark Morris Center, The William Vale, and community "
-            "partnerships with Greenwich House, New York Society for Ethical Culture, the "
-            "Brooklyn Public Library, and the Queens Library Culture Pass program. These efforts "
-            "have earned the organization sustained support from the New York State Council on "
-            "the Arts (NYSCA) and critical recognition from <em>The New Yorker</em> "
-            "(&quot;art and music top pick&quot;), <em>Broadway World</em>, and <em>Time "
-            "Out</em>.",
-            "The project traces its origins to 2006 in Europe, where Guillermo and "
-            "clarinetist/performance creator Tagore González founded Cre.Art Project. That same "
-            "year, Guillermo received the Montehermoso Contemporary Creation Award, a national "
-            "prize that launched the concept of the visual concert and supported the creation of "
-            "<em>Cre.Art Project 1</em>, an early chamber-music production integrating "
-            "quadraphonic electroacoustic music, video art, and choreography. During the "
-            "Spain-based period (2006-2012), the group developed several multidisciplinary "
-            "works, including <em>Cre.Art Project 1</em>, <em>Noctum</em> (2011), and "
-            "<em>London: The Show</em> (2009), a production with a budget exceeding $100,000 and "
-            "a team of more than 25 artists, which Guillermo produced at age 22. These projects "
-            "established the foundation for the multimedia and interdisciplinary identity that "
-            "continues to define CreArtBox today.",
-            "In 2020, Guillermo founded the Association for the Development of the Arts in Rural "
-            "Areas (ADAR), establishing a platform dedicated to cultivating world-class musical "
-            "projects in rural Spain. As founder and co-director, Guillermo has created the "
-            "flagship Festival ADAR, an itinerant arts festival that brings internationally "
-            "recognized classical music performances, artist talks, composer commissions, and "
-            "multimedia collaborations to underserved rural communities.",
-            "Through ADAR, Guillermo has developed innovative programming that transforms rural "
-            "landscapes into immersive artistic environments, connecting isolated communities "
-            "with global audiences while providing meaningful performance and commissioning "
-            "opportunities for professional musicians. His work through ADAR advances rural "
-            "cultural development and demonstrates his commitment to expanding access to "
-            "world-class artistic experiences beyond traditional urban centers.",
-            "Guillermo studied the Postgraduate in Advanced Performance and the Undergraduate "
-            "degree at the Royal College of Music in London with Jaime Martín, Paul Edmond "
-            "Davies, and Sue Thomas, as well as the Superior Degree in Musikene (Spain) with "
-            "Miguel Ángel Angulo.",
-            "He was co-principal flute of the Oviedo Filarmonía Orchestra from 2009 to 2012, one "
-            "of Spain&#x27;s major professional symphonic orchestras. Throughout his career as a "
-            "flutist, he has performed a wide repertoire of symphonic, operatic, and chamber "
-            "works with prestigious ensembles including the BBC Orchestra, Orquesta del "
-            "Principado de Asturias, Le Train Bleu Ensemble, New York International Orchestra, "
-            "and Orquesta Sinfónica de Euskadi.",
-            "He has shared the stage with renowned musicians including Sir Roger Norrington, "
-            "Andrew Litton, Pablo González, Vladimir Ashkenazy, Truls Mørk, Natalia Gutman, the "
-            "Labèque sisters, Ainhoa Arteta, Jiri Barta, and Heinrich Schiff, performing in "
-            "prestigious venues around the world including Carnegie Hall and Lincoln Center. He "
-            "has collaborated with numerous artists for record labels including Warner Music, "
-            "EMI, and Naxos.",
-            "He served as Principal Flute of the Herald Chamber Orchestra (2012-2015) and the "
-            "New York International Chamber Orchestra (2013-2018), and maintains an active "
-            "performance schedule as a freelance flutist and chamber musician. Since 2020, he "
-            "serves as Associate Producer for the Aspect Chamber Music Series, an innovative "
-            "concert experience known as &quot;Music in Context&quot; that integrates refined "
-            "programming with talks by world-renowned speakers and musicians, transforming "
-            "traditional recitals into intimate, thought-provoking performances.",
-            "Beyond his musical endeavors, Guillermo has contributed to numerous productions as "
-            "a lighting designer, set designer, and video artist. Off-Broadway and theater "
-            "credits include the opera <em>As One</em> (2018), <em>8 Million Protagonists</em> "
-            "(2014), the musical <em>Pedro Pan</em> (2016, 2018), and <em>Painted Alice</em> "
-            "(2019), among many others, presented at venues including the 14th Street Y Theater, "
-            "The Chain Theater, Toronto Playhouse, Queens Theater, Here Arts Center, and the "
-            "Robert Moss Theater.",
-        ],
+        "long": [],
+        # three texts of his own, not cuts of one another
+        "versions": {
+            "short": [
+                "Guillermo Laporta is a Spanish flutist, composer, and designer based in New York "
+                "City. He is co-founder and Artistic Director of CreArtBox, a New York-based piano "
+                "quintet with an established concert season and touring activity, and Festival ADAR, "
+                "dedicated to developing the arts in rural communities in Asturias. His work expands "
+                "the flute repertoire through transcriptions and new music, while his operas and "
+                "&quot;visual concerts&quot; combine classical music with visual storytelling.",
+            ],
+            "medium": [
+                "Guillermo Laporta is a Spanish flutist, composer, and designer based in New York "
+                "City. His artistic practice brings together classical music and visual storytelling. "
+                "As a composer, he has written operas and multidisciplinary works including "
+                "<em>Architecture of a Common Man</em> (2023) and <em>Two Roads</em> (2019), "
+                "alongside productions he defines as &quot;visual concerts,&quot; integrating video, "
+                "projection, lighting, and theatrical design into live classical music. Critics have "
+                "praised his &quot;impressive staging&quot; (<em>El País</em>) and &quot;unique take "
+                "on classical music&quot; (<em>Times Ledger</em>).",
+                "Laporta co-founded CreArtBox with pianist Josefina Urraca in 2013 and serves as its "
+                "Executive and Co-Artistic Director. CreArtBox is a New York-based piano quintet with "
+                "an established concert season, touring activity, new commissions, and a growing "
+                "network of artistic and institutional partnerships. They also founded Festival ADAR "
+                "in rural Asturias, presenting concerts, residencies, and site-specific "
+                "installations.",
+                "Expanding the flute repertoire is a central part of Laporta&#x27;s work, reimagining "
+                "works by composers such as Janáček, Sibelius, Respighi, and Dvořák for the flute, "
+                "while contributing new works and commissions to the contemporary flute repertoire. "
+                "This work is documented across three studio albums. As a performer, he has appeared "
+                "with ensembles including the BBC Orchestra and at Carnegie Hall and Lincoln Center, "
+                "with recording credits on Warner Music, EMI, and Naxos.",
+                "Laporta studied at the Royal College of Music in London with flutist and conductor "
+                "Jaime Martín.",
+            ],
+            "long": [
+                "Guillermo Laporta is a Spanish flutist, composer, designer, and cultural producer "
+                "based in New York City. His artistic practice brings together classical music and "
+                "visual storytelling, exploring how music, video, projection, lighting, and "
+                "theatrical design can become part of a unified live experience.",
+                "As a composer and multidisciplinary artist, Laporta has created works including "
+                "<em>Architecture of a Common Man</em> (2023), an opera-ballet-film for which he "
+                "served as composer, dramaturg, librettist, and designer, and <em>Two Roads</em> "
+                "(2019), an opera-ballet featured as a Critics&#x27; Pick in <em>The New Yorker</em>. "
+                "Alongside these works, he has developed numerous productions he defines as "
+                "&quot;visual concerts,&quot; integrating video, projection, lighting, and theatrical "
+                "design into live classical music. Critics have praised his &quot;impressive "
+                "staging&quot; (<em>El País</em>), &quot;unique take on classical music&quot; "
+                "(<em>Times Ledger</em>), and &quot;full-scale set design with a unique visual "
+                "approach&quot; (<em>I Care if You Listen</em>).",
+                "Laporta began developing this multidisciplinary approach in Europe in 2006, when he "
+                "co-founded Cre.Art Project with clarinetist and performance creator Tagore González. "
+                "That same year, he received the Montehermoso Contemporary Creation Award, supporting "
+                "an early chamber music production integrating electroacoustic music, video art, and "
+                "choreography. During the following years, he developed increasingly ambitious "
+                "productions including <em>London: The Show</em> (2009) and <em>Noctum</em> (2011), "
+                "establishing the foundations of the artistic language that would later define his "
+                "work in New York.",
+                "In 2013, Laporta co-founded CreArtBox in New York City with pianist Josefina Urraca "
+                "and serves as its Executive Director and Co-Artistic Director. Over more than a "
+                "decade, he has helped develop CreArtBox into a New York-based piano quintet and "
+                "multidisciplinary performing arts organization with an established concert season in "
+                "the city, an active touring schedule, new commissions, and a growing network of "
+                "artistic and institutional partnerships.",
+                "Through CreArtBox, Laporta has conceived, curated, designed, and produced "
+                "performances across New York and internationally. Projects such as <em>AWAVE</em> "
+                "(2018-19), a collection of original works for flute, piano, electronics, and video "
+                "presented in New York and Tokyo; <em>Queens Preludes</em> (2021), presented in New "
+                "York, Madrid, and Tokyo; and the visual concert trilogy <em>Fragile Form</em> (2022) "
+                "explore different relationships between live music and visual media.",
+                "CreArtBox has presented performances at venues including The DiMenna Center for "
+                "Classical Music, Mark Morris Dance Center, The William Vale, Culture Lab LIC, "
+                "Greenwich House, and the New York Society for Ethical Culture, while developing "
+                "collaborations and community partnerships across New York. The organization has "
+                "received support from the New York State Council on the Arts and recognition from "
+                "<em>The New Yorker</em>, <em>BroadwayWorld</em>, and <em>Time Out</em>.",
+                "In 2020, Laporta and Urraca founded the Association for the Development of the Arts "
+                "in Rural Areas (ADAR) in Asturias, Spain. Through its flagship Festival ADAR, they "
+                "bring chamber music, new commissions, artist residencies, talks, visual "
+                "installations, and site-specific projects to villages and landscapes outside "
+                "traditional cultural centers. The project connects professional artists and "
+                "international artistic exchange with rural communities and the cultural and natural "
+                "heritage of Asturias.",
+                "Expanding the flute repertoire is a central part of Laporta&#x27;s work, reimagining "
+                "works by composers such as Janáček, Sibelius, Respighi, and Dvořák for the flute, "
+                "while contributing new works and commissions to the contemporary flute repertoire. "
+                "His catalogue includes original chamber and electroacoustic works such as "
+                "<em>AWAVE</em>, <em>Twelve Preludes</em>, <em>Queens Log</em>, and <em>Música de "
+                "Cristal</em>, alongside transcriptions and arrangements of repertoire originally "
+                "written for other instruments and ensembles.",
+                "This work is documented across three studio albums: <em>Debussy &amp; Respighi "
+                "Violin Sonatas: Transcriptions for Flute and Piano</em>, <em>AWAVE</em>, and <em>12 "
+                "Preludes</em>, combining his work as a flutist, composer, and arranger.",
+                "As a performer, Laporta served as Co-Principal Flute of the Oviedo Filarmonía "
+                "(2009-12), Principal Flute of the Herald Chamber Orchestra (2012-15), and Principal "
+                "Flute of the New York International Chamber Orchestra (2013-18). He has also "
+                "performed with ensembles including the BBC Orchestra, Orquesta Sinfónica del "
+                "Principado de Asturias, Orquesta Sinfónica de Euskadi, and Le Train Bleu.",
+                "He has performed at venues including Carnegie Hall and Lincoln Center and shared the "
+                "stage with musicians and conductors including Sir Roger Norrington, Andrew Litton, "
+                "Pablo González, Vladimir Ashkenazy, Truls Mørk, Natalia Gutman, the Labèque sisters, "
+                "Ainhoa Arteta, Jirí Bárta, and Heinrich Schiff. His recording credits include Warner "
+                "Music, EMI, and Naxos.",
+                "Beyond his own productions, Laporta has developed an extensive body of work in "
+                "visual and theatrical design. His credits include lighting and set design for Laura "
+                "Kaminsky&#x27;s opera <em>As One</em> at the 14th Street Y Theater, <em>8 Million "
+                "Protagonists</em> at HERE Arts Center, <em>Pedro Pan</em> in New York and Toronto, "
+                "and <em>Painted Alice</em> at the Robert Moss Theater. He has also composed music "
+                "and created sound design for virtual-reality and interactive-media projects.",
+                "His work as a cultural producer extends beyond CreArtBox and ADAR. Over the course "
+                "of his career, Laporta has founded and directed concert series and festivals, "
+                "developed institutional partnerships, commissioned new works, and created platforms "
+                "connecting musicians, composers, visual artists, venues, and audiences in the United "
+                "States and Europe.",
+                "Laporta studied flute performance at Musikene in San Sebastián and at the Royal "
+                "College of Music in London, where he earned degrees in performance and advanced "
+                "performance and studied with Jaime Martín, Paul Edmund-Davies, and Sue Thomas. He "
+                "also holds a Master&#x27;s degree in Arts Management from the University of Alcalá "
+                "de Henares.",
+                "Across his work as a flutist, composer, designer, cultural producer, and artistic "
+                "director, Laporta continues to explore new possibilities for classical music, from "
+                "expanding the repertoire of the flute to developing new formats for live performance "
+                "and building artistic organizations that connect musicians, artists, institutions, "
+                "and audiences.",
+            ],
+        },
         "note": "As published on guillermolaporta.com.",
     },
     {
@@ -562,7 +595,15 @@ NAME_LINK_RE = re.compile(r'(<h3 class="member-name">)<a href="artists/[^"]+">(.
 
 
 def versions(artist):
-    """Short, medium and full, longest last so it is the one shown."""
+    """Short, medium and full, longest last so it is the one shown.
+
+    An artist who writes their own three gets those, untouched. For
+    everyone else the shorter two are the opening of the long one, cut at
+    a sentence break.
+    """
+    if artist.get("versions"):
+        v = artist["versions"]
+        return [("short", v["short"]), ("medium", v["medium"]), ("full", v["long"])]
     if not artist["long"]:
         return [("full", artist["short"])]
     return [
