@@ -2865,9 +2865,10 @@ body.archive-page .colophon {
 }
 
 .archive-hero { padding: 64px 0 24px; }
+/* The archive head is the same weight as every other page's. It used to
+   force its labels to near-white, which read as bolder than the rest. */
 body.archive-page .archive-hero,
 body.archive-page .archive-hero .lede,
-body.archive-page .archive-hero .label,
 body.archive-page .archive-hero .folio,
 body.archive-page .archive-hero .h-mast { color: #ececea; }
 
