@@ -90,6 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initDonate();
 
   // Concert filter tabs
+  initBioSwitch();
   initConcertTabs();
 
   // Transparent masthead → solid on scroll past hero
@@ -618,6 +619,26 @@ function initDonate() {
     });
   }
   update();
+}
+
+/* ----- Artist biography: short, medium or full ----------------------
+   The three versions are all in the page; the switch only decides which
+   one is on screen, so choosing a length never waits on the network. */
+function initBioSwitch() {
+  const set = document.querySelector("[data-bio-set]");
+  const picks = document.querySelectorAll("[data-bio-pick]");
+  if (!set || !picks.length) return;
+  picks.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const want = btn.getAttribute("data-bio-pick");
+      set.querySelectorAll("[data-bio]").forEach((v) => {
+        v.hidden = v.getAttribute("data-bio") !== want;
+      });
+      picks.forEach((b) => {
+        b.setAttribute("aria-pressed", String(b === btn));
+      });
+    });
+  });
 }
 
 /* ----- Concert filter tabs ------------------------------------------- */

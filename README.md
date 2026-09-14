@@ -181,8 +181,16 @@ website or in the press document they supplied; the short one is theirs
 too, trimmed rather than rewritten. **Nothing may be added.** If a fact is
 not in the source it does not go on the page - ask the artist.
 
-The script also keeps the ensemble cards on `about.html` in step: the same
-short biography, a link through to the full page, and no list of
+Each page offers the biography at three lengths, chosen by the switch in
+the sidebar: **full**, **medium** (`MEDIUM_CHARS`, 1400) and **short**
+(`SHORT_CHARS`, 600). The shorter two are not separate texts - they are
+the opening of the full one, cut at a sentence break and never mid-word,
+so a press desk can take any of them and quote it as the artist wrote it.
+Change either constant and re-run to move the boundaries. All three are
+in the page, so the switch never waits on the network.
+
+The script also keeps the ensemble cards on `about.html` in step: one
+paragraph, the player's name linking through to the page, and no list of
 affiliations under it.
 
 `tools/link_performer_bios.py` links performer names on the concert and

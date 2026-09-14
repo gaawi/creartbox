@@ -14,8 +14,15 @@ sentences with the lists trimmed, never a new claim.
 Nothing here may be embellished. If a fact is not in the source it does
 not go on the page; ask the artist instead.
 
-The script also keeps the ensemble cards on about.html in step: the short
-biography, a link to the full page, and no list of affiliations under it.
+Each page offers the biography at three lengths - full, medium and short
+- and the switch in the sidebar picks one. The shorter two are not
+rewritten: they are the opening of the full text, cut at a sentence
+break, so a press desk can take any of them and quote it as the artist
+wrote it.
+
+The script also keeps the ensemble cards on about.html in step: one
+paragraph, the name linking through to the page, and no list of
+affiliations under it.
 """
 
 import html
@@ -396,6 +403,59 @@ ARTISTS = [
     },
 ]
 
+# How long "short" and "medium" are, counted in characters of plain text
+# (tags and entities do not count). A version never cuts mid-sentence: it
+# takes as many of the artist's own sentences as fit, and stops.
+SHORT_CHARS = 600
+MEDIUM_CHARS = 1400
+
+# a full stop that ends a sentence, rather than one inside an abbreviation
+SENTENCE_RE = re.compile(r"(?<=[.!?])\s+(?=[A-Z&<\u201c\u0022(])")
+ABBREV_RE = re.compile(
+    r"\b(?:Ms|Mr|Mrs|Dr|Prof|St|No|Op|Vol|Jr|Sr|vs|etc|Inc|Mus|"
+    r"[A-Z])\.\Z")
+
+
+def plain_text(fragment):
+    """The visible text, for measuring: no tags, entities resolved."""
+    return html.unescape(re.sub(r"<[^>]+>", "", fragment))
+
+
+def sentences(paragraph):
+    """Split a paragraph, keeping abbreviations whole."""
+    parts = SENTENCE_RE.split(paragraph)
+    out = []
+    for part in parts:
+        if out and ABBREV_RE.search(plain_text(out[-1]).strip()):
+            out[-1] = out[-1] + " " + part
+        else:
+            out.append(part)
+    return out
+
+
+def trim(paragraphs, limit):
+    """The opening of a biography, cut to a length, on a sentence break."""
+    kept, used = [], 0
+    for paragraph in paragraphs:
+        taken = []
+        for sentence in sentences(paragraph):
+            length = len(plain_text(sentence))
+            if taken or kept:
+                length += 1        # the space or break before it
+            if used + length > limit:
+                break
+            taken.append(sentence)
+            used += length
+        if taken:
+            kept.append(" ".join(taken))
+        if len(taken) != len(sentences(paragraph)):
+            break
+    # never return nothing: one sentence is better than an empty version
+    if not kept and paragraphs:
+        kept = [sentences(paragraphs[0])[0]]
+    return kept
+
+
 CARD_RE_TEMPLATE = r'(<article id="{anchor}".*?)(</article>)'
 BIO_RE = re.compile(r'(<p class="body-l"[^>]*>)(.*?)(</p>)', re.S)
 TAGS_RE = re.compile(r'\s*<ul style="list-style:none;padding:0;margin:18px 0 0;'
@@ -407,22 +467,50 @@ NAME_RE = re.compile(r'(<h3 class="member-name">)(.*?)(</h3>)', re.S)
 NAME_LINK_RE = re.compile(r'(<h3 class="member-name">)<a href="artists/[^"]+">(.*?)</a>(?=</h3>)', re.S)
 
 
+def versions(artist):
+    """Short, medium and full, longest last so it is the one shown."""
+    if not artist["long"]:
+        return [("full", artist["short"])]
+    return [
+        ("short", trim(artist["long"], SHORT_CHARS)),
+        ("medium", trim(artist["long"], MEDIUM_CHARS)),
+        ("full", artist["long"]),
+    ]
+
+
+LENGTH_LABEL = {"short": "Short", "medium": "Medium", "full": "Full"}
+
+
 def page(artist):
     links = "".join(
         '<a class="btn" href="{url}" target="_blank" rel="noopener">{label} '
         '<span class="ar">&#8594;</span></a>'.format(label=label, url=url)
         for label, url in artist["links"])
-    short = "\n".join("        <p>{}</p>".format(p) for p in artist["short"])
-    if artist["long"]:
-        body = "\n".join("          <p>{}</p>".format(p) for p in artist["long"])
-        long_block = (
-            '        <section class="artist-bio">\n'
-            '          <h2 class="event-h2">Biography</h2>\n'
-            + body + "\n"
-            '          <p class="artist-source">{}</p>\n'
-            '        </section>'.format(artist["note"]))
-    else:
-        long_block = ""
+
+    blocks, picks = [], []
+    for name, paragraphs in versions(artist):
+        chars = sum(len(plain_text(x)) for x in paragraphs)
+        body = "\n".join("            <p>{}</p>".format(x) for x in paragraphs)
+        blocks.append(
+            '          <div class="bio-version" data-bio="{name}"{hide}>\n{body}\n'
+            '          </div>'.format(
+                name=name, body=body,
+                hide="" if name == "full" else " hidden"))
+        picks.append(
+            '          <button type="button" data-bio-pick="{name}" '
+            'aria-pressed="{on}">{label}<span>{chars} characters</span></button>'.format(
+                name=name, label=LENGTH_LABEL[name], chars=chars,
+                on="true" if name == "full" else "false"))
+
+    switch = ""
+    if len(picks) > 1:
+        switch = ('        <div class="bio-switch" role="group" '
+                  'aria-label="Length of biography">\n'
+                  '          <span class="label">Biography</span>\n'
+                  + "\n".join(picks) + "\n        </div>\n")
+
+    bio = ('        <section class="artist-bio" data-bio-set>\n'
+           + "\n".join(blocks) + "\n        </section>")
 
     return """<!doctype html>
 <html lang="en">
@@ -436,7 +524,7 @@ def page(artist):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,300..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/styles.css?v=121">
+<link rel="stylesheet" href="../assets/styles.css?v=122">
 <script id="cb-theme-init">document.documentElement.setAttribute("data-theme","dark");</script>
 </head>
 <body>
@@ -474,14 +562,11 @@ def page(artist):
 
     <div class="event-layout">
       <div class="event-main">
-        <section class="artist-lede">
-{short}
-        </section>
-{long_block}
+{bio}
       </div>
       <aside class="event-sidebar">
         <figure class="artist-portrait"><img src="../{photo}" alt="{name}, {role_plain}"></figure>
-        <div class="artist-links">{links}
+{switch}        <div class="artist-links">{links}
           <a class="btn" href="../concerts.html">Upcoming concerts</a>
         </div>
         <div class="event-foot">
@@ -510,13 +595,13 @@ def page(artist):
   </div>
 </footer>
 
-<script src="../assets/site.js?v=38"></script>
+<script src="../assets/site.js?v=39"></script>
 </body>
 </html>
 """.format(name=html.escape(artist["name"]), role=artist["role"],
            role_plain=artist["role"].split(" · ")[0].lower(),
            slug=artist["slug"], photo=artist["photo"], site=SITE,
-           short=short, long_block=long_block, links=links)
+           bio=bio, switch=switch, links=links)
 
 
 def sync_card(src, artist):
