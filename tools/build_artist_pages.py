@@ -28,6 +28,11 @@ SITE = "https://creartbox.nyc"
 ARTISTS = [
     {
         "slug": "guillermo-laporta",
+        "card": (
+            "Flutist, composer, and multimedia creator. Executive Director of CreArtBox "
+            "and Festival ADAR. At the heart of his practice lies the concept of the "
+            "&quot;visual concert&quot; - multimedia performances that weave visual art and "
+            "theatrical design into live chamber music."),
         "anchor": "member-laporta",
         "name": "Guillermo Laporta",
         "role": "Flute · Executive Director",
@@ -46,6 +51,11 @@ ARTISTS = [
     },
     {
         "slug": "josefina-urraca",
+        "card": (
+            "Josefina Urraca is a Spanish pianist and co-director of CreArtBox and the "
+            "Festival ADAR. Her playing has been praised by <em>Mundo Clásico</em> for its "
+            "blend of &quot;introspection and musical abandon&quot; - a balance between "
+            "precision and emotional risk that defines her work both on stage and behind it."),
         "anchor": "member-urraca",
         "name": "Josefina Urraca",
         "role": "Piano · Co-Director",
@@ -105,6 +115,13 @@ ARTISTS = [
     },
     {
         "slug": "emilie-anne-gendron",
+        "card": (
+            "Violinist Emilie-Anne Gendron, lauded by the <em>New York Times</em> as a "
+            "&quot;brilliant soloist&quot; and by <em>Strad Magazine</em> for her "
+            "&quot;marvelous and lyrical playing,&quot; enjoys a dynamic career based in New "
+            "York City. A deeply committed chamber musician, she is a longtime member of the "
+            "Momenta Quartet, and a member and one of the concertmasters of the acclaimed "
+            "Orpheus Chamber Orchestra."),
         "anchor": "member-gendron",
         "name": "Emilie-Anne Gendron",
         "role": "Violin",
@@ -188,6 +205,12 @@ ARTISTS = [
     },
     {
         "slug": "matthew-cohen",
+        "card": (
+            "Ukrainian-American violist Matthew Cohen is a dynamic and versatile artist whose "
+            "captivating performances have made him one of the most sought-after violists of "
+            "his generation. Recently appointed as the violist of the Formosa Quartet and a "
+            "founding member of Ensemble Elatós, he was a special prize winner at the "
+            "prestigious Primrose International Viola Competition."),
         "anchor": "member-cohen",
         "name": "Matthew Cohen",
         "role": "Viola",
@@ -275,6 +298,11 @@ ARTISTS = [
     },
     {
         "slug": "julia-yang",
+        "card": (
+            "Praised for &quot;her sense of joyful virtuosity&quot; as concerto soloist "
+            "(<em>South Florida Classical Review</em>), Julia Yang is a courageous and soulful "
+            "cellist, multi-faceted performer, and founding member of the Naumburg-winning "
+            "Merz Trio and of the clarinet-cello-piano ensemble Trio Phōs."),
         "anchor": "member-yang",
         "name": "Julia Yang",
         "role": "Cello",
@@ -375,6 +403,8 @@ TAGS_RE = re.compile(r'\s*<ul style="list-style:none;padding:0;margin:18px 0 0;'
                      r'color:var\(--ink-soft\)">.*?</ul>', re.S)
 BUTTONS_RE = re.compile(r'(<div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">)(.*?)(</div>)', re.S)
 FULL_BIO_RE = re.compile(r'\s*<a href="artists/[^"]+" class="btn btn-s btn-stamp">.*?</a>', re.S)
+NAME_RE = re.compile(r'(<h3 class="member-name">)(.*?)(</h3>)', re.S)
+NAME_LINK_RE = re.compile(r'(<h3 class="member-name">)<a href="artists/[^"]+">(.*?)</a>(?=</h3>)', re.S)
 
 
 def page(artist):
@@ -406,7 +436,7 @@ def page(artist):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,300..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/styles.css?v=120">
+<link rel="stylesheet" href="../assets/styles.css?v=121">
 <script id="cb-theme-init">document.documentElement.setAttribute("data-theme","dark");</script>
 </head>
 <body>
@@ -497,9 +527,14 @@ def sync_card(src, artist):
         return src
     body = card.group(1)
 
-    # the short biography, as one paragraph
-    short = " ".join(artist["short"])
-    body = BIO_RE.sub(lambda m: m.group(1) + short + m.group(3), body, count=1)
+    # a card is a card: one paragraph, not the whole short biography
+    body = BIO_RE.sub(lambda m: m.group(1) + artist["card"] + m.group(3), body, count=1)
+    # the name itself is the way through, not only the button below it
+    body = NAME_LINK_RE.sub(r"\1\2", body)
+    body = NAME_RE.sub(
+        lambda m: '{}<a href="artists/{}.html">{}</a>{}'.format(
+            m.group(1), artist["slug"], m.group(2), m.group(3)),
+        body, count=1)
     # the list of affiliations under it goes
     body = TAGS_RE.sub("", body)
 

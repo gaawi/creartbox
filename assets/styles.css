@@ -5521,3 +5521,7 @@ button.myBtn_multi, .eventpast a.button {
 .artist-portrait img { width: 100%; height: auto; display: block; }
 .artist-links { display: flex; flex-direction: column; gap: 8px; }
 .artist-links .btn { justify-content: space-between; }
+
+/* The name on an ensemble card leads to that player's page */
+.member-name a { color: inherit; transition: color var(--t-fast); }
+.member-name a:hover, .member-name a:focus-visible { color: var(--senal); }
