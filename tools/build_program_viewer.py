@@ -172,7 +172,7 @@ def page_html(program, pages, ratio, pw, ph):
   </div>
 </footer>
 
-<script src="../assets/site.js?v=40"></script>
+<script src="../assets/site.js?v=41"></script>
 <script src="../assets/program-viewer.js?v=1"></script>
 </body>
 </html>

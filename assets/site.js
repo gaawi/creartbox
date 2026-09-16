@@ -17,25 +17,50 @@ const EVENTBRITE = {
 };
 
 /* ----- Donate URL config - Stripe Payment Links ----------------------
-   Three Stripe Payment Links (one per frequency). The donate form picks
-   the right one based on the selected frequency and appends the amount
-   as a Stripe pre-fill param (Stripe accepts ?prefilled_promo_code= but
-   amounts via Payment Links require pre-built variants OR Checkout). For
-   custom amounts the donate form falls back to a generic Payment Link.
+   Where the donate button goes.
 
-   To wire real Stripe URLs:
-     1. In your Stripe dashboard, create three Payment Links with
-        "Customer chooses amount" enabled - one for one-time, one for
-        monthly, one for annual.
-     2. Replace the URLs below.
+   The site is static, so there is no server to create a Stripe Checkout
+   session. Stripe Payment Links are the way in: they are made in the
+   dashboard, they are plain URLs, and they work from a page like this
+   one. A link carries its own price, so an amount cannot be passed in a
+   query string - a URL like ?amount=250 on a Stripe link does nothing.
 
-   Until then, the buttons open an email so you don't lose donors. */
+   Two ways to set them up, and this map takes either:
+
+     a) One link per frequency with "Customer chooses what to pay", and
+        the donor types the amount on Stripe's page. Three links in all.
+        Put each one under "any".
+
+     b) One link per amount as well, so the amount the donor picked here
+        is the amount Stripe charges. Put those under their number, and
+        keep an "any" for the custom field.
+
+   Mix them freely: an exact amount is used when there is a link for it,
+   otherwise "any" is. Until real links are pasted in, the buttons open
+   an email with the amount in it, so nobody is turned away.
+
+   In Stripe, before going live:
+     - apply for the non-profit rate (a 501(c)(3) pays less per charge);
+     - turn on "Let customers adjust quantity" OFF and recurring ON for
+       the monthly and annual links;
+     - set the receipt's custom message to the acknowledgement language a
+       501(c)(3) has to give, since Stripe's own receipt is not one. */
 const DONATE_LINKS = {
-  once:    "mailto:info@creartbox.nyc?subject=Donation%20to%20CreArtBox%20%28one-time%29",
-  monthly: "mailto:info@creartbox.nyc?subject=Donation%20to%20CreArtBox%20%28monthly%29",
-  annual:  "mailto:info@creartbox.nyc?subject=Donation%20to%20CreArtBox%20%28annual%29",
+  once:    { any: "mailto:info@creartbox.nyc?subject=Donation%20to%20CreArtBox%20%28one-time%29" },
+  monthly: { any: "mailto:info@creartbox.nyc?subject=Donation%20to%20CreArtBox%20%28monthly%29" },
+  annual:  { any: "mailto:info@creartbox.nyc?subject=Donation%20to%20CreArtBox%20%28annual%29" },
 };
-const DONATE_URL = DONATE_LINKS.once;
+const DONATE_URL = DONATE_LINKS.once.any;
+
+/* The link for what the donor picked, with the amount attached only when
+   it is an email: a Stripe link already knows its own price. */
+function donateLink(freq, amount) {
+  const set = DONATE_LINKS[freq] || DONATE_LINKS.once;
+  const base = set[amount] || set.any;
+  if (base.indexOf("mailto:") !== 0) return base;
+  const sep = base.indexOf("?") > -1 ? "&" : "?";
+  return base + sep + "amount=" + amount + "&frequency=" + freq;
+}
 
 /* Dark mode is the only mode. Set the attribute once and forget. */
 document.documentElement.setAttribute("data-theme", "dark");
@@ -604,9 +629,7 @@ function initDonate() {
         c.textContent = active ? "✓" : "○";
       }
     });
-    const base = DONATE_LINKS[freq] || DONATE_URL;
-    const sep = base.includes("?") ? "&" : "?";
-    submit.setAttribute("href", base + sep + "amount=" + final + "&frequency=" + freq);
+    submit.setAttribute("href", donateLink(freq, final));
   }
 
   freqBtns.forEach((b) => {

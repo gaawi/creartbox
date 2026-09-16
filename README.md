@@ -287,20 +287,37 @@ To **add a new concert**, in `concerts.html`:
 
 ## Wiring the donate form
 
-All donate buttons carry `data-donate`. The destination URL lives at the
-top of `assets/site.js`:
+The site is static, so there is no server to open a Stripe Checkout
+session. **Stripe Payment Links** are the way in: made in the dashboard,
+plain URLs, and they work from a page like this one.
+
+A Payment Link carries its own price. An amount cannot be passed in a
+query string - `?amount=250` on a Stripe link does nothing - so there are
+two setups, and `DONATE_LINKS` in `assets/site.js` takes either:
 
 ```js
-const DONATE_URL = "https://buy.stripe.com/your_payment_link";
+// a) three links, "customer chooses what to pay", donor types the amount
+once:    { any: "https://donate.stripe.com/..." },
+
+// b) a link per amount as well, so Stripe charges what was picked here
+monthly: { 50: "https://donate.stripe.com/...",
+           100: "https://donate.stripe.com/...",
+           any: "https://donate.stripe.com/..." },
 ```
 
-The donate page form (`support.html`) appends `?amount=...&frequency=...`
-so a Stripe Payment Link can pre-fill the amount via Stripe's URL
-parameters, or you can wire it to **Donorbox**, **Givebutter**, or any
-other processor by changing only this one constant.
+`donateLink(freq, amount)` takes the exact amount when there is a link
+for it and falls back to `any`. Until real links are pasted in, every
+button opens an email carrying the amount, so nobody is turned away.
 
-Until that URL is set the buttons fall back to
-`mailto:info@creartbox.nyc?subject=Donation`.
+Before going live in Stripe:
+
+- apply for the **non-profit rate** - a registered 501(c)(3) pays less
+  per charge, and it is not automatic;
+- make the monthly and annual links **recurring**, and leave "let
+  customers adjust quantity" off;
+- put the 501(c)(3) acknowledgement language in the receipt's **custom
+  message**. Stripe's own receipt is a payment receipt, not the written
+  acknowledgement a donor needs for a deduction.
 
 ## Images
 
