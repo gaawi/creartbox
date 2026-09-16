@@ -46,7 +46,10 @@ const EVENTBRITE = {
      - set the receipt's custom message to the acknowledgement language a
        501(c)(3) has to give, since Stripe's own receipt is not one. */
 const DONATE_LINKS = {
-  once:    { any: "mailto:info@creartbox.nyc?subject=Donation%20to%20CreArtBox%20%28one-time%29" },
+  // A one-time Payment Link where the donor enters the amount on Stripe.
+  once:    { any: "https://donate.stripe.com/6oEg27etsezgcNOdQR" },
+  // No recurring links yet, so these still open an email rather than
+  // charging a monthly donor once and calling it done.
   monthly: { any: "mailto:info@creartbox.nyc?subject=Donation%20to%20CreArtBox%20%28monthly%29" },
   annual:  { any: "mailto:info@creartbox.nyc?subject=Donation%20to%20CreArtBox%20%28annual%29" },
 };
