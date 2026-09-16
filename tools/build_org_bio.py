@@ -36,7 +36,7 @@ BIOS = {
     "short": [
         'CreArtBox is a New York chamber music and multimedia ensemble founded in 2013 by '
         'flutist <em>Guillermo Laporta</em> and pianist <em>Josefina Urraca</em>, now in its '
-        '13th season. Recognized by <em>The New Yorker</em> as one of its "art and music top '
+        '12th season. Recognized by <em>The New Yorker</em> as one of its "art and music top '
         'picks" and praised by <em>Time Out</em> as "an ensemble devoted to multidisciplinary '
         'events," it merges classical and contemporary music with original stage design and '
         'visual art.',
@@ -44,7 +44,7 @@ BIOS = {
     "medium": [
         'CreArtBox is a New York chamber music and multimedia ensemble founded in 2013 by '
         'flutist <em>Guillermo Laporta</em> and pianist <em>Josefina Urraca</em>, with core '
-        'members Emilie-Anne Gendron, Matthew Cohen, and Julia Yang. Now in its 13th season, '
+        'members Emilie-Anne Gendron, Matthew Cohen, and Julia Yang. Now in its 12th season, '
         'it gives its New York Series at The DiMenna Center for Classical Music and tours '
         'nationally and internationally.',
         'Recognized by <em>The New Yorker</em> as one of its "art and music top picks," '
@@ -62,7 +62,7 @@ BIOS = {
     "long": [
         'CreArtBox is a chamber music and multimedia ensemble based in New York City, founded '
         'in 2013 by flutist <em>Guillermo Laporta</em> and pianist <em>Josefina Urraca</em> and '
-        'now in its 13th season. It gives its New York Series at The DiMenna Center for '
+        'now in its 12th season. It gives its New York Series at The DiMenna Center for '
         'Classical Music, tours nationally with recurring engagements on the West Coast, and '
         'performs internationally in countries such as Japan, Spain, and the United Kingdom.',
         PRESS,
