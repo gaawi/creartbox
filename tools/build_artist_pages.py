@@ -242,185 +242,193 @@ ARTISTS = [
         "slug": "emilie-anne-gendron",
         "contact": ("emilieannegendron.com", "https://www.emilieannegendron.com"),
         "card": (
-            "Violinist Emilie-Anne Gendron, lauded by the <em>New York Times</em> as a "
-            "&quot;brilliant soloist&quot; and by <em>Strad Magazine</em> for her "
-            "&quot;marvelous and lyrical playing,&quot; enjoys a dynamic career based in New "
-            "York City. A deeply committed chamber musician, she is a longtime member of the "
-            "Momenta Quartet, and a member and one of the concertmasters of the acclaimed "
-            "Orpheus Chamber Orchestra."),
+            "Lauded by <em>The Strad</em> for her &quot;marvelous and lyrical playing,&quot; NYC- "
+            "based violinist Emilie-Anne Gendron appears with Orpheus, Momenta Quartet, Toomai "
+            "Quintet, Musicians from Marlboro, Orchestra of St. Luke&#x27;s, The Knights, Talea "
+            "Ensemble, A Far Cry and Gamut Bach Ensemble, among others."),
         "anchor": "member-gendron",
         "name": "Emilie-Anne Gendron",
         "role": "Violin",
         "photo": "assets/img/emilie-gendron.webp",
         "links": [("Website", "https://www.emilieannegendron.com"),
                   ("Instagram", "https://www.instagram.com/elgendron/")],
-        "short": [
-            "Violinist Emilie-Anne Gendron, lauded by the <em>New York Times</em> as a "
-            "&quot;brilliant soloist&quot; and by <em>Strad Magazine</em> for her "
-            "&quot;marvelous and lyrical playing,&quot; enjoys a dynamic career based in New "
-            "York City. A deeply committed chamber musician, she is a longtime member of the "
-            "Momenta Quartet, and a member and one of the concertmasters of the acclaimed "
-            "Orpheus Chamber Orchestra.",
-            "She is a founding member of Ensemble Échappé, a new-music sinfonietta, and of "
-            "Gamut Bach Ensemble. She holds a B.A. in Classics and Ancient Studies from "
-            "Columbia University, and a Master of Music degree and the coveted Artist Diploma "
-            "from Juilliard. She plays on a 1673 Jacob Stainer violin on generous loan from "
-            "the Englewood Chamber Players.",
-        ],
-        "long": [
-            "Violinist Emilie-Anne Gendron, lauded by the <em>New York Times</em> as a "
-            "&quot;brilliant soloist&quot; and by <em>Strad Magazine</em> for her "
-            "&quot;marvelous and lyrical playing,&quot; enjoys a dynamic career based in New "
-            "York City. A deeply committed chamber musician, Ms. Gendron is a longtime member "
-            "of the Momenta Quartet, currently quartet-in-residence at Binghamton University, "
-            "and whose vision encompasses contemporary music of all backgrounds alongside "
-            "great music from the past. She is a member and one of the concertmasters of the "
-            "acclaimed Orpheus Chamber Orchestra and also collaborates with groups such as A "
-            "Far Cry, Argento Chamber Ensemble, Chamber Music Society of Lincoln Center, "
-            "Chamber Orchestra of Philadelphia, CreArtBox, INTERWOVEN, Iris Collective (as one "
-            "of its concertmasters), Marlboro Music Festival / Musicians From Marlboro, New "
-            "Asia Chamber Music Society, Orchestra of St. Luke&#x27;s, Talea Ensemble, The "
-            "Knights, and Sejong. She is a founding member of Ensemble Échappé, a new-music "
-            "sinfonietta, and of Gamut Bach Ensemble, in residence with the Philadelphia "
-            "Chamber Music Society. Other regular collaborations include the Melody and "
-            "Company chamber series with pianist Melody Fader and the longstanding G-Sharp "
-            "Duo, founded with pianist Yelena Grinberg in 2003.",
-            "Ms. Gendron is also a sought-after educator and clinician. She has been one of "
-            "the violinists of the Toomai String Quintet, devoted to a variety of styles from "
-            "around the world and specializing in educational outreach and community "
-            "engagement, since 2009. Toomai (one of the original pilot ensembles in Carnegie "
-            "Hall&#x27;s &quot;Musical Connections&quot; program) helped design composition "
-            "and performance workshops with incarcerated men at Sing Sing Correctional "
-            "Facility; has worked with student composers in the New York Philharmonic&#x27;s "
-            "Very Young Composers Program and with NYC public school students through the "
-            "&quot;Midori and Friends&quot; initiative; and presents at institutions across "
-            "the U.S. ranging from grade school to university level. As a member of the "
-            "Momenta Quartet, Ms. Gendron gives masterclasses and coachings on their "
-            "educational-performing circuit of nearly 40 institutions ranging from public and "
-            "arts schools, universities, and conservatories in the U.S. and as far afield as "
-            "Bolivia, Hong Kong, Indonesia, and Mexico. Ms. Gendron has also served as guest "
-            "chamber music coach for the Juilliard School&#x27;s Music Advancement Program and "
-            "at the Longy School of Music; as violin specialist for student composers at "
-            "Juilliard&#x27;s Evening Division, NYU, and Fordham University; and as a coach "
-            "and performer at the annual Composers Conference.",
-            "Ms. Gendron&#x27;s extensively varied international appearances have included "
-            "recitals in Sweden and at the Louvre in Paris; festivals in Russia, Finland, "
-            "Indonesia, South Korea, and Jordan; and major venues across the Americas, Europe, "
-            "and Asia. Her performances have been broadcast over radio and television in the "
-            "U.S., U.K., Switzerland, New Zealand, Canada, Denmark, Japan, and South Korea. "
-            "She is a past winner of the Stulberg String Competition and took 2nd Prize and "
-            "the Audience Prize at the Sion-Valais (formerly Tibor Varga) International Violin "
-            "Competition.",
-            "Born in the U.S. to Japanese and French-Canadian parents, and a dual citizen of "
-            "the U.S. and Canada, Ms. Gendron began her violin studies at age 4 with Carl "
-            "Shugart and Carol Sykes. Her subsequent training at the Juilliard School was "
-            "overseen by teachers Dorothy DeLay, Won-Bin Yim, Hyo Kang, and David Chan. Ms. "
-            "Gendron holds the distinction of being the first person in Juilliard&#x27;s "
-            "history to be accepted simultaneously to its two most selective courses of study, "
-            "both the Doctor of Musical Arts and the Artist Diploma. She holds a B.A. in "
-            "Classics and Ancient Studies (<em>magna cum laude</em> and with Phi Beta Kappa "
-            "honors) from Columbia University, and a Master of Music degree and the coveted "
-            "Artist Diploma from Juilliard.",
-            "Outside her profession, Ms. Gendron enjoys salsa dancing, fitness training, and "
-            "exploring the many museums and galleries New York has to offer. She is not "
-            "related to the famed 20th-century cellist Maurice Gendron.",
-            "Ms. Gendron plays on a 1673 Jacob Stainer violin on generous loan from the "
-            "Englewood Chamber Players.",
-        ],
-        "note": "As published on emilieannegendron.com.",
+        "short": [],
+        "long": [],
+        # her own three, confirmed by her
+        "versions": {
+            "short": [
+                "Lauded by <em>The Strad</em> for her &quot;marvelous and lyrical playing,&quot; NYC- "
+                "based violinist Emilie-Anne Gendron appears with Orpheus, Momenta Quartet, Toomai "
+                "Quintet, Musicians from Marlboro, Orchestra of St. Luke&#x27;s, The Knights, Talea "
+                "Ensemble, A Far Cry and Gamut Bach Ensemble, among others. A U.S.-Canadian citizen, "
+                "she holds a B.A. from Columbia and Master of Music and Artist Diploma from "
+                "Juilliard. She plays a 1673 Jacob Stainer violin on loan from the Englewood Chamber "
+                "Players.",
+            ],
+            "medium": [
+                "Violinist Emilie-Anne Gendron, lauded by the <em>New York Times</em> as a "
+                "&quot;brilliant soloist&quot; and by <em>The Strad</em> for her &quot;marvelous and "
+                "lyrical playing,&quot; enjoys a multifaceted career based in NYC. She is a member of "
+                "the Orpheus Chamber Orchestra; the Momenta Quartet, championing contemporary music "
+                "of all backgrounds alongside great music from the past; and the Toomai Quintet, "
+                "devoted to a variety of styles from around the world. Ms. Gendron also collaborates "
+                "with Musicians from Marlboro, Orchestra of St. Luke&#x27;s, The Knights, Talea "
+                "Ensemble, A Far Cry, Sejong and Gamut Bach Ensemble. Her broad musical interests "
+                "have led her everywhere from soloing in Carnegie Hall, to backing up The Roots on "
+                "Jimmy Fallon, to helping develop music workshops with incarcerated men at Sing Sing "
+                "Correctional Facility, to performing live on Radiolab at BAM. Internationally, Ms. "
+                "Gendron&#x27;s appearances have included recitals across Sweden and at the Louvre in "
+                "Paris; festivals in Mexico, Russia, Finland and Jordan; and major venues in China, "
+                "South Korea, Indonesia, Bolivia and Chile, to name a few.",
+                "A U.S.-Canadian citizen, Ms. Gendron trained at Juilliard under Won-Bin Yim, Dorothy "
+                "DeLay, David Chan and Hyo Kang. She holds a B.A. in Classics and Ancient Studies "
+                "from Columbia University (<em>magna cum laude</em>, Phi Beta Kappa) and a Master of "
+                "Music degree and the coveted Artist Diploma from Juilliard. She plays on a 1673 "
+                "Jacob Stainer violin on generous loan from the Englewood Chamber Players.",
+            ],
+            "long": [
+                "Violinist Emilie-Anne Gendron, lauded by the <em>New York Times</em> as a "
+                "&quot;brilliant soloist&quot; and by <em>The Strad</em> for her &quot;marvelous and "
+                "lyrical playing,&quot; enjoys a dynamic career based in New York City. A deeply "
+                "committed chamber musician, Ms. Gendron is a longtime member of the Momenta Quartet, "
+                "in residence at Binghamton University, and whose vision encompasses contemporary "
+                "music of all backgrounds alongside great music from the past. She is a member and "
+                "one of the concertmasters of the acclaimed Orpheus Chamber Orchestra and also has "
+                "collaborated with groups such as A Far Cry, Argento Chamber Ensemble, Chamber Music "
+                "Society of Lincoln Center, Chamber Orchestra of Philadelphia, CreArtBox, INTERWOVEN, "
+                "Iris Collective (as one of its concertmasters), Marlboro Music Festival/Musicians "
+                "From Marlboro, New Asia Chamber Music Society, Orchestra of St. Luke&#x27;s, Talea "
+                "Ensemble, The Knights, and Sejong. She is a founding member of Ensemble Échappé, a "
+                "new-music sinfonietta, and of Gamut Bach Ensemble, in residence at the Philadelphia "
+                "Chamber Music Society.",
+                "Ms. Gendron is also a sought-after educator and clinician. She has been one of the "
+                "violinists of the Toomai String Quintet, devoted to a variety of styles from around "
+                "the world and specializing in educational outreach and community engagement, since "
+                "2009. Toomai (one of the original pilot ensembles in Carnegie Hall&#x27;s "
+                "&quot;Musical Connections&quot; program) helped design composition and performance "
+                "workshops with incarcerated men at Sing Sing Correctional Facility; has worked with "
+                "student composers in the New York Philharmonic&#x27;s Very Young Composers Program "
+                "and with NYC public school students through the &quot;Midori and Friends&quot; "
+                "initiative; and presents at institutions across the U.S. ranging from grade school "
+                "to university level. As a member of the Momenta Quartet, Ms. Gendron gives "
+                "masterclasses and coachings on their educational-performing circuit of nearly 40 "
+                "institutions ranging from public and arts schools, universities, and conservatories "
+                "in the U.S. and as far afield as Bolivia, Hong Kong, Indonesia, and Mexico. Ms. "
+                "Gendron has also served as guest chamber music coach for the Juilliard School&#x27;s "
+                "Music Advancement Program and at the Longy School of Music; as violin specialist for "
+                "student composers at Juilliard&#x27;s Evening Division, NYU, and Fordham University; "
+                "and as a coach and performer at the annual Composers Conference.",
+                "Ms. Gendron&#x27;s extensively varied international appearances have included "
+                "recitals in Sweden and at the Louvre in Paris; festivals in Russia, Finland, "
+                "Indonesia, South Korea, and Jordan; and major venues across the Americas, Europe, "
+                "and Asia. Her performances have been broadcast over radio and television in the "
+                "U.S., U.K., Switzerland, New Zealand, Canada, Denmark, Japan, and South Korea. She "
+                "is a past winner of the Stulberg String Competition and took 2nd Prize and the "
+                "Audience Prize at the Sion-Valais (formerly Tibor Varga) International Violin "
+                "Competition.",
+                "A dual citizen of the U.S. and Canada, Ms. Gendron trained at the Juilliard School "
+                "with Dorothy DeLay, Won-Bin Yim, Hyo Kang, and David Chan. She holds a B.A. in "
+                "Classics and Ancient Studies (<em>magna cum laude</em> and with Phi Beta Kappa "
+                "honors) from Columbia and a Master of Music degree and the coveted Artist Diploma "
+                "from Juilliard. Outside her profession, she enjoys salsa dancing, fitness training, "
+                "and exploring the many museums and galleries New York has to offer. She is not "
+                "related to the famed 20th-century cellist Maurice Gendron.",
+                "Ms. Gendron plays on a 1673 Jacob Stainer violin on generous loan from the Englewood "
+                "Chamber Players.",
+            ],
+        },
+        "note": "As supplied by the artist.",
     },
     {
         "slug": "matthew-cohen",
         "contact": ("cohenviola.com", "https://www.cohenviola.com"),
         "card": (
             "Ukrainian-American violist Matthew Cohen is a dynamic and versatile artist whose "
-            "captivating performances have made him one of the most sought-after violists of "
-            "his generation. Recently appointed as the violist of the Formosa Quartet and a "
-            "founding member of Ensemble Elatós, he was a special prize winner at the "
-            "prestigious Primrose International Viola Competition."),
+            "captivating performances have made him one of the most sought-after violists of his "
+            "generation. He was a special prize winner at the prestigious Primrose International "
+            "Viola Competition."),
         "anchor": "member-cohen",
         "name": "Matthew Cohen",
         "role": "Viola",
         "photo": "assets/img/matthew-cohen.jpg",
         "links": [("Website", "https://www.cohenviola.com"),
                   ("Instagram", "https://www.instagram.com/mcohenviola/")],
-        "short": [
-            "Ukrainian-American violist Matthew Cohen is a dynamic and versatile artist whose "
-            "captivating performances have made him one of the most sought-after violists of "
-            "his generation. Recently appointed as the violist of the Formosa Quartet and a "
-            "founding member of Ensemble Elatós, he was a special prize winner at the "
-            "prestigious Primrose International Viola Competition as well as garnering top "
-            "prizes at the Citta di Cremona International Viola Competition in Italy, Vivo "
-            "International Music Competition and the Art of Duo International Competition. "
-            "Particularly interested in advocating for the viola as a unique voice, he is "
-            "challenging the misconception that the viola has a limited repertoire by bringing "
-            "attention to lesser-known gems as well as arrangements of other masterworks.",
-            "Recent solo engagements include his Lincoln Center debut performing Bartok&#x27;s "
-            "Viola Concerto with the Juilliard Orchestra in Alice Tully Hall, Hummel&#x27;s "
-            "Potpourri with the Gstaad Festival Orchestra, Bartok&#x27;s Viola Concerto with I "
-            "Virtuosi Italiani in Cremona, Italy, and presenting the world premiere of Garry "
-            "Schyman&#x27;s viola concerto &quot;Zingaro&quot; with the Los Angeles Jewish "
-            "Symphony. Upcoming appearances include performances at Philadelphia Chamber Music "
-            "Society, Irvine Philharmonic Society, Music Mondays - Toronto, the University of "
-            "Houston, and recitals for the Performing Arts Consortium in Hilton Head, South "
-            "Carolina and Core Memory Music in Wakefield, Rhode Island.",
-            "Cohen is a graduate of the Juilliard School&#x27;s Master of Music program where "
-            "he was the proud recipient of a Kovner Fellowship. He has served as a member of "
-            "the chamber music faculty at the National Youth Orchestra of Canada and the "
-            "Heifetz Institute and is the co-founder and Artistic Director of Opus 71 "
-            "Concerts, a multidisciplinary concert series near New York&#x27;s Lincoln Center. "
-            "His recording of York Bowen&#x27;s <em>Phantasy</em> for viola and piano with "
-            "acclaimed pianist Vivian Fan is available on the Soundset label.",
-            "In addition to his musical activities, he enjoys public speaking and has acted in "
-            "a number of plays including various works of Shakespeare, <em>Peter Pan</em>, "
-            "<em>Auntie Mame</em>, and the musical <em>Bugsy Malone</em>.",
-        ],
-        "long": [
-            "Ukrainian-American violist Matthew Cohen is a dynamic and versatile artist whose "
-            "captivating performances have made him one of the most sought-after violists of "
-            "his generation. Recently appointed as the violist of the Formosa Quartet and a "
-            "founding member of Ensemble Elatós, he was a special prize winner at the "
-            "prestigious Primrose International Viola Competition as well as garnering top "
-            "prizes at the Citta di Cremona International Viola Competition in Italy, Vivo "
-            "International Music Competition and the Art of Duo International Competition. "
-            "Particularly interested in advocating for the viola as a unique voice, he is "
-            "challenging the misconception that the viola has a limited repertoire by bringing "
-            "attention to lesser-known gems as well as arrangements of other masterworks.",
-            "Since his first performance in Carnegie Hall&#x27;s Stern Auditorium at the age "
-            "of 15 as a soloist in the New York premiere of Tomas Svoboda&#x27;s Sonata No. 2 "
-            "for orchestra and solo string quartet, Cohen has concertized as a soloist with "
-            "orchestras such as the Gstaad Festival Orchestra, I Virtuosi Italiani, The "
-            "Juilliard Orchestra, Symphony in C, the North Shore Symphony Orchestra, the "
-            "Colburn Orchestra, Oregon Sinfonietta, the MetroArts Inc. Orchestra, and gave the "
-            "world premiere of internationally recognized video game score composer Garry "
-            "Schyman&#x27;s viola concerto &quot;Zingaro&quot; with the Los Angeles Jewish "
-            "Symphony. Upcoming engagements include performances at Philadelphia Chamber Music "
-            "Society, Irvine Philharmonic Society, Kitchener-Waterloo Chamber Music Society, "
-            "Music Mondays - Toronto, and recitals at the Bacon House in Washington, D.C. and "
-            "for the Performing Arts Consortium in Hilton Head, South Carolina.",
-            "A passionate chamber musician, Cohen has performed alongside many distinguished "
-            "artists including members of ensembles such as the Aeolus, Borromeo, Guarneri, "
-            "Jasper, Orion, Parker, Tokyo, and Vermeer string quartets and the Beaux Arts, "
-            "Horszowski and Tempest piano trios, and has been featured by numerous concert "
-            "series and festivals including Bargemusic, Camerata Pacifica, ChamberFest "
-            "Cleveland, the Colburn Chamber Music Society, Heifetz Celebrity Series, Jupiter "
-            "Symphony Chamber Players, Methow Valley Chamber Music Festival, Olmos Ensemble, "
-            "Ringwood Friends of Chamber Music, and Ravinia&#x27;s Steans Music Institute. He "
-            "has served as a member of the chamber music faculty at the National Youth "
-            "Orchestra of Canada and the Heifetz Institute&#x27;s Junior Division and is the "
-            "co-founder and Artistic Director of Opus 71 Concerts, a multidisciplinary concert "
-            "series near New York&#x27;s Lincoln Center",
-            "As a graduate of the Juilliard School&#x27;s Master of Music program, he was the "
-            "proud recipient of a Kovner Fellowship; he earned his Bachelor of Music degree "
-            "from Cleveland Institute of Music and received an Artist Diploma from Colburn "
-            "Conservatory where he studied with Misha Amory, Heidi Castleman, Paul Coletti, "
-            "Jeffrey Irvine, and Cynthia Phelps.",
-            "His recording of York Bowen&#x27;s <em>Phantasy</em> for viola and piano with "
-            "acclaimed pianist Vivian Fan is available on the Soundset label. In addition to "
-            "his musical activities, he enjoys public speaking and has acted in a number of "
-            "plays including various works of Shakespeare, <em>Peter Pan</em>, <em>Auntie "
-            "Mame</em>, and the musical <em>Bugsy Malone</em>.",
-        ],
+        "short": [],
+        "long": [],
+        # his own three, September 2026, marked not to be altered
+        "versions": {
+            "short": [
+                "Matthew Cohen was a special prize winner at the Primrose International Viola "
+                "Competition and has appeared as a soloist with orchestras such as the Gstaad "
+                "Festival Orchestra, I Virtuosi Italiani, The Juilliard Orchestra, Symphony in C, the "
+                "North Shore Symphony Orchestra, the Colburn Orchestra, and the Los Angeles Jewish "
+                "Symphony for the world premiere of Garry Schyman&#x27;s viola concerto. Recent "
+                "engagements include recitals in Memphis, Philadelphia, Washington D.C., New York, "
+                "Chicago and Vancouver.",
+            ],
+            "medium": [
+                "Ukrainian-American violist Matthew Cohen is a dynamic and versatile artist whose "
+                "captivating performances have made him one of the most sought-after violists of his "
+                "generation. He was a special prize winner at the prestigious Primrose International "
+                "Viola Competition as well as garnering top prizes at the Citta di Cremona "
+                "International Viola Competition, Vivo International Music Competition and the Art of "
+                "Duo International Competition. Particularly interested in advocating for the viola "
+                "as a unique voice, he has concertized as a soloist with orchestras such as the "
+                "Gstaad Festival Orchestra, I Virtuosi Italiani, The Juilliard Orchestra, Symphony in "
+                "C, the North Shore Symphony Orchestra, the Colburn Orchestra, the Oregon "
+                "Sinfonietta, and gave the world premiere of Garry Schyman&#x27;s viola concerto "
+                "&quot;Zingaro&quot; with the Los Angeles Jewish Symphony. Recent engagements include "
+                "performances at Philadelphia Chamber Music Society, Taipei&#x27;s National Concert "
+                "Hall and recitals in Philadelphia, Washington D.C., New York, Chicago and Vancouver. "
+                "Upcoming projects include recording Mozart&#x27;s Sinfonia Concertante with the "
+                "Edmonton Chamber Orchestra and a solo album on the Centaur label titled &quot;Viola "
+                "Americana&quot; featuring works by American composers as well as composers who "
+                "emigrated to America. A passionate chamber musician, Cohen is a member of the Li- "
+                "Cohen Duo and is the co-founder and Artistic Director of Opus 71 Concerts, a "
+                "multidisciplinary concert series near New York&#x27;s Lincoln Center.",
+            ],
+            "long": [
+                "Ukrainian-American violist Matthew Cohen is a dynamic and versatile artist whose "
+                "captivating performances have made him one of the most sought-after violists of his "
+                "generation. He was a special prize winner at the prestigious Primrose International "
+                "Viola Competition as well as garnering top prizes at the Citta di Cremona "
+                "International Viola Competition in Italy, Vivo International Music Competition and "
+                "the Art of Duo International Competition. Particularly interested in advocating for "
+                "the viola as a unique voice, he is challenging the misconception that the viola has "
+                "a limited repertoire by bringing attention to lesser-known gems as well as "
+                "arrangements of other masterworks.",
+                "Since his first performance in Carnegie Hall&#x27;s Stern Auditorium at the age of "
+                "15 as a soloist in the New York premiere of Tomas Svoboda&#x27;s Sonata No. 2 for "
+                "orchestra and solo string quartet, Cohen has concertized as a soloist with "
+                "orchestras such as the Gstaad Festival Orchestra, I Virtuosi Italiani, the Juilliard "
+                "Orchestra, Symphony in C, the North Shore Symphony Orchestra, the Colburn Orchestra, "
+                "the Oregon Sinfonietta and gave the world premiere of internationally recognized "
+                "video game score composer Garry Schyman&#x27;s viola concerto &quot;Zingaro&quot; "
+                "with the Los Angeles Jewish Symphony. Recent engagements include performances at "
+                "Philadelphia Chamber Music Society and Taipei&#x27;s National Concert Hall and "
+                "recitals in Memphis, Philadelphia, Washington D.C., New York, Chicago and Vancouver. "
+                "Upcoming projects include recording Mozart&#x27;s Sinfonia Concertante with the "
+                "Edmonton Chamber Orchestra and a viola and piano album on the Centaur label titled "
+                "&quot;Viola Americana&quot; featuring works by American composers as well as "
+                "composers who emigrated to America.",
+                "A passionate chamber musician, Cohen is a member of the Li-Cohen Duo and has "
+                "performed alongside members of ensembles such as the Aeolus, Borromeo, Guarneri, "
+                "Jasper, Orion, Parker, Tokyo, and Vermeer string quartets and the Beaux Arts, "
+                "Horszowski and Tempest piano trios. He is on the artist roster of CreArtBox and New "
+                "Asia Chamber Music Society in New York City and is the co-founder and Artistic "
+                "Director of Opus 71 Concerts, a multidisciplinary concert series near New "
+                "York&#x27;s Lincoln Center.",
+                "As a graduate of the Juilliard School&#x27;s Master of Music program, he was the "
+                "proud recipient of a Kovner Fellowship following studies at the Colburn Conservatory "
+                "and Cleveland Institute of Music where his principal teachers included Misha Amory, "
+                "Heidi Castleman, Paul Coletti, Jeffrey Irvine, and Cynthia Phelps.",
+                "His recording of York Bowen&#x27;s <em>Phantasy</em> for viola and piano was "
+                "released on the Soundset label. In addition to his musical activities, he enjoys "
+                "public speaking and has acted in a number of plays including various works of "
+                "Shakespeare, <em>Peter Pan</em>, <em>Auntie Mame</em>, and the musical <em>Bugsy "
+                "Malone</em>.",
+            ],
+        },
         "note": "As supplied by the artist. Reproduced without alteration at his request.",
     },
     {

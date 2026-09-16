@@ -86,8 +86,8 @@ BIOS = {
         'career as a flutist with theater directing and lighting design; Urraca is an acclaimed '
         'solo and chamber pianist with deep ties to Spanish repertoire; Gendron is a longtime '
         'member of the Momenta Quartet and one of the concertmasters of the Orpheus Chamber '
-        'Orchestra; Cohen is the newly appointed violist of the Formosa Quartet; and Yang is a '
-        'founding member of the Naumburg-winning Merz Trio.',
+        'Orchestra; Cohen is a special prize winner at the Primrose International Viola '
+        'Competition; and Yang is a founding member of the Naumburg-winning Merz Trio.',
         'The project was originally conceived in 2006 in Europe as Cre.Art Project by Laporta '
         'and clarinetist/performance creator Tagore González, and re-established in New York '
         'City in 2013. Since then CreArtBox has produced a series of theatrical and '
