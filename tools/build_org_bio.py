@@ -53,8 +53,8 @@ BIOS = {
         'compelling," CreArtBox merges classical and contemporary music with original stage '
         'design and visual art.',
         'The ensemble has run an open Call for Scores since its first season: eleven works in '
-        'the 2026/27 season reached the programme through it, and one April evening is given '
-        'over to it entirely. Its work is supported by the New York State Council on the Arts, '
+        'the 2026/27 season reached the programme through it. Its work is supported by the '
+        'New York State Council on the Arts, '
         'the NYC Department of Cultural Affairs, the Amphion Foundation, the Alice M. Ditson '
         'Fund, and the Aaron Copland Fund for Music. Each August it co-produces Festival ADAR '
         'in rural Asturias, Spain.',
@@ -63,8 +63,8 @@ BIOS = {
         'CreArtBox is a chamber music and multimedia ensemble based in New York City, founded '
         'in 2013 by flutist <em>Guillermo Laporta</em> and pianist <em>Josefina Urraca</em> and '
         'now in its 12th season. It gives its New York Series at The DiMenna Center for '
-        'Classical Music, tours nationally with recurring engagements on the West Coast, and '
-        'performs internationally in countries such as Japan, Spain, and the United Kingdom.',
+        'Classical Music, tours nationally with recurring engagements on the East Coast, and '
+        'performs internationally in Japan, Spain and across Europe.',
         PRESS,
         'The 2026/27 season runs from October to August: four productions at The DiMenna '
         'Center, eleven works drawn from the ensemble&#x27;s open Call for Scores, one world '
@@ -73,9 +73,10 @@ BIOS = {
         'CreArtBox has run an open Call for Scores since its first season, alongside a composer '
         'residency program, fostering the creation of new works and mentoring emerging voices. '
         'Over the past decade it has presented works by Pulitzer Prize winners Caroline Shaw '
-        'and David Lang and by Timo Andres, Anna Clyne, Nico Muhly, Joshua Penman, Andrea '
-        'Casarrubios, Hannah Selin, Dai Wei, Brian Wysocki, Annamaria Kowalsky and Cullyn '
-        'Murphy, among many others.',
+        'and David Lang and by Timo Andres, Anna Clyne, Nico Muhly, Sebastian Currier, Todd '
+        'Reynolds, Philip Lasser, Joshua Penman, Andrea Casarrubios, Hannah Selin, Dai Wei, '
+        'Brian Wysocki, Annamaria Kowalsky, Celeste Oram, JP Jofre, Marcos Fernández, '
+        'Michael Grebla, Nathan Schram and Cullyn Murphy, among many others.',
         'Composers reaching the current season through the call include Eric Moe, a Guggenheim '
         'fellow honoured by the American Academy of Arts and Letters; Zygmund de Somogyi, a '
         'Royal Philharmonic Society composer for 2025 and Festival ADAR&#x27;s composer in '
@@ -84,7 +85,7 @@ BIOS = {
         'Composer Award.',
         'Each core member brings a distinctive artistic trajectory: Laporta has combined a '
         'career as a flutist with theater directing and lighting design; Urraca is an acclaimed '
-        'solo and chamber pianist with deep ties to Spanish repertoire; Gendron is a longtime '
+        'solo and chamber pianist, a pupil of Dmitri Bashkirov; Gendron is a longtime '
         'member of the Momenta Quartet and one of the concertmasters of the Orpheus Chamber '
         'Orchestra; Cohen is a special prize winner at the Primrose International Viola '
         'Competition; and Yang is a founding member of the Naumburg-winning Merz Trio.',
