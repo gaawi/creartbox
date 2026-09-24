@@ -1194,6 +1194,9 @@ button.video-card:focus-visible .video-play::before,
   align-items: flex-start;
 }
 .bio-version { animation: bioFade 260ms ease; }
+/* a link inside a biography should read as one */
+.bio-version a { color: inherit; border-bottom: 1px solid var(--filete-alto); }
+.bio-version a:hover, .bio-version a:focus-visible { color: var(--senal); border-bottom-color: var(--senal); }
 @keyframes bioFade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 
 /* Copy-bio button (under each long/medium/short version) */
@@ -3254,6 +3257,26 @@ i.fa { font-style: normal; }
   margin: 0;
 }
 .ticket-note a { color: var(--ink); border-bottom: 1px solid currentColor; }
+
+/* What a premium seat gets you, above the small print */
+.ticket-tier {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 0 0 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--rule);
+}
+.ticket-tier .tier-h {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--senal);
+  margin-bottom: 3px;
+}
 
 .pgm-mins {
   font-family: var(--sans);

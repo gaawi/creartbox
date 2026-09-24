@@ -121,7 +121,7 @@ ARTISTS = [
                 "collaborations and community partnerships across New York. The organization has "
                 "received support from the New York State Council on the Arts and recognition from "
                 "<em>The New Yorker</em>, <em>BroadwayWorld</em>, and <em>Time Out</em>.",
-                "In 2020, Laporta and Urraca founded the Association for the Development of the Arts "
+                "In 2021, Laporta and Urraca founded the Association for the Development of the Arts "
                 "in Rural Areas (ADAR) in Asturias, Spain. Through its flagship Festival ADAR, they "
                 "bring chamber music, new commissions, artist residencies, talks, visual "
                 "installations, and site-specific projects to villages and landscapes outside "
@@ -185,18 +185,47 @@ ARTISTS = [
         "role": "Piano · Co-Director",
         "photo": "assets/img/josefina-urraca.png",
         "links": [("Website", "https://josefinaurraca.com")],
-        "short": [
-            "Josefina Urraca is a Spanish pianist and co-director of CreArtBox and the "
-            "Festival ADAR. Her playing has been praised by <em>Mundo Clásico</em> for its "
-            "blend of &quot;introspection and musical abandon&quot; - a balance between "
-            "precision and emotional risk that defines her work both on stage and behind it.",
-            "She has performed at the Salle Cortot in Paris, the Collège d&#x27;Espagne at "
-            "the Cité Internationale Universitaire de Paris, the Sony Auditorium in Madrid, "
-            "Carnegie Hall in New York, among others.",
-        ],
-        "long": [
-            "Josefina Urraca is a Spanish pianist and co-director of CreArtBox and the "
-            "Festival ADAR. Her playing has been praised by <em>Mundo Clásico</em> for its "
+        "short": [],
+        "long": [],
+        # three of her own, with the Reina Sofía years at the front
+        "versions": {
+            "short": [
+                "Josefina Urraca is a Spanish pianist and co-director of CreArtBox and of "
+                "<a href=\"https://festivaladar.com\" target=\"_blank\" rel=\"noopener\">Festival "
+                "ADAR</a>. She studied with Dmitri Bashkirov at the Reina Sofía School of Music "
+                "in Madrid, and her playing has been praised by <em>Mundo Clásico</em> for its "
+                "blend of &quot;introspection and musical abandon&quot;. She has performed at "
+                "the Salle Cortot in Paris, the Sony Auditorium in Madrid, and Carnegie Hall in "
+                "New York, and her work has been supported by the New York State Council on the "
+                "Arts and the Queens Council on the Arts.",
+            ],
+            "medium": [
+                "Josefina Urraca is a Spanish pianist and co-director of CreArtBox and of "
+                "<a href=\"https://festivaladar.com\" target=\"_blank\" rel=\"noopener\">Festival "
+                "ADAR</a>. Her playing has been praised by <em>Mundo Clásico</em> for its blend "
+                "of &quot;introspection and musical abandon&quot; - a balance between precision "
+                "and emotional risk that defines her work both on stage and behind it. She has "
+                "performed at the Salle Cortot in Paris, the Collège d&#x27;Espagne at the Cité "
+                "Internationale Universitaire de Paris, the Sony Auditorium in Madrid, and "
+                "Carnegie Hall in New York, and her work has reached wider audiences through "
+                "Spanish television and radio.",
+                "She trained at the Reina Sofía School of Music in Madrid, where she studied "
+                "with Dmitri Bashkirov, and also at the Salamanca Conservatory, the École "
+                "Normale de Musique &quot;Alfred Cortot&quot; in Paris, and the Manhattan School "
+                "of Music in New York. She has been recognized in competitions including "
+                "INJUVE, the Ciudad de Carlet International Competition, and the Savvy Musicians "
+                "in Action International Competition, and her work has received support from the "
+                "New York State Council on the Arts, the NYC Department of Cultural Affairs, the "
+                "Queens Council on the Arts, and the Government of Asturias.",
+                "In 2013, alongside flutist Guillermo Laporta, she co-founded CreArtBox, and "
+                "since 2021 the two have co-directed Festival ADAR in rural Asturias, bringing "
+                "concerts, commissions, artist talks, and site-specific installations to small "
+                "villages.",
+            ],
+            "long": [
+            "Josefina Urraca is a Spanish pianist and co-director of CreArtBox and of "
+            "<a href=\"https://festivaladar.com\" target=\"_blank\" rel=\"noopener\">Festival "
+            "ADAR</a>. Her playing has been praised by <em>Mundo Clásico</em> for its "
             "blend of &quot;introspection and musical abandon&quot; - a balance between "
             "precision and emotional risk that defines her work both on stage and behind it.",
             "She has performed at the Salle Cortot in Paris, the Collège d&#x27;Espagne at "
@@ -216,6 +245,13 @@ ARTISTS = [
             "commissioned works, artist talks, and site-specific installations into the "
             "landscape of small villages. The festival has become a model for how "
             "contemporary art can revitalize rural heritage.",
+            "She trained at the Reina Sofía School of Music in Madrid, where she studied "
+            "with Dmitri Bashkirov, and her training also took shape across the Salamanca "
+            "Conservatory, the University of Alcalá de Henares in Madrid, the École Normale "
+            "de Musique &quot;Alfred Cortot&quot; in Paris, and the Manhattan School of Music "
+            "in New York. Her other teachers include Maria João Pires, Ferenc Rados, Patrín "
+            "García-Barredo, Josep Colom, Claudio Martínez-Mehner, Kennedy Moretti, Eldar "
+            "Nebolsin, Marc Silverman, Márta Gulyás and Frank Wibaut.",
             "Over fifteen years, her work has received support from institutions including "
             "the New York State Council on the Arts, the NYC Department of Cultural Affairs, "
             "the Amphion Foundation, the Copland Foundation, and the Alice M. Ditson Fund, "
@@ -224,17 +260,11 @@ ARTISTS = [
             "She has been recognized in competitions including the Savvy Musicians in Action "
             "International Competition, INJUVE, Montehermoso Contemporary Creation, the "
             "Ciudad de Carlet International Competition, and the Rotary Club awards.",
-            "Her training took shape across the Salamanca Conservatory, the University of "
-            "Alcalá de Henares in Madrid, the École Normale de Musique &quot;Alfred "
-            "Cortot&quot; in Paris, the Reina Sofía School of Music in Madrid, and the "
-            "Manhattan School of Music in New York. She has studied with Dmitri Bashkirov, "
-            "Maria João Pires, Ferenc Rados, Patrín García-Barredo, Josep Colom, Claudio "
-            "Martínez-Mehner, Kennedy Moretti, Eldar Nebolsin, Marc Silverman, Márta Gulyás "
-            "and Frank Wibaut.",
             "Born into a family of professional musicians in Palencia, she divides her life "
             "between New York and Leiguarda, a small village in Asturias, where she lives "
             "with her husband Guillermo and their son and daughter Eliot and Emilia.",
-        ],
+            ],
+        },
         "note": "As published on josefinaurraca.com.",
     },
     {
@@ -673,7 +703,7 @@ def page(artist):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,300..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/styles.css?v=129">
+<link rel="stylesheet" href="../assets/styles.css?v=130">
 <script id="cb-theme-init">document.documentElement.setAttribute("data-theme","dark");</script>
 </head>
 <body>
