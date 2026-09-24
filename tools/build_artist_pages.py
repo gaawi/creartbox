@@ -117,7 +117,7 @@ ARTISTS = [
                 "explore different relationships between live music and visual media.",
                 "CreArtBox has presented performances at venues including The DiMenna Center for "
                 "Classical Music, Mark Morris Dance Center, The William Vale, Culture Lab LIC, "
-                "Greenwich House, and the New York Society for Ethical Culture, while developing "
+                "and the New York Society for Ethical Culture, while developing "
                 "collaborations and community partnerships across New York. The organization has "
                 "received support from the New York State Council on the Arts and recognition from "
                 "<em>The New Yorker</em>, <em>BroadwayWorld</em>, and <em>Time Out</em>.",
@@ -139,8 +139,7 @@ ARTISTS = [
                 "Violin Sonatas: Transcriptions for Flute and Piano</em>, <em>AWAVE</em>, and <em>12 "
                 "Preludes</em>, combining his work as a flutist, composer, and arranger.",
                 "As a performer, Laporta served as Co-Principal Flute of the Oviedo Filarmonía "
-                "(2009-12), Principal Flute of the Herald Chamber Orchestra (2012-15), and Principal "
-                "Flute of the New York International Chamber Orchestra (2013-18). He has also "
+                "(2009-12). He has also "
                 "performed with ensembles including the BBC Orchestra, Orquesta Sinfónica del "
                 "Principado de Asturias, Orquesta Sinfónica de Euskadi, and Le Train Bleu.",
                 "He has performed at venues including Carnegie Hall and Lincoln Center and shared the "
@@ -674,7 +673,7 @@ def page(artist):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,300..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/styles.css?v=128">
+<link rel="stylesheet" href="../assets/styles.css?v=129">
 <script id="cb-theme-init">document.documentElement.setAttribute("data-theme","dark");</script>
 </head>
 <body>
@@ -745,7 +744,7 @@ def page(artist):
   </div>
 </footer>
 
-<script src="../assets/site.js?v=42"></script>
+<script src="../assets/site.js?v=43"></script>
 </body>
 </html>
 """.format(name=html.escape(artist["name"]), role=artist["role"],
@@ -776,6 +775,14 @@ def sync_card(src, artist):
     link = ('<a href="artists/{}.html" class="btn btn-s btn-stamp">Full biography '
             '<span class="ar">&#8594;</span></a>'.format(artist["slug"]))
 
+    # every member gets the link to their own site next to their photo;
+    # most cards carried one already, Laporta's and Urraca's did not
+    site = next((u for label, u in artist.get("links", []) if label == "Website"), "")
+    site_btn = ""
+    if site and site not in body:
+        site_btn = ('<a href="{}" target="_blank" rel="noopener" class="btn btn-s">'
+                    'Website <span class="ar">&#8594;</span></a>'.format(site))
+
     # start from a card with none of our buttons in it, wherever a previous
     # run left one, so re-running cannot strand a row outside the column
     body = FULL_BIO_RE.sub("", body)
@@ -785,7 +792,7 @@ def sync_card(src, artist):
     if buttons:
         body = body.replace(
             buttons.group(0),
-            buttons.group(1) + link + buttons.group(2) + buttons.group(3), 1)
+            buttons.group(1) + link + site_btn + buttons.group(2) + buttons.group(3), 1)
     else:
         # Laporta and Urraca carry one bare link instead of a row of them.
         # Adding a row after the text column dropped the button into the
@@ -795,7 +802,7 @@ def sync_card(src, artist):
         if not bare:
             print("  !! nowhere to put the link on", artist["name"])
             return src.replace(card.group(0), body + card.group(2), 1)
-        row = (ROW_OPEN + link
+        row = (ROW_OPEN + link + site_btn
                + '<a href="{}" class="btn btn-s">{}</a>'.format(bare.group(1), bare.group(2))
                + "</div>")
         body = body.replace(bare.group(0), "\n        " + row, 1)

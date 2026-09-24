@@ -404,23 +404,65 @@ function initVideoModal() {
     });
   }
 
-  async function playHls(url) {
+  function ytFrame(id) {
+    return '<iframe src="https://www.youtube-nocookie.com/embed/' + id +
+      '?autoplay=1&rel=0" allow="autoplay; fullscreen; picture-in-picture; ' +
+      'encrypted-media" allowfullscreen></iframe>';
+  }
+
+  // The host keeps a progressive MP4 beside the stream. A network that
+  // blocks the script CDN, or a browser that will not take the stream,
+  // can still play that file.
+  function mp4For(url) {
+    return /\/playlist\.m3u8(\?|$)/i.test(url)
+      ? url.replace(/playlist\.m3u8/i, "play_720p.mp4")
+      : "";
+  }
+
+  async function playHls(url, yt) {
     const video = document.createElement("video");
     video.controls = true;
     video.autoplay = true;
     video.playsInline = true;
     frame.innerHTML = "";
     frame.appendChild(video);
+
+    // Nothing played is worse than something else played: fall through
+    // the stream, the MP4, and the video on YouTube, in that order,
+    // rather than leaving the viewer with a black dialog.
+    let step = 0;
+    function fallback() {
+      step += 1;
+      if (step > 2) return;
+      if (hlsInstance) { hlsInstance.destroy(); hlsInstance = null; }
+      const mp4 = mp4For(url);
+      if (step === 1 && mp4) {
+        video.src = mp4;
+        video.load();
+        const p = video.play();
+        if (p && p.catch) p.catch(() => {});
+        return;
+      }
+      if (yt) { frame.innerHTML = ytFrame(yt); return; }
+      frame.innerHTML = '<p class="video-fail">This film could not be loaded here. ' +
+        'Write to <a href="mailto:info@creartbox.nyc">info@creartbox.nyc</a> and ' +
+        'we will send you a link.</p>';
+    }
+    video.addEventListener("error", fallback);
+
     if (video.canPlayType("application/vnd.apple.mpegurl")) {
       video.src = url;
     } else {
       const Hls = await loadHlsLib();
       if (Hls && Hls.isSupported()) {
         hlsInstance = new Hls();
+        hlsInstance.on(Hls.Events.ERROR, (e, data) => {
+          if (data && data.fatal) fallback();
+        });
         hlsInstance.loadSource(url);
         hlsInstance.attachMedia(video);
       } else {
-        video.src = url;
+        video.src = mp4For(url) || url;
       }
     }
   }
@@ -431,14 +473,13 @@ function initVideoModal() {
     const title = btn.getAttribute("data-video-title") || "";
 
     if (src && /\.m3u8(\?|$)/i.test(src)) {
-      playHls(src);
+      playHls(src, yt);
     } else if (src && /\.(mp4|webm)(\?|$)/i.test(src)) {
       frame.innerHTML = '<video src="' + src + '" controls autoplay playsinline></video>';
     } else if (src) {
       frame.innerHTML = '<iframe src="' + src + '" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe>';
     } else if (yt) {
-      const embedUrl = "https://www.youtube-nocookie.com/embed/" + yt + "?autoplay=1&rel=0";
-      frame.innerHTML = '<iframe src="' + embedUrl + '" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe>';
+      frame.innerHTML = ytFrame(yt);
     } else {
       return;
     }
