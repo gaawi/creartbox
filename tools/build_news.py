@@ -38,7 +38,7 @@ POSTS_DIR = "news/_posts"
 OUT_DIR = "news"
 INDEX = "news.html"
 FEED = "feed.xml"
-CSS = "assets/styles.css?v=131"
+CSS = "assets/styles.css?v=132"
 JS = "assets/site.js?v=43"
 MONTHS = ["January", "February", "March", "April", "May", "June", "July",
           "August", "September", "October", "November", "December"]
@@ -277,28 +277,18 @@ def index_page(all_posts):
                  "ensemble is working on now.",
                  SITE + "/news.html", "")
             + """
-<section style="padding:64px 0 24px">
+<section style="padding:64px 0 10px">
   <div class="wrap">
-    <span class="folio left">CreArtBox &#183; News</span>
-    <span class="folio right">{count}</span>
-
     <div class="page-folio-head">
       <span class="label">News</span>
       <hr class="rule" style="width:100%">
       <span class="label ital">Updated as things happen</span>
     </div>
-    <h1 class="h-mast" style="margin-top:32px;max-width:15ch;">
-      <em>News</em> and notes.
-    </h1>
-    <p class="lede" style="margin-top:40px">
-      Season announcements, what the ensemble is rehearsing, where it is playing, and
-      the work that reaches us through the open call. Written here first, before it
-      goes out by email.
-    </p>
+    <h1 class="sr-only">News</h1>
   </div>
 </section>
 
-<section class="section news-page" style="padding-top:20px">
+<section class="section news-page" style="padding-top:14px">
   <div class="wrap">
     <div class="news-lead">
 {lead}
@@ -312,8 +302,7 @@ def index_page(all_posts):
       <a href="mailto:info@creartbox.nyc">info@creartbox.nyc</a> to join the mailing list.</p>
   </div>
 </section>
-""".format(lead=lead, rest=rest, site=SITE,
-           count="%d note%s" % (len(all_posts), "" if len(all_posts) == 1 else "s"))
+""".format(lead=lead, rest=rest, site=SITE)
             + foot(""))
 
 

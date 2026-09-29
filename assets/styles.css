@@ -5787,7 +5787,7 @@ button.myBtn_multi, .eventpast a.button {
 
 /* the strip on the home page */
 .home-news .hnews-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px;
   background: var(--filete); border: 1px solid var(--filete); margin-top: 26px;
 }
 .hnews-item {
@@ -5822,3 +5822,10 @@ button.myBtn_multi, .eventpast a.button {
 .news-fig { margin: 28px 0; }
 .news-fig img { display: block; width: 100%; height: auto; border: 1px solid var(--filete); }
 .news-fig .cap { margin-top: 8px; }
+
+/* A heading the page does not need to show, but a screen reader and a
+   search engine do. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
