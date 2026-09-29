@@ -243,6 +243,52 @@ below 761px. Arrow keys, swipe, thumbnails, zoom and full screen are
 there; nothing is parsed in the browser, so it works with the PDF
 unopened.
 
+## News
+
+The news section is written in Markdown, one file per post, and built
+into pages, an index and an RSS feed:
+
+```bash
+python3 tools/build_news.py            # write news.html, news/*.html, feed.xml
+python3 tools/build_news.py --check    # fail if out of date
+```
+
+A post is `news/_posts/YYYY-MM-DD-slug.md`. It opens with a short block
+of keys between `---` lines:
+
+```
+---
+title: What happened
+date: 2026-09-29
+dek: One sentence under the headline, used on the card and in the feed.
+tag: Season
+image: assets/img/ensemble.jpg
+alt: What the photograph shows
+caption: The line printed under it.
+link: Read about Currents | concerts/currents-2026.html
+---
+```
+
+`link` can be repeated; each one becomes a button at the foot of the
+post. The body takes paragraphs, `## ` headings, `- ` lists, `> `
+quotations, `**bold**`, `*italic*`, `[links](url)` and
+`![alt](path "caption")` for a photograph. Nothing else is needed:
+the date in the filename orders the posts, the newest one leads the
+index and the three newest fill the strip on the home page, between
+the generated markers `<!-- NEWS ... -->`.
+
+Deleting a post file deletes its page on the next run. The section is
+linked from every page by:
+
+```bash
+python3 tools/sync_nav.py          # put News in the nav and the footer
+python3 tools/sync_nav.py --check  # fail if a page is missing it
+```
+
+It inserts the item in front of Donate, in both shapes of navigation
+strip, and in the footer under The Organization - including inside the
+page templates in `tools/*.py`, so a regenerated page keeps it.
+
 ## Performer biographies
 
 `tools/link_performer_bios.py` links every performer name in

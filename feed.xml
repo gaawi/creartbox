@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>CreArtBox · News</title>
+    <link>https://creartbox.nyc/news.html</link>
+    <description>Season announcements, notes from the road, and what the ensemble is working on now.</description>
+    <language>en-us</language>
+    <item>
+      <title>The printed programme for Currents, before the night</title>
+      <link>https://creartbox.nyc/news/currents-programme.html</link>
+      <guid isPermaLink="true">https://creartbox.nyc/news/currents-programme.html</guid>
+      <pubDate>Tue, 29 Sep 2026 12:00:00 +0000</pubDate>
+      <description>The booklet for 30 October can be read page by page on the site, or downloaded, a month before the concert.</description>
+    </item>
+    <item>
+      <title>Five days at the Kuopio Conservatory</title>
+      <link>https://creartbox.nyc/news/kuopio-residency.html</link>
+      <guid isPermaLink="true">https://creartbox.nyc/news/kuopio-residency.html</guid>
+      <pubDate>Tue, 22 Sep 2026 12:00:00 +0000</pubDate>
+      <description>Guillermo Laporta and Josefina Urraca teach in Finland from 5 to 9 October, and play one public concert next door at the Music Centre.</description>
+    </item>
+    <item>
+      <title>Eleven works this season came through the open call</title>
+      <link>https://creartbox.nyc/news/eleven-works-open-call.html</link>
+      <guid isPermaLink="true">https://creartbox.nyc/news/eleven-works-open-call.html</guid>
+      <pubDate>Tue, 15 Sep 2026 12:00:00 +0000</pubDate>
+      <description>More than in any season before, and in April an entire evening is given over to them.</description>
+    </item>
+    <item>
+      <title>CreArtBox announces its twelfth season</title>
+      <link>https://creartbox.nyc/news/twelfth-season.html</link>
+      <guid isPermaLink="true">https://creartbox.nyc/news/twelfth-season.html</guid>
+      <pubDate>Thu, 10 Sep 2026 12:00:00 +0000</pubDate>
+      <description>Four productions at The DiMenna Center, eleven works from the open call, one world premiere, touring dates in Illinois, Kentucky and the Hudson Valley, a residency in Finland, and the seventh Festival ADAR in Asturias.</description>
+    </item>
+  </channel>
+</rss>
