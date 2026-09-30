@@ -289,6 +289,33 @@ It inserts the item in front of Donate, in both shapes of navigation
 strip, and in the footer under The Organization - including inside the
 page templates in `tools/*.py`, so a regenerated page keeps it.
 
+## For presenters, and the repertoire
+
+`presenters.html` carries the programmes on offer and the About text a
+presenter needs; `repertoire.html` lists every work the ensemble has
+played, grouped by composer and filtered as you type. Both come from
+one script:
+
+```bash
+python3 tools/build_presenters.py          # write both pages
+python3 tools/build_presenters.py --check  # fail if out of date
+```
+
+A programme is an entry in `PROGRAMS` in the script: the label, a
+title, the paragraph, and the works as `(composer, work, minutes)`.
+`(None, "Intermission", None)` prints the break, and the total is
+added up from the durations. The About text is in `ABOUT`.
+
+The repertoire is `data/repertoire.txt`, one work per line as
+`Composer — Title` (an em dash with spaces). Composers are sorted by
+surname; `SORT` in the script holds the ones the last word gets wrong
+(von Weber, van Beethoven, de Falla and the rest). The search folds
+accents, so "dvorak" finds Dvořák, and every term has to match.
+
+The page is not in the navigation strip - nine items fill it - so it
+sits in the footer under The Organization, and on the calendar page in
+the block that was already addressed to presenters.
+
 ## Performer biographies
 
 `tools/link_performer_bios.py` links every performer name in

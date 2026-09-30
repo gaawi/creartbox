@@ -120,6 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Concert filter tabs
   initBioSwitch();
   initConcertTabs();
+  initRepertoireFilter();
 
   // Transparent masthead → solid on scroll past hero
   initTransparentMasthead();
@@ -1219,4 +1220,50 @@ function initComposerRoster() {
       if (e.key === "Enter" || e.key === " ") onActivate(e);
     });
   });
+}
+
+/* The repertoire list filters as you type. Every work carries its
+   composer and title, folded to plain lowercase letters, so "dvorak"
+   finds Dvořák and "quintet" finds all of them. */
+function initRepertoireFilter() {
+  const input = document.querySelector("[data-rep-search]");
+  const list = document.querySelector("[data-rep-list]");
+  if (!input || !list) return;
+  const count = document.querySelector("[data-rep-count]");
+  const empty = document.querySelector("[data-rep-empty]");
+  const groups = [...list.querySelectorAll(".rep-group")].map((group) => ({
+    el: group,
+    works: [...group.querySelectorAll(".rep-work")],
+  }));
+  const total = groups.reduce((n, g) => n + g.works.length, 0);
+
+  function fold(text) {
+    return text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+  }
+
+  function run() {
+    const terms = fold(input.value).split(/\s+/).filter(Boolean);
+    let shown = 0;
+    groups.forEach((group) => {
+      let here = 0;
+      group.works.forEach((work) => {
+        const hay = work.getAttribute("data-rep") || "";
+        const hit = terms.every((t) => hay.indexOf(t) > -1);
+        work.hidden = !hit;
+        if (hit) here += 1;
+      });
+      group.el.hidden = here === 0;
+      shown += here;
+    });
+    if (count) {
+      count.textContent = shown === total
+        ? total + " works"
+        : shown + " of " + total + " works";
+    }
+    if (empty) empty.hidden = shown !== 0;
+  }
+
+  input.addEventListener("input", run);
+  input.addEventListener("search", run);
+  run();
 }

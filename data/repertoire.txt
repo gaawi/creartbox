@@ -1,0 +1,219 @@
+# Repertoire played by CreArtBox.
+# One work per line: Composer — Title
+# The page groups these by composer, sorted by surname, and counts them.
+# Lines starting with # are ignored.
+
+Aaron Copland — Duo for Flute and Piano
+Albert Roussel — Two Poems by Ronsard
+Albert Roussel — Serenade, Op. 30
+Alex Burtzos — Islandi for piano quartet
+Alexander Scriabin — Romance
+Andrea Casarrubios — Afilador
+Andrea Casarrubios — Silbo (2021)
+Andrea Casarrubios — Sonia (2023)
+Andrea Casarrubios — 24 Mozas (2018)
+Andrea Casarrubios — SEVEN for Solo Cello (2020)
+Andrea Casarrubios — Piano Quintet
+Andrea Casarrubios — Mensajes de Agua
+André Caplet — An Invisible Flute
+André Jolivet — Petite Suite
+Anna Clyne — Just as They Are
+Annamaria Kowalsky — Heart Meditation
+Annamaria Kowalsky — Autopoiesis (for cello solo)
+Annamaria Kowalsky — Perpetuo (for solo violin)
+Annamaria Kowalsky — Childhood Memories (for toy piano)
+Antonio Soler — Quintet No. 4
+Antonio Vivaldi — La Notte, Flute Concerto in G minor, RV 439
+Antonín Dvořák — Piano Quintet No. 2 in A major, Op. 81
+Antonín Dvořák — Piano Trio No. 4 "Dumky", Op. 90
+Antonín Dvořák — String Quartet No. 12 "American", Op. 96
+Arvo Pärt — Pari Intervallo
+Arvo Pärt — Mirror in the Mirror
+Beata Moon — Submerged / Prelude
+Benjamin Britten — Third Suite for Cello
+Benjamin Britten — String Quartet No. 2
+Brittney Benton — Piano Trio No. 1
+Bryan Wysocki — We Can Learn Me Together
+Bryce Dessner — Murder Ballades
+Béla Bartók — Romanian Folk Dances, Sz. 56
+Camille Saint-Saëns — Piano Quintet in A minor, Op. 14
+Camille Saint-Saëns — Piano Quartet in E major
+Camille Saint-Saëns — Tarantelle, Op. 6
+Carl Maria von Weber — Trio for Piano, Flute and Cello in G minor, Op. 63
+Caroline Shaw — Thousandth Orange
+Caroline Shaw — Blueprint
+Celeste Oram — toccata & bruise
+Charles Gounod — Ave Maria
+Claude Debussy — Arabesque No. 1
+Claude Debussy — Petite Suite, L. 65
+Claude Debussy — Violin Sonata, L. 140
+Claude Debussy — Violin Sonata (transcribed for flute)
+Claude Debussy — First Rhapsody
+Claude Debussy — Sonata for Flute, Viola and Harp
+Claude Debussy — The Songs of Bilitis
+Claude Debussy — Piano Trio in G minor
+Cullyn Murphy — Everywhere All Ways
+Cécile Chaminade — Flute Concertino in D major, Op. 107
+Cécile Chaminade — Rondeau
+César Franck — Violin Sonata in A major
+Dai Wei — Mandalas in the Rubble
+David Lang — Sweet Air
+David Lang — Short Fall
+David Lang — Killer
+Devin Cholodenko — Twilight at Dawn (2024)
+Dmitri Shostakovich — Piano Trio No. 1 in C minor, Op. 8
+Donnacha Dennehy — fAt
+Edith Piaf — La Vie en Rose / Moro, Lasso
+Edvard Grieg — Andante con moto
+Eli Tausen á Lava — Mururin
+Elif Ebru Sakar — Memories
+Enrique Granados — Piano Quintet in G minor, Op. 49
+Eric Moe — Laminar Flow in Upsidedown Creek
+Erik Satie — Gymnopédies
+Ernest Bloch — 3 Nocturnes for Piano Trio
+Evan O. Adams — Branden Bird Can Share Too
+Felix Mendelssohn — Piano Trio No. 1 in D minor, Op. 49
+Florent Schmitt — Pour presque tous les temps (III)
+Francis Poulenc — Sonata for Flute and Piano
+Frank Martin — Ballade for Flute, Strings and Piano
+Frank Martin — Trio on Irish Folk Tunes
+Franz Schubert — Piano Quintet "Trout"
+Franz Schubert — Introduction and Variations, D. 802
+Franz Schubert — Notturno in E-flat major, Op. 148
+François Borne — Fantaisie brillante sur Carmen
+François Couperin — Les Barricades Mystérieuses
+François Couperin — Concerts Royaux (selection)
+Frédéric Chopin — Berceuse
+Frédéric Chopin — Cello Sonata in G minor, Op. 65
+Gabriel Fauré — Fantaisie, Op. 79
+Gabriel Fauré — Après un rêve
+Gabriel Pierné — Voyage au pays du Tendre
+Georg Philipp Telemann — Third Paris Quartet, TWV 43:G4
+Georg Philipp Telemann — Flute Sonata in F major, TWV 41:F2
+Georg Philipp Telemann — Sonata for Recorder and Harpsichord in F major
+Georg Philipp Telemann — Flute Quartets (selection)
+George Crumb — Vox Balaenae
+Georges Enesco — Cantabile et Presto
+Gilad Cohen — Ten Variations for piano quintet
+Greg Karnilaw — Breath
+Greg Karnilaw — A is for Aye Aye
+Greg Karnilaw — March / Alone Along
+Guillermo Laporta — Harte Rate
+Guillermo Laporta — Brown Leaves Moving (2020)
+Guillermo Laporta — AWAVE for Flute, Piano and Electronics
+Guillermo Laporta — Preludes for Flute and Piano
+Guillermo Laporta — Two Roads (original chamber opera)
+Guillermo Laporta — Craziest Things
+Gustav Holst — The Planets (for two pianos, selection)
+Gustav Mahler — Piano Quartet in A minor
+Gustav Mahler — Symphony No. 4 (arr. Erwin Stein)
+György Kurtág — Tre Pezzi
+György Ligeti — Musica Ricercata
+Hannah Selin — Tectonic Lullaby
+Hannah Selin — Dream Journal
+Hannah Selin — The Soft Moon Suite
+Hannah Selin — Chesapeake
+Henriette Renié — Légende (for solo harp)
+Igor Stravinsky — Petroushka
+Isaac Albéniz — El Albaicín
+Jacob TV — Lipstick
+Jacob TV — Jesus is Coming
+Jean Sibelius — Piano Quintet in G minor, JS 159
+Joaquín Turina — Piano Quartet in A minor, Op. 67
+Johann Sebastian Bach — Partita
+Johann Sebastian Bach — Cello Suite No. 1 in G major, BWV 1007
+Johann Sebastian Bach — Goldberg Variations (selection)
+Johann Sebastian Bach — Aria from Cantata BWV 8
+Johann Sebastian Bach — Violin Chaconne
+Johann Sebastian Bach — Brandenburg Concerto No. 5
+Johann Sebastian Bach — Flute Sonata in E major, BWV 1035
+Johann Sebastian Bach — Flute Sonata in E-flat major
+Johannes Brahms — Trio, Op. 114
+Johannes Brahms — Piano Quartet No. 3 in C minor, Op. 60
+Johannes Brahms — Clarinet Quintet, Op. 115 (selection)
+Johannes Brahms — Piano Quartet No. 1, Op. 25 (IV. Rondo alla Zingarese)
+John Cage — Melodies No. 3 and 6
+John Harbison — Flashes and Illuminations
+Joseph Haydn — Piano Trio in D major, Hob. XV:16
+Joseph Haydn — Symphony No. 94 "Surprise" (arr. for chamber ensemble)
+Joseph Haydn — Piano Sonata in E minor, Hob. XVI/34
+Joshua Penman — Dawnlight
+Joshua Penman — Moontides
+Joshua Penman — Mariri
+JP Jofre — Como el Agua and Universe
+Judd Greenstein — Untitled (finding something special)
+Jules Massenet — Thaïs, Meditation
+Leonard Bernstein — To What You Said
+Leoš Janáček — Violin Sonata (transcribed for flute and piano)
+Leoš Janáček — String Quartet No. 1 "Kreutzer Sonata" (arr.)
+Lili Boulanger — Nocturne
+Ludwig van Beethoven — Violin Sonata No. 2 in A major, Op. 12
+Ludwig van Beethoven — Trio, Op. 11
+Ludwig van Beethoven — Sonata in D, Op. 6
+Ludwig van Beethoven — Kakadu Variations, Op. 121a
+Ludwig van Beethoven — Quintet for Piano and Winds
+Luigi Boccherini — Sonata for Cello, G. 9 in F major, Adagio assai
+Luigi Boccherini — Sonata for Cello, G. 6 in C major, Allegro
+Luke Carlson — Render for flute and electronics
+Manuel de Falla — Siete Canciones Populares Españolas
+Marcos Fernández — Atlantic Fantasy
+Marcos Fernández — Eclipse
+Marcos Fernández — Mikado
+Marcos Fernández — Northumbrian
+Marcos Fernández — Opera Noctum
+Marcos Fernández and Ander García — Original music for London The Show
+Mario Díaz de León — Luciform
+Martin Bresnick — My Twentieth Century
+Maurice Ravel — Ma Mère l'Oye
+Maurice Ravel — Le Tombeau de Couperin (arr. for flute and piano)
+Maurice Ravel — Kaddisch
+Maurice Ravel — Piano Trio in A minor
+Max Bruch — 8 Pieces, Op. 83
+Max Richter — Vladimir's Blues
+Meredith Monk — Gotham Lullaby
+Michael Grebla — In Search of Peace
+Michael Torke — The Telephone Book
+Michel van der Aa — Rekindle for Flute and Electronics
+Modest Mussorgsky — Pictures at an Exhibition (arr. CreArtBox)
+Nadia Boulanger — 3 Pièces for Cello and Piano
+Nathan Schram — Hear Now Berlin
+Ned Rorem — Trio for Flute, Cello and Piano
+Nico Muhly — Study No. 1 for Viola
+Nico Muhly — Etude 1
+Oliver Caplan — Canciones de Monteverde for flute and string trio
+Olivier Messiaen — Le Merle Noir
+Olivier Messiaen — Quartet for the End of Time
+Ottorino Respighi — Violin Sonata in B minor
+Paul Moravec — Time Gallery
+Paul Novak — Entwining
+Paul Schoenfeld — Achat Sha'alti
+Philip Glass — Music in Similar Motion
+Philip Lasser — Ballade for Flute and String Quartet
+Philippe Gaubert — Trois Aquarelles
+Philippe Gaubert — Pagan Evening
+Richard Strauss — Morgen!
+Robert Schumann — Fantasy Pieces, Op. 73
+Sam Wu — Mass Transit
+Samantha Leigh Sack — Forcing Revelation for Piano Quartet
+Sebastian Currier — Selection from Verge and Static
+Seong Ae Kim — New Commission
+Sergei Rachmaninoff — Études-Tableaux, Op. 3
+Sergei Rachmaninoff — Trio élégiaque No. 1 in G minor
+Sergei Rachmaninoff — Moments Musicaux, Op. 16 (selection)
+Sergei Rachmaninoff — Piano Sonata No. 2, Op. 36
+Sheree Clement — Preludes (selection)
+Steve Reich — Piano Phase
+Steven Gerber — Spirituals, Book II (selection)
+Tatiana Nikolayeva — Trio for Flute, Viola and Piano, Op. 18
+Timo Andres — Piano Trio, III. Coda (made of wood)
+Timo Andres — Formal Conceits
+Todd Reynolds — Outerborough
+Toru Takemitsu — And Then I Knew 'Twas Wind
+Wolfgang Amadeus Mozart — Flute Quartet in D major, K. 285
+Wolfgang Amadeus Mozart — Piano Sonata in C major, K. 545
+Wolfgang Amadeus Mozart — Piano Quartet No. 2 in E-flat major, K. 493
+Wolfgang Amadeus Mozart — Trio in E-flat major, K. 498 "Kegelstatt"
+Wolfgang Amadeus Mozart — Clarinet Quintet, K. 581 (selection)
+Wolfgang Amadeus Mozart — Piano Sonata in G major, K. 283
+Yurui (Rain) — Flickered for flute and string quartet
+Zygmund de Somogyi — A lighthouse feverdream for piano trio and narrator
