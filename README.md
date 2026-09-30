@@ -298,8 +298,17 @@ one script:
 
 ```bash
 python3 tools/build_presenters.py          # write both pages
+node tools/render_dossier.js               # then the dossier PDF
 python3 tools/build_presenters.py --check  # fail if out of date
 ```
+
+The dossier is the presenters page printed: `@media print` decides what
+it keeps (the facts, the programmes, the players, the About text and the
+contact) and what it drops (the buttons, the downloads, the photographs).
+Page and PDF therefore cannot say different things. The renderer needs
+the brand faces; in a sandbox without a route to Google Fonts, point
+`CB_FONT_CACHE` at a directory holding `fonts.css` and its woff2 files
+and it serves them locally instead.
 
 A programme is an entry in `PROGRAMS` in the script: the label, a
 title, the paragraph, and the works as `(composer, work, minutes)`.
@@ -315,6 +324,10 @@ accents, so "dvorak" finds Dvořák, and every term has to match.
 The page is not in the navigation strip - nine items fill it - so it
 sits in the footer under The Organization, and on the calendar page in
 the block that was already addressed to presenters.
+
+`PLAYERS` builds the roster (each portrait links to that player's
+biography page), `PHOTOS` the downloadable photographs, and `FACTS` the
+strip at the top: ensemble, formations, length, fees, base.
 
 ## Performer biographies
 

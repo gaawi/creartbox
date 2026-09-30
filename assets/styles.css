@@ -5925,3 +5925,195 @@ button.myBtn_multi, .eventpast a.button {
   .offer, .rep-group { grid-template-columns: 1fr; gap: 14px; }
   .offer-about, .offer-contact { grid-template-columns: 1fr; gap: 28px; }
 }
+
+/* ------------------------------------------------------------
+   FOR PRESENTERS
+   Read like a management page: the facts first, the programmes,
+   the players with their biographies, and everything downloadable
+   in one place. Built small first: most of this is read on a phone
+   between meetings.
+   ------------------------------------------------------------ */
+.pres-top { padding: 40px 0 6px; }
+.pres-print-head { display: none; }
+.pres-facts {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1px; margin: 24px 0 0; padding: 0;
+  background: var(--filete); border: 1px solid var(--filete);
+}
+.pres-fact { background: var(--sala); padding: 14px 16px; }
+.pres-fact dt {
+  font-family: var(--texto); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--senal);
+}
+.pres-fact dd {
+  margin: 6px 0 0; font-family: var(--texto); font-size: 14.5px;
+  line-height: 1.5; color: var(--papel-medio);
+}
+.pres-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+
+/* the roster */
+.pres-roster {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 26px;
+}
+.pres-player { display: block; }
+.pres-portrait { display: block; overflow: hidden; border: 1px solid var(--filete); }
+.pres-portrait img {
+  display: block; width: 100%; aspect-ratio: 4/5; object-fit: cover;
+  filter: grayscale(0.4); transition: filter var(--t-fast), transform var(--t-fast);
+}
+.pres-player:hover .pres-portrait img { filter: none; transform: scale(1.03); }
+.pres-player-name {
+  display: block; margin-top: 10px; font-family: var(--display);
+  font-size: 17px; line-height: 1.2; color: var(--papel);
+}
+.pres-player:hover .pres-player-name { color: var(--senal); }
+.pres-player-role {
+  display: block; margin-top: 3px; font-family: var(--texto); font-size: 10px;
+  font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--papel-mudo);
+}
+.pres-player-more {
+  display: block; margin-top: 7px; font-family: var(--texto); font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--papel-dim);
+}
+
+/* what a presenter takes away */
+.pres-files {
+  display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; margin-top: 26px;
+}
+.pres-dl { list-style: none; margin: 14px 0 0; padding: 0; }
+.pres-dl li { border-top: 1px solid var(--rule); }
+.pres-dl li:last-child { border-bottom: 1px solid var(--rule); }
+.pres-dl a {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+  padding: 11px 0; font-family: var(--texto); font-size: 15px; color: var(--papel-medio);
+}
+.pres-dl a:hover { color: var(--senal); }
+.pres-dl a span {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--papel-mudo); white-space: nowrap;
+}
+.pres-dl a:hover span { color: var(--senal); }
+
+.pres-photos-h { margin-top: 42px; }
+.pres-shots {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 16px;
+}
+.pres-shot { display: block; border: 1px solid var(--filete); }
+.pres-shot:hover { border-color: var(--senal); }
+.pres-shot img { display: block; width: 100%; height: auto; }
+.pres-shot-cap {
+  display: block; padding: 9px 10px; font-family: var(--texto);
+  font-size: 12px; line-height: 1.4; color: var(--papel-dim);
+}
+.pres-shot-cap span { display: block; margin-top: 3px; font-size: 10px; color: var(--papel-mudo); }
+.pres-shot:hover .pres-shot-cap { color: var(--senal); }
+.pres-dl-all { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 18px; }
+.pres-dl-all span { font-family: var(--texto); font-size: 12.5px; color: var(--papel-mudo); }
+
+.pres-contact { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+.pres-contact p {
+  margin: 10px 0 0; font-family: var(--texto); font-size: 15px;
+  line-height: 1.7; color: var(--papel-medio);
+}
+.pres-contact a { color: var(--papel); border-bottom: 1px solid var(--filete-alto); }
+.pres-contact a:hover { color: var(--senal); border-bottom-color: var(--senal); }
+
+/* phones: the whole page one column, and smaller throughout */
+@media (max-width: 700px) {
+  .pres-top { padding: 26px 0 4px; }
+  .pres-facts { grid-template-columns: 1fr; margin-top: 18px; }
+  .pres-fact { padding: 11px 13px; }
+  .pres-fact dd { font-size: 14px; }
+  .pres-actions { gap: 6px; margin-top: 16px; }
+  .pres-actions .btn { font-size: 11px; padding: 10px 13px; }
+
+  .offer { padding: 22px 0; }
+  .offer-title { font-size: 21px; }
+  .offer-body .body-l { font-size: 15px; line-height: 1.6; }
+  .offer-list { margin-top: 16px; }
+  .offer-note { font-size: 13.5px; margin-top: 20px; }
+
+  .pres-roster { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .pres-player-name { font-size: 15px; }
+
+  .pres-files { grid-template-columns: 1fr; gap: 26px; }
+  .pres-dl a { font-size: 14px; padding: 10px 0; }
+  .pres-photos-h { margin-top: 30px; }
+  .pres-shots { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .pres-shot-cap { font-size: 11px; padding: 7px 8px; }
+  .pres-contact { grid-template-columns: 1fr; gap: 22px; }
+  .pres-contact p { font-size: 14px; }
+
+  .offer-about-text p { font-size: 14.5px; line-height: 1.65; }
+
+  .rep-search { margin-top: 18px; }
+  .rep-search input { font-size: 14px; padding: 9px 11px; }
+  .rep-composer { font-size: 17px; }
+  .rep-work { font-size: 14px; padding: 2px 0; }
+  .rep-group { padding: 14px 0; }
+}
+
+/* the dossier: a management PDF, black on white, without the parts of
+   the page that only work in a browser */
+@media print {
+  .pres-actions, .pres-materials, .pres-roster-wrap .offer-note,
+  .pres-dl-all, .back-to-archive { display: none !important; }
+  .pres-top { padding: 0 0 6pt; }
+  /* the mobile rule uses !important, and print is narrow enough to hit it */
+  .pres-top .page-folio-head { display: none !important; }
+  .pres-print-head {
+    display: flex !important; align-items: flex-end; justify-content: space-between;
+    gap: 18pt; border-bottom: 2pt solid #FFC403; padding-bottom: 8pt; margin-bottom: 14pt;
+  }
+  .pres-print-mark { height: 20pt; width: auto; }
+  .pres-print-title { text-align: right; }
+  .pres-print-title strong {
+    display: block; font-family: var(--texto); font-size: 9pt; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; color: #000;
+  }
+  .pres-print-title span {
+    display: block; margin-top: 3pt; font-family: var(--texto);
+    font-size: 8pt; color: #555;
+  }
+
+  .pres-facts { border: 0.5pt solid #999; background: #fff; gap: 0; margin-top: 10pt; }
+  .pres-fact { background: #fff; border-right: 0.5pt solid #ccc; padding: 7pt 9pt; }
+  .pres-fact dt { color: #000; font-size: 6.5pt; }
+  .pres-fact dd { color: #222; font-size: 8.5pt; }
+
+  .offer { border-top: 0.5pt solid #999; padding: 10pt 0; }
+  .offer-head { break-after: avoid; }
+  .offer-list { break-inside: avoid; }
+  .offer:last-of-type { border-bottom: 0.5pt solid #999; }
+  .offer-head .label { color: #000; }
+  .offer-title { color: #000; font-size: 15pt; }
+  .offer-body .body-l { color: #222; font-size: 9.5pt; line-height: 1.4; }
+  .offer-list .pgm-composer, .offer-list .pgm-work { color: #000; font-size: 9pt; }
+  .offer-list .pgm-mins { color: #555; }
+  .offer-list .pgm-break { color: #555; border-top: 0.5pt solid #ccc; }
+  .offer-total, .offer-note { color: #333; font-size: 9pt; }
+  .offer-note a { color: #000; border: 0; }
+
+  .pres-roster { grid-template-columns: repeat(5, 1fr); gap: 8pt; break-inside: avoid; }
+  .pres-portrait { border: 0.5pt solid #ccc; }
+  .pres-portrait img { filter: grayscale(1); }
+  .pres-player-name { color: #000; font-size: 10pt; }
+  .pres-player-role { color: #555; font-size: 6.5pt; }
+  .pres-player-more { display: none; }
+
+  .pres-about .offer-about { grid-template-columns: 0.8fr 1.6fr; gap: 16pt; }
+  .pres-about figure { break-inside: avoid; }
+  .pres-about .offer-about-text p { color: #222; font-size: 9.5pt; line-height: 1.5; }
+  .pres-about .cap { color: #555; font-size: 8pt; }
+
+  .pres-contact { border-top: 2pt solid #FFC403; padding-top: 10pt; }
+  .pres-contact .label { color: #000; }
+  .pres-contact p { color: #222; font-size: 9.5pt; }
+  .pres-contact a { color: #000; border: 0; }
+
+  .section-title .label { color: #000; }
+  .section-title .label.ital { color: #444; }
+  .section-title .rule, .page-folio-head .rule { border-color: #999; }
+  .section.tinted { background: #fff !important; }
+}

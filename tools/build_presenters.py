@@ -20,7 +20,7 @@ import sys
 import unicodedata
 
 SITE = "https://creartbox.nyc"
-CSS = "assets/styles.css?v=133"
+CSS = "assets/styles.css?v=134"
 JS = "assets/site.js?v=44"
 REPERTOIRE = "data/repertoire.txt"
 CONTACT = "info@creartbox.nyc"
@@ -103,6 +103,32 @@ ABOUT = [
 ]
 
 # surnames the last word does not give
+PLAYERS = [
+    ("Guillermo Laporta", "Flute", "guillermo-laporta", "assets/img/guillermo-laporta.png"),
+    ("Josefina Urraca", "Piano", "josefina-urraca", "assets/img/josefina-urraca.png"),
+    ("Emilie-Anne Gendron", "Violin", "emilie-anne-gendron", "assets/img/emilie-gendron.webp"),
+    ("Matthew Cohen", "Viola", "matthew-cohen", "assets/img/matthew-cohen.jpg"),
+    ("Julia Yang", "Cello", "julia-yang", "assets/img/julia-yang.jpg"),
+]
+
+PHOTOS = [
+    ("creartbox-ensemble.jpg", "The ensemble", "Photo: Tao Ho", "3000 &#215; 1949"),
+    ("creartbox-currents-dimenna.jpg", "At The DiMenna Center", "New York Series", "3000 &#215; 2001"),
+    ("creartbox-in-performance.jpg", "In performance", "", "2400 &#215; 1600"),
+    ("creartbox-fragile-form.jpg", "The Fragile Form Trilogy", "2022", "3000 &#215; 1605"),
+    ("creartbox-festival-adar.jpg", "Festival ADAR", "Asturias", "1600 &#215; 941"),
+]
+
+DOSSIER = "downloads/creartbox-program-dossier.pdf"
+
+FACTS = [
+    ("Ensemble", "Piano quintet: flute, piano, violin, viola and cello"),
+    ("Smaller formations", "Duo, trio and quartet from the same players"),
+    ("Programme length", "Two halves with one intermission, adaptable"),
+    ("Fees", "On request, by formation and date"),
+    ("Based", "New York City, touring from there"),
+]
+
 SORT = {
     "Carl Maria von Weber": "Weber",
     "Ludwig van Beethoven": "Beethoven",
@@ -262,39 +288,75 @@ def program_block(program):
 
 # ------------------------------------------------------------------- pages
 
+def facts_block():
+    rows = "".join(
+        '        <div class="pres-fact"><dt>{k}</dt><dd>{v}</dd></div>\n'.format(k=k, v=v)
+        for k, v in FACTS)
+    return '      <dl class="pres-facts">\n{}      </dl>'.format(rows)
+
+
+def roster_block():
+    cards = []
+    for name, role, slug, photo in PLAYERS:
+        cards.append(
+            '        <a class="pres-player" href="artists/{slug}.html">\n'
+            '          <span class="pres-portrait"><img src="{photo}" alt="{name}, {low}" loading="lazy"></span>\n'
+            '          <span class="pres-player-name">{name}</span>\n'
+            '          <span class="pres-player-role">{role}</span>\n'
+            '          <span class="pres-player-more">Biography <span class="ar">&#8594;</span></span>\n'
+            '        </a>'.format(slug=slug, photo=photo, name=name, role=role,
+                                  low=role.lower()))
+    return "\n".join(cards)
+
+
+def photos_block():
+    shots = []
+    for filename, title, note, size in PHOTOS:
+        shots.append(
+            '        <a class="pres-shot" href="assets/press/photos/{f}" download>\n'
+            '          <img src="assets/press/photos/t-{f}" alt="{t}" loading="lazy">\n'
+            '          <span class="pres-shot-cap">{t}<span>{note}JPEG &#183; {size}</span></span>\n'
+            '        </a>'.format(f=filename, t=title, size=size,
+                                  note=(note + " &#183; ") if note else ""))
+    return "\n".join(shots)
+
+
 def booking_page():
     programs = "\n".join(program_block(p) for p in PROGRAMS)
     about = "\n      ".join("<p>%s</p>" % p for p in ABOUT)
     return (head("For presenters &#183; CreArtBox",
-                 "Programmes on offer for presenters, the full repertoire the "
-                 "ensemble has played, and who to write to about a date.",
+                 "Programmes on offer, the players, materials to download, and "
+                 "who to write to about a date and a fee.",
                  SITE + "/presenters.html")
             + """
-<section style="padding:64px 0 10px">
+<section class="pres-top">
   <div class="wrap">
+    <div class="pres-print-head">
+      <img class="pres-print-mark" src="brand/logo-creartbox-black.svg" alt="CreArtBox">
+      <div class="pres-print-title">
+        <strong>Concert programme dossier</strong>
+        <span>2026 / 27 &#183; twelfth season &#183; info@creartbox.nyc &#183; creartbox.nyc</span>
+      </div>
+    </div>
+
     <div class="page-folio-head">
       <span class="label">For presenters</span>
       <hr class="rule" style="width:100%">
-      <span class="label ital">Programmes, repertoire and dates</span>
+      <span class="label ital">Programmes, players and materials</span>
     </div>
-    <h1 class="h-mast" style="margin-top:32px;max-width:16ch;">
-      Programmes on <em>offer</em>.
-    </h1>
-    <p class="lede" style="margin-top:40px">
-      CreArtBox tours as a piano quintet: flute, piano, violin, viola and cello. Below are
-      two programmes ready to take on the road. Both can be shortened or lengthened to fit
-      a series, and we are glad to build a programme with a presenter from the repertoire
-      the ensemble has already played.
-    </p>
-    <div class="news-links" style="margin-top:26px">
-      <a class="btn btn-stamp" href="mailto:{contact}?subject=Booking%20enquiry">Write about a date <span class="ar">&#8594;</span></a>
-      <a class="btn" href="repertoire.html">The full repertoire <span class="ar">&#8594;</span></a>
-      <a class="btn" href="brand.html">Press kit and photographs <span class="ar">&#8594;</span></a>
+    <h1 class="sr-only">For presenters</h1>
+
+{facts}
+
+    <div class="pres-actions">
+      <a class="btn btn-stamp" href="mailto:{contact}?subject=Booking%20enquiry">Enquire about a date <span class="ar">&#8594;</span></a>
+      <a class="btn" href="{dossier}" download>Programme dossier &#183; PDF</a>
+      <a class="btn" href="repertoire.html">Full repertoire</a>
     </div>
   </div>
 </section>
 
-<section class="section" style="padding-top:26px">
+<section class="section pres-programs">
   <div class="wrap">
     <div class="section-title">
       <hr class="rule">
@@ -304,15 +366,73 @@ def booking_page():
 
 {programs}
 
-    <p class="offer-note">Both programmes can be adapted to suit different concert lengths.
-      For a programme built around a theme, an anniversary or a local commission, write to
-      <a href="mailto:{contact}">{contact}</a>: the ensemble has played
-      <a href="repertoire.html">everything listed here</a>, and reads new scores every season
-      through its open call.</p>
+    <p class="offer-note">Both programmes can be adapted to suit different concert lengths, and
+      either can be played by a smaller group: a piano trio, a flute, cello and piano trio, or
+      a duo. This season the ensemble tours a piano trio to Illinois and a flute, cello and
+      piano programme to the Hudson Valley. For a programme built around a theme, an
+      anniversary or a local commission, write to <a href="mailto:{contact}">{contact}</a>:
+      the ensemble has played <a href="repertoire.html">everything listed here</a>, and reads
+      new scores every season through its open call. Fees on request.</p>
   </div>
 </section>
 
-<section class="section tinted">
+<section class="section tinted pres-roster-wrap">
+  <div class="wrap">
+    <div class="section-title">
+      <hr class="rule">
+      <div class="head"><span class="label">The players</span><span class="bar"></span><span class="label ital">Biographies, <em>as they wrote them</em>.</span></div>
+      <hr class="rule">
+    </div>
+    <div class="pres-roster">
+{roster}
+    </div>
+    <p class="offer-note">Each biography is published in three lengths, with a character
+      count, and may be reproduced without alteration. The ensemble biography is on the
+      <a href="about.html#bio">about page</a>, also in three lengths.</p>
+  </div>
+</section>
+
+<section class="section pres-materials">
+  <div class="wrap">
+    <div class="section-title">
+      <hr class="rule">
+      <div class="head"><span class="label">Materials</span><span class="bar"></span><span class="label ital">Ready to <em>download</em>.</span></div>
+      <hr class="rule">
+    </div>
+
+    <div class="pres-files">
+      <div>
+        <h3 class="offer-title">Documents</h3>
+        <ul class="pres-dl">
+          <li><a href="{dossier}" download>Programme dossier <span>PDF</span></a></li>
+          <li><a href="downloads/creartbox-season-2026-27.pdf" download>Season press release <span>PDF</span></a></li>
+          <li><a href="assets/press/creartbox-bio-short.pdf" download>Ensemble biography, short <span>PDF</span></a></li>
+          <li><a href="assets/press/creartbox-bio-medium.pdf" download>Ensemble biography, medium <span>PDF</span></a></li>
+          <li><a href="assets/press/creartbox-bio-long.pdf" download>Ensemble biography, long <span>PDF</span></a></li>
+          <li><a href="downloads/currents-2026-program.pdf" download>A printed programme, as an example <span>PDF</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="offer-title">Logos and brand</h3>
+        <ul class="pres-dl">
+          <li><a href="downloads/creartbox-brand-assets.zip" download>All brand assets <span>ZIP</span></a></li>
+          <li><a href="brand/logo-creartbox-reversed.svg" download>Wordmark, reversed <span>SVG</span></a></li>
+          <li><a href="brand/logo-creartbox-black.svg" download>Wordmark, black <span>SVG</span></a></li>
+          <li><a href="brand.html">The full press kit <span>page</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="offer-title pres-photos-h">Photographs</h3>
+    <div class="pres-shots">
+{photos}
+    </div>
+    <p class="pres-dl-all"><a class="btn btn-stamp btn-s" href="downloads/creartbox-press-photos.zip" download>All photographs &#183; ZIP, 2.2&#8201;MB</a>
+      <span>Free to use for concert promotion, with the credit given under each file.</span></p>
+  </div>
+</section>
+
+<section class="section tinted pres-about">
   <div class="wrap">
     <div class="section-title">
       <hr class="rule">
@@ -321,7 +441,7 @@ def booking_page():
     </div>
     <div class="offer-about">
       <figure>
-        <div class="imedia"><img src="assets/img/ensemble.jpg" alt="The CreArtBox ensemble"></div>
+        <div class="imedia"><img src="assets/img/ensemble.jpg" alt="The CreArtBox ensemble" loading="lazy"></div>
         <figcaption class="cap">CreArtBox ensemble &#183; Photo: Tao Ho</figcaption>
       </figure>
       <div class="offer-about-text">
@@ -331,33 +451,25 @@ def booking_page():
   </div>
 </section>
 
-<section class="section">
+<section class="section pres-contact-wrap">
   <div class="wrap">
-    <div class="section-title">
-      <hr class="rule">
-      <div class="head"><span class="label">Enquiries</span><span class="bar"></span><span class="label ital">Dates, fees and <em>materials</em>.</span></div>
-      <hr class="rule">
-    </div>
-    <div class="offer-contact">
+    <div class="pres-contact">
       <div>
-        <h3 class="offer-title">Write to us</h3>
-        <p class="body-l">For availability, fees and travel, write to
-          <a href="mailto:{contact}">{contact}</a>. Tell us the date, the hall and the
-          length of concert you have in mind, and we will answer with what fits.</p>
+        <span class="label">Bookings</span>
+        <p>Guillermo Laporta and Josefina Urraca, directors<br>
+          <a href="mailto:{contact}">{contact}</a><br>
+          CreArtBox, Inc. &#183; 10&#8211;48 47th Road, Unit 1, Queens, NY 11101</p>
       </div>
       <div>
-        <h3 class="offer-title">What we can send</h3>
-        <ul class="news-ul">
-          <li>Biographies of the ensemble and of each player, in three lengths, as PDFs</li>
-          <li>Hi-res photographs and the logo, from the <a href="brand.html">press kit</a></li>
-          <li>The current <a href="press/season-2026-27.html">season press release</a></li>
-          <li>Programme notes, and the printed programme as artwork</li>
-        </ul>
+        <span class="label">What to tell us</span>
+        <p>The date, the hall and its instrument, the length of concert, and whether you
+          want the quintet or a smaller formation. We answer with availability and a fee.</p>
       </div>
     </div>
   </div>
 </section>
-""".format(programs=programs, about=about, contact=CONTACT)
+""".format(programs=programs, about=about, contact=CONTACT, facts=facts_block(),
+           roster=roster_block(), photos=photos_block(), dossier=DOSSIER)
             + foot())
 
 
