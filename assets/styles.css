@@ -6011,6 +6011,18 @@ button.myBtn_multi, .eventpast a.button {
 .pres-dl-all { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 18px; }
 .pres-dl-all span { font-family: var(--texto); font-size: 12.5px; color: var(--papel-mudo); }
 
+.pres-about-fig { margin: 26px 0 0; }
+.pres-about-fig img {
+  display: block; width: 100%; height: auto; max-height: 420px; object-fit: cover;
+}
+.pres-about-fig .cap { margin-top: 8px; }
+.pres-about-text { columns: 2; column-gap: 46px; margin-top: 24px; }
+.pres-about-text p { break-inside: avoid; }
+.pres-about-text p:first-child { margin-top: 0; }
+.pres-about-more {
+  margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--rule);
+}
+
 .pres-contact { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
 .pres-contact p {
   margin: 10px 0 0; font-family: var(--texto); font-size: 15px;
@@ -6046,6 +6058,8 @@ button.myBtn_multi, .eventpast a.button {
   .pres-contact p { font-size: 14px; }
 
   .offer-about-text p { font-size: 14.5px; line-height: 1.65; }
+  .pres-about-text { columns: 1; margin-top: 18px; }
+  .pres-about-fig img { max-height: 240px; }
 
   .rep-search { margin-top: 18px; }
   .rep-search input { font-size: 14px; padding: 9px 11px; }
@@ -6102,9 +6116,11 @@ button.myBtn_multi, .eventpast a.button {
   .pres-player-role { color: #555; font-size: 6.5pt; }
   .pres-player-more { display: none; }
 
-  .pres-about .offer-about { grid-template-columns: 0.8fr 1.6fr; gap: 16pt; }
-  .pres-about figure { break-inside: avoid; }
-  .pres-about .offer-about-text p { color: #222; font-size: 9.5pt; line-height: 1.5; }
+  .pres-about-fig { break-inside: avoid; margin-top: 10pt; }
+  .pres-about-fig img { max-height: 150pt; }
+  .pres-about-text { columns: 2; column-gap: 20pt; margin-top: 12pt; }
+  .pres-about-more { display: none !important; }
+  .pres-about .offer-about-text p { color: #222; font-size: 8.5pt; line-height: 1.45; margin-bottom: 8pt; }
   .pres-about .cap { color: #555; font-size: 8pt; }
 
   .pres-contact { border-top: 2pt solid #FFC403; padding-top: 10pt; }

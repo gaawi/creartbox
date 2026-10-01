@@ -20,7 +20,7 @@ import sys
 import unicodedata
 
 SITE = "https://creartbox.nyc"
-CSS = "assets/styles.css?v=134"
+CSS = "assets/styles.css?v=135"
 JS = "assets/site.js?v=44"
 REPERTOIRE = "data/repertoire.txt"
 CONTACT = "info@creartbox.nyc"
@@ -72,34 +72,57 @@ PROGRAMS = [
 ]
 
 ABOUT = [
-    "CreArtBox is a New York City-based chamber music ensemble founded in 2013 by flutist "
-    "Guillermo Laporta and pianist Josefina Urraca, together with core members Emilie-Anne "
-    "Gendron (violin), Matthew Cohen (viola), and Julia Yang (cello). Now in its twelfth "
-    "season, the ensemble performs regularly in New York City and tours nationally and "
-    "internationally, with appearances across the United States, Spain, Europe, and Japan.",
+    "CreArtBox creates and produces live art performances, fusing classical and contemporary "
+    "music with original ideas encouraged by multidisciplinary interaction. Our programs are "
+    "designed to support professional artists, encourage the creation of new meaningful work, "
+    "make world-class performances accessible to everyone regardless of background or economic "
+    "circumstance, inspire and educate future generations, revitalize local communities, and "
+    "nurture new ways of human expression.",
 
-    "CreArtBox has earned recognition from major arts publications: <em>The New Yorker</em> "
-    "named the ensemble among its art and music top picks, and <em>BroadwayWorld</em> "
-    "described its performances as &quot;wholly authentic, visually and aurally compelling.&quot; "
-    "The ensemble&#x27;s work has been supported by grants and awards from the New York State "
-    "Council on the Arts, the New York City Department of Cultural Affairs, and the Amphion "
-    "Foundation, among other funders.",
+    "Celebrated by <em>The New Yorker</em> as one of its &quot;art and music top picks&quot;, by "
+    "<em>Time Out</em> as an &quot;ensemble devoted to multidisciplinary events&quot; and by "
+    "<em>BroadwayWorld</em> as &quot;a wholly authentic, visually and aurally compelling "
+    "experience&quot;, CreArtBox has solidified its presence as one of the preeminent classical "
+    "music organizations in New York City.",
 
-    "Since its founding season, CreArtBox has run an open Call for Scores, through which it "
-    "has premiered works by Pulitzer Prize-winning composers alongside emerging voices, and "
-    "mentored composers early in their careers.",
+    "This organization was founded in New York City in 2013 by pianist Josefina Urraca and "
+    "flutist Guillermo Laporta, who continue to serve as its artistic directors, and is now in "
+    "its twelfth season. The project was originally conceived in 2006 in Europe as "
+    "&quot;Cre.Art Project&quot; by Guillermo Laporta and clarinetist and performance creator "
+    "Tagore González.",
 
-    "Guillermo Laporta (flute) is a Spanish flutist, composer, and designer, and Artistic "
-    "Director of CreArtBox and Festival ADAR. Josefina Urraca (piano) is a Spanish pianist "
-    "and student of Dmitri Bashkirov, whose playing exemplifies &quot;introspection and "
-    "musical abandon.&quot; Violinist Emilie-Anne Gendron has been lauded by <em>The Strad</em> "
-    "for her &quot;marvelous and lyrical playing&quot; and appears with major orchestras and "
-    "ensembles. Violist Matthew Cohen, a special prize winner at the Primrose International "
-    "Viola Competition, is described as one of the most sought-after violists of his "
-    "generation. Cellist Julia Yang, praised for &quot;her sense of joyful virtuosity,&quot; is "
-    "a founding member of the Naumburg-winning Merz Trio. Beyond its core chamber programs, "
-    "CreArtBox also produces larger-scale productions and co-produces Festival ADAR, an "
-    "international arts festival held in rural Asturias, Spain.",
+    "With its headquarters in New York City and Asturias, Spain, CreArtBox develops an array of "
+    "distinctive platforms to pursue its mission: a concert season at The DiMenna Center for "
+    "Classical Music, international touring, a printed magazine, a classical music streaming "
+    "platform, a live music podcast with the Queens Public Library, an open call and "
+    "commissioning programme for composers, and Festival ADAR, which develops the arts in rural "
+    "Spain.",
+
+    "The type of performance that most defines the identity of CreArtBox can be referred to as a "
+    "&quot;visual concert&quot;. Visual art and theatrical design techniques are used to enhance "
+    "the audience&#x27;s listening experience of live classical and contemporary music while "
+    "respecting the original musical composition. These multimedia performances are often "
+    "presented in medium-size venues that allow the audience to be fully immersed in the "
+    "atmosphere of the production created by lights and projections. CreArtBox also performs "
+    "more traditional chamber music concerts, which have taken the group to Japan, Spain, "
+    "Europe, Canada, and the east coast of the United States.",
+
+    "Original full theatrical touring shows are also produced, most of them interdisciplinary: "
+    "the opera-ballet-film <em>Architecture of a Common Man</em> (2023), the opera-ballet "
+    "<em>Two Roads</em> (2019), <em>Visuality</em> (2012/14), the opera <em>Noctum</em> (2011), "
+    "the musical <em>London the Show</em> (2009), and <em>Cre.Art Project I</em> (2006).",
+
+    "CreArtBox works with visual artists, designers, dancers, and other creative minds to craft "
+    "multi-layered performances centered around classical music, operating with a roster of "
+    "world-class classical musicians, including members of orchestras such as the Metropolitan "
+    "Opera Orchestra, the New York Philharmonic, the BBC Orchestra, and the Chamber Music "
+    "Society of Lincoln Center.",
+
+    "Grants and awards from public and private institutions sustain CreArtBox&#x27;s nonprofit "
+    "mission alongside a group of generous individual supporters, maintaining steady yearly "
+    "growth. Major supporters include the New York State Council on the Arts, the New York City "
+    "Department of Cultural Affairs, the Amphion Foundation, the Alice M. Ditson Fund, Spain "
+    "Arts and Culture, the Government of Asturias, and the Queens Council on the Arts.",
 ]
 
 # surnames the last word does not give
@@ -120,6 +143,7 @@ PHOTOS = [
 ]
 
 DOSSIER = "downloads/creartbox-program-dossier.pdf"
+OVERVIEW = ("https://docs.google.com/document/d/1HSpbQAPXiWeClvaKnnFJD7rsd0h8pQt-5KL0Vlco99U/edit?usp=sharing")
 
 FACTS = [
     ("Ensemble", "Piano quintet: flute, piano, violin, viola and cello"),
@@ -439,15 +463,14 @@ def booking_page():
       <div class="head"><span class="label">The ensemble</span><span class="bar"></span><span class="label ital">About <em>CreArtBox</em>.</span></div>
       <hr class="rule">
     </div>
-    <div class="offer-about">
-      <figure>
-        <div class="imedia"><img src="assets/img/ensemble.jpg" alt="The CreArtBox ensemble" loading="lazy"></div>
-        <figcaption class="cap">CreArtBox ensemble &#183; Photo: Tao Ho</figcaption>
-      </figure>
-      <div class="offer-about-text">
+    <figure class="pres-about-fig">
+      <img src="assets/img/ensemble.jpg" alt="The CreArtBox ensemble" loading="lazy">
+      <figcaption class="cap">CreArtBox ensemble &#183; Photo: Tao Ho</figcaption>
+    </figure>
+    <div class="offer-about-text pres-about-text">
       {about}
-      </div>
     </div>
+    <p class="pres-about-more"><a class="btn btn-s" href="{overview}" target="_blank" rel="noopener">Read the full organization overview <span class="ar">&#8594;</span></a></p>
   </div>
 </section>
 
@@ -469,7 +492,8 @@ def booking_page():
   </div>
 </section>
 """.format(programs=programs, about=about, contact=CONTACT, facts=facts_block(),
-           roster=roster_block(), photos=photos_block(), dossier=DOSSIER)
+           roster=roster_block(), photos=photos_block(), dossier=DOSSIER,
+           overview=OVERVIEW)
             + foot())
 
 
