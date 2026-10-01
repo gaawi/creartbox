@@ -34,7 +34,7 @@ PRESS = ('Recognized by <em>The New Yorker</em> as one of its "art and music top
 
 BIOS = {
     "short": [
-        'CreArtBox is a New York chamber music and multimedia ensemble founded in 2013 by '
+        'CreArtBox is a New York chamber music ensemble founded in 2013 by '
         'flutist <em>Guillermo Laporta</em> and pianist <em>Josefina Urraca</em>, now in its '
         '12th season. Recognized by <em>The New Yorker</em> as one of its "art and music top '
         'picks" and praised by <em>Time Out</em> as "an ensemble devoted to multidisciplinary '
@@ -42,7 +42,7 @@ BIOS = {
         'visual art.',
     ],
     "medium": [
-        'CreArtBox is a New York chamber music and multimedia ensemble founded in 2013 by '
+        'CreArtBox is a New York chamber music ensemble founded in 2013 by '
         'flutist <em>Guillermo Laporta</em> and pianist <em>Josefina Urraca</em>, with core '
         'members Emilie-Anne Gendron, Matthew Cohen, and Julia Yang. Now in its 12th season, '
         'it gives its New York Series at The DiMenna Center for Classical Music and tours '
@@ -60,12 +60,31 @@ BIOS = {
         'in rural Asturias, Spain.',
     ],
     "long": [
-        'CreArtBox is a chamber music and multimedia ensemble based in New York City, founded '
-        'in 2013 by flutist <em>Guillermo Laporta</em> and pianist <em>Josefina Urraca</em> and '
-        'now in its 12th season. It gives its New York Series at The DiMenna Center for '
-        'Classical Music, tours nationally with recurring engagements on the East Coast, and '
-        'performs internationally in Japan, Spain and across Europe.',
+        'CreArtBox creates and produces live art performances, fusing classical and '
+        'contemporary music with original ideas encouraged by multidisciplinary interaction. '
+        'Its programs are designed to support professional artists, encourage the creation of '
+        'new meaningful work, make world-class performances accessible to everyone regardless '
+        'of background or economic circumstance, inspire and educate future generations, '
+        'revitalize local communities, and nurture new ways of human expression.',
         PRESS,
+        'The organization was founded in New York City in 2013 by flutist <em>Guillermo '
+        'Laporta</em> and pianist <em>Josefina Urraca</em>, who continue to serve as its '
+        'artistic directors, and is now in its 12th season. The project was originally '
+        'conceived in Europe in 2006 as Cre.Art Project by Laporta and clarinetist and '
+        'performance creator Tagore González.',
+        'With its headquarters in New York City and Asturias, Spain, CreArtBox develops an '
+        'array of distinctive platforms to pursue its mission: the New York Series at The '
+        'DiMenna Center for Classical Music, international touring, a printed magazine, a '
+        'classical music streaming platform, a live music podcast with the Queens Public '
+        'Library, an open call and commissioning program for composers, and Festival ADAR, '
+        'which develops the arts in rural Spain.',
+        'The kind of performance that most defines its identity can be called a visual concert. '
+        'Visual art and theatrical design are used to enhance the audience&#x27;s listening '
+        'experience of live classical and contemporary music while respecting the original '
+        'composition, usually in medium-size venues where lights and projections can surround '
+        'the audience. CreArtBox also plays more traditional chamber music concerts, which have '
+        'taken the group to Japan, Spain, Europe, Canada, and the east coast of the United '
+        'States.',
         'The 2026/27 season runs from October to August: four productions at The DiMenna '
         'Center, eleven works drawn from the ensemble&#x27;s open Call for Scores, one world '
         'premiere, touring dates in Illinois, Kentucky and the Hudson Valley, a residency at '
@@ -89,21 +108,24 @@ BIOS = {
         'member of the Momenta Quartet and one of the concertmasters of the Orpheus Chamber '
         'Orchestra; Cohen is a special prize winner at the Primrose International Viola '
         'Competition; and Yang is a founding member of the Naumburg-winning Merz Trio.',
-        'The project was originally conceived in 2006 in Europe as Cre.Art Project by Laporta '
-        'and clarinetist/performance creator Tagore González, and re-established in New York '
-        'City in 2013. Since then CreArtBox has produced a series of theatrical and '
+        'Alongside its concert programs, CreArtBox has produced a series of theatrical and '
         'interdisciplinary works, including <em>Architecture of a Common Man</em> (2023), the '
-        'opera-ballet <em>Two Roads</em> (2020), <em>Visuality</em> (2012/14), the opera '
+        'opera-ballet <em>Two Roads</em> (2019), <em>Visuality</em> (2012/14), the opera '
         '<em>Noctum</em> (2011), the musical <em>London: The Show</em> (2009), and <em>Cre.Art '
         'Project I</em> (2006).',
+        'CreArtBox works with visual artists, designers, dancers and other creative minds to '
+        'craft multi-layered performances centered around classical music, with a roster of '
+        'musicians that includes members of the Metropolitan Opera Orchestra, the New York '
+        'Philharmonic, the BBC Orchestra, and the Chamber Music Society of Lincoln Center.',
         'The ensemble has been awarded the Queens Council on the Arts New Work Grant and the '
         'New York Foundation for the Arts Fellowship, and is supported by the New York State '
         'Council on the Arts, the NYC Department of Cultural Affairs, the Amphion Foundation, '
-        'the Alice M. Ditson Fund, and the Aaron Copland Fund for Music. In addition to its '
-        'American-based activities, CreArtBox co-produces Festival ADAR, an international arts '
-        'festival held since 2021 in Asturias, Spain, dedicated to revitalizing rural '
-        'communities through music, contemporary creation, artist residencies, and '
-        'site-specific projects.',
+        'the Alice M. Ditson Fund, the Aaron Copland Fund for Music, Spain Arts and Culture, '
+        'and the Government of Asturias, alongside a group of individual supporters. In '
+        'addition to its American-based activities, CreArtBox co-produces Festival ADAR, an '
+        'international arts festival held since 2021 in Asturias, Spain, dedicated to '
+        'revitalizing rural communities through music, contemporary creation, artist '
+        'residencies, and site-specific projects.',
     ],
 }
 

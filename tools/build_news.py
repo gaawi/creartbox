@@ -218,7 +218,7 @@ def foot(prefix):
     <div class="colophon-grid">
       <div>
         <div class="colophon-mark"><img src="{p}brand/mark-wedge-amber.svg" alt="CreArtBox" width="52" height="24"></div>
-        <p class="colophon-bio">A 501(c)(3) non-profit chamber music and multimedia ensemble. New York &#183; Asturias.</p>
+        <p class="colophon-bio">A 501(c)(3) non-profit chamber music ensemble. New York &#183; Asturias.</p>
         <p class="colophon-addr">info@creartbox.nyc &#183; 10&#8211;48 47th Road, Unit 1, Queens, NY 11101</p>
         <div class="colophon-social">
           <a href="https://www.instagram.com/creartboxnyc/" target="_blank" rel="noopener">Instagram</a>

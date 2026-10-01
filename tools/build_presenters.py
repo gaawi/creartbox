@@ -71,61 +71,14 @@ PROGRAMS = [
     },
 ]
 
-ABOUT = [
-    "CreArtBox creates and produces live art performances, fusing classical and contemporary "
-    "music with original ideas encouraged by multidisciplinary interaction. Our programs are "
-    "designed to support professional artists, encourage the creation of new meaningful work, "
-    "make world-class performances accessible to everyone regardless of background or economic "
-    "circumstance, inspire and educate future generations, revitalize local communities, and "
-    "nurture new ways of human expression.",
+# One organisation biography, not two: the About section here is the long
+# version from tools/build_org_bio.py, which also writes about.html#bio
+# and the press PDFs. Change it there and both follow.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from build_org_bio import BIOS          # noqa: E402
 
-    "Celebrated by <em>The New Yorker</em> as one of its &quot;art and music top picks&quot;, by "
-    "<em>Time Out</em> as an &quot;ensemble devoted to multidisciplinary events&quot; and by "
-    "<em>BroadwayWorld</em> as &quot;a wholly authentic, visually and aurally compelling "
-    "experience&quot;, CreArtBox has solidified its presence as one of the preeminent classical "
-    "music organizations in New York City.",
+ABOUT = BIOS["long"]
 
-    "This organization was founded in New York City in 2013 by pianist Josefina Urraca and "
-    "flutist Guillermo Laporta, who continue to serve as its artistic directors, and is now in "
-    "its twelfth season. The project was originally conceived in 2006 in Europe as "
-    "&quot;Cre.Art Project&quot; by Guillermo Laporta and clarinetist and performance creator "
-    "Tagore González.",
-
-    "With its headquarters in New York City and Asturias, Spain, CreArtBox develops an array of "
-    "distinctive platforms to pursue its mission: a concert season at The DiMenna Center for "
-    "Classical Music, international touring, a printed magazine, a classical music streaming "
-    "platform, a live music podcast with the Queens Public Library, an open call and "
-    "commissioning programme for composers, and Festival ADAR, which develops the arts in rural "
-    "Spain.",
-
-    "The type of performance that most defines the identity of CreArtBox can be referred to as a "
-    "&quot;visual concert&quot;. Visual art and theatrical design techniques are used to enhance "
-    "the audience&#x27;s listening experience of live classical and contemporary music while "
-    "respecting the original musical composition. These multimedia performances are often "
-    "presented in medium-size venues that allow the audience to be fully immersed in the "
-    "atmosphere of the production created by lights and projections. CreArtBox also performs "
-    "more traditional chamber music concerts, which have taken the group to Japan, Spain, "
-    "Europe, Canada, and the east coast of the United States.",
-
-    "Original full theatrical touring shows are also produced, most of them interdisciplinary: "
-    "the opera-ballet-film <em>Architecture of a Common Man</em> (2023), the opera-ballet "
-    "<em>Two Roads</em> (2019), <em>Visuality</em> (2012/14), the opera <em>Noctum</em> (2011), "
-    "the musical <em>London the Show</em> (2009), and <em>Cre.Art Project I</em> (2006).",
-
-    "CreArtBox works with visual artists, designers, dancers, and other creative minds to craft "
-    "multi-layered performances centered around classical music, operating with a roster of "
-    "world-class classical musicians, including members of orchestras such as the Metropolitan "
-    "Opera Orchestra, the New York Philharmonic, the BBC Orchestra, and the Chamber Music "
-    "Society of Lincoln Center.",
-
-    "Grants and awards from public and private institutions sustain CreArtBox&#x27;s nonprofit "
-    "mission alongside a group of generous individual supporters, maintaining steady yearly "
-    "growth. Major supporters include the New York State Council on the Arts, the New York City "
-    "Department of Cultural Affairs, the Amphion Foundation, the Alice M. Ditson Fund, Spain "
-    "Arts and Culture, the Government of Asturias, and the Queens Council on the Arts.",
-]
-
-# surnames the last word does not give
 PLAYERS = [
     ("Guillermo Laporta", "Flute", "guillermo-laporta", "assets/img/guillermo-laporta.png"),
     ("Josefina Urraca", "Piano", "josefina-urraca", "assets/img/josefina-urraca.png"),
@@ -259,7 +212,7 @@ def foot():
     <div class="colophon-grid">
       <div>
         <div class="colophon-mark"><img src="brand/mark-wedge-amber.svg" alt="CreArtBox" width="52" height="24"></div>
-        <p class="colophon-bio">A 501(c)(3) non-profit chamber music and multimedia ensemble. New York &#183; Asturias.</p>
+        <p class="colophon-bio">A 501(c)(3) non-profit chamber music ensemble. New York &#183; Asturias.</p>
         <p class="colophon-addr">info@creartbox.nyc &#183; 10&#8211;48 47th Road, Unit 1, Queens, NY 11101</p>
         <div class="colophon-social">
           <a href="https://www.instagram.com/creartboxnyc/" target="_blank" rel="noopener">Instagram</a>

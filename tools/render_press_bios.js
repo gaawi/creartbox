@@ -45,7 +45,7 @@ function sheet(version) {
           margin-top: 26pt; border-top: 1px solid #ccc; padding-top: 8pt; }
 </style></head><body>
   <div class="name">CreArtBox</div>
-  <div class="sub">Chamber music and multimedia ensemble - New York City - since 2013</div>
+  <div class="sub">Chamber music ensemble - New York City - since 2013</div>
   <div class="kind">Biography &#183; ${chars} characters</div>
   <h1>${LABEL[version]}</h1>
   ${paras.map((p) => `<p>${p}</p>`).join("\n  ")}
@@ -53,11 +53,34 @@ function sheet(version) {
 </body></html>`;
 }
 
+
+// The brand faces come from Google Fonts. Where there is no route to
+// them, CB_FONT_CACHE points at a directory holding fonts.css and the
+// woff2 files it names, and they are served from there instead.
+const FONT_CACHE = process.env.CB_FONT_CACHE || "";
+
+async function serveFonts(page) {
+  if (FONT_CACHE && fs.existsSync(path.join(FONT_CACHE, "fonts.css"))) {
+    await page.route("https://fonts.googleapis.com/**", (route) =>
+      route.fulfill({ contentType: "text/css",
+                      body: fs.readFileSync(path.join(FONT_CACHE, "fonts.css")) }));
+    await page.route("https://fonts.gstatic.com/**", (route) => {
+      const file = path.join(FONT_CACHE, path.basename(new URL(route.request().url()).pathname));
+      if (!fs.existsSync(file)) return route.abort();
+      return route.fulfill({ contentType: "font/woff2", body: fs.readFileSync(file) });
+    });
+    return;
+  }
+  // No cache: a hanging font request must not hold up the render.
+  await page.route(/fonts\.(googleapis|gstatic)\.com/, (route) => route.abort());
+}
+
 (async () => {
   const browser = await chromium.launch({
     executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome",
   });
   const page = await browser.newPage();
+  await serveFonts(page);
   for (const version of ["long", "medium", "short"]) {
     const tmp = path.join("/tmp", `cb-bio-${version}.html`);
     fs.writeFileSync(tmp, sheet(version));

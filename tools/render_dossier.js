@@ -9,12 +9,26 @@ const { chromium } = require("/opt/node22/lib/node_modules/playwright");
 const fs = require("fs");
 const path = require("path");
 
-// The brand faces come from Google Fonts. A sandbox without a route to
-// them would print the PDF in a fallback face, so the renderer serves a
-// local cache when there is one: FONT_CACHE holds fonts.css and the
-// woff2 files it names. Refill it with:
-//   curl "https://fonts.googleapis.com/css2?..." -o fonts.css && ...
+// The brand faces come from Google Fonts. Where there is no route to
+// them, CB_FONT_CACHE points at a directory holding fonts.css and the
+// woff2 files it names, and they are served from there instead.
 const FONT_CACHE = process.env.CB_FONT_CACHE || "";
+
+async function serveFonts(page) {
+  if (FONT_CACHE && fs.existsSync(path.join(FONT_CACHE, "fonts.css"))) {
+    await page.route("https://fonts.googleapis.com/**", (route) =>
+      route.fulfill({ contentType: "text/css",
+                      body: fs.readFileSync(path.join(FONT_CACHE, "fonts.css")) }));
+    await page.route("https://fonts.gstatic.com/**", (route) => {
+      const file = path.join(FONT_CACHE, path.basename(new URL(route.request().url()).pathname));
+      if (!fs.existsSync(file)) return route.abort();
+      return route.fulfill({ contentType: "font/woff2", body: fs.readFileSync(file) });
+    });
+    return;
+  }
+  // No cache: a hanging font request must not hold up the render.
+  await page.route(/fonts\.(googleapis|gstatic)\.com/, (route) => route.abort());
+}
 
 const PAGE = "presenters.html";
 const OUT = "downloads/creartbox-program-dossier.pdf";
@@ -26,19 +40,7 @@ const OUT = "downloads/creartbox-program-dossier.pdf";
   });
   const page = await browser.newPage({ viewport: { width: 900, height: 1200 } });
 
-  if (FONT_CACHE && fs.existsSync(path.join(FONT_CACHE, "fonts.css"))) {
-    await page.route("https://fonts.googleapis.com/**", (route) =>
-      route.fulfill({ contentType: "text/css",
-                      body: fs.readFileSync(path.join(FONT_CACHE, "fonts.css")) }));
-    await page.route("https://fonts.gstatic.com/**", (route) => {
-      const file = path.join(FONT_CACHE, path.basename(new URL(route.request().url()).pathname));
-      if (!fs.existsSync(file)) return route.abort();
-      return route.fulfill({ contentType: "font/woff2", body: fs.readFileSync(file) });
-    });
-  } else {
-    // No cache: do not let a hanging font request hold up the render.
-    await page.route(/fonts\.(googleapis|gstatic)\.com/, (route) => route.abort());
-  }
+  await serveFonts(page);
   const problems = [];
   page.on("pageerror", (e) => problems.push(String(e).slice(0, 140)));
   await page.goto("file://" + path.resolve(PAGE), { waitUntil: "load" });

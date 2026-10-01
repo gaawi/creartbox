@@ -10,7 +10,7 @@ link: Read the press release | press/season-2026-27.html
 link: The full calendar | concerts.html
 ---
 
-New York, NY, 10 September 2026. CreArtBox, the New York chamber music and multimedia ensemble, has announced its twelfth season. It runs from October 2026 to August 2027 and takes in ten dates.
+New York, NY, 10 September 2026. CreArtBox, the New York chamber music ensemble, has announced its twelfth season. It runs from October 2026 to August 2027 and takes in ten dates.
 
 The centre of the season is the New York Series: four productions at The DiMenna Center for Classical Music, each at 7:30 pm. *Currents* (30 October 2026) is built around one idea, current, moving air, moving water, energy going from one place to another, and pairs Eric Moe's *Laminar Flow in Upsidedown Creek* and a new piece by the ensemble's flutist Guillermo Laporta with Brahms and both Schumanns. *Winterlight* (11 December 2026) opens with the world premiere of Hannah Selin's *Tectonic Lullaby* for piano quintet and closes with Stravinsky's *Petroushka* in a chamber arrangement. *Pressure and Release* (23 April 2027) is given over entirely to the open call: seven works, seven composers, one evening. *Feverdream* (7 May 2027) closes the season with Sibelius's G minor Piano Quintet.
 
