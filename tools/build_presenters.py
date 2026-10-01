@@ -71,13 +71,14 @@ PROGRAMS = [
     },
 ]
 
-# One organisation biography, not two: the About section here is the long
-# version from tools/build_org_bio.py, which also writes about.html#bio
-# and the press PDFs. Change it there and both follow.
+# One organisation biography, not two: the About section here is the same
+# version the site shows on about.html#bio, from tools/build_org_bio.py,
+# which also writes the .txt files and the PDFs. Change it there and both
+# pages follow; the full-length version is a download.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from build_org_bio import BIOS          # noqa: E402
 
-ABOUT = BIOS["long"]
+ABOUT = BIOS["web"]
 
 PLAYERS = [
     ("Guillermo Laporta", "Flute", "guillermo-laporta", "assets/img/guillermo-laporta.png"),
@@ -384,6 +385,7 @@ def booking_page():
           <li><a href="{dossier}" download>Programme dossier <span>PDF</span></a></li>
           <li><a href="downloads/creartbox-season-2026-27.pdf" download>Season press release <span>PDF</span></a></li>
           <li><a href="assets/press/creartbox-bio-short.pdf" download>Ensemble biography, short <span>PDF</span></a></li>
+          <li><a href="assets/press/creartbox-bio-web.pdf" download>Ensemble biography, 2,000 characters <span>PDF</span></a></li>
           <li><a href="assets/press/creartbox-bio-medium.pdf" download>Ensemble biography, medium <span>PDF</span></a></li>
           <li><a href="assets/press/creartbox-bio-long.pdf" download>Ensemble biography, long <span>PDF</span></a></li>
           <li><a href="downloads/currents-2026-program.pdf" download>A printed programme, as an example <span>PDF</span></a></li>

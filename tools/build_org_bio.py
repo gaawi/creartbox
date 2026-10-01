@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The CreArtBox biography, at three lengths, from one source.
+"""The CreArtBox biography, at four lengths, from one source.
 
     python3 tools/build_org_bio.py            # write the page and the .txt files
     python3 tools/build_org_bio.py --check    # fail if out of date
@@ -8,11 +8,13 @@ The same text appears on about.html and in the press downloads, so it is
 written once here and pushed to all of them. Run
 `node tools/render_press_bios.js` afterwards to rebuild the PDFs.
 
-The lengths match the artist pages: short at most 500 characters, medium
-at most 1500, long unbounded. The script refuses to write a version that
-is over its limit rather than trimming one silently, because these are
-three separate texts a press desk chooses between, not cuts of each
-other.
+The lengths match the artist pages, with one more for the site itself:
+short at most 500 characters, medium at most 1500, web at most 2000, and
+long unbounded. The web version is the one the pages show by default;
+the long one is for a dossier or a press desk that asks for everything.
+The script refuses to write a version that is over its limit rather than
+trimming one silently, because these are separate texts to choose
+between, not cuts of each other.
 
 Every figure here is checkable against the rest of the site: the season
 count, the productions, the composers and what they have won.
@@ -23,7 +25,9 @@ import os
 import re
 import sys
 
-LIMITS = {"short": 500, "medium": 1500, "long": None}
+LIMITS = {"short": 500, "medium": 1500, "web": 2000, "long": None}
+# longest first, as the tabs read
+ORDER = ("long", "web", "medium", "short")
 
 PRESS = ('Recognized by <em>The New Yorker</em> as one of its "art and music top picks," '
          'praised by <em>Time Out</em> as "an ensemble devoted to multidisciplinary events," '
@@ -33,6 +37,33 @@ PRESS = ('Recognized by <em>The New Yorker</em> as one of its "art and music top
          'of each composition.')
 
 BIOS = {
+    "web": [
+        'CreArtBox creates and produces live art performances, fusing classical and '
+        'contemporary music with original ideas encouraged by multidisciplinary interaction, '
+        'and works to make world-class performances accessible to everyone regardless of '
+        'background or economic circumstance.',
+        'Recognized by <em>The New Yorker</em> as one of its "art and music top picks," '
+        'praised by <em>Time Out</em> as "an ensemble devoted to multidisciplinary events," '
+        'and described by <em>BroadwayWorld</em> as "wholly authentic, visually and aurally '
+        'compelling," the ensemble is known for enhancing the listening experience of live '
+        'music through theatrical design while preserving the integrity of each composition.',
+        'It was founded in New York City in 2013 by flutist <em>Guillermo Laporta</em> and '
+        'pianist <em>Josefina Urraca</em>, who continue as its artistic directors, and is now '
+        'in its 12th season; the project was originally conceived in Europe in 2006 as Cre.Art '
+        'Project. With headquarters in New York City and Asturias, Spain, CreArtBox gives its '
+        'New York Series at The DiMenna Center for Classical Music, tours internationally, and '
+        'runs a printed magazine, a streaming platform, a live music podcast, an open call and '
+        'commissioning program for composers, and Festival ADAR in rural Spain.',
+        'The performance that most defines its identity is the visual concert, in which visual '
+        'art and theatrical design surround live classical and contemporary music; the '
+        'ensemble also plays traditional chamber programs, which have taken it to Japan, '
+        'Spain, Europe, Canada and the east coast of the United States.',
+        'An open Call for Scores has run since the first season, bringing works by Pulitzer '
+        'Prize winners and emerging composers alike into the programmes. CreArtBox is '
+        'supported by the New York State Council on the Arts, the NYC Department of Cultural '
+        'Affairs, the Amphion Foundation, the Alice M. Ditson Fund and the Aaron Copland Fund '
+        'for Music, among others.',
+    ],
     "short": [
         'CreArtBox is a New York chamber music ensemble founded in 2013 by '
         'flutist <em>Guillermo Laporta</em> and pianist <em>Josefina Urraca</em>, now in its '
@@ -167,7 +198,7 @@ def main():
 
     src = open(ABOUT, encoding="utf-8").read()
     out = src
-    for version in ("long", "medium", "short"):
+    for version in ORDER:
         out = block(version, out)
         # the tab says how long its version is, as the artist pages do
         tag = '<span class="bt-meta" data-bio-count="%s">' % version
@@ -198,10 +229,10 @@ def main():
             print("\nRun: python3 tools/build_org_bio.py && node tools/render_press_bios.js")
             return 1
         print("organisation biography up to date: " + ", ".join(
-            "{} {}".format(v, length(v)) for v in ("short", "medium", "long")))
+            "{} {}".format(v, length(v)) for v in ORDER))
         return 0
 
-    for v in ("short", "medium", "long"):
+    for v in ORDER:
         print("%-7s %4d characters%s" % (
             v, length(v), "" if not LIMITS[v] else " (limit %d)" % LIMITS[v]))
     print("\nNow run: node tools/render_press_bios.js")

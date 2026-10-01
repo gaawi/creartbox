@@ -81,7 +81,7 @@ async function serveFonts(page) {
   });
   const page = await browser.newPage();
   await serveFonts(page);
-  for (const version of ["long", "medium", "short"]) {
+  for (const version of ["long", "web", "medium", "short"]) {
     const tmp = path.join("/tmp", `cb-bio-${version}.html`);
     fs.writeFileSync(tmp, sheet(version));
     await page.goto("file://" + tmp, { waitUntil: "load" });

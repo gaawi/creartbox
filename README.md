@@ -167,21 +167,32 @@ until it reaches a printer.
 
 ## The CreArtBox biography
 
-The same text sits on `about.html` and in six press downloads, so it is
-written once, in `BIOS` in the script, and pushed to all of them:
+The same text sits on `about.html`, on `presenters.html`, in the press
+downloads and in the dossier, so it is written once, in `BIOS` in the
+script, and pushed to all of them:
 
 ```bash
 python3 tools/build_org_bio.py            # the page and the .txt files
-node tools/render_press_bios.js           # then the three PDFs
+node tools/render_press_bios.js           # then the four PDFs
+python3 tools/build_presenters.py         # the presenters page follows
 python3 tools/build_org_bio.py --check    # fail if out of date
 ```
 
-Three lengths, the same ceilings as the artist pages: short at most 500
-characters, medium at most 1500, long unbounded. Unlike the artist pages
-these are three separate texts rather than cuts of one, because a press
-desk picks between them; the script refuses to write a version that is
-over its limit rather than trimming one behind your back. The tab on the
-page counts the text it is describing, so the figure cannot drift.
+Four lengths: short at most 500 characters, medium at most 1500, web at
+most 2000, long unbounded. `ORDER` lists them longest first, as the tabs
+read. The web version is what both pages show; the long one is for a
+press desk or a dossier that asks for everything, and is a download.
+`tools/build_presenters.py` imports `BIOS["web"]` rather than keeping a
+second copy, so the two pages cannot drift apart.
+
+These are separate texts rather than cuts of one, because a press desk
+picks between them; the script refuses to write a version that is over
+its limit rather than trimming one behind your back. The tab on the page
+counts the text it is describing, so the figure cannot drift.
+
+Adding a fifth length means an entry in `BIOS` and `LIMITS`, a place in
+`ORDER`, and three pieces of markup on `about.html`: the tab button, the
+`bio-version` block with its copy button, and the download link.
 
 ## Artist pages
 
