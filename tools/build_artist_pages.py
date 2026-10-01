@@ -684,8 +684,8 @@ def page(artist):
     label, url = artist["contact"]
     external = ' target="_blank" rel="noopener"' if url.startswith("http") else ""
     note = (
-        '          <p class="bio-note">These biographies are published as the artist '
-        'wrote them and are not to be altered. For another version, or for a longer one, '
+        '          <p class="bio-note">These biographies are not to be altered. '
+        'For another version, or for a longer one, '
         'write to {name} directly: <a href="{url}"{ext}>{label}</a>.</p>'.format(
             name=html.escape(artist["name"].split()[0]), url=url, ext=external, label=label))
     bio = ('        <section class="artist-bio" data-bio-set>\n'
@@ -703,7 +703,7 @@ def page(artist):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,300..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/styles.css?v=135">
+<link rel="stylesheet" href="../assets/styles.css?v=136">
 <script id="cb-theme-init">document.documentElement.setAttribute("data-theme","dark");</script>
 </head>
 <body>

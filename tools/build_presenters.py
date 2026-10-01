@@ -20,7 +20,7 @@ import sys
 import unicodedata
 
 SITE = "https://creartbox.nyc"
-CSS = "assets/styles.css?v=135"
+CSS = "assets/styles.css?v=136"
 JS = "assets/site.js?v=44"
 REPERTOIRE = "data/repertoire.txt"
 CONTACT = "info@creartbox.nyc"
@@ -28,6 +28,7 @@ CONTACT = "info@creartbox.nyc"
 PROGRAMS = [
     {
         "n": "Program 1",
+        "slug": "dvorak-schumanns",
         "title": "Dvořák and the Schumanns",
         "blurb": (
             "Warmth, lyricism, and rhythmic vitality bring together the music of Dvořák "
@@ -49,6 +50,7 @@ PROGRAMS = [
     },
     {
         "n": "Program 2",
+        "slug": "ravel-stravinsky",
         "title": "Ravel, Kurtág, Ligeti, Stravinsky",
         "blurb": (
             "Ravel&#x27;s luminous sound world meets the bold imagination of Hungarian composers "
@@ -80,14 +82,6 @@ from build_org_bio import BIOS          # noqa: E402
 
 ABOUT = BIOS["web"]
 
-PLAYERS = [
-    ("Guillermo Laporta", "Flute", "guillermo-laporta", "assets/img/guillermo-laporta.png"),
-    ("Josefina Urraca", "Piano", "josefina-urraca", "assets/img/josefina-urraca.png"),
-    ("Emilie-Anne Gendron", "Violin", "emilie-anne-gendron", "assets/img/emilie-gendron.webp"),
-    ("Matthew Cohen", "Viola", "matthew-cohen", "assets/img/matthew-cohen.jpg"),
-    ("Julia Yang", "Cello", "julia-yang", "assets/img/julia-yang.jpg"),
-]
-
 PHOTOS = [
     ("creartbox-ensemble.jpg", "The ensemble", "Photo: Tao Ho", "3000 &#215; 1949"),
     ("creartbox-currents-dimenna.jpg", "At The DiMenna Center", "New York Series", "3000 &#215; 2001"),
@@ -96,16 +90,18 @@ PHOTOS = [
     ("creartbox-festival-adar.jpg", "Festival ADAR", "Asturias", "1600 &#215; 941"),
 ]
 
-DOSSIER = "downloads/creartbox-program-dossier.pdf"
-OVERVIEW = ("https://docs.google.com/document/d/1HSpbQAPXiWeClvaKnnFJD7rsd0h8pQt-5KL0Vlco99U/edit?usp=sharing")
-
-FACTS = [
-    ("Ensemble", "Piano quintet: flute, piano, violin, viola and cello"),
-    ("Smaller formations", "Duo, trio and quartet from the same players"),
-    ("Programme length", "Two halves with one intermission, adaptable"),
-    ("Fees", "On request, by formation and date"),
-    ("Based", "New York City, touring from there"),
+PLAYERS = [
+    ("Guillermo Laporta", "Flute", "guillermo-laporta", "assets/img/guillermo-laporta.png"),
+    ("Josefina Urraca", "Piano", "josefina-urraca", "assets/img/josefina-urraca.png"),
+    ("Emilie-Anne Gendron", "Violin", "emilie-anne-gendron", "assets/img/emilie-gendron.webp"),
+    ("Matthew Cohen", "Viola", "matthew-cohen", "assets/img/matthew-cohen.jpg"),
+    ("Julia Yang", "Cello", "julia-yang", "assets/img/julia-yang.jpg"),
 ]
+
+DOSSIER = "downloads/creartbox-program-dossier.pdf"
+# one proposal per programme, written by tools/render_dossier.js
+PROPOSAL = "downloads/creartbox-{}.pdf"
+OVERVIEW = ("https://docs.google.com/document/d/1HSpbQAPXiWeClvaKnnFJD7rsd0h8pQt-5KL0Vlco99U/edit?usp=sharing")
 
 SORT = {
     "Carl Maria von Weber": "Weber",
@@ -248,7 +244,7 @@ def program_block(program):
             '        <li><span class="pgm-composer">{c}</span>'
             '<span class="pgm-work">{w} <span class="pgm-mins">{m}&#x27;</span></span></li>'.format(
                 c=composer, w=work, m=mins))
-    return ("""    <article class="offer">
+    return ("""    <article class="offer" data-program="{slug}">
       <div class="offer-head">
         <span class="label">{n}</span>
         <h3 class="offer-title">{title}</h3>
@@ -259,19 +255,14 @@ def program_block(program):
 {rows}
         </ul>
         <p class="offer-total">Music, about {total} minutes, with one intermission.</p>
+        <p class="offer-dl"><a class="btn btn-s" href="{pdf}" download>This programme &#183; PDF <span class="ar">&#8595;</span></a></p>
       </div>
     </article>""".format(n=program["n"], title=html.escape(program["title"], quote=True),
-                         blurb=program["blurb"], rows="\n".join(rows), total=total))
+                         blurb=program["blurb"], rows="\n".join(rows), total=total,
+                         slug=program["slug"], pdf=PROPOSAL.format(program["slug"])))
 
 
 # ------------------------------------------------------------------- pages
-
-def facts_block():
-    rows = "".join(
-        '        <div class="pres-fact"><dt>{k}</dt><dd>{v}</dd></div>\n'.format(k=k, v=v)
-        for k, v in FACTS)
-    return '      <dl class="pres-facts">\n{}      </dl>'.format(rows)
-
 
 def roster_block():
     cards = []
@@ -316,15 +307,21 @@ def booking_page():
         <span>2026 / 27 &#183; twelfth season &#183; info@creartbox.nyc &#183; creartbox.nyc</span>
       </div>
     </div>
-
-    <div class="page-folio-head">
-      <span class="label">For presenters</span>
-      <hr class="rule" style="width:100%">
-      <span class="label ital">Programmes, players and materials</span>
-    </div>
     <h1 class="sr-only">For presenters</h1>
 
-{facts}
+    <div class="offer-grid">
+{programs}
+    </div>
+
+    <p class="offer-note">Both programmes can be adapted to suit different concert lengths, and
+      either can be played by a smaller group: a piano trio, a flute, cello and piano trio, or
+      a duo. This season the ensemble tours a piano trio to Illinois and a flute, cello and
+      piano programme to the Hudson Valley. For a programme built around a theme, an
+      anniversary or a local commission, write to <a href="mailto:{contact}">{contact}</a>:
+      the ensemble has played <a href="repertoire.html">everything listed here</a>, and reads
+      new scores every season through its open call. CreArtBox tours as a piano quintet
+      (flute, piano, violin, viola and cello) and in smaller formations. Fees on request, by
+      formation and date.</p>
 
     <div class="pres-actions">
       <a class="btn btn-stamp" href="mailto:{contact}?subject=Booking%20enquiry">Enquire about a date <span class="ar">&#8594;</span></a>
@@ -334,33 +331,8 @@ def booking_page():
   </div>
 </section>
 
-<section class="section pres-programs">
-  <div class="wrap">
-    <div class="section-title">
-      <hr class="rule">
-      <div class="head"><span class="label">On offer</span><span class="bar"></span><span class="label ital">Two <em>programmes</em>.</span></div>
-      <hr class="rule">
-    </div>
-
-{programs}
-
-    <p class="offer-note">Both programmes can be adapted to suit different concert lengths, and
-      either can be played by a smaller group: a piano trio, a flute, cello and piano trio, or
-      a duo. This season the ensemble tours a piano trio to Illinois and a flute, cello and
-      piano programme to the Hudson Valley. For a programme built around a theme, an
-      anniversary or a local commission, write to <a href="mailto:{contact}">{contact}</a>:
-      the ensemble has played <a href="repertoire.html">everything listed here</a>, and reads
-      new scores every season through its open call. Fees on request.</p>
-  </div>
-</section>
-
 <section class="section tinted pres-roster-wrap">
   <div class="wrap">
-    <div class="section-title">
-      <hr class="rule">
-      <div class="head"><span class="label">The players</span><span class="bar"></span><span class="label ital">Biographies, <em>as they wrote them</em>.</span></div>
-      <hr class="rule">
-    </div>
     <div class="pres-roster">
 {roster}
     </div>
@@ -377,29 +349,10 @@ def booking_page():
       <div class="head"><span class="label">Materials</span><span class="bar"></span><span class="label ital">Ready to <em>download</em>.</span></div>
       <hr class="rule">
     </div>
-
-    <div class="pres-files">
-      <div>
-        <h3 class="offer-title">Documents</h3>
-        <ul class="pres-dl">
-          <li><a href="{dossier}" download>Programme dossier <span>PDF</span></a></li>
-          <li><a href="downloads/creartbox-season-2026-27.pdf" download>Season press release <span>PDF</span></a></li>
-          <li><a href="assets/press/creartbox-bio-short.pdf" download>Ensemble biography, short <span>PDF</span></a></li>
-          <li><a href="assets/press/creartbox-bio-web.pdf" download>Ensemble biography, 2,000 characters <span>PDF</span></a></li>
-          <li><a href="assets/press/creartbox-bio-medium.pdf" download>Ensemble biography, medium <span>PDF</span></a></li>
-          <li><a href="assets/press/creartbox-bio-long.pdf" download>Ensemble biography, long <span>PDF</span></a></li>
-          <li><a href="downloads/currents-2026-program.pdf" download>A printed programme, as an example <span>PDF</span></a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="offer-title">Logos and brand</h3>
-        <ul class="pres-dl">
-          <li><a href="downloads/creartbox-brand-assets.zip" download>All brand assets <span>ZIP</span></a></li>
-          <li><a href="brand/logo-creartbox-reversed.svg" download>Wordmark, reversed <span>SVG</span></a></li>
-          <li><a href="brand/logo-creartbox-black.svg" download>Wordmark, black <span>SVG</span></a></li>
-          <li><a href="brand.html">The full press kit <span>page</span></a></li>
-        </ul>
-      </div>
+    <div class="pres-material-links">
+      <a class="btn" href="about.html#bio">Biographies <span class="ar">&#8594;</span></a>
+      <a class="btn" href="brand.html">Logos and press kit <span class="ar">&#8594;</span></a>
+      <a class="btn" href="press/season-2026-27.html">Season press release <span class="ar">&#8594;</span></a>
     </div>
 
     <h3 class="offer-title pres-photos-h">Photographs</h3>
@@ -446,7 +399,7 @@ def booking_page():
     </div>
   </div>
 </section>
-""".format(programs=programs, about=about, contact=CONTACT, facts=facts_block(),
+""".format(programs=programs, about=about, contact=CONTACT,
            roster=roster_block(), photos=photos_block(), dossier=DOSSIER,
            overview=OVERVIEW)
             + foot())

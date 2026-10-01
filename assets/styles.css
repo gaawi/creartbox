@@ -5835,12 +5835,12 @@ button.myBtn_multi, .eventpast a.button {
    What a presenter needs: the programmes on offer, then every
    work the ensemble has played, filtered as you type.
    ------------------------------------------------------------ */
-.offer {
-  display: grid; grid-template-columns: 260px 1fr; gap: 40px;
-  padding: 34px 0; border-top: 1px solid var(--rule);
+.offer-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 46px; margin-top: 34px;
 }
-.offer:last-of-type { border-bottom: 1px solid var(--rule); }
+.offer { border-top: 2px solid var(--senal); padding-top: 18px; }
 .offer-head .label { display: block; color: var(--senal); }
+.offer-head { margin-bottom: 14px; }
 .offer-title {
   font-family: var(--display); font-weight: 400; font-size: 27px;
   line-height: 1.16; margin: 12px 0 0; color: var(--papel);
@@ -5852,6 +5852,7 @@ button.myBtn_multi, .eventpast a.button {
   font-family: var(--texto); font-size: 11px; font-weight: 600;
   letter-spacing: 0.16em; text-transform: uppercase; color: var(--papel-mudo);
 }
+.offer-dl { margin: 14px 0 0; }
 .offer-total {
   margin: 16px 0 0; font-family: var(--texto); font-size: 13px;
   font-style: italic; color: var(--papel-dim);
@@ -5922,7 +5923,8 @@ button.myBtn_multi, .eventpast a.button {
 .rep-empty a { color: var(--papel); border-bottom: 1px solid var(--filete-alto); }
 
 @media (max-width: 860px) {
-  .offer, .rep-group { grid-template-columns: 1fr; gap: 14px; }
+  .offer-grid { grid-template-columns: 1fr; gap: 30px; }
+  .rep-group { grid-template-columns: 1fr; gap: 14px; }
   .offer-about, .offer-contact { grid-template-columns: 1fr; gap: 28px; }
 }
 
@@ -5935,20 +5937,6 @@ button.myBtn_multi, .eventpast a.button {
    ------------------------------------------------------------ */
 .pres-top { padding: 40px 0 6px; }
 .pres-print-head { display: none; }
-.pres-facts {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 1px; margin: 24px 0 0; padding: 0;
-  background: var(--filete); border: 1px solid var(--filete);
-}
-.pres-fact { background: var(--sala); padding: 14px 16px; }
-.pres-fact dt {
-  font-family: var(--texto); font-size: 10px; font-weight: 700;
-  letter-spacing: 0.18em; text-transform: uppercase; color: var(--senal);
-}
-.pres-fact dd {
-  margin: 6px 0 0; font-family: var(--texto); font-size: 14.5px;
-  line-height: 1.5; color: var(--papel-medio);
-}
 .pres-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
 
 /* the roster */
@@ -5995,6 +5983,7 @@ button.myBtn_multi, .eventpast a.button {
 }
 .pres-dl a:hover span { color: var(--senal); }
 
+.pres-material-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
 .pres-photos-h { margin-top: 42px; }
 .pres-shots {
   display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 16px;
@@ -6034,13 +6023,12 @@ button.myBtn_multi, .eventpast a.button {
 /* phones: the whole page one column, and smaller throughout */
 @media (max-width: 700px) {
   .pres-top { padding: 26px 0 4px; }
-  .pres-facts { grid-template-columns: 1fr; margin-top: 18px; }
-  .pres-fact { padding: 11px 13px; }
-  .pres-fact dd { font-size: 14px; }
   .pres-actions { gap: 6px; margin-top: 16px; }
-  .pres-actions .btn { font-size: 11px; padding: 10px 13px; }
+  .pres-actions .btn,
+  .pres-material-links .btn { font-size: 11px; padding: 10px 13px; }
 
-  .offer { padding: 22px 0; }
+  .offer-grid { grid-template-columns: 1fr; gap: 28px; margin-top: 22px; }
+  .offer { padding-top: 14px; }
   .offer-title { font-size: 21px; }
   .offer-body .body-l { font-size: 15px; line-height: 1.6; }
   .offer-list { margin-top: 16px; }
@@ -6049,8 +6037,6 @@ button.myBtn_multi, .eventpast a.button {
   .pres-roster { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .pres-player-name { font-size: 15px; }
 
-  .pres-files { grid-template-columns: 1fr; gap: 26px; }
-  .pres-dl a { font-size: 14px; padding: 10px 0; }
   .pres-photos-h { margin-top: 30px; }
   .pres-shots { grid-template-columns: repeat(2, 1fr); gap: 8px; }
   .pres-shot-cap { font-size: 11px; padding: 7px 8px; }
@@ -6072,7 +6058,7 @@ button.myBtn_multi, .eventpast a.button {
    the page that only work in a browser */
 @media print {
   .pres-actions, .pres-materials, .pres-roster-wrap .offer-note,
-  .pres-dl-all, .back-to-archive { display: none !important; }
+  .pres-dl-all, .back-to-archive, .offer-dl { display: none !important; }
   .pres-top { padding: 0 0 6pt; }
   /* the mobile rule uses !important, and print is narrow enough to hit it */
   .pres-top .page-folio-head { display: none !important; }
@@ -6091,19 +6077,15 @@ button.myBtn_multi, .eventpast a.button {
     font-size: 8pt; color: #555;
   }
 
-  .pres-facts { border: 0.5pt solid #999; background: #fff; gap: 0; margin-top: 10pt; }
-  .pres-fact { background: #fff; border-right: 0.5pt solid #ccc; padding: 7pt 9pt; }
-  .pres-fact dt { color: #000; font-size: 6.5pt; }
-  .pres-fact dd { color: #222; font-size: 8.5pt; }
+  
 
-  .offer { border-top: 0.5pt solid #999; padding: 10pt 0; }
-  .offer-head { break-after: avoid; }
+  .offer-grid { grid-template-columns: 1fr 1fr; gap: 16pt; margin-top: 12pt; }
+  .offer { border-top: 1.5pt solid #FFC403; padding-top: 8pt; break-inside: avoid; }
   .offer-list { break-inside: avoid; }
-  .offer:last-of-type { border-bottom: 0.5pt solid #999; }
   .offer-head .label { color: #000; }
-  .offer-title { color: #000; font-size: 15pt; }
-  .offer-body .body-l { color: #222; font-size: 9.5pt; line-height: 1.4; }
-  .offer-list .pgm-composer, .offer-list .pgm-work { color: #000; font-size: 9pt; }
+  .offer-title { color: #000; font-size: 13pt; }
+  .offer-body .body-l { color: #222; font-size: 9pt; line-height: 1.4; }
+  .offer-list .pgm-composer, .offer-list .pgm-work { color: #000; font-size: 8.5pt; }
   .offer-list .pgm-mins { color: #555; }
   .offer-list .pgm-break { color: #555; border-top: 0.5pt solid #ccc; }
   .offer-total, .offer-note { color: #333; font-size: 9pt; }

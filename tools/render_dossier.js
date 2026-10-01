@@ -61,24 +61,51 @@ const OUT = "downloads/creartbox-program-dossier.pdf";
   await page.emulateMedia({ media: "print" });
 
   const rule = "border-bottom:0.5pt solid #bbb;padding-bottom:4px;";
-  await page.pdf({
-    path: OUT,
+  const header = (title) =>
+    '<div style="width:100%;margin:0 16mm;font-family:Helvetica,Arial,sans-serif;' +
+    'font-size:7pt;color:#777;letter-spacing:.08em;text-transform:uppercase;' + rule +
+    'display:flex;justify-content:space-between;">' +
+    "<span>CreArtBox &#183; " + title + "</span><span>2026 / 27</span></div>";
+  const footer =
+    '<div style="width:100%;margin:0 16mm;font-family:Helvetica,Arial,sans-serif;' +
+    'font-size:7pt;color:#777;display:flex;justify-content:space-between;">' +
+    "<span>info@creartbox.nyc &#183; creartbox.nyc/presenters.html</span>" +
+    '<span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span>' +
+    "</div>";
+  const paper = {
     format: "A4",
     printBackground: true,
     displayHeaderFooter: true,
-    headerTemplate:
-      '<div style="width:100%;margin:0 16mm;font-family:Helvetica,Arial,sans-serif;' +
-      'font-size:7pt;color:#777;letter-spacing:.08em;text-transform:uppercase;' + rule +
-      'display:flex;justify-content:space-between;">' +
-      "<span>CreArtBox &#183; Concert programme dossier</span>" +
-      "<span>2026 / 27</span></div>",
-    footerTemplate:
-      '<div style="width:100%;margin:0 16mm;font-family:Helvetica,Arial,sans-serif;' +
-      'font-size:7pt;color:#777;display:flex;justify-content:space-between;">' +
-      "<span>info@creartbox.nyc &#183; creartbox.nyc/presenters.html</span>" +
-      '<span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span>' +
-      "</div>",
+    footerTemplate: footer,
     margin: { top: "20mm", right: "16mm", bottom: "16mm", left: "16mm" },
+  };
+
+  await page.pdf({
+    ...paper,
+    path: OUT,
+    headerTemplate: header("Concert programme dossier"),
+  });
+
+  // One proposal per programme: the same page with the other programme
+  // hidden, so a presenter can be sent the one that interests them.
+  const programs = await page.evaluate(() =>
+    [...document.querySelectorAll(".offer")].map((o) => ({
+      slug: o.dataset.program,
+      title: o.querySelector(".offer-title").textContent.trim(),
+    })));
+  for (const { slug, title } of programs) {
+    await page.evaluate((keep) => {
+      document.querySelectorAll(".offer").forEach((o) => {
+        o.style.display = o.dataset.program === keep ? "" : "none";
+      });
+      document.querySelector(".offer-grid").style.gridTemplateColumns = "1fr";
+    }, slug);
+    const out = "downloads/creartbox-" + slug + ".pdf";
+    await page.pdf({ ...paper, path: out, headerTemplate: header(title) });
+    console.log("wrote " + out);
+  }
+  await page.evaluate(() => {
+    document.querySelectorAll(".offer").forEach((o) => { o.style.display = ""; });
   });
 
   const broken = await page.evaluate(() =>
