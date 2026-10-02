@@ -3,7 +3,11 @@ title: Upsidedown Creek is a real place
 date: 2026-10-02
 dek: Eric Moe on the piece CreArtBox plays on 30 October. The creek is a real one in Montana, the sign at the trailhead really is upside down, and the music came partly from a tango.
 tag: Interview
+image: assets/img/eric-moe.jpg
+alt: Eric Moe, standing by a creek
+caption: Eric Moe. Photo: Mara Rago.
 link: Currents, 30 October | concerts/currents-2026.html
+link: ericmoe.net | https://www.ericmoe.net/
 link: Read the printed programme | programs/currents-2026.html
 ---
 
