@@ -282,8 +282,9 @@ link: Read about Currents | concerts/currents-2026.html
 
 `link` can be repeated; each one becomes a button at the foot of the
 post. The body takes paragraphs, `## ` headings, `- ` lists, `> `
-quotations, `**bold**`, `*italic*`, `[links](url)` and
-`![alt](path "caption")` for a photograph. Nothing else is needed:
+quotations, `**bold**`, `*italic*`, `[links](url)`,
+`![alt](path "caption")` for a photograph, and `Q: ` for an interview
+question. Nothing else is needed:
 the date in the filename orders the posts, the newest one leads the
 index and the three newest fill the strip on the home page, between
 the generated markers `<!-- NEWS ... -->`.
@@ -292,7 +293,9 @@ An interview with an artist follows one shape, so the series is
 recognisable: the title is "<Number> questions for <Name>", the tag is
 `Interview`, and the first paragraph says who was interviewed and why -
 what we play, when, and where. That first paragraph is set as a
-standfirst, above a rule. Each `##` heading carries one answer.
+standfirst, above a rule. The questions themselves are lines starting
+with `Q: `, and the paragraphs under each one are the answer; the page
+numbers the questions itself, so they can be reordered without renumbering.
 
 Deleting a post file deletes its page on the next run. The section is
 linked from every page by:

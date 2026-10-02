@@ -38,7 +38,7 @@ POSTS_DIR = "news/_posts"
 OUT_DIR = "news"
 INDEX = "news.html"
 FEED = "feed.xml"
-CSS = "assets/styles.css?v=138"
+CSS = "assets/styles.css?v=139"
 JS = "assets/site.js?v=44"
 MONTHS = ["January", "February", "March", "April", "May", "June", "July",
           "August", "September", "October", "November", "December"]
@@ -124,7 +124,10 @@ def markdown(body, prefix):
         if not line.strip():
             i += 1
             continue
-        if line.startswith("## "):
+        if line.startswith("Q: "):
+            blocks.append('<p class="news-q">%s</p>' % inline(line[3:], prefix))
+            i += 1
+        elif line.startswith("## "):
             blocks.append('<h2 class="news-h2">%s</h2>' % inline(line[3:], prefix))
             i += 1
         elif IMAGE_RE.match(line.strip()):

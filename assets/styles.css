@@ -5777,6 +5777,20 @@ button.myBtn_multi, .eventpast a.button {
 }
 .news-body a { color: var(--papel); border-bottom: 1px solid var(--filete-alto); }
 .news-body a:hover { color: var(--senal); border-bottom-color: var(--senal); }
+/* an interview: the question, numbered by the page, then the answer */
+.news-body { counter-reset: q; }
+.news-q {
+  counter-increment: q;
+  font-family: var(--display); font-size: 21px; line-height: 1.35;
+  color: var(--papel); margin: 34px 0 14px; text-indent: -1.6em; padding-left: 1.6em;
+}
+.news-q::before {
+  content: counter(q) ".";
+  color: var(--senal); font-family: var(--texto); font-size: 14px;
+  font-weight: 700; margin-right: 10px;
+}
+.news-q + p { margin-top: 0; }
+
 .news-h2 {
   font-family: var(--display); font-weight: 400; font-size: 25px;
   line-height: 1.22; color: var(--papel); margin: 34px 0 14px;
