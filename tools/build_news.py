@@ -38,7 +38,7 @@ POSTS_DIR = "news/_posts"
 OUT_DIR = "news"
 INDEX = "news.html"
 FEED = "feed.xml"
-CSS = "assets/styles.css?v=137"
+CSS = "assets/styles.css?v=138"
 JS = "assets/site.js?v=44"
 MONTHS = ["January", "February", "March", "April", "May", "June", "July",
           "August", "September", "October", "November", "December"]
@@ -111,7 +111,12 @@ def inline(text, prefix):
 
 
 def markdown(body, prefix):
-    """The small part of Markdown a news post actually needs."""
+    """The small part of Markdown a news post actually needs.
+
+    The opening paragraph is marked, so a post can begin with the line
+    that says why we are publishing it - who was interviewed, what we
+    play, when and where - and it reads as a standfirst.
+    """
     blocks, lines = [], body.split("\n")
     i = 0
     while i < len(lines):
@@ -149,7 +154,9 @@ def markdown(body, prefix):
             while i < len(lines) and lines[i].strip() and not lines[i].startswith(("## ", "- ", "> ", "![")):
                 para.append(lines[i].strip())
                 i += 1
-            blocks.append("<p>%s</p>" % inline(" ".join(para), prefix))
+            first = not blocks
+            blocks.append('<p{}>{}</p>'.format(
+                ' class="news-intro"' if first else "", inline(" ".join(para), prefix)))
     return "\n        ".join(blocks)
 
 

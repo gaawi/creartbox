@@ -288,6 +288,12 @@ the date in the filename orders the posts, the newest one leads the
 index and the three newest fill the strip on the home page, between
 the generated markers `<!-- NEWS ... -->`.
 
+An interview with an artist follows one shape, so the series is
+recognisable: the title is "<Number> questions for <Name>", the tag is
+`Interview`, and the first paragraph says who was interviewed and why -
+what we play, when, and where. That first paragraph is set as a
+standfirst, above a rule. Each `##` heading carries one answer.
+
 Deleting a post file deletes its page on the next run. The section is
 linked from every page by:
 

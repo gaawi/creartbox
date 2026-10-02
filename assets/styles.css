@@ -5770,6 +5770,11 @@ button.myBtn_multi, .eventpast a.button {
   font-size: 17px; line-height: 1.72; color: var(--papel-medio);
 }
 .news-body p { margin: 0 0 20px; }
+/* the line that says why we are publishing this one */
+.news-body .news-intro {
+  font-size: 18.5px; line-height: 1.6; color: var(--papel);
+  padding-bottom: 20px; border-bottom: 1px solid var(--rule); margin-bottom: 26px;
+}
 .news-body a { color: var(--papel); border-bottom: 1px solid var(--filete-alto); }
 .news-body a:hover { color: var(--senal); border-bottom-color: var(--senal); }
 .news-h2 {

@@ -1,5 +1,5 @@
 ---
-title: Upsidedown Creek is a real place
+title: Six questions for Eric Moe
 date: 2026-10-02
 dek: Eric Moe on the piece CreArtBox plays on 30 October. The creek is a real one in Montana, the sign at the trailhead really is upside down, and the music came partly from a tango.
 tag: Interview
@@ -11,7 +11,7 @@ link: ericmoe.net | https://www.ericmoe.net/
 link: Read the printed programme | programs/currents-2026.html
 ---
 
-Eight questions to the composer, four weeks before we play his piece.
+We have interviewed the composer **Eric Moe** because on 30 October we play his *Laminar Flow in Upsidedown Creek* at The DiMenna Center for Classical Music, in *Currents*, the first night of our twelfth season. The piece reached the programme through our open [Call for Scores](opportunities.html). Six questions, four weeks before we play it.
 
 ## The creek is real
 
