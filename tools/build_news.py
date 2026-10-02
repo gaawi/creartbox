@@ -38,7 +38,7 @@ POSTS_DIR = "news/_posts"
 OUT_DIR = "news"
 INDEX = "news.html"
 FEED = "feed.xml"
-CSS = "assets/styles.css?v=136"
+CSS = "assets/styles.css?v=137"
 JS = "assets/site.js?v=44"
 MONTHS = ["January", "February", "March", "April", "May", "June", "July",
           "August", "September", "October", "November", "December"]
@@ -249,7 +249,7 @@ def card(post, prefix, featured=False):
                '<img src="{p}{src}" alt="{alt}" loading="lazy"></a>'.format(
                    p=prefix, slug=post["slug"], src=post["image"],
                    alt=html.escape(post.get("alt", ""), quote=True)))
-    return ('      <article class="news-card{big}">\n'
+    return ('      <article class="news-card{big}{bare}">\n'
             '        {img}\n'
             '        <div class="news-card-text">\n'
             '          <div class="news-meta"><span class="news-tag">{tag}</span>'
@@ -260,7 +260,8 @@ def card(post, prefix, featured=False):
             '<span class="ar">&#8594;</span></a>\n'
             '        </div>\n'
             '      </article>'.format(
-                big=" news-card-big" if featured else "", img=img, p=prefix,
+                big=" news-card-big" if featured else "",
+                bare="" if img else " news-card-bare", img=img, p=prefix,
                 tag=html.escape(post.get("tag", "News"), quote=True),
                 iso=post["date"], date=long_date(post["dt"]),
                 slug=post["slug"], title=inline(post["title"], prefix),

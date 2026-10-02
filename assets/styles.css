@@ -5714,6 +5714,8 @@ button.myBtn_multi, .eventpast a.button {
   align-items: start; padding: 26px 0; border-top: 1px solid var(--rule);
 }
 .news-card:last-child { border-bottom: 1px solid var(--rule); }
+/* no photograph: the text takes the whole width rather than the second column */
+.news-card-bare { grid-template-columns: 1fr; }
 .news-card-media { display: block; overflow: hidden; }
 .news-card-media img {
   display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover;
