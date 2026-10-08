@@ -5,7 +5,7 @@ dek: The piece that opens our twelfth season is named after a stream in Montana.
 tag: Interview
 image: assets/img/eric-moe.jpg
 alt: Eric Moe, standing by a creek
-caption: Eric Moe. Photo: Mara Rago.
+caption: Eric Moe. Photo: Ross Mantle.
 link: Currents, 30 October | concerts/currents-2026.html
 link: Read the printed programme | programs/currents-2026.html
 link: ericmoe.net | https://www.ericmoe.net/
