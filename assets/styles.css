@@ -5861,7 +5861,11 @@ button.myBtn_multi, .eventpast a.button {
 }
 .offer { border-top: 2px solid var(--senal); padding-top: 18px; }
 .offer-head .label { display: block; color: var(--senal); }
-.offer-head { margin-bottom: 14px; }
+.offer-head { margin-bottom: 16px; }
+.offer-sub {
+  margin: 8px 0 0; font-family: var(--texto); font-size: 14px; line-height: 1.5;
+  color: var(--papel-dim); max-width: 46ch;
+}
 .offer-title {
   font-family: var(--display); font-weight: 400; font-size: 27px;
   line-height: 1.16; margin: 12px 0 0; color: var(--papel);
@@ -6051,6 +6055,7 @@ button.myBtn_multi, .eventpast a.button {
   .offer-grid { grid-template-columns: 1fr; gap: 28px; margin-top: 22px; }
   .offer { padding-top: 14px; }
   .offer-title { font-size: 21px; }
+  .offer-sub { font-size: 13.5px; }
   .offer-body .body-l { font-size: 15px; line-height: 1.6; }
   .offer-list { margin-top: 16px; }
   .offer-note { font-size: 13.5px; margin-top: 20px; }
@@ -6105,6 +6110,7 @@ button.myBtn_multi, .eventpast a.button {
   .offer-list { break-inside: avoid; }
   .offer-head .label { color: #000; }
   .offer-title { color: #000; font-size: 13pt; }
+  .offer-sub { color: #555; font-size: 8.5pt; margin-top: 4pt; }
   .offer-body .body-l { color: #222; font-size: 9pt; line-height: 1.4; }
   .offer-list .pgm-composer, .offer-list .pgm-work { color: #000; font-size: 8.5pt; }
   .offer-list .pgm-mins { color: #555; }

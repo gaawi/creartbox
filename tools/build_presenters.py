@@ -20,7 +20,7 @@ import sys
 import unicodedata
 
 SITE = "https://creartbox.nyc"
-CSS = "assets/styles.css?v=139"
+CSS = "assets/styles.css?v=140"
 JS = "assets/site.js?v=44"
 REPERTOIRE = "data/repertoire.txt"
 CONTACT = "info@creartbox.nyc"
@@ -29,7 +29,9 @@ PROGRAMS = [
     {
         "n": "Program 1",
         "slug": "dvorak-schumanns",
-        "title": "Dvořák and the Schumanns",
+        "title": "Song and Dance",
+        "sub": ("Dvořák&#x27;s American summer and the Schumanns&#x27; Leipzig: two quartets, "
+                "a quintet and three romances."),
         "blurb": (
             "Warmth, lyricism, and rhythmic vitality bring together the music of Dvořák "
             "and the Schumanns. A flute arrangement of Dvořák&#x27;s beloved &quot;American&quot; "
@@ -51,7 +53,9 @@ PROGRAMS = [
     {
         "n": "Program 2",
         "slug": "ravel-stravinsky",
-        "title": "Ravel, Kurtág, Ligeti, Stravinsky",
+        "title": "Fairy Tales and Fairgrounds",
+        "sub": ("French colour and Hungarian invention, ending in Stravinsky&#x27;s "
+                "fairground."),
         "blurb": (
             "Ravel&#x27;s luminous sound world meets the bold imagination of Hungarian composers "
             "György Kurtág and György Ligeti in a first half shaped by contrast and discovery. "
@@ -248,6 +252,7 @@ def program_block(program):
       <div class="offer-head">
         <span class="label">{n}</span>
         <h3 class="offer-title">{title}</h3>
+        <p class="offer-sub">{sub}</p>
       </div>
       <div class="offer-body">
         <p class="body-l">{blurb}</p>
@@ -259,7 +264,8 @@ def program_block(program):
       </div>
     </article>""".format(n=program["n"], title=html.escape(program["title"], quote=True),
                          blurb=program["blurb"], rows="\n".join(rows), total=total,
-                         slug=program["slug"], pdf=PROPOSAL.format(program["slug"])))
+                         slug=program["slug"], sub=program["sub"],
+                         pdf=PROPOSAL.format(program["slug"])))
 
 
 # ------------------------------------------------------------------- pages
