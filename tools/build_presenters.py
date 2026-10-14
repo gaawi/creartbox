@@ -20,7 +20,7 @@ import sys
 import unicodedata
 
 SITE = "https://creartbox.nyc"
-CSS = "assets/styles.css?v=140"
+CSS = "assets/styles.css?v=141"
 JS = "assets/site.js?v=44"
 REPERTOIRE = "data/repertoire.txt"
 CONTACT = "info@creartbox.nyc"
@@ -319,15 +319,14 @@ def booking_page():
 {programs}
     </div>
 
-    <p class="offer-note">Both programmes can be adapted to suit different concert lengths, and
-      either can be played by a smaller group: a piano trio, a flute, cello and piano trio, or
-      a duo. This season the ensemble tours a piano trio to Illinois and a flute, cello and
-      piano programme to the Hudson Valley. For a programme built around a theme, an
-      anniversary or a local commission, write to <a href="mailto:{contact}">{contact}</a>:
-      the ensemble has played <a href="repertoire.html">everything listed here</a>, and reads
-      new scores every season through its open call. CreArtBox tours as a piano quintet
-      (flute, piano, violin, viola and cello) and in smaller formations. Fees on request, by
-      formation and date.</p>
+    <p class="offer-note">Both programmes can be adapted to suit different concert lengths.
+      CreArtBox tours as a piano quintet - flute, piano, violin, viola and cello - and builds
+      separate programmes for smaller formations: this season a piano trio goes to Illinois
+      and a flute, cello and piano programme to the Hudson Valley. For a programme built
+      around a theme, an anniversary or a local commission, write to
+      <a href="mailto:{contact}">{contact}</a>: the ensemble has played
+      <a href="repertoire.html">everything listed here</a>, and reads new scores every season
+      through its open call. Fees on request, by formation and date.</p>
 
     <div class="pres-actions">
       <a class="btn btn-stamp" href="mailto:{contact}?subject=Booking%20enquiry">Enquire about a date <span class="ar">&#8594;</span></a>

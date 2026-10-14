@@ -6084,7 +6084,10 @@ button.myBtn_multi, .eventpast a.button {
    the page that only work in a browser */
 @media print {
   .pres-actions, .pres-materials, .pres-roster-wrap .offer-note,
-  .pres-dl-all, .back-to-archive, .offer-dl { display: none !important; }
+  .pres-dl-all, .back-to-archive, .offer-dl,
+  /* a proposal ends with the music, not with instructions for writing to us:
+     the running footer already carries the address */
+  .pres-top .offer-note, .pres-contact-wrap { display: none !important; }
   .pres-top { padding: 0 0 6pt; }
   /* the mobile rule uses !important, and print is narrow enough to hit it */
   .pres-top .page-folio-head { display: none !important; }
