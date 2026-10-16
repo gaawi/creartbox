@@ -3,8 +3,7 @@ title: Five days in Kuopio
 date: 2026-10-16
 dek: The conservatory asked us how we work rather than what we play, so we spent the week showing them: a concert, a long talk, a workshop with interactive visuals and lights carried around the hall, and two masterclasses.
 tag: Residency
-link: The residency | archive/kuopio-residency-2026-2026-10.html
-link: The public concert | archive/umbral-zero-kuopio-2026-2026-10.html
+link: The week in the archive | archive.html#y2026
 ---
 
 The invitation from the Kuopio Conservatory was an unusual one, and the reason we said yes: they did not ask us to come and play a recital. They asked us to show how we work. That is a harder thing to answer in words than on a stage, so we spent five days in Finland answering it both ways.

@@ -361,18 +361,16 @@ python3 tools/archive_past.py --check  # fail if something is overdue
 
 The dates come from the calendar rows themselves, which carry the day,
 the month, the year and "to Oct 9" for a date that runs over several
-days. For each one that has passed the script writes
-`archive/<slug>-<year>-<month>.html` from the concert page - back link,
-"Part of" instead of the series, Date instead of When, no ticket block,
-Archive marked in the navigation - adds the entry at the top of its year
-on `archive.html`, deletes the concert page, drops the row from
+days. The archive is one page: nothing writes a page of its own. For each date
+that has passed the script adds an entry at the top of its year on
+`archive.html` - the date, the title, what it was part of, the place, the
+hero photograph from the concert page, and the programme behind a "View
+Program" button - then deletes the concert page, drops the row from
 `concerts.html`, and rewrites every link elsewhere that pointed at the
-old page, including inside `news/_posts`.
+concert to that year in the archive, including inside `news/_posts`.
 
 Afterwards run `sync_next_event.py`, `link_performer_bios.py` and
-`build_news.py`, which the script reminds you of. The description on the
-new page is still in the tense it was written in; put it in the past by
-hand.
+`build_news.py`, which the script reminds you of.
 
 ## Performer biographies
 

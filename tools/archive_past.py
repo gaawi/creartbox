@@ -5,10 +5,12 @@
     python3 tools/archive_past.py --check    # fail if something is overdue
 
 A date in the calendar that has passed is still sitting on the site as
-if tickets were coming, so once it is over it moves: the concert page
-becomes an archive page, an entry goes into the year on archive.html,
-and the row leaves concerts.html. Links elsewhere on the site that
-pointed at the old page are rewritten to the archive one.
+if tickets were coming, so once it is over it moves: an entry goes into
+its year on archive.html, carrying the date, the title, what it was part
+of, the place, the photograph and the programme behind a "View Program"
+button, and the row and the concert page go. The archive is one page:
+nothing here writes a page of its own. Links elsewhere on the site that
+pointed at the concert are rewritten to its year in the archive.
 
 The dates come from the calendar rows themselves, which carry the day,
 the month and the year, and "to Oct 9" when a date runs over several
@@ -35,6 +37,23 @@ WHERE_RE = re.compile(r'<td class="where">(.*?)<br><span[^>]*>(.*?)</span></td>'
 
 def text(fragment):
     return re.sub(r"\s+", " ", re.sub("<[^>]+>", " ", fragment)).strip()
+
+
+PROGRAM_RE = re.compile(
+    r'<li[^>]*><span class="rp-composer">(.*?)</span><span class="rp-work">(.*?)</span></li>', re.S)
+MANUAL_RE = re.compile(r'<ul data-program-manual[^>]*>(.*?)</ul>', re.S)
+HERO_RE = re.compile(r'<figure class="concert-hero"><img src="\.\./([^"]+)"')
+
+
+def program_of(row):
+    """[(composer, work), ...] as the calendar row lists them."""
+    works = [(text(c), text(w)) for c, w in PROGRAM_RE.findall(row)]
+    if works:
+        return works
+    manual = MANUAL_RE.search(row)
+    if manual:
+        return [("", text(li)) for li in re.findall(r"<li[^>]*>(.*?)</li>", manual.group(1), re.S)]
+    return []
 
 
 def parse_row(row):
@@ -70,7 +89,7 @@ def parse_row(row):
         "place": text(where.group(2)) if where else "",
         "start": start, "end": end,
         "year": year, "month": month, "days": days,
-        "archive": "%s-%d-%02d" % (href.group(1), year, MONTHS[month]),
+        "program": program_of(row),
     }
 
 
@@ -79,42 +98,20 @@ def past_rows(src):
     return [r for r in rows if r and r["end"] < TODAY]
 
 
-# ------------------------------------------------------------ the page
+# ----------------------------------------------------------- the entry
 
-def archive_page(event):
-    """The concert page, rewritten as a record of something that happened."""
-    src = open("concerts/%s.html" % event["slug"], encoding="utf-8").read()
+MODAL = """<button class="myBtn_multi">View Program</button>
+			<div class="modal modal_multi">
+				<div class="modal-content">
+					<span class="close close_multi">&#215;</span>
+{works}				</div>
+			</div>
+"""
 
-    src = src.replace('<section class="event-page concert-landing">',
-                      '<section class="event-page">')
-    src = src.replace(
-        '<a href="../concerts.html" class="back-to-archive">&#8592; All upcoming concerts</a>',
-        '<a href="../archive.html" class="back-to-archive">&#8592; Archive of performances</a>')
-    src = src.replace(
-        '<a href="../concerts.html" class="back-to-archive">← All upcoming concerts</a>',
-        '<a href="../archive.html" class="back-to-archive">← Archive of performances</a>')
-    src = src.replace('<div class="event-series">%s</div>' % event["part_of"],
-                      '<div class="event-series">Part of: %s</div>' % event["part_of"])
-    src = src.replace('<div class="meta-h">When</div>', '<div class="meta-h">Date</div>')
-    src = src.replace('<div class="meta-h">Series</div>', '<div class="meta-h">Part of</div>')
-    # tickets are over
-    src = re.sub(r'\n *<div class="ticket-cta">.*?</div>\n *</div>\n', "\n", src, flags=re.S)
-    src = re.sub(r'<a href="\.\./concerts\.html" class="btn">(&#8592;|←) All upcoming concerts</a>',
-                 '<a href="../archive.html" class="btn">&#8592; Archive of performances</a>', src)
-    # the head: it is an archive page now
-    src = src.replace('<link rel="canonical" href="https://creartbox.nyc/concerts/%s.html">'
-                      % event["slug"],
-                      '<link rel="canonical" href="https://creartbox.nyc/archive/%s.html">'
-                      % event["archive"])
-    src = src.replace('<div class="nav-item"><a href="../concerts.html" class="active">Calendar</a></div>',
-                      '<div class="nav-item"><a href="../concerts.html">Calendar</a></div>')
-    src = src.replace('<div class="nav-item"><a href="../archive.html">Archive</a></div>',
-                      '<div class="nav-item"><a href="../archive.html" class="active">Archive</a></div>')
-    return src
-
-
-ENTRY = """		<div class="eventpast nophoto">
-			<div class="calendardatepast">
+# with a photograph the text sits in a div of its own beside it, which is
+# what the grid in the stylesheet expects
+ENTRY = """		<div class="eventpast{bare}">
+{photo}{open_text}			<div class="calendardatepast">
 				<span class="yearpast">{year}</span><span class="monthpast">{month}</span><span class="daypast">{days}</span>
 			</div>
 			<h3>
@@ -125,12 +122,29 @@ ENTRY = """		<div class="eventpast nophoto">
 			</h5>
 			<h5 class="address">
 				<i aria-hidden="true" class="fa fa-map-marker"></i>{place}
-			</h5>
-			<div class="explore">
-				<a class="button" href="archive/{archive}.html">View more</a>
-			</div>
-		</div>
+			</h5>{program}{close_text}		</div>
 """
+
+PHOTO = ('\t\t\t<img class="imgpastevents" height="inherit" src="{src}" '
+         'width="auto" loading="lazy">\n')
+
+
+def entry(event):
+    """The record of one date, inside the archive page itself."""
+    works = ""
+    for composer, work in event["program"]:
+        if composer:
+            works += "\t\t\t\t\t<strong>%s</strong><br>\n" % composer
+        works += "\t\t\t\t\t%s<br>\n" % work
+    hero = HERO_RE.search(open("concerts/%s.html" % event["slug"], encoding="utf-8").read())
+    # the photo variant wraps the text in a div of its own
+    return ENTRY.format(
+        bare="" if hero else " nophoto",
+        photo=PHOTO.format(src=hero.group(1)) if hero else "",
+        open_text="\t\t\t<div>\n" if hero else "",
+        close_text="\t\t\t</div>\n" if hero else "",
+        program=MODAL.format(works=works) if works else "\n",
+        **{k: event[k] for k in ("year", "month", "days", "title", "part_of", "place")})
 
 
 def add_entry(src, event):
@@ -140,7 +154,7 @@ def add_entry(src, event):
     if not head:
         sys.exit("  !! no %d block in archive.html" % event["year"])
     at = head.end()
-    return src[:at] + ENTRY.format(**event) + src[at:]
+    return src[:at] + entry(event) + src[at:]
 
 
 def relink(event):
@@ -152,11 +166,11 @@ def relink(event):
             continue
         src = open(path, encoding="utf-8").read()
         depth = "../" if "/" in path else ""
-        out = src.replace('%sconcerts/%s.html' % (depth, event["slug"]),
-                          '%sarchive/%s.html' % (depth, event["archive"]))
+        year = "%sarchive.html#y%d" % (depth, event["year"])
+        out = src.replace("%sconcerts/%s.html" % (depth, event["slug"]), year)
         if path.startswith("news/_posts/"):
             out = src.replace("concerts/%s.html" % event["slug"],
-                              "archive/%s.html" % event["archive"])
+                              "archive.html#y%d" % event["year"])
         if out != src:
             open(path, "w", encoding="utf-8").write(out)
             touched.append(path)
@@ -184,14 +198,13 @@ def main():
 
     archive = open("archive.html", encoding="utf-8").read()
     for event in sorted(events, key=lambda e: e["start"]):
-        page = "archive/%s.html" % event["archive"]
-        open(page, "w", encoding="utf-8").write(archive_page(event))
         archive = add_entry(archive, event)
         calendar = calendar.replace(event["row"], "\n")
-        os.remove("concerts/%s.html" % event["slug"])
         moved = relink(event)
-        print("%s -> %s%s" % (event["slug"], page,
-                              ("   relinked: " + ", ".join(moved)) if moved else ""))
+        os.remove("concerts/%s.html" % event["slug"])
+        print("%s -> archive.html, %d (%d work(s))%s" % (
+            event["slug"], event["year"], len(event["program"]),
+            ("   relinked: " + ", ".join(moved)) if moved else ""))
 
     open("archive.html", "w", encoding="utf-8").write(archive)
     open("concerts.html", "w", encoding="utf-8").write(calendar)
