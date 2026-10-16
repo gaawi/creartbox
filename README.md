@@ -372,6 +372,12 @@ concert to that year in the archive, including inside `news/_posts`.
 Afterwards run `sync_next_event.py`, `link_performer_bios.py` and
 `build_news.py`, which the script reminds you of.
 
+One visit, one entry: a residency and the public concert inside it are
+two rows in the calendar, because tickets and dates work that way, but
+in the archive they are one week. Merge them by hand after the move -
+the dates of the whole visit, a line saying what the days held, the
+programme of the concert behind the button - as the Kuopio entry does.
+
 ## Performer biographies
 
 `tools/link_performer_bios.py` links every performer name in

@@ -6145,3 +6145,10 @@ button.myBtn_multi, .eventpast a.button {
   .section-title .rule, .page-folio-head .rule { border-color: #999; }
   .section.tinted { background: #fff !important; }
 }
+
+/* An archive entry that covers several days says in one line what the
+   days were, between the address and the buttons. */
+.eventpast .pastnote {
+  font-family: var(--texto); font-size: 13.5px; line-height: 1.55;
+  color: var(--papel-dim); margin: 10px 0 12px;
+}
