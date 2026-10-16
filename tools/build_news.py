@@ -15,6 +15,7 @@ with a short block of keys:
     image: assets/img/ensemble.jpg
     alt: What the photograph shows
     caption: The line printed under it.
+    focus: center 70%
     link: Read about Currents | concerts/currents-2026.html
     ---
 
@@ -322,8 +323,12 @@ def post_page(post, others):
     hero = ""
     if post.get("image"):
         cap = post.get("caption", "")
-        hero = ('    <figure class="news-hero"><img src="{p}{src}" alt="{alt}">{cap}</figure>\n'
+        # the hero is cropped to a band, so a photograph whose subject sits
+        # low in the frame says where to crop from: focus: center 70%
+        spot = post.get("focus", "")
+        hero = ('    <figure class="news-hero"><img src="{p}{src}" alt="{alt}"{spot}>{cap}</figure>\n'
                 .format(p=prefix, src=post["image"],
+                        spot=' style="object-position:%s"' % spot if spot else "",
                         alt=html.escape(post.get("alt", ""), quote=True),
                         cap=('<figcaption class="cap">%s</figcaption>' % inline(cap, prefix))
                         if cap else ""))
