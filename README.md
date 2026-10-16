@@ -349,6 +349,31 @@ the block that was already addressed to presenters.
 biography page), `PHOTOS` the downloadable photographs, and `FACTS` the
 strip at the top: ensemble, formations, length, fees, base.
 
+## Moving a date into the archive
+
+A concert that has happened is still on the calendar as if tickets were
+coming, so once it is over it moves:
+
+```bash
+python3 tools/archive_past.py          # move everything past
+python3 tools/archive_past.py --check  # fail if something is overdue
+```
+
+The dates come from the calendar rows themselves, which carry the day,
+the month, the year and "to Oct 9" for a date that runs over several
+days. For each one that has passed the script writes
+`archive/<slug>-<year>-<month>.html` from the concert page - back link,
+"Part of" instead of the series, Date instead of When, no ticket block,
+Archive marked in the navigation - adds the entry at the top of its year
+on `archive.html`, deletes the concert page, drops the row from
+`concerts.html`, and rewrites every link elsewhere that pointed at the
+old page, including inside `news/_posts`.
+
+Afterwards run `sync_next_event.py`, `link_performer_bios.py` and
+`build_news.py`, which the script reminds you of. The description on the
+new page is still in the tense it was written in; put it in the past by
+hand.
+
 ## Performer biographies
 
 `tools/link_performer_bios.py` links every performer name in
