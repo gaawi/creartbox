@@ -3,10 +3,10 @@ title: Five days in Kuopio
 date: 2026-10-16
 dek: The conservatory asked us how we work rather than what we play. Five days on taking classical music out of its protocol: a concert, a long talk, a workshop with interactive visuals and lights carried around the hall, and two masterclasses.
 tag: Residency
-image: assets/img/kuopio/kuopio-concert.jpg
-alt: Josefina Urraca at the piano and Guillermo Laporta on flute, with a projection filling the wall of the hall
-caption: The concert in the Kamarimusiikkisali of the Kuopio Music Centre.
-focus: center 78%
+image: assets/img/kuopio/kuopio-talk.jpg
+alt: Guillermo Laporta talking to students in the chamber hall, Josefina Urraca beside the stage
+caption: Talking to the students in the chamber hall of the Kuopio Music Centre.
+focus: center 62%
 link: The week in the archive | archive.html#y2026
 ---
 
@@ -16,9 +16,9 @@ The invitation from the Kuopio Conservatory was an unusual one, and the reason w
 
 The public concert was next door, in the chamber hall of the Kuopio Music Centre. We played Lili Boulanger and Messiaen, Janáček, Debussy and Clara Schumann in our own arrangements for flute and piano, two of Falla's *Siete canciones populares españolas*, the Frank Martin *Ballade*, and one piece of Guillermo's own. We built the evening the way we build any CreArtBox evening. The music comes first and everything else is put at its service: the image, the light, where the players stand, when they walk. Nothing on stage is decoration. If a projection or a lamp is not doing the same work the music is doing at that moment, it comes out.
 
-That is quick to write and slow to rehearse.
+![Josefina Urraca at the piano and Guillermo Laporta on flute, with a projection filling the wall of the hall](assets/img/kuopio/kuopio-concert.jpg "The concert, in the same hall. The video answers the music rather than running beside it.")
 
-![Guillermo Laporta talking to students in the hall, Josefina Urraca beside the stage](assets/img/kuopio/kuopio-talk.jpg "The talk, in the same hall as the concert.")
+That is quick to write and slow to rehearse.
 
 ## The talk
 
