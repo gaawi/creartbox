@@ -6196,3 +6196,16 @@ button.myBtn_multi, .eventpast a.button {
   font-family: var(--sans); font-style: normal; font-size: 12px;
   font-weight: 700; letter-spacing: 0.12em; color: var(--papel-mudo);
 }
+
+/* A photograph inside a set of guidelines: a page of rules is hard to
+   read in one go, and this is also where the music ends up. */
+.call-fig { margin: 30px 0; }
+.call-fig img {
+  display: block; width: 100%; height: auto; max-height: 420px; object-fit: cover;
+  border: 1px solid var(--filete);
+}
+.call-fig .cap { margin-top: 8px; }
+@media (max-width: 700px) {
+  .call-fig { margin: 22px 0; }
+  .call-fig img { max-height: 240px; }
+}
