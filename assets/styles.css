@@ -6188,3 +6188,11 @@ button.myBtn_multi, .eventpast a.button {
 
 /* the corner stamp on a call that is taking applications */
 .stamp.stamp-open { color: var(--sobre-senal); background: var(--senal); border-color: var(--senal); }
+
+/* The cycle year belongs to the code but will not fit beside it in a
+   100px column, so it sits underneath, in the label face. */
+.call-card-no .call-card-yr {
+  display: block; margin-top: 4px;
+  font-family: var(--sans); font-style: normal; font-size: 12px;
+  font-weight: 700; letter-spacing: 0.12em; color: var(--papel-mudo);
+}
