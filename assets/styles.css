@@ -6209,3 +6209,45 @@ button.myBtn_multi, .eventpast a.button {
   .call-fig { margin: 22px 0; }
   .call-fig img { max-height: 240px; }
 }
+
+/* ------------------------------------------------------------
+   A COLUMN BESIDE A POST
+   The other notes used to sit in a strip under the article,
+   where nobody reached them. They read better beside it.
+   ------------------------------------------------------------ */
+.news-layout {
+  display: grid; grid-template-columns: minmax(0, 1fr) 262px;
+  gap: 56px; align-items: start;
+}
+.news-main .news-body { margin-top: 26px; }
+.news-side { position: sticky; top: 96px; padding-top: 30px; border-top: 2px solid var(--senal); }
+.news-side-h {
+  font-family: var(--texto); font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--papel-mudo);
+}
+.news-side-list { list-style: none; margin: 10px 0 18px; padding: 0; }
+.news-side-list li { border-top: 1px solid var(--rule); }
+.news-side-list li:last-child { border-bottom: 1px solid var(--rule); }
+.news-side-list a { display: block; padding: 12px 0; }
+.news-side-date {
+  display: block; font-family: var(--texto); font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--papel-mudo);
+}
+.news-side-title {
+  display: block; margin-top: 5px; font-family: var(--display); font-size: 16.5px;
+  line-height: 1.3; color: var(--papel-medio);
+}
+.news-side-list a:hover .news-side-title { color: var(--senal); }
+
+@media (max-width: 900px) {
+  .news-layout { grid-template-columns: 1fr; gap: 34px; }
+  .news-side { position: static; }
+  .news-side-title { font-size: 16px; }
+}
+
+/* who said it, under the quotation */
+.news-quote-by {
+  display: block; margin-top: 10px; font-family: var(--texto); font-style: normal;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--papel-mudo);
+}

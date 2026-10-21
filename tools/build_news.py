@@ -39,7 +39,7 @@ POSTS_DIR = "news/_posts"
 OUT_DIR = "news"
 INDEX = "news.html"
 FEED = "feed.xml"
-CSS = "assets/styles.css?v=145"
+CSS = "assets/styles.css?v=147"
 JS = "assets/site.js?v=44"
 MONTHS = ["January", "February", "March", "April", "May", "June", "July",
           "August", "September", "October", "November", "December"]
@@ -140,13 +140,23 @@ def markdown(body, prefix):
                     cap=('<figcaption class="cap">%s</figcaption>' % inline(cap, prefix))
                     if cap else ""))
             i += 1
-        elif line.startswith("> "):
-            quote = []
-            while i < len(lines) and lines[i].startswith("> "):
-                quote.append(lines[i][2:].strip())
+        elif line.startswith(">"):
+            # a quotation, and under it, after an empty > line, who said it
+            parts, buf = [], []
+            while i < len(lines) and lines[i].startswith(">"):
+                text_line = lines[i][1:].strip()
+                if text_line:
+                    buf.append(text_line)
+                elif buf:
+                    parts.append(" ".join(buf))
+                    buf = []
                 i += 1
-            blocks.append('<blockquote class="news-quote"><p>%s</p></blockquote>'
-                          % inline(" ".join(quote), prefix))
+            if buf:
+                parts.append(" ".join(buf))
+            body = "".join("<p>%s</p>" % inline(x, prefix) for x in parts[:-1] or parts)
+            by = ('<footer class="news-quote-by">%s</footer>' % inline(parts[-1], prefix)
+                  if len(parts) > 1 else "")
+            blocks.append('<blockquote class="news-quote">%s%s</blockquote>' % (body, by))
         elif line.startswith("- "):
             items = []
             while i < len(lines) and lines[i].startswith("- "):
@@ -155,7 +165,7 @@ def markdown(body, prefix):
             blocks.append('<ul class="news-ul">%s</ul>' % "".join(items))
         else:
             para = []
-            while i < len(lines) and lines[i].strip() and not lines[i].startswith(("## ", "- ", "> ", "![")):
+            while i < len(lines) and lines[i].strip() and not lines[i].startswith(("## ", "- ", ">", "![")):
                 para.append(lines[i].strip())
                 i += 1
             first = not blocks
@@ -345,17 +355,21 @@ def post_page(post, others):
                         .format(href, ext, html.escape(label, quote=True)))
         links = ('      <div class="news-links">{}</div>\n'.format("".join(rows)))
 
-    more = ""
+    side = ""
     if others:
-        more = ('\n<section class="section tinted news-more-wrap">\n  <div class="wrap">\n'
-                '    <div class="section-title"><hr class="rule">'
-                '<div class="head"><span class="label">More news</span><span class="bar"></span>'
-                '<span class="label ital">Also <em>this season</em>.</span></div>'
-                '<hr class="rule"></div>\n'
-                '    <div class="news-list">\n{}\n    </div>\n'
-                '    <p class="news-feed"><a href="{}news.html">All news '
-                '<span class="ar">&#8594;</span></a></p>\n  </div>\n</section>\n'.format(
-                    "\n".join(card(p, prefix) for p in others), prefix))
+        rows = "\n".join(
+            '          <li><a href="{p}news/{slug}.html">'
+            '<span class="news-side-date">{date}</span>'
+            '<span class="news-side-title">{title}</span></a></li>'.format(
+                p=prefix, slug=o["slug"], date=short_date(o["dt"]),
+                title=inline(o["title"], prefix))
+            for o in others)
+        side = ('      <aside class="news-side">\n'
+                '        <div class="news-side-h">More from the news</div>\n'
+                '        <ul class="news-side-list">\n{rows}\n        </ul>\n'
+                '        <a class="btn btn-s" href="{p}news.html">All news '
+                '<span class="ar">&#8594;</span></a>\n'
+                '      </aside>\n'.format(rows=rows, p=prefix))
 
     return (head(post["title"] + " · CreArtBox", post["dek"],
                  "%s/news/%s.html" % (SITE, post["slug"]), prefix,
@@ -373,16 +387,20 @@ def post_page(post, others):
     </header>
 
 {hero}
-    <div class="news-body">
+    <div class="news-layout">
+      <div class="news-main">
+        <div class="news-body">
         {body}
-    </div>
+        </div>
 
-{links}  </div>
+{links}      </div>
+{side}    </div>
+  </div>
 </section>
-{more}""".format(p=prefix, tag=html.escape(post.get("tag", "News"), quote=True),
+""".format(p=prefix, tag=html.escape(post.get("tag", "News"), quote=True),
                  iso=post["date"], date=long_date(post["dt"]),
                  title=inline(post["title"], prefix), dek=inline(post["dek"], prefix),
-                 hero=hero, body=markdown(post["body"], prefix), links=links, more=more)
+                 hero=hero, body=markdown(post["body"], prefix), links=links, side=side)
             + foot(prefix))
 
 
