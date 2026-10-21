@@ -6318,3 +6318,50 @@ button.myBtn_multi, .eventpast a.button {
   .history-row { color: #333; font-size: 8.5pt; }
   .history-cycle, .history-status { color: #333; }
 }
+
+/* ------------------------------------------------------------
+   THE COMPOSERS A CALL HAS CHOSEN
+   Faces say more than a list of closed cycles: who the ensemble
+   has programmed is the one argument the call can make.
+   ------------------------------------------------------------ */
+.call-composers-wrap { margin-top: 54px; }
+.call-composers-note {
+  margin: 10px 0 0; max-width: 64ch; font-family: var(--texto);
+  font-size: 13.5px; line-height: 1.6; color: var(--papel-dim);
+}
+.call-composers-note a { color: var(--papel); border-bottom: 1px solid var(--filete-alto); }
+.call-composers-note a:hover { color: var(--senal); border-bottom-color: var(--senal); }
+.call-composers {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; margin: 24px 0 18px;
+}
+.call-composer { display: block; }
+.cc-portrait { display: block; overflow: hidden; border: 1px solid var(--filete); }
+.cc-portrait img {
+  display: block; width: 100%; aspect-ratio: 1/1; object-fit: cover;
+  filter: grayscale(0.45); transition: filter var(--t-fast), transform var(--t-fast);
+}
+a.call-composer:hover .cc-portrait img { filter: none; transform: scale(1.04); }
+.cc-name {
+  display: block; margin-top: 8px; font-family: var(--display); font-size: 14.5px;
+  line-height: 1.25; color: var(--papel);
+}
+a.call-composer:hover .cc-name { color: var(--senal); }
+.cc-base {
+  display: block; margin-top: 2px; font-family: var(--texto); font-size: 10.5px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--papel-mudo);
+}
+
+@media (max-width: 900px) { .call-composers { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 560px) { .call-composers { grid-template-columns: repeat(3, 1fr); gap: 10px; } }
+
+@media print {
+  .call-composers-wrap { margin-top: 16pt; break-inside: avoid; }
+  .call-composers { grid-template-columns: repeat(6, 1fr); gap: 6pt; margin: 8pt 0; }
+  .cc-portrait { border: 0.5pt solid #ccc; }
+  .cc-portrait img { filter: grayscale(1); }
+  .cc-name { color: #000; font-size: 8pt; }
+  .cc-base { color: #666; font-size: 6pt; }
+  .call-composers-note { color: #444; font-size: 8pt; }
+  .call-composers-note a { color: #000; border: 0; }
+  .call-composers-wrap .event-h2 { color: #000; font-size: 11pt; }
+}
