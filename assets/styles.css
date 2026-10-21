@@ -6152,3 +6152,39 @@ button.myBtn_multi, .eventpast a.button {
   font-family: var(--texto); font-size: 13.5px; line-height: 1.55;
   color: var(--papel-dim); margin: 10px 0 12px;
 }
+
+/* ------------------------------------------------------------
+   AN OPEN CALL THAT IS ACTUALLY OPEN
+   The closed state is red. While a cycle is taking applications
+   it carries the brand's one signal instead, and the deadline is
+   the loudest thing on the card.
+   ------------------------------------------------------------ */
+.status-strip.open {
+  background: rgba(255, 196, 3, 0.09);
+  border-color: rgba(255, 196, 3, 0.45);
+}
+.status-strip.open strong { color: var(--senal); }
+.status-strip.open .status-dot {
+  background: var(--senal);
+  box-shadow: 0 0 0 4px rgba(255, 196, 3, 0.18);
+}
+.call-status.open { color: var(--senal); border-color: var(--senal); }
+
+.call-apply {
+  display: flex; flex-direction: column; gap: 8px; margin-top: 18px;
+}
+.call-apply .btn-ticket { justify-content: center; }
+.call-apply .call-apply-note {
+  font-family: var(--texto); font-size: 12.5px; line-height: 1.5;
+  color: var(--papel-mudo);
+}
+.call-apply .call-apply-note a { color: var(--papel-dim); border-bottom: 1px solid currentColor; }
+
+/* the days left, under the deadline in the side column */
+.side-card .side-sub {
+  display: block; margin-top: 5px; font-family: var(--texto);
+  font-size: 12px; color: var(--papel-mudo);
+}
+
+/* the corner stamp on a call that is taking applications */
+.stamp.stamp-open { color: var(--sobre-senal); background: var(--senal); border-color: var(--senal); }
