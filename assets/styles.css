@@ -6303,7 +6303,9 @@ button.myBtn_multi, .eventpast a.button {
   .call-detail-main a { color: #000; border: 0; }
   .call-h3 { color: #000; font-size: 12pt; margin: 14pt 0 6pt; break-after: avoid; }
   .call-detail-main ul { font-size: 9.5pt; color: #222; }
-  .call-detail-main li { margin-bottom: 3pt; }
+  /* the list text inherits the dark theme's grey otherwise, and goes
+     faint on white paper */
+  .call-detail-main li { margin-bottom: 3pt; color: #222 !important; }
   .call-fig { break-inside: avoid; margin: 10pt 0; }
   .call-fig img { max-height: 150pt; border: 0.5pt solid #ccc; }
   .call-fig .cap { color: #555; font-size: 8pt; }
