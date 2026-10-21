@@ -349,6 +349,24 @@ the block that was already addressed to presenters.
 biography page), `PHOTOS` the downloadable photographs, and `FACTS` the
 strip at the top: ensemble, formations, length, fees, base.
 
+## The open calls
+
+The guidelines on `calls/*.html` are written by hand. When a cycle opens
+or closes, the status strip, the side cards and the buttons are edited
+there and on `opportunities.html` and the home page. A composer can take
+the guidelines away as a PDF:
+
+```bash
+node tools/render_calls.js      # downloads/creartbox-ca1-2026.pdf, ca2
+```
+
+As with the dossier, the PDF is the page printed: `@media print` drops
+the navigation, the pills, the status strip and the buttons, puts the
+side cards in a block at the top, adds a masthead with the black
+wordmark, and prints the line that says where to apply, since a button
+is no use on paper. Set `CB_FONT_CACHE` where Google Fonts cannot be
+reached.
+
 ## Moving a date into the archive
 
 A concert that has happened is still on the calendar as if tickets were
