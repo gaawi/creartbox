@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>CreArtBox · News</title>
+    <link>https://creartbox.nyc/news.html</link>
+    <description>Season announcements, notes from the road, and what the ensemble is working on now.</description>
+    <language>en-us</language>
+    <item>
+      <title>CreArtBox opens its 2027/28 Calls for Scores</title>
+      <link>https://creartbox.nyc/news/calls-for-scores-2027-28.html</link>
+      <guid isPermaLink="true">https://creartbox.nyc/news/calls-for-scores-2027-28.html</guid>
+      <pubDate>Thu, 22 Oct 2026 12:00:00 +0000</pubDate>
+      <description>Two calls, CA1/2026 for composers of any nationality and CA2/2026 for American composers, take applications from 22 October to 15 December 2026. Any instrumentation, every career stage, and a first round read with no names attached.</description>
+    </item>
+    <item>
+      <title>Five days in Kuopio</title>
+      <link>https://creartbox.nyc/news/five-days-in-kuopio.html</link>
+      <guid isPermaLink="true">https://creartbox.nyc/news/five-days-in-kuopio.html</guid>
+      <pubDate>Fri, 16 Oct 2026 12:00:00 +0000</pubDate>
+      <description>The conservatory asked us how we work rather than what we play. Five days on taking classical music out of its protocol: a concert, a long talk, a workshop with interactive visuals and lights carried around the hall, and two masterclasses.</description>
+    </item>
+    <item>
+      <title>Eight questions for Eric Moe</title>
+      <link>https://creartbox.nyc/news/eight-questions-for-eric-moe.html</link>
+      <guid isPermaLink="true">https://creartbox.nyc/news/eight-questions-for-eric-moe.html</guid>
+      <pubDate>Fri, 02 Oct 2026 12:00:00 +0000</pubDate>
+      <description>The piece that opens our twelfth season is named after a stream in Montana. Its composer on laminar flow, a tango with three dancers, and what to listen for near the end.</description>
+    </item>
+    <item>
+      <title>CreArtBox announces its twelfth season</title>
+      <link>https://creartbox.nyc/news/twelfth-season.html</link>
+      <guid isPermaLink="true">https://creartbox.nyc/news/twelfth-season.html</guid>
+      <pubDate>Thu, 10 Sep 2026 12:00:00 +0000</pubDate>
+      <description>Four productions at The DiMenna Center for Classical Music, eleven works chosen from the ensemble&#x27;s open call, one world premiere, touring dates in Illinois, Kentucky and the Hudson Valley, a residency in Finland, and the seventh Festival ADAR in Asturias.</description>
+    </item>
+  </channel>
+</rss>

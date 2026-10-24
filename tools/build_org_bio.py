@@ -1,0 +1,243 @@
+#!/usr/bin/env python3
+"""The CreArtBox biography, at four lengths, from one source.
+
+    python3 tools/build_org_bio.py            # write the page and the .txt files
+    python3 tools/build_org_bio.py --check    # fail if out of date
+
+The same text appears on about.html and in the press downloads, so it is
+written once here and pushed to all of them. Run
+`node tools/render_press_bios.js` afterwards to rebuild the PDFs.
+
+The lengths match the artist pages, with one more for the site itself:
+short at most 500 characters, medium at most 1500, web at most 2000, and
+long unbounded. The web version is the one the pages show by default;
+the long one is for a dossier or a press desk that asks for everything.
+The script refuses to write a version that is over its limit rather than
+trimming one silently, because these are separate texts to choose
+between, not cuts of each other.
+
+Every figure here is checkable against the rest of the site: the season
+count, the productions, the composers and what they have won.
+"""
+
+import html
+import os
+import re
+import sys
+
+LIMITS = {"short": 500, "medium": 1500, "web": 2000, "long": None}
+# longest first, as the tabs read
+ORDER = ("long", "web", "medium", "short")
+
+PRESS = ('Recognized by <em>The New Yorker</em> as one of its "art and music top picks," '
+         'praised by <em>Time Out</em> as "an ensemble devoted to multidisciplinary events," '
+         'and described by <em>BroadwayWorld</em> as "wholly authentic, visually and aurally '
+         'compelling," CreArtBox is celebrated for its ability to enhance the listening '
+         'experience of live music through theatrical design while preserving the integrity '
+         'of each composition.')
+
+BIOS = {
+    "web": [
+        'CreArtBox creates and produces live art performances, fusing classical and '
+        'contemporary music with original ideas encouraged by multidisciplinary interaction, '
+        'and works to make world-class performances accessible to everyone regardless of '
+        'background or economic circumstance.',
+        'Recognized by <em>The New Yorker</em> as one of its "art and music top picks," '
+        'praised by <em>Time Out</em> as "an ensemble devoted to multidisciplinary events," '
+        'and described by <em>BroadwayWorld</em> as "wholly authentic, visually and aurally '
+        'compelling," the ensemble is known for enhancing the listening experience of live '
+        'music through theatrical design while preserving the integrity of each composition.',
+        'It was founded in New York City in 2013 by flutist <em>Guillermo Laporta</em> and '
+        'pianist <em>Josefina Urraca</em>, who continue as its artistic directors, and is now '
+        'in its 12th season; the project was originally conceived in Europe in 2006 as Cre.Art '
+        'Project. With headquarters in New York City and Asturias, Spain, CreArtBox gives its '
+        'New York Series at The DiMenna Center for Classical Music, tours internationally, and '
+        'runs a printed magazine, a streaming platform, a live music podcast, an open call and '
+        'commissioning program for composers, and Festival ADAR in rural Spain.',
+        'The performance that most defines its identity is the visual concert, in which visual '
+        'art and theatrical design surround live classical and contemporary music; the '
+        'ensemble also plays traditional chamber programs, which have taken it to Japan, '
+        'Spain, Europe, Canada and the east coast of the United States.',
+        'An open Call for Scores has run since the first season, bringing works by Pulitzer '
+        'Prize winners and emerging composers alike into the programmes. CreArtBox is '
+        'supported by the New York State Council on the Arts, the NYC Department of Cultural '
+        'Affairs, the Amphion Foundation, the Alice M. Ditson Fund and the Aaron Copland Fund '
+        'for Music, among others.',
+    ],
+    "short": [
+        'CreArtBox is a New York chamber music ensemble founded in 2013 by '
+        'flutist <em>Guillermo Laporta</em> and pianist <em>Josefina Urraca</em>, now in its '
+        '12th season. Recognized by <em>The New Yorker</em> as one of its "art and music top '
+        'picks" and praised by <em>Time Out</em> as "an ensemble devoted to multidisciplinary '
+        'events," it merges classical and contemporary music with original stage design and '
+        'visual art.',
+    ],
+    "medium": [
+        'CreArtBox is a New York chamber music ensemble founded in 2013 by '
+        'flutist <em>Guillermo Laporta</em> and pianist <em>Josefina Urraca</em>, with core '
+        'members Emilie-Anne Gendron, Matthew Cohen, and Julia Yang. Now in its 12th season, '
+        'it gives its New York Series at The DiMenna Center for Classical Music and tours '
+        'nationally and internationally.',
+        'Recognized by <em>The New Yorker</em> as one of its "art and music top picks," '
+        'praised by <em>Time Out</em> as "an ensemble devoted to multidisciplinary events," '
+        'and described by <em>BroadwayWorld</em> as "wholly authentic, visually and aurally '
+        'compelling," CreArtBox merges classical and contemporary music with original stage '
+        'design and visual art.',
+        'The ensemble has run an open Call for Scores since its first season: eleven works in '
+        'the 2026/27 season reached the programme through it. Its work is supported by the '
+        'New York State Council on the Arts, '
+        'the NYC Department of Cultural Affairs, the Amphion Foundation, the Alice M. Ditson '
+        'Fund, and the Aaron Copland Fund for Music. Each August it co-produces Festival ADAR '
+        'in rural Asturias, Spain.',
+    ],
+    "long": [
+        'CreArtBox creates and produces live art performances, fusing classical and '
+        'contemporary music with original ideas encouraged by multidisciplinary interaction. '
+        'Its programs are designed to support professional artists, encourage the creation of '
+        'new meaningful work, make world-class performances accessible to everyone regardless '
+        'of background or economic circumstance, inspire and educate future generations, '
+        'revitalize local communities, and nurture new ways of human expression.',
+        PRESS,
+        'The organization was founded in New York City in 2013 by flutist <em>Guillermo '
+        'Laporta</em> and pianist <em>Josefina Urraca</em>, who continue to serve as its '
+        'artistic directors, and is now in its 12th season. The project was originally '
+        'conceived in Europe in 2006 as Cre.Art Project by Laporta and clarinetist and '
+        'performance creator Tagore González.',
+        'With its headquarters in New York City and Asturias, Spain, CreArtBox develops an '
+        'array of distinctive platforms to pursue its mission: the New York Series at The '
+        'DiMenna Center for Classical Music, international touring, a printed magazine, a '
+        'classical music streaming platform, a live music podcast with the Queens Public '
+        'Library, an open call and commissioning program for composers, and Festival ADAR, '
+        'which develops the arts in rural Spain.',
+        'The kind of performance that most defines its identity can be called a visual concert. '
+        'Visual art and theatrical design are used to enhance the audience&#x27;s listening '
+        'experience of live classical and contemporary music while respecting the original '
+        'composition, usually in medium-size venues where lights and projections can surround '
+        'the audience. CreArtBox also plays more traditional chamber music concerts, which have '
+        'taken the group to Japan, Spain, Europe, Canada, and the east coast of the United '
+        'States.',
+        'The 2026/27 season runs from October to August: four productions at The DiMenna '
+        'Center, eleven works drawn from the ensemble&#x27;s open Call for Scores, one world '
+        'premiere, touring dates in Illinois, Kentucky and the Hudson Valley, a residency at '
+        'the Kuopio Conservatory in Finland, and the seventh Festival ADAR in Asturias.',
+        'CreArtBox has run an open Call for Scores since its first season, alongside a composer '
+        'residency program, fostering the creation of new works and mentoring emerging voices. '
+        'Over the past decade it has presented works by Pulitzer Prize winners Caroline Shaw '
+        'and David Lang and by Timo Andres, Anna Clyne, Nico Muhly, Sebastian Currier, Todd '
+        'Reynolds, Philip Lasser, Joshua Penman, Andrea Casarrubios, Hannah Selin, Dai Wei, '
+        'Brian Wysocki, Annamaria Kowalsky, Celeste Oram, JP Jofre, Marcos Fernández, '
+        'Michael Grebla, Nathan Schram and Cullyn Murphy, among many others.',
+        'Composers reaching the current season through the call include Eric Moe, a Guggenheim '
+        'fellow honoured by the American Academy of Arts and Letters; Zygmund de Somogyi, a '
+        'Royal Philharmonic Society composer for 2025 and Festival ADAR&#x27;s composer in '
+        'residence; Eli Tausen á Lava, nominated for the 2026 Nordic Council Music Prize; and '
+        'Paul Novak and Sam Wu, both winners of the ASCAP Foundation&#x27;s Morton Gould Young '
+        'Composer Award.',
+        'Each core member brings a distinctive artistic trajectory: Laporta has combined a '
+        'career as a flutist with theater directing and lighting design; Urraca is an acclaimed '
+        'solo and chamber pianist, a pupil of Dmitri Bashkirov; Gendron is a longtime '
+        'member of the Momenta Quartet and one of the concertmasters of the Orpheus Chamber '
+        'Orchestra; Cohen is a special prize winner at the Primrose International Viola '
+        'Competition; and Yang is a founding member of the Naumburg-winning Merz Trio.',
+        'Alongside its concert programs, CreArtBox has produced a series of theatrical and '
+        'interdisciplinary works, including <em>Architecture of a Common Man</em> (2023), the '
+        'opera-ballet <em>Two Roads</em> (2019), <em>Visuality</em> (2012/14), the opera '
+        '<em>Noctum</em> (2011), the musical <em>London: The Show</em> (2009), and <em>Cre.Art '
+        'Project I</em> (2006).',
+        'CreArtBox works with visual artists, designers, dancers and other creative minds to '
+        'craft multi-layered performances centered around classical music, with a roster of '
+        'musicians that includes members of the Metropolitan Opera Orchestra, the New York '
+        'Philharmonic, the BBC Orchestra, and the Chamber Music Society of Lincoln Center.',
+        'The ensemble has been awarded the Queens Council on the Arts New Work Grant and the '
+        'New York Foundation for the Arts Fellowship, and is supported by the New York State '
+        'Council on the Arts, the NYC Department of Cultural Affairs, the Amphion Foundation, '
+        'the Alice M. Ditson Fund, the Aaron Copland Fund for Music, Spain Arts and Culture, '
+        'and the Government of Asturias, alongside a group of individual supporters. In '
+        'addition to its American-based activities, CreArtBox co-produces Festival ADAR, an '
+        'international arts festival held since 2021 in Asturias, Spain, dedicated to '
+        'revitalizing rural communities through music, contemporary creation, artist '
+        'residencies, and site-specific projects.',
+    ],
+}
+
+ABOUT = "about.html"
+TXT = "assets/press/creartbox-bio-{}.txt"
+
+
+def plain(fragment):
+    return re.sub(r"\s+", " ", html.unescape(re.sub("<[^>]+>", "", fragment))).strip()
+
+
+def length(version):
+    return len(" ".join(plain(p) for p in BIOS[version]))
+
+
+def block(version, src):
+    """Rewrite one version in place, keeping the wrapper the page uses."""
+    start = src.find('data-bio-version="%s"' % version)
+    if start < 0:
+        sys.exit("no %s biography block in %s" % (version, ABOUT))
+    open_div = src.index(">", start) + 1
+    end = src.index('<button type="button" class="bio-copy"', start)
+    inner = src[open_div:end]
+    wrapper = re.search(r'(\s*<div[^>]*>)(.*)(</div>\s*)', inner, re.S)
+    body = "\n".join("            <p{}>{}</p>".format(
+        ' class="dropcap"' if i == 0 else "", p) for i, p in enumerate(BIOS[version]))
+    return src[:open_div] + wrapper.group(1) + "\n" + body + "\n          " + wrapper.group(3) + src[end:]
+
+
+def main():
+    check = "--check" in sys.argv
+
+    over = [v for v, limit in LIMITS.items() if limit and length(v) > limit]
+    if over:
+        for v in over:
+            print("  !! the %s biography is %d characters, over its %d limit"
+                  % (v, length(v), LIMITS[v]))
+        return 1
+
+    src = open(ABOUT, encoding="utf-8").read()
+    out = src
+    for version in ORDER:
+        out = block(version, out)
+        # the tab says how long its version is, as the artist pages do
+        tag = '<span class="bt-meta" data-bio-count="%s">' % version
+        i = out.index(tag) + len(tag)
+        out = out[:i] + "{} characters".format(length(version)) + out[out.index("</span>", i):]
+
+    stale = []
+    if out != src:
+        stale.append(ABOUT)
+        if not check:
+            open(ABOUT, "w", encoding="utf-8").write(out)
+
+    for version in BIOS:
+        path = TXT.format(version)
+        wanted = "CreArtBox\nBiography ({})\n\n{}\n\ncreartbox.nyc · info@creartbox.nyc\n".format(
+            version, "\n\n".join(plain(p) for p in BIOS[version]))
+        current = open(path, encoding="utf-8").read() if os.path.exists(path) else ""
+        if current != wanted:
+            stale.append(path)
+            if not check:
+                open(path, "w", encoding="utf-8").write(wanted)
+
+    if check:
+        if stale:
+            print("organisation biography out of date ({}):".format(len(stale)))
+            for p in stale:
+                print("  -", p)
+            print("\nRun: python3 tools/build_org_bio.py && node tools/render_press_bios.js")
+            return 1
+        print("organisation biography up to date: " + ", ".join(
+            "{} {}".format(v, length(v)) for v in ORDER))
+        return 0
+
+    for v in ORDER:
+        print("%-7s %4d characters%s" % (
+            v, length(v), "" if not LIMITS[v] else " (limit %d)" % LIMITS[v]))
+    print("\nNow run: node tools/render_press_bios.js")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

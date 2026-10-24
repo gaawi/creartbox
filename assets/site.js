@@ -17,53 +17,58 @@ const EVENTBRITE = {
 };
 
 /* ----- Donate URL config - Stripe Payment Links ----------------------
-   Three Stripe Payment Links (one per frequency). The donate form picks
-   the right one based on the selected frequency and appends the amount
-   as a Stripe pre-fill param (Stripe accepts ?prefilled_promo_code= but
-   amounts via Payment Links require pre-built variants OR Checkout). For
-   custom amounts the donate form falls back to a generic Payment Link.
+   Where the donate button goes.
 
-   To wire real Stripe URLs:
-     1. In your Stripe dashboard, create three Payment Links with
-        "Customer chooses amount" enabled - one for one-time, one for
-        monthly, one for annual.
-     2. Replace the URLs below.
+   The site is static, so there is no server to create a Stripe Checkout
+   session. Stripe Payment Links are the way in: they are made in the
+   dashboard, they are plain URLs, and they work from a page like this
+   one. A link carries its own price, so an amount cannot be passed in a
+   query string - a URL like ?amount=250 on a Stripe link does nothing.
 
-   Until then, the buttons open an email so you don't lose donors. */
+   Two ways to set them up, and this map takes either:
+
+     a) One link per frequency with "Customer chooses what to pay", and
+        the donor types the amount on Stripe's page. Three links in all.
+        Put each one under "any".
+
+     b) One link per amount as well, so the amount the donor picked here
+        is the amount Stripe charges. Put those under their number, and
+        keep an "any" for the custom field.
+
+   Mix them freely: an exact amount is used when there is a link for it,
+   otherwise "any" is. Until real links are pasted in, the buttons open
+   an email with the amount in it, so nobody is turned away.
+
+   In Stripe, before going live:
+     - apply for the non-profit rate (a 501(c)(3) pays less per charge);
+     - turn on "Let customers adjust quantity" OFF and recurring ON for
+       the monthly and annual links;
+     - set the receipt's custom message to the acknowledgement language a
+       501(c)(3) has to give, since Stripe's own receipt is not one. */
 const DONATE_LINKS = {
-  once:    "mailto:info@creartbox.nyc?subject=Donation%20to%20CreArtBox%20%28one-time%29",
-  monthly: "mailto:info@creartbox.nyc?subject=Donation%20to%20CreArtBox%20%28monthly%29",
-  annual:  "mailto:info@creartbox.nyc?subject=Donation%20to%20CreArtBox%20%28annual%29",
+  // A one-time Payment Link where the donor enters the amount on Stripe.
+  once:    { any: "https://donate.stripe.com/6oEg27etsezgcNOdQR" },
+  // No recurring links yet, so these still open an email rather than
+  // charging a monthly donor once and calling it done.
+  monthly: { any: "mailto:info@creartbox.nyc?subject=Donation%20to%20CreArtBox%20%28monthly%29" },
+  annual:  { any: "mailto:info@creartbox.nyc?subject=Donation%20to%20CreArtBox%20%28annual%29" },
 };
-const DONATE_URL = DONATE_LINKS.once;
+const DONATE_URL = DONATE_LINKS.once.any;
 
-/* ----- Theme - default is dark, toggle persists in localStorage --------- */
-(function theme() {
-  const KEY = "cb-theme";
-  const saved = localStorage.getItem(KEY);
-  // Default to dark when no preference saved; only "paper" opts out.
-  if (saved !== "paper") document.documentElement.setAttribute("data-theme", "dark");
-  window.toggleTheme = function () {
-    const cur = document.documentElement.getAttribute("data-theme");
-    if (cur === "dark") {
-      document.documentElement.removeAttribute("data-theme");
-      localStorage.setItem(KEY, "paper");
-    } else {
-      document.documentElement.setAttribute("data-theme", "dark");
-      localStorage.setItem(KEY, "dark");
-    }
-    const btn = document.querySelector(".themetoggle");
-    if (btn) btn.textContent = document.documentElement.getAttribute("data-theme") === "dark" ? "☼" : "☾";
-  };
-})();
+/* The link for what the donor picked, with the amount attached only when
+   it is an email: a Stripe link already knows its own price. */
+function donateLink(freq, amount) {
+  const set = DONATE_LINKS[freq] || DONATE_LINKS.once;
+  const base = set[amount] || set.any;
+  if (base.indexOf("mailto:") !== 0) return base;
+  const sep = base.indexOf("?") > -1 ? "&" : "?";
+  return base + sep + "amount=" + amount + "&frequency=" + freq;
+}
+
+/* Dark mode is the only mode. Set the attribute once and forget. */
+document.documentElement.setAttribute("data-theme", "dark");
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Theme toggle init label
-  const tt = document.querySelector(".themetoggle");
-  if (tt) {
-    tt.textContent = document.documentElement.getAttribute("data-theme") === "dark" ? "☼" : "☾";
-    tt.addEventListener("click", window.toggleTheme);
-  }
 
   // Mobile menu
   const burger = document.querySelector(".nav-burger");
@@ -71,6 +76,18 @@ document.addEventListener("DOMContentLoaded", function () {
   if (burger && navInner) {
     burger.addEventListener("click", () => navInner.classList.toggle("open"));
   }
+
+  // Mobile per-page pill sub-nav (built from the active page's dropdown)
+  initPagePills();
+
+  // Ensemble member cards: open full bio in a modal on mobile
+  initMemberCards();
+
+  // Copy-bio buttons under each bio version
+  initBioCopy();
+
+  // Persistent audio dock (background play across pages)
+  initAudioDock();
 
   // Wire ticket buttons: [data-event="..."] => Eventbrite URL
   document.querySelectorAll("[data-event]").forEach((el) => {
@@ -101,7 +118,12 @@ document.addEventListener("DOMContentLoaded", function () {
   initDonate();
 
   // Concert filter tabs
+  initBioSwitch();
   initConcertTabs();
+  initRepertoireFilter();
+
+  // Count the clicks that matter, if anything is listening
+  initConversions();
 
   // Transparent masthead → solid on scroll past hero
   initTransparentMasthead();
@@ -117,10 +139,253 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Video modal (media page)
   initVideoModal();
+
+  // "Show all photos" modal (archive subpages)
+  initAllPhotosModal();
+
+  // Mobile gallery counter (event-media carousel)
+  initEventMediaCounter();
+
+  // Composer roster cards open a bio modal
+  initComposerRoster();
 });
 
+function initEventMediaCounter() {
+  // Selector covers archive event carousels AND the Media-page Photographs grid
+  const targets = [
+    { gridSel: ".event-media .g-grid",  containerSel: ".event-media", itemSel: ".g-item" },
+    { gridSel: ".photo-cat .photo-row", containerSel: ".photo-cat",   itemSel: ":scope > div" },
+  ];
+  targets.forEach((t) => attachCounter(t.gridSel, t.containerSel, t.itemSel));
+}
+
+function attachCounter(gridSel, containerSel, itemSel) {
+  document.querySelectorAll(gridSel).forEach((grid) => {
+    const items = grid.querySelectorAll(itemSel);
+    if (items.length < 2) return;
+    const section = grid.closest(containerSel);
+    if (!section) return;
+    // Need a positioned container for the absolute counter
+    const cs = getComputedStyle(section);
+    if (cs.position === "static") section.style.position = "relative";
+    // Add counter pill
+    const counter = document.createElement("div");
+    counter.className = "g-counter";
+    counter.textContent = "1 / " + items.length;
+    section.appendChild(counter);
+    // Update on scroll
+    let raf = null;
+    grid.addEventListener("scroll", () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = null;
+        const center = grid.scrollLeft + grid.clientWidth / 2;
+        let active = 0;
+        let bestDist = Infinity;
+        items.forEach((it, i) => {
+          const mid = it.offsetLeft + it.clientWidth / 2;
+          const d = Math.abs(mid - center);
+          if (d < bestDist) { bestDist = d; active = i; }
+        });
+        counter.textContent = (active + 1) + " / " + items.length;
+      });
+    }, { passive: true });
+  });
+}
+
+function initPagePills() {
+  // Build a horizontal pill sub-nav for the current page from its
+  // dropdown submenu. Mobile-only (CSS hides it on desktop).
+  const main = document.querySelector("main");
+  if (!main) return;
+  // Skip pages that already have their own functional sub-nav
+  // (e.g. concerts.html filter tabs) — page-pills would duplicate them.
+  if (main.querySelector("[data-concert-tab]")) return;
+  // Find the nav-item whose top-level link is marked active.
+  let activeItem = null;
+  document.querySelectorAll(".nav-strip-inner .nav-item").forEach((item) => {
+    const top = item.querySelector(":scope > a");
+    if (top && top.classList.contains("active")) activeItem = item;
+  });
+  if (!activeItem) return;
+  const links = activeItem.querySelectorAll(".submenu a");
+  if (!links.length) return;
+
+  const nav = document.createElement("nav");
+  nav.className = "page-pills";
+  const row = document.createElement("div");
+  row.className = "page-pills-row";
+  links.forEach((a) => {
+    const pill = document.createElement("a");
+    pill.href = a.getAttribute("href");
+    pill.textContent = a.textContent.trim();
+    if (a.target) { pill.target = a.target; pill.rel = a.rel || "noopener"; }
+    row.appendChild(pill);
+  });
+  nav.appendChild(row);
+  main.insertBefore(nav, main.firstChild);
+}
+
+function initMemberCards() {
+  const articles = document.querySelectorAll("#ensemble article");
+  if (!articles.length) return;
+
+  // Build the modal once
+  const modal = document.createElement("div");
+  modal.className = "member-modal";
+  modal.setAttribute("aria-hidden", "true");
+  modal.setAttribute("role", "dialog");
+  modal.innerHTML =
+    '<div class="member-modal-bg" data-mm-close></div>' +
+    '<div class="member-modal-content">' +
+      '<button class="member-modal-close" data-mm-close aria-label="Close">×</button>' +
+      '<div class="member-modal-body"></div>' +
+    '</div>';
+  document.body.appendChild(modal);
+  const body = modal.querySelector(".member-modal-body");
+  const mql = window.matchMedia("(max-width: 860px)");
+
+  function close() {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+  function open(article) {
+    body.innerHTML = article.innerHTML;
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    const content = modal.querySelector(".member-modal-content");
+    if (content) content.scrollTop = 0;
+  }
+  modal.querySelectorAll("[data-mm-close]").forEach((el) =>
+    el.addEventListener("click", close)
+  );
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("open")) close();
+  });
+
+  articles.forEach((art) => {
+    // Promote the role label into an instrument chip on the photo
+    const labelEl = art.querySelector(".label");
+    const fig = art.querySelector("figure");
+    if (labelEl && fig && !fig.querySelector(".member-instrument")) {
+      const instrument = (labelEl.textContent.split("·")[0] || "").trim();
+      if (instrument) {
+        const chip = document.createElement("div");
+        chip.className = "member-instrument";
+        chip.textContent = instrument;
+        fig.appendChild(chip);
+      }
+    }
+    // Make the entire card a tap target on mobile (role=button for a11y)
+    art.setAttribute("tabindex", "0");
+    art.setAttribute("role", "button");
+    const handler = (e) => {
+      if (!mql.matches) return;
+      if (e.target.closest("a, button")) return;
+      e.preventDefault();
+      open(art);
+    };
+    art.addEventListener("click", handler);
+    art.addEventListener("keydown", (e) => {
+      if (!mql.matches) return;
+      if (e.key === "Enter" || e.key === " ") {
+        if (e.target.closest("a, button")) return;
+        e.preventDefault();
+        open(art);
+      }
+    });
+  });
+}
+
+function initBioCopy() {
+  const buttons = document.querySelectorAll(".bio-copy");
+  if (!buttons.length) return;
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const key = btn.getAttribute("data-bio-copy");
+      const version = document.querySelector(
+        '[data-bio-version="' + key + '"]'
+      );
+      if (!version) return;
+      // Pull plain text from the inner paragraphs, preserving paragraph breaks
+      const paras = Array.from(version.querySelectorAll("p")).map((p) =>
+        p.textContent.replace(/\s+/g, " ").trim()
+      );
+      const text = paras.join("\n\n");
+      const label = btn.querySelector(".bc-label");
+      const original = label ? label.textContent : "Copy bio";
+      let ok = false;
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          ok = true;
+        } else {
+          // Fallback for older browsers / non-https
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "fixed";
+          ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.select();
+          ok = document.execCommand("copy");
+          document.body.removeChild(ta);
+        }
+      } catch (_) { ok = false; }
+      btn.classList.add("copied");
+      if (label) label.textContent = ok ? "Copied" : "Copy failed";
+      setTimeout(() => {
+        btn.classList.remove("copied");
+        if (label) label.textContent = original;
+      }, 2000);
+    });
+  });
+}
+
+function initAllPhotosModal() {
+  const btn = document.getElementById("allphotos-btn");
+  const modal = document.getElementById("allphotos-modal");
+  if (!btn || !modal) return;
+  function open() {
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+  function close() {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+  btn.addEventListener("click", open);
+  modal.querySelectorAll("[data-allphotos-close]").forEach((el) => {
+    el.addEventListener("click", close);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("open")) close();
+  });
+}
+
 function initVideoModal() {
-  const modal = document.getElementById("video-modal");
+  let modal = document.getElementById("video-modal");
+  // Concert pages carry video triggers but not the dialog, so build it
+  // on demand rather than pasting the same markup into every page.
+  if (!modal && document.querySelector(".video-trigger")) {
+    modal = document.createElement("div");
+    modal.className = "video-modal";
+    modal.id = "video-modal";
+    modal.setAttribute("aria-hidden", "true");
+    modal.setAttribute("role", "dialog");
+    modal.innerHTML =
+      '<div class="video-modal-bg" data-video-close></div>' +
+      '<div class="video-modal-content">' +
+        '<button class="video-modal-close" data-video-close aria-label="Close">\u00d7</button>' +
+        '<div class="video-modal-frame"></div>' +
+        '<div class="video-modal-caption"></div>' +
+      '</div>';
+    document.body.appendChild(modal);
+  }
   if (!modal) return;
   const frame = modal.querySelector(".video-modal-frame");
   const caption = modal.querySelector(".video-modal-caption");
@@ -131,29 +396,77 @@ function initVideoModal() {
       if (window.Hls) return resolve(window.Hls);
       const s = document.createElement("script");
       s.src = "https://cdn.jsdelivr.net/npm/hls.js@1.5.13/dist/hls.min.js";
-      s.onload = () => resolve(window.Hls);
-      s.onerror = () => resolve(null);
+      // A hung request fires neither load nor error, and the viewer is
+      // left looking at an empty dialog for ever. Give up after eight
+      // seconds and let the browser try the stream itself.
+      let settled = false;
+      const done = (v) => { if (!settled) { settled = true; resolve(v); } };
+      const timer = setTimeout(() => done(null), 8000);
+      s.onload = () => { clearTimeout(timer); done(window.Hls); };
+      s.onerror = () => { clearTimeout(timer); done(null); };
       document.head.appendChild(s);
     });
   }
 
-  async function playHls(url) {
+  function ytFrame(id) {
+    return '<iframe src="https://www.youtube-nocookie.com/embed/' + id +
+      '?autoplay=1&rel=0" allow="autoplay; fullscreen; picture-in-picture; ' +
+      'encrypted-media" allowfullscreen></iframe>';
+  }
+
+  // The host keeps a progressive MP4 beside the stream. A network that
+  // blocks the script CDN, or a browser that will not take the stream,
+  // can still play that file.
+  function mp4For(url) {
+    return /\/playlist\.m3u8(\?|$)/i.test(url)
+      ? url.replace(/playlist\.m3u8/i, "play_720p.mp4")
+      : "";
+  }
+
+  async function playHls(url, yt) {
     const video = document.createElement("video");
     video.controls = true;
     video.autoplay = true;
     video.playsInline = true;
     frame.innerHTML = "";
     frame.appendChild(video);
+
+    // Nothing played is worse than something else played: fall through
+    // the stream, the MP4, and the video on YouTube, in that order,
+    // rather than leaving the viewer with a black dialog.
+    let step = 0;
+    function fallback() {
+      step += 1;
+      if (step > 2) return;
+      if (hlsInstance) { hlsInstance.destroy(); hlsInstance = null; }
+      const mp4 = mp4For(url);
+      if (step === 1 && mp4) {
+        video.src = mp4;
+        video.load();
+        const p = video.play();
+        if (p && p.catch) p.catch(() => {});
+        return;
+      }
+      if (yt) { frame.innerHTML = ytFrame(yt); return; }
+      frame.innerHTML = '<p class="video-fail">This film could not be loaded here. ' +
+        'Write to <a href="mailto:info@creartbox.nyc">info@creartbox.nyc</a> and ' +
+        'we will send you a link.</p>';
+    }
+    video.addEventListener("error", fallback);
+
     if (video.canPlayType("application/vnd.apple.mpegurl")) {
       video.src = url;
     } else {
       const Hls = await loadHlsLib();
       if (Hls && Hls.isSupported()) {
         hlsInstance = new Hls();
+        hlsInstance.on(Hls.Events.ERROR, (e, data) => {
+          if (data && data.fatal) fallback();
+        });
         hlsInstance.loadSource(url);
         hlsInstance.attachMedia(video);
       } else {
-        video.src = url;
+        video.src = mp4For(url) || url;
       }
     }
   }
@@ -164,14 +477,13 @@ function initVideoModal() {
     const title = btn.getAttribute("data-video-title") || "";
 
     if (src && /\.m3u8(\?|$)/i.test(src)) {
-      playHls(src);
+      playHls(src, yt);
     } else if (src && /\.(mp4|webm)(\?|$)/i.test(src)) {
       frame.innerHTML = '<video src="' + src + '" controls autoplay playsinline></video>';
     } else if (src) {
       frame.innerHTML = '<iframe src="' + src + '" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe>';
     } else if (yt) {
-      const embedUrl = "https://www.youtube-nocookie.com/embed/" + yt + "?autoplay=1&rel=0";
-      frame.innerHTML = '<iframe src="' + embedUrl + '" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe>';
+      frame.innerHTML = ytFrame(yt);
     } else {
       return;
     }
@@ -242,11 +554,20 @@ function initArchiveModals() {
   const btns = document.querySelectorAll(".myBtn_multi");
   if (!btns.length) return;
   btns.forEach((btn) => {
+    // The programme markup sits inside its archive card, and the card is
+    // inside .calendarpast, which has a z-index and so opens a stacking
+    // context. A fixed overlay cannot escape one: the modal was painting
+    // under the neighbouring cards and under the masthead. Move it to the
+    // body, as the other modals on the site already are, and its z-index
+    // means what it says.
+    const modal = btn.nextElementSibling && btn.nextElementSibling.classList.contains("modal")
+      ? btn.nextElementSibling
+      : btn.parentElement.querySelector(".modal");
+    if (modal && modal.parentElement !== document.body) {
+      document.body.appendChild(modal);
+    }
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      const modal = btn.nextElementSibling && btn.nextElementSibling.classList.contains("modal")
-        ? btn.nextElementSibling
-        : btn.parentElement.querySelector(".modal");
       if (modal) {
         modal.style.display = "block";
         document.body.style.overflow = "hidden";
@@ -269,6 +590,15 @@ function initArchiveModals() {
     });
   });
   document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    document.querySelectorAll(".modal").forEach((m) => {
+      if (m.style.display === "block") {
+        m.style.display = "none";
+        document.body.style.overflow = "";
+      }
+    });
+  });
+  document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       document.querySelectorAll(".modal").forEach((m) => (m.style.display = "none"));
       document.body.style.overflow = "";
@@ -281,6 +611,20 @@ function initBioTabs() {
   if (!tabs.length) return;
   const versions = document.querySelectorAll("[data-bio-version]");
   const downloads = document.querySelectorAll("[data-bio-download]");
+
+  /* Each tab says how long its own version is, counted off the page
+     itself, so the figure cannot drift from the text it describes. */
+  versions.forEach((v) => {
+    const key = v.getAttribute("data-bio-version");
+    const meta = document.querySelector('[data-bio-count="' + key + '"]');
+    if (!meta) return;
+    const text = [...v.querySelectorAll("p")]
+      .map((p) => p.textContent.trim())
+      .join(" ")
+      .replace(/\s+/g, " ")
+      .trim();
+    meta.textContent = text.length + " characters";
+  });
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
       const v = tab.getAttribute("data-bio-tab");
@@ -333,9 +677,7 @@ function initDonate() {
         c.textContent = active ? "✓" : "○";
       }
     });
-    const base = DONATE_LINKS[freq] || DONATE_URL;
-    const sep = base.includes("?") ? "&" : "?";
-    submit.setAttribute("href", base + sep + "amount=" + final + "&frequency=" + freq);
+    submit.setAttribute("href", donateLink(freq, final));
   }
 
   freqBtns.forEach((b) => {
@@ -364,11 +706,50 @@ function initDonate() {
   update();
 }
 
+/* ----- Artist biography: short, medium or full ----------------------
+   The three versions are all in the page; the switch only decides which
+   one is on screen, so choosing a length never waits on the network. */
+function initBioSwitch() {
+  const set = document.querySelector("[data-bio-set]");
+  const picks = document.querySelectorAll("[data-bio-pick]");
+  if (!set || !picks.length) return;
+  picks.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const want = btn.getAttribute("data-bio-pick");
+      set.querySelectorAll("[data-bio]").forEach((v) => {
+        v.hidden = v.getAttribute("data-bio") !== want;
+      });
+      picks.forEach((b) => {
+        b.setAttribute("aria-pressed", String(b === btn));
+      });
+    });
+  });
+}
+
 /* ----- Concert filter tabs ------------------------------------------- */
 function initConcertTabs() {
   const tabs = document.querySelectorAll("[data-concert-tab]");
   const rows = document.querySelectorAll("[data-concert-series]");
   if (!tabs.length) return;
+  const dividers = document.querySelectorAll("[data-season-divider]");
+
+  // A season divider only makes sense while at least one concert still
+  // sits under it, so hide any whose whole block got filtered out.
+  function syncDividers() {
+    dividers.forEach((d) => {
+      let any = false;
+      let el = d.nextElementSibling;
+      while (el && !el.hasAttribute("data-season-divider")) {
+        if (el.hasAttribute("data-concert-series") && el.style.display !== "none") {
+          any = true;
+          break;
+        }
+        el = el.nextElementSibling;
+      }
+      d.style.display = any ? "" : "none";
+    });
+  }
+
   tabs.forEach((t) => {
     t.addEventListener("click", () => {
       const v = t.getAttribute("data-concert-tab");
@@ -380,8 +761,550 @@ function initConcertTabs() {
         r.style.display = show ? "" : "none";
         if (show) shown++;
       });
+      syncDividers();
       const count = document.querySelector("[data-concert-count]");
       if (count) count.textContent = "Showing " + shown + " of " + rows.length + " concerts";
     });
   });
+}
+
+/* ============================================================
+   PERSISTENT AUDIO DOCK
+   - Track list (#featured-tracks) on the media page selects + plays
+   - A single <audio> element lives on every page (created on demand)
+   - Playlist + index + currentTime persist across navigation via
+     sessionStorage (currentTime) + localStorage (queue + playing state)
+   ============================================================ */
+const AUDIO_KEY = "cb-audio-v1";
+function readAudioState() {
+  try {
+    const raw = localStorage.getItem(AUDIO_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (_) { return null; }
+}
+function writeAudioState(s) {
+  try { localStorage.setItem(AUDIO_KEY, JSON.stringify(s)); } catch (_) {}
+}
+function fmtTime(t) {
+  if (!isFinite(t) || t < 0) t = 0;
+  const m = Math.floor(t / 60);
+  const s = Math.floor(t % 60);
+  return m + ":" + (s < 10 ? "0" : "") + s;
+}
+
+function initAudioDock() {
+  const dock = document.getElementById("audio-dock");
+  if (!dock) return;
+
+  // Build the single <audio> tag and reuse it
+  let audio = document.getElementById("cb-audio-el");
+  if (!audio) {
+    audio = document.createElement("audio");
+    audio.id = "cb-audio-el";
+    audio.preload = "metadata";
+    document.body.appendChild(audio);
+  }
+
+  // Hydrate queue: prefer the page's track list, else fall back to saved state
+  const tracksUI = Array.from(document.querySelectorAll("#featured-tracks .track"));
+  let queue = tracksUI.map((li) => ({
+    src: li.getAttribute("data-track-src"),
+    composer: li.getAttribute("data-track-composer") || "",
+    title: li.getAttribute("data-track-title") || "",
+    note: li.getAttribute("data-track-note") || "",
+  }));
+  let saved = readAudioState();
+  if (!queue.length && saved && saved.queue) queue = saved.queue;
+
+  let idx = (saved && Number.isInteger(saved.idx)) ? saved.idx : -1;
+  // currentTime resumes within the same browser session
+  const resumeT = parseFloat(sessionStorage.getItem("cb-audio-t") || "0") || 0;
+  let wasPlaying = !!(saved && saved.playing);
+
+  const elComposer = dock.querySelector("[data-ad-composer]");
+  const elTitle = dock.querySelector("[data-ad-title]");
+  const elFill = dock.querySelector("[data-ad-fill]");
+  const elCur = dock.querySelector("[data-ad-t-cur]");
+  const elDur = dock.querySelector("[data-ad-t-dur]");
+  const btnPlay = dock.querySelector("[data-ad-play]");
+  const btnPrev = dock.querySelector("[data-ad-prev]");
+  const btnNext = dock.querySelector("[data-ad-next]");
+  const btnClose = dock.querySelector("[data-ad-close]");
+  const bar = dock.querySelector("[data-ad-progress] .ad-bar");
+
+  function showDock() {
+    dock.hidden = false;
+    document.body.classList.add("has-audio-dock");
+  }
+  function hideDock() {
+    dock.hidden = true;
+    document.body.classList.remove("has-audio-dock");
+  }
+  function reflectListUI() {
+    tracksUI.forEach((li, i) => li.classList.toggle("playing", i === idx && !audio.paused));
+  }
+  function load(i, autoplay) {
+    if (i < 0 || i >= queue.length) return;
+    idx = i;
+    const t = queue[i];
+    if (audio.src !== t.src) audio.src = t.src;
+    elComposer.textContent = t.composer || "—";
+    elTitle.textContent = t.title || "";
+    showDock();
+    persist();
+    if (autoplay) audio.play().catch(() => {});
+  }
+  function togglePlay() {
+    if (idx < 0 && queue.length) { load(0, true); return; }
+    if (audio.paused) audio.play().catch(() => {}); else audio.pause();
+  }
+  function next() {
+    if (idx + 1 < queue.length) load(idx + 1, true);
+  }
+  function prev() {
+    if (audio.currentTime > 3) { audio.currentTime = 0; return; }
+    if (idx > 0) load(idx - 1, true);
+  }
+  function persist() {
+    writeAudioState({ queue, idx, playing: !audio.paused });
+  }
+
+  // Wire up the page track list (clicks)
+  tracksUI.forEach((li, i) => {
+    li.addEventListener("click", (e) => {
+      e.preventDefault();
+      // If clicking the same track that's playing, toggle
+      if (i === idx) togglePlay();
+      else load(i, true);
+    });
+    // Also stop propagation on the inner button (kept for a11y)
+    const inner = li.querySelector(".track-play");
+    if (inner) inner.addEventListener("click", (e) => { e.stopPropagation(); li.click(); });
+  });
+
+  // Dock controls
+  btnPlay.addEventListener("click", togglePlay);
+  btnNext.addEventListener("click", next);
+  btnPrev.addEventListener("click", prev);
+  btnClose.addEventListener("click", () => {
+    audio.pause();
+    audio.removeAttribute("src");
+    sessionStorage.removeItem("cb-audio-t");
+    localStorage.removeItem(AUDIO_KEY);
+    hideDock();
+  });
+
+  // Progress bar scrubbing
+  bar.addEventListener("click", (e) => {
+    const r = bar.getBoundingClientRect();
+    const pct = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
+    if (isFinite(audio.duration)) audio.currentTime = pct * audio.duration;
+  });
+
+  audio.addEventListener("timeupdate", () => {
+    if (isFinite(audio.duration) && audio.duration > 0) {
+      elFill.style.width = (audio.currentTime / audio.duration * 100) + "%";
+    }
+    elCur.textContent = fmtTime(audio.currentTime);
+    sessionStorage.setItem("cb-audio-t", String(audio.currentTime));
+  });
+  audio.addEventListener("loadedmetadata", () => { elDur.textContent = fmtTime(audio.duration); });
+  audio.addEventListener("play", () => { dock.classList.add("playing"); reflectListUI(); persist(); });
+  audio.addEventListener("pause", () => { dock.classList.remove("playing"); reflectListUI(); persist(); });
+  audio.addEventListener("ended", () => { next(); });
+
+  // Hydrate UI from saved state on load
+  if (queue.length && idx >= 0 && idx < queue.length) {
+    load(idx, false);
+    if (resumeT > 0) audio.currentTime = resumeT;
+    if (wasPlaying) {
+      // Show an in-dock "Resuming your audio…" loading state, then
+      // morph into the normal player view once playback resumes.
+      const overlay = document.createElement("div");
+      overlay.className = "ad-resuming-overlay";
+      overlay.innerHTML =
+        '<span class="ad-resuming-label">Resuming your audio</span>' +
+        '<span class="ad-resuming-dots"><i></i><i></i><i></i></span>' +
+        '<span class="ad-resuming-bar"><i></i></span>';
+      dock.appendChild(overlay);
+      dock.classList.add("ad-is-resuming");
+
+      let cleared = false;
+      const clear = () => {
+        if (cleared) return;
+        cleared = true;
+        dock.classList.remove("ad-is-resuming");
+        overlay.classList.add("ad-resuming-out");
+        setTimeout(() => overlay.remove(), 320);
+      };
+      // Clear when audio is actually rolling — or after a safety timeout.
+      audio.addEventListener("playing", clear, { once: true });
+      setTimeout(clear, 2400);
+
+      const playPromise = audio.play();
+      if (playPromise && typeof playPromise.then === "function") {
+        playPromise.catch(() => {
+          // Autoplay blocked — turn the loader into a hint
+          overlay.querySelector(".ad-resuming-label").textContent = "Tap play to resume";
+          overlay.querySelector(".ad-resuming-bar").style.display = "none";
+          overlay.querySelector(".ad-resuming-dots").style.display = "none";
+        });
+      }
+    }
+  }
+}
+
+/* === Composer roster: tap a name to open a bio modal ================= */
+const COMPOSERS = {
+  "Brittney Benton": {
+    photo: "https://images.squarespace-cdn.com/content/v1/61882168ea70585aab41a750/c201892f-260d-41e0-8529-61fc9ccee630/Brittney+Benton+Headshot.png",
+    website: "https://brittneybentonmusic.wixsite.com/composer",
+    base: "Las Vegas, NV",
+    bio: "Driven by storytelling and imagery, Brittney Benton's music takes listeners through a lush melodic and harmonic soundscape filled with personality. She holds a Bachelor's degree in Music Composition with a Minor in Music Technology from the University of Nevada, Las Vegas. Her works have been performed by the Bellevue Chamber Chorus, ZOFO, the Beo String Quartet, the Lowell Chamber Orchestra, and the Armenian State Symphony Orchestra."
+  },
+  "Alex Burtzos": {
+    photo: "https://images.squarespace-cdn.com/content/v1/57630abfbe659492f03a09d1/797ad90a-8d2a-4c04-b72e-6a179863ffae/Alex+Burtzos+2024+-+3.jpg",
+    website: "https://alexburtzosmusic.com",
+    base: "New York City / Orlando",
+    bio: "Alex Burtzos is an American composer, conductor, and educator based in New York City and Orlando whose music has been performed across four continents by leading contemporary soloists and ensembles. He is the founder and artistic director of ICEBERG New Music, a NYC composer collective established in 2016, and serves as Associate Professor and Endowed Chair of Composition at the University of Central Florida."
+  },
+  "Oliver Caplan": {
+    photo: "https://www.olivercaplan.com/images/oliver.jpg",
+    website: "https://www.olivercaplan.com/",
+    base: "Medford, Massachusetts",
+    bio: "Oliver Caplan is an award-winning American composer who offers a voice of hope in an uncertain world. Inspired by the resiliency of the human spirit and the beauty of the natural world, his music celebrates stories of social justice, conservation, and community."
+  },
+  "Luke Carlson": {
+    photo: "https://www.lukecarlsonmusic.com/css/images/headshot-1.jpg",
+    website: "https://www.lukecarlsonmusic.com/",
+    base: "Branson, Missouri",
+    bio: "Luke Carlson (b. 1983) is an American composer and conductor whose music has been praised by the New York Times as \"personal and strong,\" by the Philadelphia Inquirer as \"magical\" and \"otherworldly,\" and by the Washington Classical Review for its \"fascinating timbres.\" He serves as Associate Professor of Music at the College of the Ozarks."
+  },
+  "Devin Cholodenko": {
+    photo: "https://images.squarespace-cdn.com/content/v1/60528ee1b13334437997346f/b2efdd45-30a2-4891-8617-d1dd4334e66d/Devin+Cholodenko+Portraits.jpg",
+    website: "https://www.devincholodenko.com/",
+    base: "Miami, Florida",
+    bio: "Devin Cholodenko is a composer of eclectic taste and signature style whose work centers on introspection and inner emotional experience, drawing inspiration from time, memory, nature, classical mythology, and identity. His music has been performed by ensembles including the JACK Quartet, HUB New Music, and Momenta Quartet."
+  },
+  "Gilad Cohen": {
+    photo: "https://images.squarespace-cdn.com/content/v1/5ec82ae63a4a862322e61ce6/1590602918491-9VN9GPR2SW5BOZCBBCAS/headshot.giladcohen.jpg",
+    website: "https://giladcohen.com/",
+    base: "New Jersey",
+    bio: "Gilad Cohen (b. 1980) is a composer, performer, and theorist whose work spans concert music, rock, and theater. His compositions draw on a wide range of influences, blending rock rhythms, impressionism, klezmer, and Arabic musical traditions. He holds a Ph.D. in Composition from Princeton University and serves as Associate Professor of Music at Ramapo College of New Jersey."
+  },
+  "Yurui (Rain) Hou": {
+    photo: "https://www.newyorkcomposerscircle.org/composers/images/yurui-rain-hou/2025%20Yurui%20Rain%20Hou-1-topaz.jpg",
+    website: null,
+    base: "New York City",
+    bio: "Yurui \"Rain\" Hou is a composer and fiction writer based in New York City, currently a student at Columbia University majoring in creative writing and minoring in music, while also studying composition with Melinda Wagner at The Juilliard School. Her works have been recognized as a finalist of the ASCAP Foundation Morton Gould Young Composer Competition and first-place winner of the Belvedere Chamber Music Festival 2024 Composition Contest."
+  },
+  "Eric Moe": {
+    photo: "https://www.music.pitt.edu/sites/default/files/person-images/moe.jpg",
+    website: "https://www.ericmoe.net/",
+    base: "Pittsburgh, Pennsylvania",
+    bio: "Eric Moe is the Andrew W. Mellon Professor of Composition and codirector of Music on the Edge at the University of Pittsburgh. A composer and pianist whose work the New York Times has praised for its \"winning exuberance,\" he writes acoustic and electroacoustic music that often incorporates theatrical elements such as video, text, and staging."
+  },
+  "Paul Novak": {
+    photo: "https://paulnovakmusic.com/uploads/5/8/8/4/58843725/dsc-0569-v2_orig.jpg",
+    website: "https://paulnovakmusic.com",
+    base: "Chicago",
+    bio: "Paul Novak is a Chicago-based composer and flutist whose \"spellbinding\" (Washington Post) music immerses listeners in shimmering, subtly crafted worlds of color, motion, light, and magic. His recent projects engage with dreams and memory, queer identity, climate change and the natural world, and psychosomatic illness."
+  },
+  "Zygmund de Somogyi": {
+    photo: "https://static.wixstatic.com/media/555625_347f5c70bc7f4c2e8e3c97e892f4836c~mv2.jpeg",
+    website: "https://www.zdscomposer.co.uk/",
+    base: "London, UK",
+    bio: "Zygmund de Somogyi is a British-Filipino composer and interdisciplinary artist whose work draws on punk rock influences and DIY ethics. They compose across contemporary classical, opera, theatre, film, and electronic music, exploring themes of online folklore, collaborative worldbuilding, queer identity, and metamodern aesthetics."
+  },
+  "Eli Tausen á Lava": {
+    photo: "https://images.squarespace-cdn.com/content/v1/5c54a0eb92441b3bc683209a/77892be6-bd3a-4170-beab-d3bdfaacc6b4/Eli_Tausen_%C3%A1_Lava_Promo_Export_AKHC+1.jpg",
+    website: "https://elitausenalava.com/",
+    base: "Tórshavn, Faroe Islands",
+    bio: "Eli Tausen á Lava is a Faroese composer, producer, pianist, and electronic musician, and a Nordic Council Music Prize nominee. Classically trained at the Malmö Academy of Music with a Master's from NYU, he has collaborated with the BBC Scottish Symphony Orchestra, George Enescu Philharmonic, and Helsingborg Symphony Orchestra."
+  },
+  "Sam Wu": {
+    photo: "https://images.squarespace-cdn.com/content/v1/5851f4debe6594879d658e7c/1ef6080b-7522-4bd4-afad-ab2fda20503f/Screen+Shot+2022-08-14+at+8.08.20+PM.png",
+    website: "https://samwumusic.com",
+    base: "Melbourne, Australia",
+    bio: "Sam Wu is a composer whose works feature delicate colours, wisps of sound and sylvan textures, often exploring themes such as architecture, climate science, and the search for habitable exoplanets. He has received accolades including an ASCAP Morton Gould Young Composer Award and Harvard's Robert Levin Prize. His collaborations span five continents, including work with major orchestras and Carnegie Hall."
+  },
+  "Hannah Selin": {
+    photo: "https://hannahselin.com/wp-content/uploads/2026/06/03_selin-hannah_alice-and-chris-photography-1.jpg",
+    website: "https://hannahselin.com/",
+    base: "New York, NY",
+    bio: "Composer, violist and vocalist Hannah Selin juxtaposes acoustic instruments with electronics and field recordings to create striking and vibrant sound-spaces. She is a co-founder of the band GADADU and a founding member of Violalia Duo and Xanthoria Quartet. Hannah holds a PhD in composition from Temple University."
+  },
+  "Andrea Casarrubios": {
+    photo: "https://www.andreacasarrubios.com/uploads/2/9/2/6/29264845/ac-photo-by-titilayo-ayangade_orig.png",
+    website: "https://www.andreacasarrubios.com/",
+    base: "New York, NY",
+    bio: "Grammy-nominated Spanish cellist and composer Andrea Casarrubios has performed as a soloist and chamber musician across Europe, Asia, Africa, and the Americas. Her compositions have been programmed by major orchestras including the Chicago Symphony Orchestra and Philadelphia Orchestra, with her acclaimed piece SEVEN receiving its Carnegie Hall premiere in 2021. She earned her Doctoral degree in New York, where she studied composition with John Corigliano."
+  },
+  "Michael Grebla": {
+    photo: "https://www.michaelgrebla.com/wp-content/uploads/2015/07/DSC_6029-scaled-uai-258x172.jpg",
+    website: "https://www.michaelgrebla.com/",
+    base: "New York, NY",
+    bio: "Michael Grebla is an international award-winning emerging composer from Western Australia based in New York City. With a deep conviction for the role music plays as a unifying mechanism in society, his recent works deal with ideas of journey, displacement, transience, and spirituality. He completed his Master of Music in Composition at the New England Conservatory in 2018 in the studio of Dr. Kati Agocs."
+  },
+  "Samantha Leigh Sacks": {
+    photo: "https://images.squarespace-cdn.com/content/v1/61062fe2f1dea7574f7cbdec/fc9dc37c-55a3-4b94-91dc-563b67dd00ae/Einsamkeitt+Protrait.jpg",
+    website: "https://www.samanthasack.com/",
+    base: "Kansas City, MO",
+    bio: "Samantha Sack is a composer and cellist for film and concert. She studied composition at Missouri State University and earned a Master of Arts in Scoring for Film and Visual Media from Dublin Institute of Technology. She creates original music for musicians worldwide and collaborates with international filmmakers."
+  },
+  "Nathan Schram": {
+    photo: "https://static.wixstatic.com/media/6d9549_e5870bdf27ef4e89899cfcf7e3f79012~mv2_d_1502_4370_s_2.jpg",
+    website: "https://www.nathanschramnoise.com/",
+    base: "Brooklyn, New York",
+    bio: "Nathan Schram is a Grammy Award-winning composer and violist of the Attacca Quartet, described by The New York Times as an \"elegant soloist\" with a \"devotional\" sound. He has collaborated with artists including Björk, James Blake, and Billie Eilish. He is also founder of Musicambia, which develops music education programs in correctional facilities across the United States."
+  },
+  "JP Jofre": {
+    photo: "https://static.wixstatic.com/media/21a346_4636aba243b5415db1ca6b774e427b99~mv2.jpg",
+    website: "https://www.jpjofre.com/",
+    base: "San Juan, Argentina",
+    bio: "JP Jofre is a Grammy-nominated composer and bandoneon player native to San Juan, Argentina. His compositions have been recorded by ensembles including the London Symphony Orchestra and Orpheus Chamber Orchestra. He has performed at major venues worldwide, from Carnegie Hall to Beijing National Theatre, and has lectured at institutions including The Juilliard School."
+  },
+  "Marcos Fernández": {
+    photo: null,
+    website: "https://creartbox.nyc/pages/marcos-fernandez",
+    base: "Barcelona, Spain",
+    bio: "Marcos Fernández is a Barcelona-born composer based between Madrid, Barcelona, and London. He creates original music for audio-visual projects across dressage, theatre, dance, opera, and multidisciplinary productions. With degrees from ESMUC, Royal Conservatoire of Scotland, and Royal College of Music, he has won over twenty European awards."
+  },
+  "Sebastian Currier": {
+    photo: "https://upload.wikimedia.org/wikipedia/commons/7/78/Sebastian_Currier_at_the_2015_Cabrillo_Festival_of_Contemporary_Music.jpg",
+    website: "https://www.sebastiancurrier.com/",
+    base: "United States",
+    bio: "Sebastian Currier (b. 1959) is an American composer specializing in chamber and orchestral music. He was a music professor at Columbia University from 1999 to 2007 and has received prestigious awards including the 2007 Grawemeyer Award for Music Composition. He was raised in Providence, Rhode Island."
+  },
+  "Todd Reynolds": {
+    photo: "https://images.squarespace-cdn.com/content/v1/50380a1fe4b0a82378035673/1611709975631-PD0O35GGGV0ML9AS6YHI/ToddReynolds_Straight_4x5+1.jpg",
+    website: "https://www.toddreynolds.com/",
+    base: "North Adams, Massachusetts",
+    bio: "Todd Reynolds is a violinist, composer, and educator known as a founding figure in the hybrid-musician movement. He performs \"present music\" that blends classical violin with digital technology, improvisation, and multiple genres. He founded the amplified string quartet ETHEL and teaches at Manhattan School of Music."
+  },
+  "Joshua Penman": {
+    photo: "https://cdn.prod.website-files.com/6475f0f2d52f9bc52f2347a0/6605b965927594c9fae4ee23_Joshua-Penman.avif",
+    website: "https://smoke-clam.squarespace.com/",
+    base: "Los Angeles",
+    bio: "Joshua Penman writes and produces music at the intersection of concert music, ambient music, world music, and experimental pop. He has received commissions from the Albany Symphony, New York Youth Symphony, and Bang on a Can, and his work spans concert halls, Indian classical vocal training, and electronic production."
+  },
+  "Wei Dai": {
+    photo: "https://static.wixstatic.com/media/17a428_6060243f230848a686c4f27dfd4f23d7~mv2.jpg",
+    website: "https://www.daiweimusic.com/",
+    base: null,
+    bio: "Dai Wei is a Chinese-born composer, vocalist, and multimedia artist whose work spans contemporary music, electro-acoustic sound, visual art, and performance. She merges pop, folk, electronic, and art music to challenge conventional labels and amplify underrepresented voices, drawing from eastern philosophy and aesthetics."
+  },
+  "Philip Lasser": {
+    photo: "https://images.squarespace-cdn.com/content/v1/5d01b63a5e29310001a63835/1561563899482-L3OU8XLIO7CWCTJZXE9A/lasser+head+smaller+with+buffer.png",
+    website: "https://www.philiplasser.com/",
+    base: "New York",
+    bio: "Philip Lasser is a Franco-American composer whose works blend French Impressionist sonorities with the dynamic rhythms of American music. His compositions have been performed worldwide by renowned soloists and orchestras including Midori, Simone Dinnerstein, and the Atlanta Symphony. He has been a faculty member at The Juilliard School since 1994 and directs the EAMA-Nadia Boulanger Institute in Paris."
+  },
+  "Evan O. Adams": {
+    photo: "https://images.squarespace-cdn.com/content/v1/551e05a5e4b088bf54fcb264/1478318695105-UX55SKC05R9NSDXRTL1I/Super_Serious_Picture_of_Evan_at_Piano.JPG",
+    website: "https://www.evanoadams.com/",
+    base: "New York",
+    bio: "Evan O. Adams (b. 1996) is a composer and guitarist who creates rhythmically intricate and playfully unconventional music blending progressive rock and jazz-fusion influences. His compositions have been performed by ensembles including JACK Quartet, Quince Ensemble, and loadbang, and he serves as Artistic Director of the interdisciplinary collective Eclective."
+  },
+  "Brian Wysocki": {
+    photo: "https://images.squarespace-cdn.com/content/v1/63f7ee5d5d82947c233c9c4d/1686806740395-E186N5IOZMNTFD01CU8E/CTA+Headshot+-+Brian+Michael+Wysocki.jpeg",
+    website: "https://commontonearts.org/biographies/bryan-michael-wysocki",
+    base: "Atlanta, Georgia",
+    bio: "Brian (Bryan) Michael Wysocki is a Maryland-born, Atlanta-based composer and percussionist interested in exploring the blurry relationships between time, memory, and perception in the music of today. He often uses non-traditional elements such as spoken word, guided improvisation, and interactive electronics, and is a doctoral student in composition at the University of Georgia."
+  },
+  "Annamaria Kowalsky": {
+    photo: "https://images.squarespace-cdn.com/content/v1/607e9541f21c665c1a84ddf6/6269f0f4-9806-469f-8138-863edec2eb63/DSC_83211web.jpg",
+    website: "https://www.annamariakowalsky.com/",
+    base: "Vienna, Austria",
+    bio: "Annamaria Kowalsky is a Croatian-Austrian composer, musician, and multidisciplinary artist born in 1991. She studied viola at Vienna's University of Music and Performing Arts, and since 2018 has been composing works that explore the connection between music and image. Her practice spans composition, visual art, ceramics, and olfactory installations, with pieces recorded at Abbey Road Studios."
+  },
+  "Celeste Oram": {
+    photo: "https://payload.cargocollective.com/1/15/490537/7413172/IMG_1874_1000.jpg",
+    website: "https://celesteoram.com/",
+    base: "New York City (from Aotearoa New Zealand)",
+    bio: "Celeste Oram is a composer and musician from Aotearoa New Zealand now based in New York City. Her works are scenarios in which music-making is the catalyst for exploring sonic and social histories and micro-cultures. She holds a PhD in music composition from UC San Diego and has received the 2024 Christoph Delz Composition Prize."
+  },
+  "Brian Shank": {
+    photo: "https://static.wixstatic.com/media/b1a7f3_93574088ae3742a597e24bf5a57d9467~mv2.jpg",
+    website: "https://www.brianshank.com/",
+    base: "New York / San Francisco",
+    bio: "Brian Shank is a composer and percussionist whose work spans contemporary-classical, electronic and electro-acoustic music, and jazz. He earned a Bachelor's in Percussion from The Juilliard School and a Master's in Composition from the San Francisco Conservatory, and is completing a Ph.D. in the History and Theory of Music at UC Irvine. His commissions include works for the New Jersey Symphony and Rome Opera Choir."
+  },
+  "Cullyn Murphy": {
+    photo: "https://images.squarespace-cdn.com/content/v1/6123defc7a4a471b9462459b/58c31ade-3fab-4deb-b902-a1071ed67497/cullynheadshot.png",
+    website: "https://www.cullynmurphy.com/",
+    base: "Beloit, Wisconsin",
+    bio: "Cullyn D. Murphy is an American composer, conductor, vocalist, and educator who creates music engaging multiple sensory components beyond sound. His compositions employ unconventional notation and co-composition rooted in communal music-making, often accompanied by extramusical objects such as video game program notes and augmented reality filters. He is currently a Visiting Assistant Professor of Music at Beloit College."
+  }
+};
+
+function initComposerRoster() {
+  const roots = document.querySelectorAll(".roster-list li, .season-names span");
+  if (!roots.length) return;
+
+  // Build the modal once per page
+  let modal = document.querySelector(".composer-modal");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.className = "composer-modal";
+    modal.setAttribute("aria-hidden", "true");
+    modal.setAttribute("role", "dialog");
+    modal.innerHTML =
+      '<div class="composer-modal-bg" data-cm-close></div>' +
+      '<div class="composer-modal-content">' +
+        '<button class="composer-modal-close" data-cm-close aria-label="Close">×</button>' +
+        '<div class="composer-modal-body"></div>' +
+      '</div>';
+    document.body.appendChild(modal);
+    modal.querySelectorAll("[data-cm-close]").forEach((el) =>
+      el.addEventListener("click", close)
+    );
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("open")) close();
+    });
+  }
+  const body = modal.querySelector(".composer-modal-body");
+
+  function close() {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+  function open(name, data) {
+    const photoHtml = data.photo
+      ? '<div class="cm-photo"><img src="' + data.photo + '" alt="' + name + '" loading="lazy"></div>'
+      : '';
+    const baseHtml = data.base
+      ? '<div class="cm-meta">' + data.base + '</div>'
+      : '';
+    const websiteHtml = data.website
+      ? '<a class="cm-link" href="' + data.website + '" target="_blank" rel="noopener">Visit website <span class="ar">→</span></a>'
+      : '';
+    body.innerHTML =
+      photoHtml +
+      '<div class="cm-text">' +
+        '<h3 class="cm-name">' + name + '</h3>' +
+        baseHtml +
+        '<p class="cm-bio">' + data.bio + '</p>' +
+        websiteHtml +
+      '</div>';
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    const content = modal.querySelector(".composer-modal-content");
+    if (content) content.scrollTop = 0;
+  }
+
+  roots.forEach((el) => {
+    // Use the name span inside .roster-list li, or the span text directly
+    const nameEl = el.querySelector(".rl-name") || el;
+    const name = (nameEl.textContent || "").trim();
+    const data = COMPOSERS[name];
+    if (!data) return;
+
+    el.classList.add("has-composer-bio");
+    el.setAttribute("tabindex", "0");
+    el.setAttribute("role", "button");
+
+    // Inject thumbnail photo into the roster row (about §04 only)
+    if (el.matches(".roster-list li") && data.photo && !el.querySelector(".rl-thumb")) {
+      const thumb = document.createElement("span");
+      thumb.className = "rl-thumb";
+      thumb.innerHTML = '<img src="' + data.photo + '" alt="" loading="lazy">';
+      el.prepend(thumb);
+    }
+
+    const onActivate = (e) => {
+      e.preventDefault();
+      open(name, data);
+    };
+    el.addEventListener("click", onActivate);
+    el.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") onActivate(e);
+    });
+  });
+}
+
+/* The repertoire list filters as you type. Every work carries its
+   composer and title, folded to plain lowercase letters, so "dvorak"
+   finds Dvořák and "quintet" finds all of them. */
+function initRepertoireFilter() {
+  const input = document.querySelector("[data-rep-search]");
+  const list = document.querySelector("[data-rep-list]");
+  if (!input || !list) return;
+  const count = document.querySelector("[data-rep-count]");
+  const empty = document.querySelector("[data-rep-empty]");
+  const groups = [...list.querySelectorAll(".rep-group")].map((group) => ({
+    el: group,
+    works: [...group.querySelectorAll(".rep-work")],
+  }));
+  const total = groups.reduce((n, g) => n + g.works.length, 0);
+
+  function fold(text) {
+    return text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+  }
+
+  function run() {
+    const terms = fold(input.value).split(/\s+/).filter(Boolean);
+    let shown = 0;
+    groups.forEach((group) => {
+      let here = 0;
+      group.works.forEach((work) => {
+        const hay = work.getAttribute("data-rep") || "";
+        const hit = terms.every((t) => hay.indexOf(t) > -1);
+        work.hidden = !hit;
+        if (hit) here += 1;
+      });
+      group.el.hidden = here === 0;
+      shown += here;
+    });
+    if (count) {
+      count.textContent = shown === total
+        ? total + " works"
+        : shown + " of " + total + " works";
+    }
+    if (empty) empty.hidden = shown !== 0;
+  }
+
+  input.addEventListener("input", run);
+  input.addEventListener("search", run);
+  run();
+}
+
+/* Buying a ticket and sending a score both happen somewhere else: on
+   Eventbrite, on Tally. The site cannot see either of them, and a click
+   on the button is not a sale. What it can do is count the clicks, so
+   that the number of people who leave for the checkout is known and can
+   be compared with what the seller reports.
+
+   Nothing is loaded here. The handler hands the click to whatever
+   analytics the site is given later - gtag, Plausible, a dataLayer -
+   and does nothing at all while there is none. Buttons opt in with
+   data-cb-track="tickets" (or "apply", or "calendar") and any number of
+   data-cb-* attributes beside it, which travel with the event. */
+function initConversions() {
+  document.addEventListener("click", function (event) {
+    const link = event.target.closest && event.target.closest("[data-cb-track]");
+    if (!link) return;
+    const name = link.getAttribute("data-cb-track");
+    const props = { href: link.getAttribute("href") || "", page: location.pathname };
+    for (const attr of link.attributes) {
+      if (attr.name.startsWith("data-cb-") && attr.name !== "data-cb-track") {
+        props[attr.name.slice(8)] = attr.value;
+      }
+    }
+    try {
+      if (typeof window.gtag === "function") {
+        window.gtag("event", name, props);
+      }
+      if (typeof window.plausible === "function") {
+        window.plausible(name, { props: props });
+      }
+      if (window.dataLayer && typeof window.dataLayer.push === "function") {
+        window.dataLayer.push(Object.assign({ event: "cb_" + name }, props));
+      }
+    } catch (err) {
+      /* analytics must never stand between a visitor and the checkout */
+    }
+  }, true);
 }
