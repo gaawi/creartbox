@@ -30,6 +30,9 @@ import os
 import re
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import seo_block                                       # noqa: E402
+
 SITE = "https://creartbox.nyc"
 
 ARTISTS = [
@@ -698,7 +701,6 @@ def page(artist):
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{name} · {role} · CreArtBox</title>
 <meta name="description" content="{name}, {role_plain}. Biography and performances with CreArtBox.">
-<link rel="canonical" href="{site}/artists/{slug}.html">
 <link rel="icon" type="image/svg+xml" href="../brand/mark-wedge-box.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -840,6 +842,16 @@ def sync_card(src, artist):
     return src.replace(card.group(0), body + card.group(2), 1)
 
 
+def _seo_aware(path, wanted):
+    """The page as it should be, with the SEO block the page already has.
+
+    tools/build_seo.py owns that block; it is neither compared here nor
+    thrown away when the page is rewritten.
+    """
+    current = open(path, encoding="utf-8").read() if os.path.exists(path) else ""
+    return current, seo_block.strip(current), seo_block.carry(current, wanted)
+
+
 def main():
     check = "--check" in sys.argv
     stale = []
@@ -847,12 +859,12 @@ def main():
     for artist in ARTISTS:
         path = os.path.join("artists", artist["slug"] + ".html")
         wanted = page(artist)
-        current = open(path, encoding="utf-8").read() if os.path.exists(path) else ""
-        if current != wanted:
+        current, bare, keep = _seo_aware(path, wanted)
+        if bare != wanted:
             stale.append(path)
             if not check:
                 os.makedirs("artists", exist_ok=True)
-                open(path, "w", encoding="utf-8").write(wanted)
+                open(path, "w", encoding="utf-8").write(keep)
 
     src = open("about.html", encoding="utf-8").read()
     out = src

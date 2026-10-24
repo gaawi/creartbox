@@ -82,6 +82,7 @@ PROGRAMS = [
 # which also writes the .txt files and the PDFs. Change it there and both
 # pages follow; the full-length version is a download.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import seo_block                                       # noqa: E402
 from build_org_bio import BIOS          # noqa: E402
 
 ABOUT = BIOS["web"]
@@ -162,11 +163,6 @@ def head(title, description, canonical, extra=""):
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{description}">
-<link rel="canonical" href="{canonical}">
-<meta property="og:title" content="{title}">
-<meta property="og:description" content="{description}">
-<meta property="og:url" content="{canonical}">
-<meta property="og:image" content="{site}/assets/img/ensemble.jpg">
 <link rel="icon" type="image/svg+xml" href="brand/mark-wedge-box.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -471,11 +467,23 @@ def repertoire_page():
 
 # -------------------------------------------------------------------- main
 
-def write(path, wanted, check, stale):
+
+def _seo_aware(path, wanted):
+    """The page as it should be, with the SEO block the page already has.
+
+    tools/build_seo.py owns that block; it is neither compared here nor
+    thrown away when the page is rewritten.
+    """
     current = open(path, encoding="utf-8").read() if os.path.exists(path) else ""
-    if current == wanted:
+    return current, seo_block.strip(current), seo_block.carry(current, wanted)
+
+
+def write(path, wanted, check, stale):
+    current, bare, keep = _seo_aware(path, wanted)
+    if bare == wanted:
         return
     stale.append(path)
+    wanted = keep
     if not check:
         open(path, "w", encoding="utf-8").write(wanted)
 

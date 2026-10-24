@@ -34,6 +34,9 @@ import os
 import re
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import seo_block                                       # noqa: E402
+
 SITE = "https://creartbox.nyc"
 POSTS_DIR = "news/_posts"
 OUT_DIR = "news"
@@ -177,10 +180,9 @@ def markdown(body, prefix):
 # ----------------------------------------------------------------- pieces
 
 def head(title, description, canonical, prefix, image=""):
+    # The canonical link, the social cards and the structured data are
+    # written by tools/build_seo.py, which runs after this one.
     social = ""
-    if image:
-        social = ('<meta property="og:image" content="{site}/{img}">\n'
-                  .format(site=SITE, img=image))
     return """<!doctype html>
 <html lang="en">
 <head>
@@ -188,11 +190,6 @@ def head(title, description, canonical, prefix, image=""):
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{description}">
-<link rel="canonical" href="{canonical}">
-<meta property="og:title" content="{title}">
-<meta property="og:description" content="{description}">
-<meta property="og:type" content="article">
-<meta property="og:url" content="{canonical}">
 {social}<link rel="alternate" type="application/rss+xml" title="CreArtBox news" href="{site}/feed.xml">
 <link rel="icon" type="image/svg+xml" href="{p}brand/mark-wedge-box.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -479,11 +476,23 @@ def sync_home(all_posts, check):
 
 # -------------------------------------------------------------------- main
 
-def write(path, wanted, check, stale):
+
+def _seo_aware(path, wanted):
+    """The page as it should be, with the SEO block the page already has.
+
+    tools/build_seo.py owns that block; it is neither compared here nor
+    thrown away when the page is rewritten.
+    """
     current = open(path, encoding="utf-8").read() if os.path.exists(path) else ""
-    if current == wanted:
+    return current, seo_block.strip(current), seo_block.carry(current, wanted)
+
+
+def write(path, wanted, check, stale):
+    current, bare, keep = _seo_aware(path, wanted)
+    if bare == wanted:
         return
     stale.append(path)
+    wanted = keep
     if not check:
         os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
         open(path, "w", encoding="utf-8").write(wanted)

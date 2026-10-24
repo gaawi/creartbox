@@ -21,6 +21,9 @@ import html
 import os
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import seo_block                                       # noqa: E402
+
 PROGRAMS = [
     {
         "slug": "currents-2026",
@@ -184,6 +187,16 @@ def page_html(program, pages, ratio, pw, ph):
            when=html.escape(program["when"]))
 
 
+def _seo_aware(path, wanted):
+    """The page as it should be, with the SEO block the page already has.
+
+    tools/build_seo.py owns that block; it is neither compared here nor
+    thrown away when the page is rewritten.
+    """
+    current = open(path, encoding="utf-8").read() if os.path.exists(path) else ""
+    return current, seo_block.strip(current), seo_block.carry(current, wanted)
+
+
 def main():
     check = "--check" in sys.argv
     stale = []
@@ -206,12 +219,12 @@ def main():
 
         path = os.path.join("programs", program["slug"] + ".html")
         wanted = page_html(program, pages, ratio, size[0], size[1])
-        current = open(path, encoding="utf-8").read() if os.path.exists(path) else ""
-        if current != wanted:
+        current, bare, keep = _seo_aware(path, wanted)
+        if bare != wanted:
             stale.append(path)
             if not check:
                 os.makedirs("programs", exist_ok=True)
-                open(path, "w", encoding="utf-8").write(wanted)
+                open(path, "w", encoding="utf-8").write(keep)
         if not check:
             print("%s: %d pages" % (program["slug"], pages))
 
