@@ -48,7 +48,7 @@ LOGO = "assets/logos/logo-creartbox.png"
 
 # print-only and mail-only pages: not indexed, not in the sitemap
 SKIP_DIRS = ("newsletter/", "posters/")
-SKIP_FILES = {"404.html"}
+SKIP_FILES = {"404.html", "composer-opportunities.html"}
 
 SAME_AS = [
     "https://www.instagram.com/creartboxnyc/",
@@ -623,8 +623,12 @@ def article_node(path, src, title, desc, image):
 
 
 def faq_node(path, src):
-    items = re.findall(r'<h3 class="faq-q">(.*?)</h3>\s*<div class="faq-a">(.*?)</div>',
-                       src, re.S)
+    """A page whose FAQ is a list of <details> inside .faq says so."""
+    if 'class="faq"' not in src:
+        return None
+    items = re.findall(r"<details[^>]*>\s*<summary[^>]*>(.*?)</summary>(.*?)</details>",
+                       main_of(src), re.S)
+    items = [(q, a) for q, a in items if clean(q) and clean(a)]
     if not items:
         return None
     return {

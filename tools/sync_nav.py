@@ -23,6 +23,8 @@ NAV = [("news.html", "News")]
 # in the footer, under The Organization: presenters look there, and the
 # strip has no room for a tenth item
 FOOT = [("news.html", "News"), ("presenters.html", "For presenters")]
+# in the footer, under Program, next to the calendar it belongs with
+FOOT_PROGRAM = [("classical-concerts-nyc.html", "Coming to a concert")]
 
 # <div class="nav-item"><a href="../support.html">Donate</a></div>
 ONE_LINE = re.compile(
@@ -32,6 +34,7 @@ MULTI = re.compile(
     r'([ \t]*)<div class="nav-item">\n[ \t]*<a href="((?:\.\./)*)support\.html">Donate</a>')
 
 ABOUT_LI = re.compile(r'<li><a href="((?:\.\./)*)about\.html">About</a></li>')
+CALENDAR_LI = re.compile(r'<li><a href="((?:\.\./)*)concerts\.html">Calendar</a></li>')
 
 
 def has_nav(src, page, item):
@@ -73,6 +76,15 @@ def add_foot(src, page, item):
         src, count=1)
 
 
+def add_foot_program(src, page, item):
+    if has_foot(src, page, item):
+        return src
+    return CALENDAR_LI.sub(
+        lambda m: m.group(0) + '<li><a href="{}{}">{}</a></li>'.format(
+            m.group(1), page, item),
+        src, count=1)
+
+
 def files():
     return (sorted(glob.glob("*.html"))
             + sorted(glob.glob("*/*.html"))
@@ -92,6 +104,8 @@ def main():
             out = add_nav(out, page, item)
         for page, item in FOOT:
             out = add_foot(out, page, item)
+        for page, item in FOOT_PROGRAM:
+            out = add_foot_program(out, page, item)
         if out != src:
             stale.append(path)
             if not check:

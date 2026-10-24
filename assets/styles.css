@@ -3245,15 +3245,47 @@ i.fa { font-style: normal; }
   align-items: center;
   gap: 10px 16px;
 }
-.event-head-cta .btn-ticket { display: inline-block; }
-.event-head-price {
+.event-head-cta .btn-ticket,
+.call-head-cta .btn-ticket { display: inline-block; }
+.event-head-price,
+.call-head-note {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  letter-spacing: 0.04em;
+}
+/* and on the hub, for the composer who already knows which call is
+   theirs and only wants the form */
+.calls-apply {
+  margin: 0 0 32px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+}
+.calls-apply .btn-ticket { display: inline-block; }
+.calls-apply-note {
   font-family: var(--sans);
   font-size: 12.5px;
   color: var(--ink-soft);
   letter-spacing: 0.04em;
 }
 @media (max-width: 760px) {
-  .event-head-cta .btn-ticket { display: block; width: 100%; }
+  .calls-apply .btn-ticket { display: block; width: 100%; text-align: center; }
+}
+
+/* same thing on a call page: the form is the point of the page, and it
+   should not be reachable only from the foot of the side column */
+.call-head-cta {
+  margin: 18px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+}
+@media (max-width: 760px) {
+  .event-head-cta .btn-ticket,
+  .call-head-cta .btn-ticket { display: block; width: 100%; text-align: center; }
 }
 
 .concert-hero { margin: 36px 0 0; padding: 0; }
@@ -6329,7 +6361,8 @@ button.myBtn_multi, .eventpast a.button {
   }
 
   .masthead, .colophon, .back-to-archive, .page-folio-head, .page-pills,
-  .status-strip, .call-apply, .event-foot, .audio-dock { display: none !important; }
+  .status-strip, .call-head-cta, .call-apply, .event-foot,
+  .audio-dock { display: none !important; }
   .section { padding: 0 !important; }
   .h-mast { font-size: 22pt; line-height: 1.1; color: #000; margin: 0 0 12pt; }
 

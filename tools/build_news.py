@@ -246,7 +246,7 @@ def foot(prefix):
           <a href="https://x.com/creartbox" target="_blank" rel="noopener">X</a>
         </div>
       </div>
-      <div><h4>Program</h4><ul><li><a href="{p}concerts.html">Calendar</a></li><li><a href="{p}archive.html">Archive of Performances</a></li><li><a href="{p}projects.html">Productions</a></li><li><a href="https://festivaladar.com" target="_blank" rel="noopener">Festival ADAR</a></li><li><a href="https://apps.apple.com/us/app/creartbox/id6746415261" target="_blank" rel="noopener">iOS app &#183; App Store</a></li></ul></div>
+      <div><h4>Program</h4><ul><li><a href="{p}concerts.html">Calendar</a></li><li><a href="{p}classical-concerts-nyc.html">Coming to a concert</a></li><li><a href="{p}archive.html">Archive of Performances</a></li><li><a href="{p}projects.html">Productions</a></li><li><a href="https://festivaladar.com" target="_blank" rel="noopener">Festival ADAR</a></li><li><a href="https://apps.apple.com/us/app/creartbox/id6746415261" target="_blank" rel="noopener">iOS app &#183; App Store</a></li></ul></div>
       <div><h4>The Organization</h4><ul><li><a href="{p}about.html">About</a></li><li><a href="{p}news.html">News</a></li><li><a href="{p}presenters.html">For presenters</a></li><li><a href="{p}opportunities.html">Opportunities</a></li><li><a href="{p}brand.html">Brand &amp; press kit</a></li><li><a href="{p}media.html#magazine">CreArt Magazine</a></li></ul></div>
       <div><h4>Give</h4><ul><li><a href="{p}support.html">Donate</a></li></ul></div>
     </div>
