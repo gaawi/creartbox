@@ -122,6 +122,9 @@ document.addEventListener("DOMContentLoaded", function () {
   initConcertTabs();
   initRepertoireFilter();
 
+  // Count the clicks that matter, if anything is listening
+  initConversions();
+
   // Transparent masthead → solid on scroll past hero
   initTransparentMasthead();
 
@@ -1266,4 +1269,42 @@ function initRepertoireFilter() {
   input.addEventListener("input", run);
   input.addEventListener("search", run);
   run();
+}
+
+/* Buying a ticket and sending a score both happen somewhere else: on
+   Eventbrite, on Tally. The site cannot see either of them, and a click
+   on the button is not a sale. What it can do is count the clicks, so
+   that the number of people who leave for the checkout is known and can
+   be compared with what the seller reports.
+
+   Nothing is loaded here. The handler hands the click to whatever
+   analytics the site is given later - gtag, Plausible, a dataLayer -
+   and does nothing at all while there is none. Buttons opt in with
+   data-cb-track="tickets" (or "apply", or "calendar") and any number of
+   data-cb-* attributes beside it, which travel with the event. */
+function initConversions() {
+  document.addEventListener("click", function (event) {
+    const link = event.target.closest && event.target.closest("[data-cb-track]");
+    if (!link) return;
+    const name = link.getAttribute("data-cb-track");
+    const props = { href: link.getAttribute("href") || "", page: location.pathname };
+    for (const attr of link.attributes) {
+      if (attr.name.startsWith("data-cb-") && attr.name !== "data-cb-track") {
+        props[attr.name.slice(8)] = attr.value;
+      }
+    }
+    try {
+      if (typeof window.gtag === "function") {
+        window.gtag("event", name, props);
+      }
+      if (typeof window.plausible === "function") {
+        window.plausible(name, { props: props });
+      }
+      if (window.dataLayer && typeof window.dataLayer.push === "function") {
+        window.dataLayer.push(Object.assign({ event: "cb_" + name }, props));
+      }
+    } catch (err) {
+      /* analytics must never stand between a visitor and the checkout */
+    }
+  }, true);
 }

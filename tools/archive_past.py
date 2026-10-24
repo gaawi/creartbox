@@ -19,6 +19,7 @@ already in the row or on the concert page.
 """
 
 import datetime
+import html
 import glob
 import os
 import re
@@ -125,7 +126,7 @@ ENTRY = """		<div class="eventpast{bare}">
 			</h5>{program}{close_text}		</div>
 """
 
-PHOTO = ('\t\t\t<img class="imgpastevents" height="inherit" src="{src}" '
+PHOTO = ('\t\t\t<img class="imgpastevents" alt="{alt}" height="inherit" src="{src}" '
          'width="auto" loading="lazy">\n')
 
 
@@ -140,7 +141,9 @@ def entry(event):
     # the photo variant wraps the text in a div of its own
     return ENTRY.format(
         bare="" if hero else " nophoto",
-        photo=PHOTO.format(src=hero.group(1)) if hero else "",
+        photo=PHOTO.format(src=hero.group(1), alt=html.escape(
+            "CreArtBox: %s, %s %s" % (event["title"], event["month"], event["year"]),
+            quote=True)) if hero else "",
         open_text="\t\t\t<div>\n" if hero else "",
         close_text="\t\t\t</div>\n" if hero else "",
         program=MODAL.format(works=works) if works else "\n",

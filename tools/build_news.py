@@ -43,7 +43,7 @@ OUT_DIR = "news"
 INDEX = "news.html"
 FEED = "feed.xml"
 CSS = "assets/styles.css?v=152"
-JS = "assets/site.js?v=44"
+JS = "assets/site.js?v=45"
 MONTHS = ["January", "February", "March", "April", "May", "June", "July",
           "August", "September", "October", "November", "December"]
 
