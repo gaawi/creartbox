@@ -1283,6 +1283,16 @@ button.video-card:focus-visible .video-play::before,
     letter-spacing: 0.08em;
     color: var(--ink-soft);
   }
+  /* four lengths, not three: the chips have to be able to shrink or the
+     row is wider than a 390px phone and the whole page scrolls sideways */
+  .bio-tabs button { min-width: 0; }
+  .bio-tabs button .bt-label,
+  .bio-tabs button .bt-meta { max-width: 100%; overflow-wrap: anywhere; }
+}
+@media (max-width: 430px) {
+  .bio-tabs button { padding: 11px 5px; }
+  .bio-tabs button .bt-label { font-size: 11px; letter-spacing: 0.08em; }
+  .bio-tabs button .bt-meta { font-size: 9px; letter-spacing: 0.02em; }
   .bio-tabs button.active {
     background: var(--accent) !important;
     border-color: var(--accent);

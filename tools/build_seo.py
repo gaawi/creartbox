@@ -556,12 +556,17 @@ def archive_event_node(path, src, title, desc, image):
         "image": [image],
     }
     venue = m.group(2).strip()
-    if venue:
-        bits = [b.strip() for b in venue.split(",")]
-        place = {"@type": "Place", "name": bits[0]}
-        if len(bits) > 1:
-            place["address"] = {"@type": "PostalAddress", "addressLocality": bits[-1]}
-        node["location"] = place
+    if not venue:
+        # an event with no place is not an event any reader can use, and
+        # guessing one would be inventing it. The page keeps its WebPage
+        # and loses the event. Six archive pages are in this state because
+        # their description line was written without a venue.
+        return None
+    bits = [b.strip() for b in venue.split(",")]
+    place = {"@type": "Place", "name": bits[0]}
+    if len(bits) > 1:
+        place["address"] = {"@type": "PostalAddress", "addressLocality": bits[-1]}
+    node["location"] = place
     works = works_node(src)
     if works:
         node["workPerformed"] = works
@@ -614,7 +619,8 @@ def article_node(path, src, title, desc, image):
         "publisher": {"@id": ORG_ID},
         "mainEntityOfPage": {"@id": url + "#webpage"},
         "inLanguage": "en-US",
-        "isPartOf": {"@id": SITE + "/news.html#webpage"},
+        "isPartOf": {"@type": "Blog", "@id": SITE + "/news.html#blog",
+                     "name": "CreArtBox news", "url": SITE + "/news.html"},
     }
     tag = re.search(r'<span class="news-tag">(.*?)</span>', src, re.S)
     if tag:
@@ -789,7 +795,8 @@ AI_AGENTS = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-Sea
 
 
 def robots():
-    rules = "Allow: /\nDisallow: /newsletter/\nDisallow: /posters/\n"
+    rules = ("Allow: /\nDisallow: /newsletter/\nDisallow: /posters/\n"
+             "Disallow: /docs/\n")
     out = ["# creartbox.nyc",
            "# Concert dates, programmes and open calls are public and meant to be",
            "# read, quoted and answered with, by search engines and by assistants.",
