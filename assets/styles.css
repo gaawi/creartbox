@@ -3204,6 +3204,58 @@ i.fa { font-style: normal; }
   letter-spacing: 0.04em;
 }
 
+/* The next date, in the hero, so that someone who came to the home page
+   for a seat can see what is on without scrolling past the mission. */
+.hero-next {
+  margin: 22px 0 0;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.55;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 12px;
+}
+.hero-next .hn-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--senal);
+}
+.hero-next a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 2px;
+}
+.hero-next a:hover { border-bottom-color: var(--senal); }
+.hero-next .ar { color: var(--senal); }
+@media (max-width: 760px) {
+  .hero-next { margin-top: 18px; font-size: 13px; }
+}
+
+/* The ticket button in the head of a concert page. The sidebar card
+   still carries the full offer; this one is simply where the eye
+   already is, and on a phone it is the first thing under the date. */
+.event-head-cta {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+}
+.event-head-cta .btn-ticket { display: inline-block; }
+.event-head-price {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  letter-spacing: 0.04em;
+}
+@media (max-width: 760px) {
+  .event-head-cta .btn-ticket { display: block; width: 100%; }
+}
+
 .concert-hero { margin: 36px 0 0; padding: 0; }
 .concert-hero img {
   width: 100%;
