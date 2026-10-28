@@ -2190,6 +2190,12 @@ button.video-card:focus-visible .video-play::before,
 }
 .nav-strip-inner .nav-item > a:hover { background: var(--paper-2); color: var(--ink); }
 .nav-strip-inner .nav-item > a.active { background: var(--ink); color: var(--paper); font-weight: 600; }
+
+/* The chevron site.js puts beside a nav item that has a submenu. It is
+   in the markup at every width and shown only inside the mobile
+   drawer; on a wide screen the dropdown opens on hover, as always. */
+.nav-more { display: none; }
+
 .nav-strip-inner .nav-item > .submenu {
   position: absolute;
   top: 100%;
@@ -2798,9 +2804,70 @@ figure { margin: 0; }
   .nav-strip-inner .nav-item > a.active::after,
   .nav-strip-inner .nav-strip a.active::after { display: none !important; content: none !important; }
 
-  /* No dropdowns on mobile — top-level links only */
-  .nav-strip-inner .nav-item .submenu,
-  .nav-strip-inner .nav-item > .submenu { display: none !important; }
+  /* Submenus on a phone: folded away, opened by the chevron that
+     site.js puts beside the top-level link. The link itself still
+     goes where it always went; only the chevron toggles. Before this
+     the drawer hid thirty-two links and there was no way to reach
+     Composer roster, Photographs or either call for scores from it. */
+  .nav-strip-inner .nav-item > .submenu {
+    display: none;
+    position: static;
+    min-width: 0;
+    margin: 10px 0 0;
+    padding: 0 0 0 2px;
+    border: none;
+    border-left: 1px solid var(--rule);
+    background: none;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  .nav-strip-inner .nav-item.sub-open > .submenu { display: block; }
+  .nav-strip-inner .nav-item > .submenu a {
+    display: block;
+    padding: 9px 0 9px 14px;
+    border-bottom: none;
+    font-family: var(--sans);
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: var(--ink-2);
+    background: none;
+  }
+  .nav-strip-inner .nav-item > .submenu a:hover,
+  .nav-strip-inner .nav-item > .submenu a:active { color: var(--accent); background: none; }
+
+  .nav-more {
+    position: absolute;
+    top: 8px;
+    right: calc(var(--gutter) - 10px);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--ink-soft);
+    cursor: pointer;
+  }
+  .nav-more::before {
+    content: "";
+    width: 9px;
+    height: 9px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg) translate(-2px, -2px);
+    transition: transform 0.18s;
+  }
+  .nav-item.sub-open > .nav-more { color: var(--accent); }
+  .nav-item.sub-open > .nav-more::before {
+    transform: rotate(-135deg) translate(-3px, -3px);
+  }
+  body.hero-transparent .nav-strip-inner.open .nav-more { color: var(--ink-soft); }
+  body.hero-transparent .nav-strip-inner.open .nav-item > .submenu a { color: var(--ink-2); }
 
   /* Solid background on hero-transparent page too */
   body.hero-transparent .nav-strip-inner.open {

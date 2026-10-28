@@ -42,8 +42,8 @@ POSTS_DIR = "news/_posts"
 OUT_DIR = "news"
 INDEX = "news.html"
 FEED = "feed.xml"
-CSS = "assets/styles.css?v=154"
-JS = "assets/site.js?v=45"
+CSS = "assets/styles.css?v=155"
+JS = "assets/site.js?v=46"
 MONTHS = ["January", "February", "March", "April", "May", "June", "July",
           "August", "September", "October", "November", "December"]
 

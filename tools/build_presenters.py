@@ -20,8 +20,8 @@ import sys
 import unicodedata
 
 SITE = "https://creartbox.nyc"
-CSS = "assets/styles.css?v=154"
-JS = "assets/site.js?v=45"
+CSS = "assets/styles.css?v=155"
+JS = "assets/site.js?v=46"
 REPERTOIRE = "data/repertoire.txt"
 CONTACT = "info@creartbox.nyc"
 
@@ -289,11 +289,7 @@ def past_programs_block():
             dur = ('<span class="pp-d">%s&#x2032;</span>' % mins) if mins else ""
             name = html.escape(name)
             if kind == "composer":
-                # the archive marks eleven composers with a trailing asterisk
-                # and explains it nowhere, so it is not printed here. The
-                # data file keeps it, in case it turns out to mean something.
-                lines.append('          <li class="pp-c">%s</li>'
-                             % re.sub(r"\s*\*\s*$", "", name))
+                lines.append('          <li class="pp-c">%s</li>' % name)
             elif kind == "work":
                 extra = ('<span class="pp-s">%s</span>' % html.escape(scoring)) if scoring else ""
                 lines.append('          <li class="pp-w">%s%s%s</li>' % (name, extra, dur))

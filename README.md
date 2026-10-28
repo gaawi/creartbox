@@ -408,9 +408,6 @@ modal is used instead. To keep a programme out of the catalogue for
 good, put `#skip ` in front of its title line; delete the block and it
 comes back on the next run.
 
-The archive marks eleven composers with a trailing asterisk and
-explains it nowhere on the site. The data file keeps it; the page does
-not print it.
 
 ## Search, social cards and structured data
 
@@ -481,6 +478,27 @@ The season dates come from the New York Series rows of `concerts.html`,
 so archiving a concert takes it off this page too. Everything else is
 in the tool, next to the source it was checked against. The footer
 links it under Program, through `sync_nav.py`.
+
+## Every archive entry links to its own page
+
+`archive.html` lists 102 performances and `archive/` holds a page for
+each. Only 58 entries carried a "View more" button, so 47 of those
+pages could be reached from nowhere on the site.
+
+```bash
+python3 tools/link_archive_entries.py          # add the missing buttons
+python3 tools/link_archive_entries.py --check  # fail if any are missing
+```
+
+An entry is matched to its page by title, year and month, the three
+things the filenames are built from; where two performances share all
+three, the day decides. Anything still ambiguous is reported, not
+guessed at. An entry that already has a View more button is left
+alone, even when that button points somewhere else, and reported.
+
+The Kuopio week is the one entry with no page of its own: the concert,
+the talk and the workshop are a single entry by hand, and its button
+goes where that entry says.
 
 ## Moving a date into the archive
 

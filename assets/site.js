@@ -77,6 +77,11 @@ document.addEventListener("DOMContentLoaded", function () {
     burger.addEventListener("click", () => navInner.classList.toggle("open"));
   }
 
+  // A chevron beside each top-level item that has a submenu, so the
+  // drawer on a phone can reach the pages the dropdowns hold. Added
+  // here rather than in the markup because the nav is on 141 pages.
+  initMobileSubmenus();
+
   // Mobile per-page pill sub-nav (built from the active page's dropdown)
   initPagePills();
 
@@ -1307,4 +1312,50 @@ function initConversions() {
       /* analytics must never stand between a visitor and the checkout */
     }
   }, true);
+}
+
+/* The drawer on a phone used to show nine links and hide thirty-two:
+   Composer roster, Photographs, CreArt Magazine and both calls for
+   scores were in the markup and unreachable, because the dropdowns
+   only open on hover. Each item that has one gets a chevron next to
+   it. The chevron toggles; the link beside it still navigates, so
+   nothing that worked before changes. Desktop is untouched: the
+   button is only visible inside the mobile drawer. */
+function initMobileSubmenus() {
+  const items = document.querySelectorAll(".nav-strip-inner .nav-item");
+  items.forEach((item) => {
+    const submenu = item.querySelector(":scope > .submenu");
+    const link = item.querySelector(":scope > a");
+    if (!submenu || item.querySelector(":scope > .nav-more")) return;
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "nav-more";
+    button.setAttribute("aria-expanded", "false");
+    button.setAttribute(
+      "aria-label",
+      "More under " + ((link && link.textContent.trim()) || "this section")
+    );
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const open = item.classList.toggle("sub-open");
+      button.setAttribute("aria-expanded", open ? "true" : "false");
+      items.forEach((other) => {
+        if (other === item) return;
+        other.classList.remove("sub-open");
+        const b = other.querySelector(":scope > .nav-more");
+        if (b) b.setAttribute("aria-expanded", "false");
+      });
+    });
+    item.insertBefore(button, submenu);
+  });
+
+  // the section you are on is the one you are most likely to want open
+  const active = document.querySelector(".nav-strip-inner .nav-item > a.active");
+  if (active && active.parentElement.querySelector(":scope > .submenu")) {
+    active.parentElement.classList.add("sub-open");
+    const b = active.parentElement.querySelector(":scope > .nav-more");
+    if (b) b.setAttribute("aria-expanded", "true");
+  }
 }
