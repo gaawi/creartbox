@@ -20,7 +20,7 @@ import sys
 import unicodedata
 
 SITE = "https://creartbox.nyc"
-CSS = "assets/styles.css?v=155"
+CSS = "assets/styles.css?v=156"
 JS = "assets/site.js?v=46"
 REPERTOIRE = "data/repertoire.txt"
 CONTACT = "info@creartbox.nyc"
@@ -29,7 +29,7 @@ PROGRAMS = [
     {
         "n": "Program 1",
         "slug": "dvorak-schumanns",
-        "title": "Song and Dance",
+        "title": "Dvo\u0159\u00e1k and the Schumanns",
         "sub": ("Dvořák&#x27;s American summer and the Schumanns&#x27; Leipzig: two quartets, "
                 "a quintet and three romances."),
         "blurb": (
@@ -53,7 +53,7 @@ PROGRAMS = [
     {
         "n": "Program 2",
         "slug": "ravel-stravinsky",
-        "title": "Fairy Tales and Fairgrounds",
+        "title": "Colour and Contrast",
         "sub": ("French colour and Hungarian invention, ending in Stravinsky&#x27;s "
                 "fairground."),
         "blurb": (
@@ -295,17 +295,21 @@ def past_programs_block():
                 lines.append('          <li class="pp-w">%s%s%s</li>' % (name, extra, dur))
             else:
                 lines.append('          <li class="pp-m">%s%s</li>' % (name, dur))
-        meta = " &#183; ".join(x for x in (block["years"], block["where"]) if x)
-        total = ('<p class="pp-total">About %d minutes of music.</p>' % minutes) if minutes else ""
+        form = block.get("formation", "")
+        formation = ('        <p class="past-prog-form">%s</p>\n' % html.escape(form)) if form else ""
+        played = ", ".join(x for x in (block["where"], block["years"]) if x)
+        foot = " &#183; ".join(x for x in (
+            ("About %d minutes" % minutes) if minutes else "",
+            html.escape(played)) if x)
         cards.append(
             '      <article class="past-prog">\n'
             '        <h3 class="past-prog-title">{title}</h3>\n'
-            '        <p class="past-prog-meta">{meta}</p>\n'
+            '{formation}'
             '        <ul class="pp-list">\n{lines}\n        </ul>\n'
-            '        {total}\n'
+            '        <p class="pp-total">{foot}</p>\n'
             '      </article>'.format(title=html.escape(block["title"]),
-                                      meta=meta or "&#160;", lines="\n".join(lines),
-                                      total=total))
+                                      formation=formation, lines="\n".join(lines),
+                                      foot=foot or "&#160;"))
     return "\n".join(cards), len(cards)
 
 
@@ -500,12 +504,8 @@ def repertoire_page():
       <span class="label ital">Everything the ensemble has played</span>
     </div>
     <h1 class="sr-only">Repertoire</h1>
-    <p class="lede" style="margin-top:34px;max-width:58ch">
-      {works} works by {composers} composers, from the first season to this one. A programme
-      can be built from any of it: write to <a href="mailto:{contact}">{contact}</a>.
-    </p>
 
-    <div class="rep-search">
+    <div class="rep-search" style="margin-top:34px">
       <label for="rep-q" class="label">Find a composer or a work</label>
       <input id="rep-q" type="search" placeholder="Brahms, quintet, flute..." autocomplete="off" data-rep-search>
       <span class="rep-count" data-rep-count aria-live="polite">{works} works</span>

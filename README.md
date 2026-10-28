@@ -382,7 +382,7 @@ prints every programme the ensemble has played, so a presenter can ask
 for one to be revived. That catalogue is `data/programs-past.txt`:
 
 ```
-Title | years | where it was played
+Title | years | where it was played | formation
   Composer name
   - Work | scoring | minutes
   -- I. Movement | | minutes
@@ -392,6 +392,17 @@ A line under a title is a composer unless it starts with `- ` (a work)
 or `-- ` (a movement). **The file is hand-edited and nothing rewrites
 it**: rename a programme, reorder the blocks, drop a work, and it
 stays that way.
+
+The page prints the title, the formation under it, then the works, and
+the venue and year in small type at the foot of the card. An empty
+formation prints nothing, so filling one in is a one-line edit.
+
+Only programmes with a name of their own are shown. An evening that
+goes by the name of the hall or the series it was part of - "Queens
+Public Library", "Chaminade Music Series" - is in the file with
+`#skip ` in front of its title: it keeps its works, it stays out of
+the page, and the sync will not add it again. Deleting the `#skip `
+puts it back.
 
 ```bash
 python3 tools/sync_past_programs.py          # append what the archive has and this does not

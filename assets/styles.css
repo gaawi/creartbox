@@ -3308,14 +3308,17 @@ i.fa { font-style: normal; }
   margin: 0;
   color: var(--ink);
 }
-.past-prog-meta {
+/* the forces the programme asks for, directly under its name */
+.past-prog-form {
   font-family: var(--sans);
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--senal);
-  margin: 6px 0 12px;
+  margin: 6px 0 0;
 }
+.past-prog-title + .pp-list,
+.past-prog-form + .pp-list { margin-top: 12px; }
 .pp-list {
   list-style: none;
   margin: 0;

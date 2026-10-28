@@ -59,8 +59,13 @@ HEADER = """\
 
 
 def clean(fragment):
-    txt = re.sub(r"<[^>]+>", "", fragment or "")
-    return re.sub(r"\s+", " ", html.unescape(txt).replace(" ", " ")).strip()
+    # a space for the tag, not nothing: in the archive an <em> sits
+    # against the title, and stripping it bare gives "Piecesfor viola"
+    txt = re.sub(r"<[^>]+>", " ", fragment or "")
+    txt = re.sub(r"\s+", " ", html.unescape(txt).replace("\u00a0", " ")).strip()
+    # some composers carry a trailing asterisk that nothing on the site
+    # explains; it is not carried into the catalogue
+    return re.sub(r"\s*\*\s*$", "", txt)
 
 
 def key(title):
@@ -80,7 +85,7 @@ def read_blocks(path=DATA):
             continue
         if raw.startswith("#skip "):
             blocks.append({"title": raw[6:].split("|")[0].strip(), "skip": True,
-                           "years": "", "where": "", "rows": []})
+                           "years": "", "where": "", "formation": "", "rows": []})
             continue
         if raw.lstrip().startswith("#"):
             continue
@@ -99,14 +104,17 @@ def read_blocks(path=DATA):
             blocks[-1]["rows"].append((kind, fields[0], fields[1], fields[2]))
         else:
             fields = [f.strip() for f in raw.split("|")]
-            fields += [""] * (3 - len(fields))
+            fields += [""] * (4 - len(fields))
             blocks.append({"title": fields[0], "years": fields[1], "where": fields[2],
-                           "skip": False, "rows": []})
+                           "formation": fields[3], "skip": False, "rows": []})
     return blocks
 
 
 def render(block):
-    out = [" | ".join(x for x in (block["title"], block["years"], block["where"]) if x)]
+    head_ = [block["title"], block["years"], block["where"], block.get("formation", "")]
+    while head_ and not head_[-1]:
+        head_.pop()
+    out = [" | ".join(head_)]
     for kind, name, scoring, mins in block["rows"]:
         prefix = {"composer": "  ", "work": "  - ", "movement": "  -- "}[kind]
         tail = ""
@@ -119,9 +127,25 @@ def render(block):
 
 # ---------------------------------------------------------- the archive
 
+def entry_venues():
+    """The venue each archive.html entry shows, by title: the page's own
+    description line leaves it empty often enough to be worth the look."""
+    out = {}
+    if not os.path.exists(ARCHIVE):
+        return out
+    src = open(ARCHIVE, encoding="utf-8").read()
+    for chunk in re.split(r'(?=<div class="eventpast)', src)[1:]:
+        head = re.search(r"<h3>\s*(.*?)\s*</h3>", chunk, re.S)
+        place = re.search(r'<h5 class="address">(.*?)</h5>', chunk, re.S)
+        if head and place and clean(head.group(1)) and clean(place.group(1)):
+            out.setdefault(key(clean(head.group(1))), clean(place.group(1)))
+    return out
+
+
 def from_pages():
     """Programmes from archive/<slug>.html, which carry the movements."""
     found = {}
+    venues = entry_venues()
     for path in sorted(glob.glob("archive/*.html")):
         src = open(path, encoding="utf-8").read()
         block = re.search(r'<ul class="pgm-list">(.*?)</ul>', src, re.S)
@@ -160,9 +184,10 @@ def from_pages():
                 rows.append((kind, w, "", mins.group(1) if mins else ""))
         if rows and any(k == "work" for k, *_ in rows):
             name = clean(title.group(1)) if title else os.path.basename(path)
+            where = (when.group(2).strip() if when else "") or venues.get(key(name), "")
             found.setdefault(key(name), {
                 "title": name, "years": when.group(1) if when else "",
-                "where": when.group(2).strip() if when else "", "rows": rows})
+                "where": where, "formation": "", "rows": rows})
     return found
 
 
@@ -198,7 +223,8 @@ def from_modals():
             name = clean(head.group(1))
             found.setdefault(key(name), {
                 "title": name, "years": year.group(1) if year else "",
-                "where": clean(where.group(1)) if where else "", "rows": rows})
+                "where": clean(where.group(1)) if where else "",
+                "formation": "", "rows": rows})
     return found
 
 
