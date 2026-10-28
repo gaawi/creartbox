@@ -3214,6 +3214,106 @@ i.fa { font-style: normal; }
   letter-spacing: 0.04em;
 }
 
+/* ============================================================
+   The catalogue of programmes already played, on the presenters
+   page. Set in columns, like the back pages of a season book, so
+   that thirty-odd programmes stay readable without becoming a
+   scroll. Each box is a concert programme in the usual order:
+   composer, work with its running time, movements underneath.
+   ============================================================ */
+.pres-past-note { margin-bottom: 30px; }
+.past-progs {
+  column-count: 3;
+  column-gap: 30px;
+}
+.past-prog {
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  border-top: 1px solid var(--rule);
+  padding: 16px 0 20px;
+  margin: 0 0 4px;
+}
+.past-prog-title {
+  font-family: var(--display);
+  font-size: 19px;
+  line-height: 1.2;
+  font-weight: 400;
+  margin: 0;
+  color: var(--ink);
+}
+.past-prog-meta {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--senal);
+  margin: 6px 0 12px;
+}
+.pp-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.pp-c {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin: 12px 0 3px;
+}
+.pp-list .pp-c:first-child { margin-top: 0; }
+.pp-w {
+  font-family: var(--display);
+  font-size: 14.5px;
+  line-height: 1.4;
+  color: var(--ink);
+  margin: 0 0 1px;
+}
+.pp-m {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  padding-left: 14px;
+  margin: 0;
+}
+.pp-s {
+  display: block;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+}
+.pp-d {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  margin-left: 6px;
+  white-space: nowrap;
+}
+.pp-total {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  margin: 12px 0 0;
+  padding-top: 8px;
+  border-top: 1px dotted var(--rule);
+}
+@media (max-width: 1100px) {
+  .past-progs { column-count: 2; column-gap: 26px; }
+}
+@media (max-width: 760px) {
+  .past-progs { column-count: 1; }
+  .past-prog { padding: 14px 0 18px; }
+  .past-prog-title { font-size: 18px; }
+}
+
 /* The next date, in the hero, so that someone who came to the home page
    for a seat can see what is on without scrolling past the mission. */
 .hero-next {
@@ -6181,7 +6281,9 @@ button.myBtn_multi, .eventpast a.button {
   .pres-dl-all, .back-to-archive, .offer-dl,
   /* a proposal ends with the music, not with instructions for writing to us:
      the running footer already carries the address */
-  .pres-top .offer-note, .pres-contact-wrap { display: none !important; }
+  .pres-top .offer-note, .pres-contact-wrap,
+  /* the dossier is a proposal for two programmes, not the whole catalogue */
+  .pres-past-wrap { display: none !important; }
   .pres-top { padding: 0 0 6pt; }
   /* the mobile rule uses !important, and print is narrow enough to hit it */
   .pres-top .page-folio-head { display: none !important; }

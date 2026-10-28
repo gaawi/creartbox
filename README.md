@@ -375,6 +375,43 @@ wordmark, and prints the line that says where to apply, since a button
 is no use on paper. Set `CB_FONT_CACHE` where Google Fonts cannot be
 reached.
 
+## The catalogue of past programmes
+
+The presenters page leads with the two programmes on offer and then
+prints every programme the ensemble has played, so a presenter can ask
+for one to be revived. That catalogue is `data/programs-past.txt`:
+
+```
+Title | years | where it was played
+  Composer name
+  - Work | scoring | minutes
+  -- I. Movement | | minutes
+```
+
+A line under a title is a composer unless it starts with `- ` (a work)
+or `-- ` (a movement). **The file is hand-edited and nothing rewrites
+it**: rename a programme, reorder the blocks, drop a work, and it
+stays that way.
+
+```bash
+python3 tools/sync_past_programs.py          # append what the archive has and this does not
+python3 tools/sync_past_programs.py --check  # list what is missing
+```
+
+The tool reads both shapes the archive keeps a programme in: the
+`.pgm-list` on `archive/<slug>.html`, which has the movements, and the
+older "View Program" modals in `archive.html`, which have the scoring.
+Where a title is in both, the longer one wins, and a tie goes to the
+page. A `.pgm-list` whose composer spans are all empty cannot be read
+apart into composers, works and movements, so it is skipped and the
+modal is used instead. To keep a programme out of the catalogue for
+good, put `#skip ` in front of its title line; delete the block and it
+comes back on the next run.
+
+The archive marks eleven composers with a trailing asterisk and
+explains it nowhere on the site. The data file keeps it; the page does
+not print it.
+
 ## Search, social cards and structured data
 
 Every indexable page carries one managed block in its head, written by

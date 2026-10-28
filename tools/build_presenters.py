@@ -20,7 +20,7 @@ import sys
 import unicodedata
 
 SITE = "https://creartbox.nyc"
-CSS = "assets/styles.css?v=153"
+CSS = "assets/styles.css?v=154"
 JS = "assets/site.js?v=45"
 REPERTOIRE = "data/repertoire.txt"
 CONTACT = "info@creartbox.nyc"
@@ -266,6 +266,53 @@ def program_block(program):
 
 # ------------------------------------------------------------------- pages
 
+def past_programs_block():
+    """The catalogue: every programme the ensemble has played.
+
+    Read from data/programs-past.txt, which is hand-edited; see
+    tools/sync_past_programs.py. Each one is printed the way a concert
+    programme is printed - the composer, then the work with its running
+    time, then its movements underneath - so that a presenter can read
+    exactly what an evening was.
+    """
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from sync_past_programs import read_blocks           # noqa: E402
+
+    cards = []
+    for block in read_blocks():
+        if block.get("skip") or not block["rows"]:
+            continue
+        lines, minutes = [], 0
+        for kind, name, scoring, mins in block["rows"]:
+            if mins.isdigit():
+                minutes += int(mins)
+            dur = ('<span class="pp-d">%s&#x2032;</span>' % mins) if mins else ""
+            name = html.escape(name)
+            if kind == "composer":
+                # the archive marks eleven composers with a trailing asterisk
+                # and explains it nowhere, so it is not printed here. The
+                # data file keeps it, in case it turns out to mean something.
+                lines.append('          <li class="pp-c">%s</li>'
+                             % re.sub(r"\s*\*\s*$", "", name))
+            elif kind == "work":
+                extra = ('<span class="pp-s">%s</span>' % html.escape(scoring)) if scoring else ""
+                lines.append('          <li class="pp-w">%s%s%s</li>' % (name, extra, dur))
+            else:
+                lines.append('          <li class="pp-m">%s%s</li>' % (name, dur))
+        meta = " &#183; ".join(x for x in (block["years"], block["where"]) if x)
+        total = ('<p class="pp-total">About %d minutes of music.</p>' % minutes) if minutes else ""
+        cards.append(
+            '      <article class="past-prog">\n'
+            '        <h3 class="past-prog-title">{title}</h3>\n'
+            '        <p class="past-prog-meta">{meta}</p>\n'
+            '        <ul class="pp-list">\n{lines}\n        </ul>\n'
+            '        {total}\n'
+            '      </article>'.format(title=html.escape(block["title"]),
+                                      meta=meta or "&#160;", lines="\n".join(lines),
+                                      total=total))
+    return "\n".join(cards), len(cards)
+
+
 def roster_block():
     cards = []
     for name, role, slug, photo in PLAYERS:
@@ -294,6 +341,7 @@ def photos_block():
 
 def booking_page():
     programs = "\n".join(program_block(p) for p in PROGRAMS)
+    past, past_n = past_programs_block()
     about = "\n      ".join("<p>%s</p>" % p for p in ABOUT)
     return (head("For presenters &#183; CreArtBox",
                  "Programmes on offer, the players, materials to download, and "
@@ -328,6 +376,24 @@ def booking_page():
       <a class="btn btn-stamp" href="mailto:{contact}?subject=Booking%20enquiry">Enquire about a date <span class="ar">&#8594;</span></a>
       <a class="btn" href="{dossier}" download>Programme dossier &#183; PDF</a>
       <a class="btn" href="repertoire.html">Full repertoire</a>
+    </div>
+  </div>
+</section>
+
+<section class="section pres-past-wrap">
+  <div class="wrap">
+    <div class="section-title">
+      <hr class="rule">
+      <div class="head"><span class="label">From the repertoire</span><span class="bar"></span><span class="label ital">{past_n} programmes <em>already played</em>.</span></div>
+      <hr class="rule">
+    </div>
+    <p class="offer-note pres-past-note">Everything below has been performed: curated
+      programmes, commissions and touring evenings from twelve seasons. Any of them can
+      be revived whole, shortened, or used as the starting point for something built for
+      your hall. Write to <a href="mailto:{contact}">{contact}</a> with the one you have
+      in mind.</p>
+    <div class="past-progs">
+{past}
     </div>
   </div>
 </section>
@@ -402,7 +468,7 @@ def booking_page():
 </section>
 """.format(programs=programs, about=about, contact=CONTACT,
            roster=roster_block(), photos=photos_block(), dossier=DOSSIER,
-           overview=OVERVIEW)
+           overview=OVERVIEW, past=past, past_n=past_n)
             + foot())
 
 

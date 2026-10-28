@@ -1,0 +1,498 @@
+# Past programmes, as they are offered to presenters.
+#
+# One block per programme. The first line of a block is the programme,
+# the indented lines under it are what was played, in order:
+#
+#   Title | years | where it was played
+#     Composer name
+#     - Work | scoring | minutes
+#     -- I. Movement | | minutes
+#
+# A line under a title is a composer unless it starts with "- " (a work)
+# or "-- " (a movement of the work above it). Scoring and minutes may be
+# left empty, and trailing empty fields may be dropped.
+#
+# This file is hand-edited. Nothing rewrites it: rename a programme,
+# reorder the blocks, drop a work, and it stays that way.
+# tools/sync_past_programs.py appends programmes found in the archive
+# that are not here yet, at the end. To keep one out for good, put
+# "#skip " in front of its title line.
+
+Kuopio Conservatory Residency | 2026
+  Lili Boulanger
+  - Nocturne
+  Claude Debussy
+  - Violin Sonata in G minor · arr. for flute and piano
+  Guillermo Laporta
+  - Brown Leaves Moving
+  Leoš Janáček
+  - Violin Sonata · I. Con moto, arr. for flute and piano
+  Clara Schumann
+  - Three Romances, Op. 22 · arr. for flute and piano
+  Manuel de Falla
+  - Asturiana · from Siete canciones populares españolas, arr. for flute and piano
+  Olivier Messiaen
+  - Le Merle noir
+  Manuel de Falla
+  - Nana · from Siete canciones populares españolas, arr. for flute and piano
+  Frank Martin
+  - Ballade · for flute and piano
+
+Chamber Music Lehigh Valley | 2026
+  Frank Martin
+  - Ballade for Flute, Strings, and Piano
+  Johannes Brahms
+  - Piano Quartet No. 3 in C minor, Op. 60
+  Georg Philipp Telemann
+  - Third Paris Quartet, TWV 43:G4
+  Andrea Casarrubios
+  - Afilador
+  Modest Mussorgsky
+  - Pictures at an Exhibition (arr. CreArtBox)
+
+Ringwood Music Series | 2025 | Ringwood, NJ
+  Georg Philipp Telemann
+  - Third Paris Quartet, TWV 43:G4
+  Antonín Dvořák
+  - Piano Quintet No. 2, Op. 81
+  Modest Mussorgsky (arr. CreArtBox)
+  - Pictures at an Exhibition
+
+Queens Public Library | 2025 | Queens Public Library, New York
+  Olivier Messiaen
+  - Le Merle Noir (1952)
+  Guillermo Laporta
+  - Heart Rate
+  J. S. Bach
+  - Partita
+  Michel van der Aa
+  - Rekindle
+  Greg Karnilaw
+  - Breath
+
+Queens Log | 2025 | Leonard Library, Brooklyn, NY
+  Olivier Messiaen
+  - Le Merle Noir (1952)
+  Guillermo Laporta
+  - Heart Rate
+  J. S. Bach
+  - Partita
+  Michel van der Aa
+  - Rekindle
+  Greg Karnilaw
+  - Breath
+
+Music on Madison | 2025 | Madison Avenue Presbyterian Church, NYC
+  François Couperin
+  - Les Barricades Mystérieuses
+  Olivier Messiaen
+  - Le Merle Noir (1952)
+  Maurice Ravel
+  - Le Tombeau de Couperin (arr. for flute and piano)
+  Claude Debussy
+  - Arabesque No. 1
+  Francis Poulenc
+  - Cantilena
+  Claude Debussy
+  - Violin Sonata (arr. Guillermo Laporta, for flute and piano)
+
+Arts Rock Music Series | 2025
+  Wolfgang Amadeus Mozart
+  - Piano Quartet in E-flat Major, KV 493 I. Allegro II. Larghetto III. Allegretto
+  Gustav Mahler
+  - Piano Quartet in A minor
+  Antonín Dvořák
+  - American String Quartet in F Major, Op. 96, No. 12 (arr. for Flute, Violin, Viola, and Cello) I. Allegro ma non troppo II. Lento III. Molto Vivace IV. Finale. Vivace ma non troppo
+  Caroline Shaw
+  - Thousandth Orange |  | 11
+  Claude Debussy
+  - Petite Suite, L. 65 (arr. for Flute, Violin, Viola, Cello, and Piano) I. En bateau (Sailing). Andantino II. Cortège (Retinue). Moderato III. Minuet. Moderato IV. Ballet. Allegro giusto
+
+Approaching Zero | 2025 | Flushing Town Hall, New York
+  Max Richter
+  - Vladimir's Blues
+  Wolfgang Amadeus Mozart
+  - Piano Sonata in C Major, K. 545 – II. Andante
+  Guillermo Laporta
+  - AWAVE (selection)
+  Johann Sebastian Bach
+  - Cello Suite in G major, BWV 1007
+  Guillermo Laporta
+  - 12 Preludes (selection)
+  Hannah Selin
+  - Dream Journal
+  François Couperin
+  - Les Barricades Mystérieuses
+
+Saugerties Pro Musica | 2024 | Saugerties Pro Musica, NY
+  Wolfgang Amadeus Mozart
+  - Trio in E flat major K.498for flute, viola, and piano |  | 20
+  Robert Schumann
+  - Fantasy Piecesfor viola and piano Op.73 |  | 13
+  Tatiana Nikolayeva
+  - Trio Op.18for flute, viola, and piano |  | 23
+  Claude Debussy
+  - Sonata n. 2 for flute, viola, and piano |  | 20
+  Bryan Wysocki *
+  - We Can Learn Me Togetherfor flute, viola, and piano |  | 7
+
+Opus 71 | 2024 | Theater 71, New York
+  Wolfgang Amadeus Mozart
+  - Trio in E flat major K.498for flute, viola, and piano |  | 20
+  Robert Schumann
+  - Fantasy Piecesfor viola and piano Op.73 |  | 13
+  Tatiana Nikolayeva
+  - Trio Op.18for flute, viola, and piano |  | 23
+  Claude Debussy
+  - Sonata n. 2 for flute, viola, and piano |  | 20
+  Bryan Wysocki *
+  - We Can Learn Me Togetherfor flute, viola, and piano |  | 7
+
+Ten Pages | 2023
+  Andrea Casarrubios
+  - Afilador |  | 7
+  - (*commissioned by Chicago Symphony Orchestra)
+  Camille Saint-Saens
+  - Piano quintet in A Minor, Op. 14
+  -- I. Allegro moderato e maestoso |  | 10
+  -- II. Andante sostentuo |  | 6
+  -- III. Presto |  | 5
+  -- IV. Allegro assai, ma tranquillo |  | 8
+  Sergei Rachmaninoff
+  - Trio élégiaque in G Minor, No. 1 |  | 14
+  Modest Mussorgsky
+  - Pictures of an Exhibition (transcribed for Piano, VIolin, Viola, Cello andFlute) |  | 35
+
+Sounds of the Dome | 2023
+  Frédéric Chopin
+  - Berceuse |  | 5
+  Carl Maria von Weber
+  - Trio for Piano, Flute and Cello in G Minor, Op. 63
+  -- I. Allegro moderato |  | 9
+  -- II. Scherzo. Allegro vivace |  | 3
+  -- III. Schäfers Klage (Shepherd's Lament). Andante espressivo |  | 4
+  -- IV. Finale. Allegro |  | 8
+  Michael Grebla
+  - In Search of Peace |  | 13
+  Alexander Scriabin
+  - Romance (Arr. for Cello and Piano by Steven Isserlis) |  | 2
+  Frédéric Chopin
+  - Cello Sonata in G Minor, Op. 65
+  -- I. Allegro moderato |  | 14
+  -- II. Scherzo |  | 5
+
+Opus 71 Series | 2023 | Theater 71, Manhattan, New York City
+  Robert Schumann
+  - Fantasy PiecesOp.73 |  | 13
+  Manuel de Falla
+  - Siete Canciones Populares (selection) |  | 8
+  Georg Telemann
+  - Flute Sonata in F Major TWV 41:F2 |  | 10
+  Franz Schubert
+  - Introduction and Variations D.802 |  | 20
+  Guillermo Laporta
+  - Preludes for flute and piano |  | 20
+
+Open Door | 2023 | Queens Public Library (Astoria Branch)
+  Claude Debussy
+  - Second Sonata, L. 137(transcribed for Piano, Flute and Viola)
+  -- I. Prologue: Lento, dolce rubato |  | 7
+  -- II. Interlude: Tempo di Minuetto |  | 6
+  -- III. Finale: Allegro moderato ma risoluto |  | 5
+  Tatiana Nikolayeva
+  - Trio for Piano, Flute and Viola, Op. 18 |  | 23
+  Bryan Wysocki
+  - We Can Learn Me Together |  | 7
+  Wolfgang Amadeus Mozart
+  - Trio in E Flat Major K. 498 (transcribed for Piano, Flute and Viola)
+  -- I. Andante |  | 6
+  -- II. Allegretto |  | 6
+  -- III. Minuetto |  | 8
+
+Mountains we love to climb | 2023
+  François Couperin
+  - Les barricades mystérieuses |  | 3
+  Hannah Selin
+  - Chesapeake |  | 9
+  Wolfgang Amadeus Mozart
+  - Flute Quartet in D Major, K. 285
+  -- I. Allegro |  | 10
+  -- II. Adagio |  | 2
+  -- III. Rondo |  | 4
+  Antonio Vivaldi
+  - "La Notte", Flute Concerto in G Minor, RV. 439 |  | 10
+  -- I. Largo |  | 2
+  -- II. Presto (Fantasmi) |  | 2
+  -- III. Largo |  | 2
+  -- IV. Presto |  | 1
+  -- V. Largo (Il sonno) |  | 2
+  -- VI. Allegro |  | 2
+  François Couperin
+  - Concerts royaux (selection) |  | 18
+
+Masked Sounds | 2023
+  Frédéric Chopin
+  - Berceuse |  | 5
+  Carl Maria von Weber
+  - Trio for Piano, Flute and Cello in G Minor, Op. 63
+  -- I. Allegro moderato |  | 9
+  -- II. Scherzo. Allegro vivace |  | 3
+  -- III. Schäfers Klage (Shepherd's Lament). Andante espressivo |  | 4
+  -- IV. Finale. Allegro |  | 8
+  Michael Grebla
+  - In Search of Peace |  | 13
+  Alexander Scriabin
+  - Romance (Arr. for Cello and Piano by Steven Isserlis) |  | 2
+  Frédéric Chopin
+  - Cello Sonata in G Minor, Op. 65
+  -- I. Allegro moderato |  | 14
+  -- II. Scherzo |  | 5
+
+Echoes of Solitude | 2023
+  Max Bruch
+  - 8 pieces, Op. 83 (transcribed for Piano, Flute and Viola)
+  -- I.Andante |  | 4
+  -- II. Allegro con moto |  | 2
+  -- III. Andante con moto |  | 8
+  -- IV. Allegro agitato |  | 3
+  -- V. Rumänische Melodie: Andante |  | 5
+  -- VI. Nachtgesang: Andante con moto |  | 6
+  -- VII. Allegro vivace, ma non troppo |  | 3
+  -- VIII. Moderato |  | 6
+  Richard Strauss
+  - Morgen! |  | 5
+  Claude Debussy
+  - Second Sonata, L. 137(transcribed for Piano, Flute and Viola)
+  -- I. Prologue: Lento, dolce rubato |  | 7
+  -- II. Interlude: Tempo di Minuetto |  | 6
+  -- III. Finale: Allegro moderato ma risoluto |  | 5
+  Nathan Schram
+  - Hear Now Berlin |  | 10
+
+Circle Noir (Part II) | 2023
+  Arvo Pärt
+  - Pari Intervalo |  | 7
+  Johann Sebastian Bach
+  - Goldberg Variation (selection) |  | 10
+  Wolfgang Amadeus Mozart
+  - Flute Quartet in D Major, K. 285
+  -- I. Allegro |  | 10
+  -- II. Adagio |  | 2
+  -- III. Rondo |  | 4
+  Antonio Vivaldi
+  - "La Notte", Flute Concerto in G Minor, RV. 439 |  | 10
+  -- I. Largo |  | 2
+  -- II. Presto (Fantasmi) |  | 2
+  -- III. Largo |  | 2
+  -- IV. Presto |  | 1
+  -- V. Largo (Il sonno) |  | 2
+  -- VI. Allegro |  | 2
+  Claude Debussy
+  - Petite suite, L. 65 (transcribed for Piano, VIolin, Viola, Cello andFlute)
+  -- I. En bateau |  | 3
+  -- II. Cortège |  | 3
+  -- III. Menuet |  | 3
+  -- IV. Ballet |  | 4
+  Hannah Selin
+  - Dream Journal |  | 9
+
+Circle Noir (Part I) | 2023 | The William Vale, Brooklyn
+  Max Richter
+  - Vladimir's Blues |  | 2
+  Carl Maria von Weber
+  - Trio for Piano, Flute and Cello in G Minor, Op. 63
+  -- I. Allegro moderato |  | 8
+  -- II. Scherzo. Allegro vivace |  | 3
+  Felix Mendelssohn
+  - Trio for Piano, Flute and Cello in D Minor, Op. 49 No. 1
+  -- II. Andante con molto tranquillo |  | 6
+  Michael Grebla
+  - In Search of Peace |  | 13
+  Philippe Gaubert
+  - Three Aquarelles
+  -- I. Par un clair matin |  | 6
+  -- II. Soir d'automne |  | 4
+  -- III. Sérénade |  | 4
+  Andrea Casarrubios
+  - Mensajes de Agua |  | 4
+  Maurice Ravel
+  - Kaddisch (from Hebrew melodies) |  | 4
+
+Cervantes Institute, Tokyo | 2023 | Tokyo, Japan
+  Robert Schumann
+  -- Fantasy Pieces Op.73
+  - I. Tender and with expression
+  - II. Lively, light
+  - III. Quick and with fire
+  Manuel de Falla
+  - 5 Canciones Populares
+  - II. Seguidilla murciana
+  - III. Asturiana
+  - IV. Jota
+  - V. Nana
+  - VI. Cancion
+  - VII. Polo
+  Michel van der Aa
+  - Rekindle for flute & electronics
+  Franz Schubert
+  - Introduction and Variations D.802
+  Guillermo Laporta
+  - Preludes for flute and piano
+
+We Can Learn | 2022 | Culture Lab Theater, Queens, New York
+  Claude Debussy
+  - Second Sonata, L. 137(transcribed for Piano, Flute and Viola)
+  -- I. Prologue: Lento, dolce rubato |  | 7
+  -- II. Interlude: Tempo di Minuetto |  | 6
+  -- III. Finale: Allegro moderato ma risoluto |  | 5
+  Tatiana Nikolayeva
+  - Trio for Piano, Flute and Viola, Op. 18 |  | 23
+  Bryan Wysocki
+  - We Can Learn Me Together |  | 7
+  Wolfgang Amadeus Mozart
+  - Trio in E Flat Major K. 498 (transcribed for Piano, Flute and Viola)
+  -- I. Andante |  | 6
+  -- II. Allegretto |  | 6
+  -- III. Minuetto |  | 8
+
+LiveSOUNDS Music Series | 2022 | Anna-Maria Kellen Hall, New York City
+  Claude Debussy
+  - First Rhapsody
+  for flute and piano(original for clarinet & orchestra)[9’]
+  - Leoš Janáček
+  Violin Sonata
+  - for flute and piano (original for violin & piano) |  | 17
+  César Franck
+  - Sonata for Flute and Piano in A Majorfor flute & piano (original for violin & piano) |  | 28
+
+Falla! | 2022 | As Quintas Auditorium, Asturias, Spain
+  Bela Bartok
+  - Romanian Dances |  | 10
+  Manuel de Falla
+  - Siete Canciones Populares (selection) |  | 8
+  Georg Telemann
+  - Flute Sonata in F Major TWV 41:F2 |  | 10
+  Gabriel Faure
+  - Fantasie Op.79 |  | 5
+  Robert Schumann
+  - Fantasy Pieces |  | 13
+
+Culture Lab Live Streaming Series | 2022 | Culture Lab Theater, Queens, New York
+  Claude Debussy
+  - Second Sonata, L. 137(transcribed for Piano, Flute and Viola)
+  -- I. Prologue: Lento, dolce rubato |  | 7
+  -- II. Interlude: Tempo di Minuetto |  | 6
+  -- III. Finale: Allegro moderato ma risoluto |  | 5
+  Tatiana Nikolayeva
+  - Trio for Piano, Flute and Viola, Op. 18 |  | 23
+  Bryan Wysocki
+  - We Can Learn Me Together |  | 7
+  Wolfgang Amadeus Mozart
+  - Trio in E Flat Major K. 498 (transcribed for Piano, Flute and Viola)
+  -- I. Andante |  | 6
+  -- II. Allegretto |  | 6
+  -- III. Minuetto |  | 8
+
+Chutzpah! Festival, Vancouver | 2022 | Vancouver, Canada
+  Ernest Bloch
+  - 3 Nocturnes for Piano Trio for violin, cello & piano
+  Paul Schoenfeld *
+  - Achat Sha'alti |  | 5
+
+Chaminade Music Series | 2022 | Grinton I. Will Library, Yonkers, New York
+  Claude Debussy
+  - First Rhapsody |  | 9
+  Leoš Janáček
+  - Violin Sonata |  | 17
+  César Franck
+  - Sonata in A Major |  | 28
+
+Awave (Japan Debut) | 2019 | Monten Hall, Tokyo, Japan
+  Guillermo Laporta
+  - Awave
+
+CreArtED Inauguration | 2018 | Plaxall Gallery, Queens, New York
+  Enesco
+  - Cantabile et Presto |  | 7
+  Bartok
+  - Romanian Folk Dances |  | 10
+  Aaron Copland
+  - Duo for Flute and Piano |  | 12
+  Frank Martin
+  - Ballade for Flute and Piano |  | 7
+
+Chaminade Club | 2018 | Grinton I. Will Library, Yonkers, New York
+  Massenet
+  - Thaïs Meditation |  | 6
+  Chaminade
+  - Rondeau |  | 4
+  Faure
+  - Après un rêve |  | 3
+  Franck
+  - Violin Sonata (selection) |  | 15
+  Debussy
+  - Violin Sonata |  | 15
+  Satie
+  - Gymnopedies |  | 7
+  Gounod
+  - Ave Maria |  | 3
+
+Arts Month at Ethical Culture | 2018 | Society for Ethical Culture, Manhattan, New York
+  Bach
+  - Flute Sonata in E flat Major |  | 12
+  Faure
+  - Après un rêve |  | 3
+  Jacob TV *
+  - Lipstick |  | 8
+  Marcos Fernandez *
+  - Northumbrian |  | 7
+  Enesco
+  - Cantabile et Presto |  | 7
+
+Opera America Series | 2017 | Opera America Center, Manhattan, New York
+  Haydn
+  - Piano Sonata Hob: XVI/34 e minor |  | 10
+  Rachmaninoff
+  - Piano Sonata op. 36, n.2 |  | 22
+  Albeniz
+  - El Albaicin |  | 8
+  Marcos Fernandez *
+  - Northumbrian |  | 7
+
+Bay Ridge Concert Series | 2017 | Bay Ridge, Brooklyn
+  Debussy
+  - Violin Sonata (transcribed for flute) |  | 15
+  Ottorino Respighi
+  - Violin Sonata (transcribed for flute) |  | 30
+  Bartok
+  - Romanian Dances |  | 10
+
+The DiMenna Series (feat. Joshua Penman) | 2016 | Mary Flagler Hall, Manhattan, New York
+  Beethoven
+  - Quintet for Piano and Winds |  | 7
+  Philippe Gaubert
+  - 3 Aquarelles |  | 14
+  Judd Greenstein *
+  - Untitled (finding something special) |  | 5
+  Sebastian Currier*
+  - Verge and Static (selection) |  | 15
+  Joshua Penman *
+  - Mariri (World Premier) |  | 12
+
+Chamber Music America Showcase | 2016 | Le Poisson Rouge, Manhattan, New York
+  Beethoven
+  - Quintet for Piano and Winds |  | 7
+  Georg Crumb *
+  - Vox Balaenae |  | 20
+  Marcos Fernandez *
+  - Eclipse |  | 7
+
+Tre Pezzi
+  Lili Boulanger
+  - Nocturne
+  Ludwig van Beethoven
+  - Violin Sonata No. 2 in A major, Op. 12
+  György Kurtág
+  - Tre Pezzi
+  César Franck
+  - Violin Sonata in A major
