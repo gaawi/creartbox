@@ -74,7 +74,27 @@ document.addEventListener("DOMContentLoaded", function () {
   const burger = document.querySelector(".nav-burger");
   const navInner = document.querySelector(".nav-strip-inner");
   if (burger && navInner) {
-    burger.addEventListener("click", () => navInner.classList.toggle("open"));
+    const setMenu = (open) => {
+      navInner.classList.toggle("open", open);
+      burger.classList.toggle("open", open);
+      burger.textContent = open ? "Close" : "Menu";
+      burger.setAttribute("aria-label", open ? "Close menu" : "Menu");
+      burger.setAttribute("aria-expanded", open ? "true" : "false");
+      document.body.classList.toggle("nav-locked", open);
+    };
+    burger.setAttribute("aria-expanded", "false");
+    burger.addEventListener("click", () =>
+      setMenu(!navInner.classList.contains("open")));
+
+    // A link to the page you are already on, or to an anchor on it, does
+    // not navigate, so the drawer would stay open over the page it just
+    // took you to. Any link inside it closes it.
+    navInner.addEventListener("click", (event) => {
+      if (event.target.closest("a")) setMenu(false);
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && navInner.classList.contains("open")) setMenu(false);
+    });
   }
 
   // A chevron beside each top-level item that has a submenu, so the

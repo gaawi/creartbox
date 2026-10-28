@@ -2761,6 +2761,10 @@ figure { margin: 0; }
     border-top: 1px solid var(--ink);
   }
   .nav-strip-inner.open { display: flex; }
+  /* the drawer covers the page, so the page must not scroll behind it:
+     closing it should put you back where you were */
+  body.nav-locked { overflow: hidden; }
+  .nav-burger.open { background: var(--ink); color: var(--paper); }
 
   .nav-strip a { flex: 0 0 auto; border-right: none; border-bottom: none; text-align: left; padding: 0; }
   .nav-burger { display: inline-block; }
@@ -2822,6 +2826,9 @@ figure { margin: 0; }
     opacity: 1;
     visibility: visible;
     transform: none;
+    /* the dropdown is inert until hovered on a wide screen; a phone has
+       no hover, so without this every link in the drawer is dead */
+    pointer-events: auto;
   }
   .nav-strip-inner .nav-item.sub-open > .submenu { display: block; }
   .nav-strip-inner .nav-item > .submenu a {
