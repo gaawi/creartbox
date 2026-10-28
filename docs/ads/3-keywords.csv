@@ -1,0 +1,42 @@
+Campaign,Ad Group,Keyword,Match Type,Status,Final URL
+CB | Concerts | New York,Chamber music NYC,"""chamber music concerts new york""",Phrase,Enabled,https://creartbox.nyc/classical-concerts-nyc.html
+CB | Concerts | New York,Chamber music NYC,"""chamber music nyc tickets""",Phrase,Enabled,https://creartbox.nyc/classical-concerts-nyc.html
+CB | Concerts | New York,Chamber music NYC,"""chamber music new york city""",Phrase,Enabled,https://creartbox.nyc/classical-concerts-nyc.html
+CB | Concerts | New York,Chamber music NYC,[chamber music concert new york],Exact,Enabled,https://creartbox.nyc/classical-concerts-nyc.html
+CB | Concerts | New York,Chamber music NYC,"""chamber music concerts this weekend nyc""",Phrase,Enabled,https://creartbox.nyc/classical-concerts-nyc.html
+CB | Concerts | New York,Classical concerts NYC,"""classical music concerts new york city""",Phrase,Enabled,https://creartbox.nyc/classical-concerts-nyc.html
+CB | Concerts | New York,Classical concerts NYC,"""classical concerts in manhattan""",Phrase,Enabled,https://creartbox.nyc/classical-concerts-nyc.html
+CB | Concerts | New York,Classical concerts NYC,"""live classical music midtown manhattan""",Phrase,Enabled,https://creartbox.nyc/classical-concerts-nyc.html
+CB | Concerts | New York,Classical concerts NYC,[classical concerts nyc],Exact,Enabled,https://creartbox.nyc/classical-concerts-nyc.html
+CB | Concerts | New York,Classical concerts NYC,"""classical music events new york this week""",Phrase,Enabled,https://creartbox.nyc/classical-concerts-nyc.html
+CB | Concerts | New York,DiMenna Center,"""dimenna center concerts""",Phrase,Enabled,https://creartbox.nyc/classical-concerts-nyc.html
+CB | Concerts | New York,DiMenna Center,"""dimenna center for classical music events""",Phrase,Enabled,https://creartbox.nyc/classical-concerts-nyc.html
+CB | Concerts | New York,DiMenna Center,"""concerts at the dimenna center""",Phrase,Enabled,https://creartbox.nyc/classical-concerts-nyc.html
+CB | Concerts | New York,DiMenna Center,[dimenna center classical music],Exact,Enabled,https://creartbox.nyc/classical-concerts-nyc.html
+CB | Concerts | New York,"Currents, 30 October","""brahms concert new york""",Phrase,Enabled,https://creartbox.nyc/concerts/currents-2026.html
+CB | Concerts | New York,"Currents, 30 October","""clara schumann concert new york""",Phrase,Enabled,https://creartbox.nyc/concerts/currents-2026.html
+CB | Concerts | New York,"Currents, 30 October","""schumann piano quartet concert nyc""",Phrase,Enabled,https://creartbox.nyc/concerts/currents-2026.html
+CB | Concerts | New York,"Currents, 30 October","""piano quintet concert new york""",Phrase,Enabled,https://creartbox.nyc/concerts/currents-2026.html
+CB | Calls for Scores | International,Call for scores,"""call for scores 2026""",Phrase,Enabled,https://creartbox.nyc/calls/scores-international.html
+CB | Calls for Scores | International,Call for scores,"""open call for scores""",Phrase,Enabled,https://creartbox.nyc/calls/scores-international.html
+CB | Calls for Scores | International,Call for scores,"""call for scores chamber music""",Phrase,Enabled,https://creartbox.nyc/calls/scores-international.html
+CB | Calls for Scores | International,Call for scores,[call for scores for composers],Exact,Enabled,https://creartbox.nyc/calls/scores-international.html
+CB | Calls for Scores | International,Call for scores,"""call for scores deadline december""",Phrase,Enabled,https://creartbox.nyc/calls/scores-international.html
+CB | Calls for Scores | International,Composer opportunities,"""opportunities for composers""",Phrase,Enabled,https://creartbox.nyc/opportunities.html
+CB | Calls for Scores | International,Composer opportunities,"""composition opportunities 2027""",Phrase,Enabled,https://creartbox.nyc/opportunities.html
+CB | Calls for Scores | International,Composer opportunities,"""where to submit my score""",Phrase,Enabled,https://creartbox.nyc/opportunities.html
+CB | Calls for Scores | International,Composer opportunities,"""submit score to ensemble""",Phrase,Enabled,https://creartbox.nyc/opportunities.html
+CB | Calls for Scores | American,American composers,"""call for scores american composers""",Phrase,Enabled,https://creartbox.nyc/calls/scores-american.html
+CB | Calls for Scores | American,American composers,"""opportunities for american composers""",Phrase,Enabled,https://creartbox.nyc/calls/scores-american.html
+CB | Calls for Scores | American,American composers,"""chamber music call for scores usa""",Phrase,Enabled,https://creartbox.nyc/calls/scores-american.html
+CB | Calls for Scores | American,American composers,[american composers call for scores],Exact,Enabled,https://creartbox.nyc/calls/scores-american.html
+CB | Calls for Scores | American,US composition calls,"""composition competitions united states""",Phrase,Enabled,https://creartbox.nyc/calls/scores-american.html
+CB | Calls for Scores | American,US composition calls,"""new music opportunities usa""",Phrase,Enabled,https://creartbox.nyc/calls/scores-american.html
+CB | Calls for Scores | American,US composition calls,"""us composers submit chamber work""",Phrase,Enabled,https://creartbox.nyc/calls/scores-american.html
+CB | Brand,CreArtBox,"""creartbox""",Phrase,Enabled,https://creartbox.nyc/
+CB | Brand,CreArtBox,[creartbox],Exact,Enabled,https://creartbox.nyc/
+CB | Brand,CreArtBox,"""creartbox nyc""",Phrase,Enabled,https://creartbox.nyc/
+CB | Brand,CreArtBox,"""creartbox ensemble""",Phrase,Enabled,https://creartbox.nyc/
+CB | Brand,CreArtBox,"""creartbox new york""",Phrase,Enabled,https://creartbox.nyc/
+CB | Brand,Festival ADAR,"""festival adar""",Phrase,Enabled,https://creartbox.nyc/projects.html
+CB | Brand,Festival ADAR,"""festival adar asturias""",Phrase,Enabled,https://creartbox.nyc/projects.html
