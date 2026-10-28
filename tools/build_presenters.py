@@ -20,7 +20,7 @@ import sys
 import unicodedata
 
 SITE = "https://creartbox.nyc"
-CSS = "assets/styles.css?v=158"
+CSS = "assets/styles.css?v=159"
 JS = "assets/site.js?v=47"
 REPERTOIRE = "data/repertoire.txt"
 CONTACT = "info@creartbox.nyc"
@@ -384,8 +384,9 @@ def booking_page():
   <div class="wrap">
     <div class="section-title">
       <hr class="rule">
-      <div class="head"><span class="label">From the repertoire</span><span class="bar"></span><span class="label ital">{past_n} programmes <em>already played</em>.</span></div>
+      <div class="head"><span class="label">From the repertoire</span><span class="bar"></span><span class="label ital">{past_n} programmes.</span></div>
       <hr class="rule">
+      <h2 class="h-feature">Other programmes, <em>already played</em>.</h2>
     </div>
     <p class="offer-note pres-past-note">Everything below has been performed: curated
       programmes, commissions and touring evenings from twelve seasons. Any of them can

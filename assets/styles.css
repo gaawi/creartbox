@@ -3309,10 +3309,10 @@ i.fa { font-style: normal; }
 }
 .past-prog-title {
   font-family: var(--display);
-  font-size: 19px;
-  line-height: 1.2;
+  font-size: 23px;
+  line-height: 1.15;
   font-weight: 400;
-  margin: 0;
+  margin: 0 0 2px;
   color: var(--ink);
 }
 /* the forces the programme asks for, directly under its name */
@@ -3388,7 +3388,7 @@ i.fa { font-style: normal; }
 @media (max-width: 760px) {
   .past-progs { column-count: 1; }
   .past-prog { padding: 14px 0 18px; }
-  .past-prog-title { font-size: 18px; }
+  .past-prog-title { font-size: 21px; }
 }
 
 /* The next date, in the hero, so that someone who came to the home page

@@ -70,7 +70,7 @@
  Greg Karnilaw
  - Breath
 
-Queens Log | 2025 | Leonard Library, Brooklyn, NY
+#skip Queens Log | 2025 | Leonard Library, Brooklyn, NY
  Olivier Messiaen
  - Le Merle Noir (1952)
  Guillermo Laporta
@@ -136,7 +136,7 @@ Approaching Zero | 2025 | Flushing Town Hall, New York
  Bryan Wysocki
  - We Can Learn Me Together | for flute, viola, and piano | 7
 
-Opus 71 | 2024 | Theater 71, New York | Flute, viola and piano
+#skip Opus 71 | 2024 | Theater 71, New York | Flute, viola and piano
  Wolfgang Amadeus Mozart
  - Trio in E flat major K.498 | for flute, viola, and piano | 20
  Robert Schumann
@@ -163,7 +163,7 @@ Ten Pages | 2023 | The DiMenna Center, New York
  Modest Mussorgsky
  - Pictures of an Exhibition (transcribed for Piano, Violin, Viola, Cello and Flute) |  | 35
 
-Sounds of the Dome | 2023 | Oscar Niemeyer Cultural Center, Asturias, Spain | Flute, cello and piano
+#skip Sounds of the Dome | 2023 | Oscar Niemeyer Cultural Center, Asturias, Spain | Flute, cello and piano
  Frédéric Chopin
  - Berceuse |  | 5
  Carl Maria von Weber
@@ -193,7 +193,7 @@ Sounds of the Dome | 2023 | Oscar Niemeyer Cultural Center, Asturias, Spain | Fl
  Guillermo Laporta
  - Preludes | for flute and piano | 20
 
-Open Door | 2023 | Queens Public Library (Astoria Branch) | Flute, viola and piano
+#skip Open Door | 2023 | Queens Public Library (Astoria Branch) | Flute, viola and piano
  Claude Debussy
  - Second Sonata, L. 137 (transcribed for Piano, Flute and Viola)
  -- I. Prologue: Lento, dolce rubato |  | 7
@@ -269,7 +269,7 @@ Echoes of Solitude | 2023 | Culture Lab LIC New York | Flute, viola and piano
  Nathan Schram
  - Hear Now Berlin |  | 10
 
-Circle Noir (Part II) | 2023 | The William Vale, Brooklyn
+#skip Circle Noir (Part II) | 2023 | The William Vale, Brooklyn
  Arvo Pärt
  - Pari Intervalo |  | 7
  Johann Sebastian Bach
@@ -296,7 +296,7 @@ Circle Noir (Part II) | 2023 | The William Vale, Brooklyn
  Hannah Selin
  - Dream Journal |  | 9
 
-Circle Noir (Part I) | 2023 | The William Vale, Brooklyn
+#skip Circle Noir (Part I) | 2023 | The William Vale, Brooklyn
  Max Richter
  - Vladimir's Blues |  | 2
  Carl Maria von Weber
@@ -365,7 +365,7 @@ We Can Learn | 2022 | Culture Lab Theater, Queens, New York | Flute, viola and p
  César Franck
  - Sonata for Flute and Piano in A Major for flute & piano (original for violin & piano) |  | 28
 
-Falla! | 2022 | As Quintas Auditorium, Asturias, Spain
+#skip Falla! | 2022 | As Quintas Auditorium, Asturias, Spain
  Bela Bartok
  - Romanian Dances |  | 10
  Manuel de Falla
@@ -407,7 +407,7 @@ Falla! | 2022 | As Quintas Auditorium, Asturias, Spain
  César Franck
  - Sonata in A Major |  | 28
 
-Awave (Japan Debut) | 2019 | Monten Hall, Tokyo, Japan
+#skip Awave (Japan Debut) | 2019 | Monten Hall, Tokyo, Japan
  Guillermo Laporta
  - Awave
 
