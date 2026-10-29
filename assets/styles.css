@@ -3296,8 +3296,10 @@ i.fa { font-style: normal; }
    than run together, because seven programmes in a column read as
    one long list and none of them as a programme.
 
-   On a phone the movements fold away behind a tap. A programme with
-   its movements open is twenty lines, and seven of those is a wall.
+   A card is folded until it is asked for: the number, the name, the
+   forces, who is on the programme and how long it runs. The works and
+   their movements are a tap away. Seven open programmes is a wall, and
+   seven folded ones is a catalogue you can read.
    ============================================================ */
 .pres-past-note { margin-bottom: 34px; }
 .past-progs {
@@ -3312,9 +3314,18 @@ i.fa { font-style: normal; }
 }
 
 .past-prog-head {
-  padding-bottom: 14px;
-  margin-bottom: 4px;
+  padding-bottom: 16px;
   border-bottom: 1px solid var(--rule);
+}
+/* every programme carries a number, so that one can be asked for by it */
+.past-prog-no {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 9px;
 }
 .past-prog-title {
   font-family: var(--display);
@@ -3335,9 +3346,17 @@ i.fa { font-style: normal; }
   margin: 8px 0 0;
 }
 
+/* who is on the programme, which is what a folded card shows */
+.pp-summary {
+  font-family: var(--display);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 16px 0 0;
+}
 .pp-list {
   list-style: none;
-  margin: 0;
+  margin: 20px 0 0;
   padding: 0;
 }
 .pp-c {
@@ -3384,10 +3403,15 @@ i.fa { font-style: normal; }
   white-space: nowrap;
 }
 
-/* the movements, folded away on a phone */
+/* the fold. Without JavaScript the card stays open and the button
+   never appears, so nothing is ever out of reach. */
+.past-prog.pp-foldable .pp-list { display: none; }
+.past-prog.pp-foldable.is-open .pp-list { display: block; }
+.past-prog.pp-foldable.is-open .pp-summary { display: none; }
+
 .pp-more {
   display: none;
-  margin: 18px 0 0;
+  margin: 20px 0 0;
   padding: 0;
   border: none;
   background: none;
@@ -3399,8 +3423,9 @@ i.fa { font-style: normal; }
   color: var(--senal);
   cursor: pointer;
 }
-.pp-more::after { content: " \002B"; margin-left: 5px; }
-.past-prog.open-mov > .pp-more::after { content: " \2212"; }
+.past-prog.pp-foldable > .pp-more { display: inline-block; }
+.pp-more::after { content: " \002B"; margin-left: 6px; }
+.past-prog.is-open > .pp-more::after { content: " \2212"; }
 
 .pp-total {
   font-family: var(--sans);
@@ -3408,18 +3433,13 @@ i.fa { font-style: normal; }
   letter-spacing: 0.05em;
   line-height: 1.6;
   color: var(--ink-soft);
-  margin: 22px 0 0;
-  padding-top: 12px;
-  border-top: 1px solid var(--rule);
+  margin: 10px 0 0;
 }
 
 @media (max-width: 760px) {
   .past-progs { gap: 16px; }
   .past-prog { padding: 22px 20px 20px; }
   .past-prog-title { font-size: 21px; }
-  .past-prog .pp-m { display: none; }
-  .past-prog.open-mov .pp-m { display: list-item; }
-  .pp-more { display: inline-block; }
 }
 
 /* The next date, in the hero, so that someone who came to the home page

@@ -382,7 +382,7 @@ prints every programme the ensemble has played, so a presenter can ask
 for one to be revived. That catalogue is `data/programs-past.txt`:
 
 ```
-Title | years | where it was played | formation
+Title | years | where it was played | formation | number
   Composer name
   - Work | scoring | minutes
   -- I. Movement | | minutes
@@ -393,9 +393,17 @@ or `-- ` (a movement). **The file is hand-edited and nothing rewrites
 it**: rename a programme, reorder the blocks, drop a work, and it
 stays that way.
 
-The page prints the title, the formation under it, then the works, and
-the venue and year in small type at the foot of the card. An empty
-formation prints nothing, so filling one in is a one-line edit.
+Each programme is a folded card: its number, its name, the formation,
+the composers on it, how long it runs and where it was played. The
+button opens the programme itself, works and movements. The number is
+the fifth field and is what a presenter can ask for a programme by, so
+it is stored rather than counted from the order; leave it empty and
+the position is used instead. An empty formation prints nothing, so
+filling one in is a one-line edit.
+
+The folding is added by `assets/site.js`. A browser running no
+JavaScript gets every card open and no button, rather than a
+programme it cannot reach.
 
 Only programmes with a name of their own are shown. An evening that
 goes by the name of the hall or the series it was part of - "Queens

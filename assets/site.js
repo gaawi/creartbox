@@ -150,8 +150,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Count the clicks that matter, if anything is listening
   initConversions();
 
-  // The movements of a past programme, folded away on a phone
-  initProgramMovements();
+  // The catalogue of past programmes, folded until asked for
+  initProgramCards();
 
   // Transparent masthead → solid on scroll past hero
   initTransparentMasthead();
@@ -1383,17 +1383,20 @@ function initMobileSubmenus() {
   }
 }
 
-/* A programme with its movements showing is twenty lines, and the
-   catalogue holds seven of them. On a phone they start folded and the
-   button under each one opens it; on a wide screen the button is
-   hidden by CSS and the movements are simply there. */
-function initProgramMovements() {
-  document.querySelectorAll(".past-prog .pp-more").forEach((button) => {
-    const card = button.closest(".past-prog");
+/* The catalogue of past programmes. A card is folded down to its
+   number, its name, its forces, the composers on it and how long it
+   runs; the button opens the programme itself. The class that does the
+   folding is added here, so a browser running no JavaScript gets every
+   card open and no button, rather than a programme it cannot reach. */
+function initProgramCards() {
+  document.querySelectorAll(".past-prog").forEach((card) => {
+    const button = card.querySelector(":scope > .pp-more");
+    if (!button) return;
+    card.classList.add("pp-foldable");
     button.addEventListener("click", () => {
-      const open = card.classList.toggle("open-mov");
+      const open = card.classList.toggle("is-open");
       button.setAttribute("aria-expanded", open ? "true" : "false");
-      button.textContent = open ? "Hide movements" : "Movements";
+      button.textContent = open ? "Hide programme" : "Full programme";
     });
   });
 }

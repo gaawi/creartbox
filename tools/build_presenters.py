@@ -20,8 +20,8 @@ import sys
 import unicodedata
 
 SITE = "https://creartbox.nyc"
-CSS = "assets/styles.css?v=160"
-JS = "assets/site.js?v=48"
+CSS = "assets/styles.css?v=161"
+JS = "assets/site.js?v=49"
 REPERTOIRE = "data/repertoire.txt"
 CONTACT = "info@creartbox.nyc"
 
@@ -266,6 +266,12 @@ def program_block(program):
 
 # ------------------------------------------------------------------- pages
 
+def short_name(composer):
+    """The surname, for the line of composers on a folded card."""
+    name = re.sub(r"\s*\([^)]*\)\s*$", "", composer).strip()
+    return SORT.get(name) or SORT.get(composer) or (name.split()[-1] if name else "")
+
+
 def past_programs_block():
     """The catalogue: every programme the ensemble has played.
 
@@ -298,25 +304,39 @@ def past_programs_block():
         form = block.get("formation", "")
         formation = ('          <p class="past-prog-form">%s</p>\n' % html.escape(form)) if form else ""
         played = ", ".join(x for x in (block["where"], block["years"]) if x)
-        foot = " &#183; ".join(x for x in (
+        facts = " &#183; ".join(x for x in (
             ("About %d minutes" % minutes) if minutes else "",
             html.escape(played)) if x)
-        # a phone folds the movements away; the button is only shown there
-        movements = any(r[0] == "movement" for r in block["rows"])
-        more = ('        <button class="pp-more" type="button" aria-expanded="false">'
-                'Movements</button>\n') if movements else ""
+
+        # folded, a card shows who is on the programme and nothing else
+        seen, names = set(), []
+        for kind, name, _, _ in block["rows"]:
+            if kind != "composer":
+                continue
+            short = short_name(name)
+            if short and short not in seen:
+                seen.add(short)
+                names.append(short)
+        summary = ('        <p class="pp-summary">%s</p>\n'
+                   % " &#183; ".join(html.escape(n) for n in names)) if names else ""
+        number = block.get("number") or "%02d" % (len(cards) + 1)
+
         cards.append(
             '      <article class="past-prog">\n'
             '        <header class="past-prog-head">\n'
+            '          <p class="past-prog-no">No. {no}</p>\n'
             '          <h3 class="past-prog-title">{title}</h3>\n'
             '{formation}'
             '        </header>\n'
+            '{summary}'
+            '        <p class="pp-total">{facts}</p>\n'
+            '        <button class="pp-more" type="button" aria-expanded="false">'
+            'Full programme</button>\n'
             '        <ul class="pp-list">\n{lines}\n        </ul>\n'
-            '{more}'
-            '        <p class="pp-total">{foot}</p>\n'
-            '      </article>'.format(title=html.escape(block["title"]),
-                                      formation=formation, lines="\n".join(lines),
-                                      more=more, foot=foot or "&#160;"))
+            '      </article>'.format(no=html.escape(number),
+                                      title=html.escape(block["title"]),
+                                      formation=formation, summary=summary,
+                                      lines="\n".join(lines), facts=facts or "&#160;"))
     return "\n".join(cards), len(cards)
 
 

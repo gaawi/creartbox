@@ -108,7 +108,7 @@
  Claude Debussy
  - Petite Suite, L. 65 (arr. for Flute, Violin, Viola, Cello, and Piano) I. En bateau (Sailing). Andantino II. Cortège (Retinue). Moderato III. Minuet. Moderato IV. Ballet. Allegro giusto
 
-Approaching Zero | 2025 | Flushing Town Hall, New York
+Approaching Zero | 2025 | Flushing Town Hall, New York |  | 01
  Max Richter
  - Vladimir's Blues
  Wolfgang Amadeus Mozart
@@ -148,7 +148,7 @@ Approaching Zero | 2025 | Flushing Town Hall, New York
  Bryan Wysocki
  - We Can Learn Me Together | for flute, viola, and piano | 7
 
-Ten Pages | 2023 | The DiMenna Center, New York
+Ten Pages | 2023 | The DiMenna Center, New York |  | 02
  Andrea Casarrubios
  - Afilador |  | 7
  - (*commissioned by Chicago Symphony Orchestra)
@@ -209,7 +209,7 @@ Ten Pages | 2023 | The DiMenna Center, New York
  -- II. Allegretto |  | 6
  -- III. Minuetto |  | 8
 
-Mountains we love to climb | 2023 | Culture Lab LIC New York
+Mountains we love to climb | 2023 | Culture Lab LIC New York |  | 03
  François Couperin
  - Les barricades mystérieuses |  | 3
  Hannah Selin
@@ -230,7 +230,7 @@ Mountains we love to climb | 2023 | Culture Lab LIC New York
  François Couperin
  - Concerts royaux (selection) |  | 18
 
-Masked Sounds | 2023 | Culture Lab LIC New York | Flute, cello and piano
+Masked Sounds | 2023 | Culture Lab LIC New York | Flute, cello and piano | 04
  Frédéric Chopin
  - Berceuse |  | 5
  Carl Maria von Weber
@@ -248,7 +248,7 @@ Masked Sounds | 2023 | Culture Lab LIC New York | Flute, cello and piano
  -- I. Allegro moderato |  | 14
  -- II. Scherzo |  | 5
 
-Echoes of Solitude | 2023 | Culture Lab LIC New York | Flute, viola and piano
+Echoes of Solitude | 2023 | Culture Lab LIC New York | Flute, viola and piano | 05
  Max Bruch
  - 8 pieces, Op. 83 (transcribed for Piano, Flute and Viola)
  -- I.Andante |  | 4
@@ -339,7 +339,7 @@ Echoes of Solitude | 2023 | Culture Lab LIC New York | Flute, viola and piano
  Guillermo Laporta
  - Preludes | for flute and piano
 
-We Can Learn | 2022 | Culture Lab Theater, Queens, New York | Flute, viola and piano
+We Can Learn | 2022 | Culture Lab Theater, Queens, New York | Flute, viola and piano | 06
  Claude Debussy
  - Second Sonata, L. 137 (transcribed for Piano, Flute and Viola)
  -- I. Prologue: Lento, dolce rubato |  | 7
@@ -487,7 +487,7 @@ We Can Learn | 2022 | Culture Lab Theater, Queens, New York | Flute, viola and p
  Marcos Fernandez
  - Eclipse |  | 7
 
-Tre Pezzi | | The DiMenna Center, New York
+Tre Pezzi |  | The DiMenna Center, New York |  | 07
  Lili Boulanger
  - Nocturne
  Ludwig van Beethoven

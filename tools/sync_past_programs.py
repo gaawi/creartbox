@@ -41,7 +41,7 @@ HEADER = """\
 # One block per programme. The first line of a block is the programme,
 # the indented lines under it are what was played, in order:
 #
-#   Title | years | where it was played
+#   Title | years | where it was played | formation | number
 #     Composer name
 #     - Work | scoring | minutes
 #     -- I. Movement | | minutes
@@ -85,7 +85,8 @@ def read_blocks(path=DATA):
             continue
         if raw.startswith("#skip "):
             blocks.append({"title": raw[6:].split("|")[0].strip(), "skip": True,
-                           "years": "", "where": "", "formation": "", "rows": []})
+                           "years": "", "where": "", "formation": "",
+                           "number": "", "rows": []})
             continue
         if raw.lstrip().startswith("#"):
             continue
@@ -104,14 +105,16 @@ def read_blocks(path=DATA):
             blocks[-1]["rows"].append((kind, fields[0], fields[1], fields[2]))
         else:
             fields = [f.strip() for f in raw.split("|")]
-            fields += [""] * (4 - len(fields))
+            fields += [""] * (5 - len(fields))
             blocks.append({"title": fields[0], "years": fields[1], "where": fields[2],
-                           "formation": fields[3], "skip": False, "rows": []})
+                           "formation": fields[3], "number": fields[4],
+                           "skip": False, "rows": []})
     return blocks
 
 
 def render(block):
-    head_ = [block["title"], block["years"], block["where"], block.get("formation", "")]
+    head_ = [block["title"], block["years"], block["where"],
+             block.get("formation", ""), block.get("number", "")]
     while head_ and not head_[-1]:
         head_.pop()
     out = [" | ".join(head_)]
