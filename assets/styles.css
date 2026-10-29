@@ -3290,42 +3290,51 @@ i.fa { font-style: normal; }
 
 /* ============================================================
    The catalogue of programmes already played, on the presenters
-   page. Set in columns, like the back pages of a season book, so
-   that thirty-odd programmes stay readable without becoming a
-   scroll. Each box is a concert programme in the usual order:
-   composer, work with its running time, movements underneath.
+   page. Each one is a box, set the way a concert programme is set:
+   the name and the forces at the head, a rule, then composer, work
+   and running time, with the movements underneath. Boxed rather
+   than run together, because seven programmes in a column read as
+   one long list and none of them as a programme.
+
+   On a phone the movements fold away behind a tap. A programme with
+   its movements open is twenty lines, and seven of those is a wall.
    ============================================================ */
-.pres-past-note { margin-bottom: 30px; }
+.pres-past-note { margin-bottom: 34px; }
 .past-progs {
-  column-count: 3;
-  column-gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 22px;
+  align-items: start;
 }
 .past-prog {
-  break-inside: avoid;
-  -webkit-column-break-inside: avoid;
-  border-top: 1px solid var(--rule);
-  padding: 16px 0 20px;
-  margin: 0 0 4px;
+  border: 1px solid var(--rule);
+  padding: 26px 26px 22px;
+}
+
+.past-prog-head {
+  padding-bottom: 14px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--rule);
 }
 .past-prog-title {
   font-family: var(--display);
-  font-size: 23px;
-  line-height: 1.15;
+  font-size: 22px;
+  line-height: 1.2;
   font-weight: 400;
-  margin: 0 0 2px;
+  margin: 0;
   color: var(--ink);
 }
 /* the forces the programme asks for, directly under its name */
 .past-prog-form {
   font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.1em;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--senal);
-  margin: 6px 0 0;
+  margin: 8px 0 0;
 }
-.past-prog-title + .pp-list,
-.past-prog-form + .pp-list { margin-top: 12px; }
+
 .pp-list {
   list-style: none;
   margin: 0;
@@ -3333,62 +3342,84 @@ i.fa { font-style: normal; }
 }
 .pp-c {
   font-family: var(--sans);
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink-2);
-  margin: 12px 0 3px;
+  color: var(--ink-soft);
+  margin: 20px 0 5px;
 }
-.pp-list .pp-c:first-child { margin-top: 0; }
 .pp-w {
   font-family: var(--display);
-  font-size: 14.5px;
-  line-height: 1.4;
+  font-size: 15px;
+  line-height: 1.45;
   color: var(--ink);
-  margin: 0 0 1px;
+  margin: 0;
 }
 .pp-m {
   font-family: var(--display);
   font-style: italic;
-  font-size: 13px;
-  line-height: 1.4;
+  font-size: 12.5px;
+  line-height: 1.5;
   color: var(--ink-soft);
-  padding-left: 14px;
-  margin: 0;
+  padding-left: 18px;
+  margin: 3px 0 0;
 }
+.pp-w + .pp-m { margin-top: 5px; }
 .pp-s {
   display: block;
   font-family: var(--sans);
-  font-size: 11px;
+  font-size: 10.5px;
   font-style: normal;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   color: var(--ink-soft);
+  margin-top: 1px;
 }
 .pp-d {
   font-family: var(--sans);
-  font-size: 10.5px;
-  letter-spacing: 0.04em;
+  font-size: 10px;
+  letter-spacing: 0.06em;
   color: var(--ink-soft);
-  margin-left: 6px;
+  margin-left: 7px;
   white-space: nowrap;
 }
+
+/* the movements, folded away on a phone */
+.pp-more {
+  display: none;
+  margin: 18px 0 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--senal);
+  cursor: pointer;
+}
+.pp-more::after { content: " \002B"; margin-left: 5px; }
+.past-prog.open-mov > .pp-more::after { content: " \2212"; }
+
 .pp-total {
   font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.04em;
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  line-height: 1.6;
   color: var(--ink-soft);
-  margin: 12px 0 0;
-  padding-top: 8px;
-  border-top: 1px dotted var(--rule);
+  margin: 22px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
 }
-@media (max-width: 1100px) {
-  .past-progs { column-count: 2; column-gap: 26px; }
-}
+
 @media (max-width: 760px) {
-  .past-progs { column-count: 1; }
-  .past-prog { padding: 14px 0 18px; }
+  .past-progs { gap: 16px; }
+  .past-prog { padding: 22px 20px 20px; }
   .past-prog-title { font-size: 21px; }
+  .past-prog .pp-m { display: none; }
+  .past-prog.open-mov .pp-m { display: list-item; }
+  .pp-more { display: inline-block; }
 }
 
 /* The next date, in the hero, so that someone who came to the home page

@@ -705,7 +705,7 @@ def page(artist):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,300..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/styles.css?v=159">
+<link rel="stylesheet" href="../assets/styles.css?v=160">
 <script id="cb-theme-init">document.documentElement.setAttribute("data-theme","dark");</script>
 </head>
 <body>
@@ -777,7 +777,7 @@ def page(artist):
   </div>
 </footer>
 
-<script src="../assets/site.js?v=47"></script>
+<script src="../assets/site.js?v=48"></script>
 </body>
 </html>
 """.format(name=html.escape(artist["name"]), role=artist["role"],

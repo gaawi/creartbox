@@ -20,8 +20,8 @@ import sys
 import unicodedata
 
 SITE = "https://creartbox.nyc"
-CSS = "assets/styles.css?v=159"
-JS = "assets/site.js?v=47"
+CSS = "assets/styles.css?v=160"
+JS = "assets/site.js?v=48"
 REPERTOIRE = "data/repertoire.txt"
 CONTACT = "info@creartbox.nyc"
 
@@ -296,20 +296,27 @@ def past_programs_block():
             else:
                 lines.append('          <li class="pp-m">%s%s</li>' % (name, dur))
         form = block.get("formation", "")
-        formation = ('        <p class="past-prog-form">%s</p>\n' % html.escape(form)) if form else ""
+        formation = ('          <p class="past-prog-form">%s</p>\n' % html.escape(form)) if form else ""
         played = ", ".join(x for x in (block["where"], block["years"]) if x)
         foot = " &#183; ".join(x for x in (
             ("About %d minutes" % minutes) if minutes else "",
             html.escape(played)) if x)
+        # a phone folds the movements away; the button is only shown there
+        movements = any(r[0] == "movement" for r in block["rows"])
+        more = ('        <button class="pp-more" type="button" aria-expanded="false">'
+                'Movements</button>\n') if movements else ""
         cards.append(
             '      <article class="past-prog">\n'
-            '        <h3 class="past-prog-title">{title}</h3>\n'
+            '        <header class="past-prog-head">\n'
+            '          <h3 class="past-prog-title">{title}</h3>\n'
             '{formation}'
+            '        </header>\n'
             '        <ul class="pp-list">\n{lines}\n        </ul>\n'
+            '{more}'
             '        <p class="pp-total">{foot}</p>\n'
             '      </article>'.format(title=html.escape(block["title"]),
                                       formation=formation, lines="\n".join(lines),
-                                      foot=foot or "&#160;"))
+                                      more=more, foot=foot or "&#160;"))
     return "\n".join(cards), len(cards)
 
 

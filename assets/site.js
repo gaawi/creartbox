@@ -150,6 +150,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Count the clicks that matter, if anything is listening
   initConversions();
 
+  // The movements of a past programme, folded away on a phone
+  initProgramMovements();
+
   // Transparent masthead → solid on scroll past hero
   initTransparentMasthead();
 
@@ -1378,4 +1381,19 @@ function initMobileSubmenus() {
     const b = active.parentElement.querySelector(":scope > .nav-more");
     if (b) b.setAttribute("aria-expanded", "true");
   }
+}
+
+/* A programme with its movements showing is twenty lines, and the
+   catalogue holds seven of them. On a phone they start folded and the
+   button under each one opens it; on a wide screen the button is
+   hidden by CSS and the movements are simply there. */
+function initProgramMovements() {
+  document.querySelectorAll(".past-prog .pp-more").forEach((button) => {
+    const card = button.closest(".past-prog");
+    button.addEventListener("click", () => {
+      const open = card.classList.toggle("open-mov");
+      button.setAttribute("aria-expanded", open ? "true" : "false");
+      button.textContent = open ? "Hide movements" : "Movements";
+    });
+  });
 }
