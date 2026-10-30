@@ -481,6 +481,34 @@ a dataLayer if one is ever loaded, and does nothing while none is. No
 analytics script is loaded today, and a click on a ticket button is not
 a sale.
 
+## The home page on the day of a concert
+
+On the day of a production, creartbox.nyc is the programme. Two
+hundred people walk into the hall with a phone and no sheet of paper,
+so that day the home page answers with one column: what is on, where
+and when, the works in order with their running times, the musicians,
+and a way to give afterwards.
+
+```bash
+python3 tools/build_tonight.py          # write the block
+python3 tools/build_tonight.py --check  # fail if it is out of date
+```
+
+Everything is read from the concert's own page, found through the
+calendar's featured row, so changing the concert page and running this
+again is the whole workflow. The block lives in `index.html` between
+`<!-- TONIGHT ... -->` markers and is hidden on every other day; a
+line of script in the head reads the date **in New York**, not on the
+visitor's device, and sets `concert-day` on `<html>` before anything
+paints, so the ordinary home page never flashes past first. After
+7:45 pm New York time it adds `after-curtain`, and the giving block
+stops offering to support the concert and asks what they thought of
+it. `?full=1` on the URL skips the whole thing.
+
+The Donate button carries `data-donate`, so it goes where every other
+donate button on the site goes, and falls back to `support.html` if
+the script has not run.
+
 ## Coming to a concert
 
 `classical-concerts-nyc.html` is the page for someone who wants to hear

@@ -6692,3 +6692,285 @@ a.call-composer:hover .cc-name { color: var(--senal); }
   .call-composers-note a { color: #000; border: 0; }
   .call-composers-wrap .event-h2 { color: #000; font-size: 11pt; }
 }
+
+/* ============================================================
+   THE CONCERT DAY
+   On the day of a production the home page is the programme.
+   Two hundred people walk into the hall holding a phone and no
+   sheet of paper, so this is written for a phone first and only
+   then allowed to breathe on a larger screen. Everything is one
+   column, nothing is below a 44px tap target, and the giving
+   block sits against the programme, where someone who has just
+   heard it will be looking.
+
+   tools/build_tonight.py writes the block and the line of script
+   that turns it on, from the date in New York.
+   ============================================================ */
+.tonight { display: none; }
+html.concert-day .tonight { display: block; }
+html.concert-day body > header,
+html.concert-day body > main,
+html.concert-day body > footer,
+html.concert-day body > .audio-dock { display: none !important; }
+html.concert-day body { background: var(--sala, #070706); }
+
+.tn-wrap {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 18px 20px 56px;
+}
+
+.tn-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 20px;
+}
+.tn-mark { height: 21px; width: auto; display: block; }
+.tn-badge {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #131820;
+  background: var(--accent);
+  padding: 6px 11px;
+  white-space: nowrap;
+}
+
+.tn-head { padding: 6px 0 26px; }
+.tn-series {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--senal);
+  margin: 0;
+}
+.tn-title {
+  font-family: var(--display);
+  font-size: 44px;
+  line-height: 1.02;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 12px 0 0;
+}
+.tn-when {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink-2);
+  margin: 16px 0 0;
+}
+.tn-when strong { color: var(--ink); font-weight: 600; }
+
+.tn-card {
+  border: 1px solid var(--rule);
+  padding: 24px 20px 22px;
+  margin: 0 0 16px;
+}
+.tn-h {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 20px;
+}
+
+/* the works, in the order they are played */
+.tn-works { list-style: none; margin: 0; padding: 0; counter-reset: tnw; }
+.tn-work { padding: 0 0 20px; }
+.tn-work + .tn-work {
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+}
+.tn-works .tn-work:last-child { padding-bottom: 0; }
+.tn-composer {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 7px;
+}
+.tn-tag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 7px;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--senal);
+  border: 1px solid var(--senal);
+}
+.tn-name {
+  font-family: var(--display);
+  font-size: 19px;
+  line-height: 1.3;
+  color: var(--ink);
+  margin: 0;
+}
+.tn-min {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin-left: 9px;
+  white-space: nowrap;
+}
+.tn-scoring {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 5px 0 0;
+}
+.tn-run {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 22px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+}
+
+/* giving, against the programme */
+.tn-give {
+  border: 1px solid var(--senal);
+  padding: 24px 20px 20px;
+  margin: 0 0 16px;
+}
+.tn-give-h {
+  font-family: var(--display);
+  font-size: 24px;
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 0;
+}
+.tn-after { display: none; }
+html.after-curtain .tn-before { display: none; }
+html.after-curtain .tn-after { display: block; }
+.tn-give-t {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--ink-2);
+  margin: 12px 0 0;
+}
+.tn-give-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 20px 0 0;
+  min-height: 56px;
+  background: var(--accent);
+  color: #131820 !important;
+  border: 1px solid var(--accent);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.tn-give-btn:active { filter: brightness(0.92); }
+.tn-give-n {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  text-align: center;
+  margin: 12px 0 0;
+}
+
+/* who is playing */
+.tn-people { list-style: none; margin: 0; padding: 0; }
+.tn-people li + li { border-top: 1px solid var(--rule); }
+.tn-people a,
+.tn-people .tn-plain {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 64px;
+  padding: 10px 0;
+  text-decoration: none;
+  color: inherit;
+}
+.tn-face {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--paper-2);
+}
+.tn-face img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tn-who { flex: 1 1 auto; min-width: 0; }
+.tn-person {
+  display: block;
+  font-family: var(--display);
+  font-size: 17px;
+  line-height: 1.25;
+  color: var(--ink);
+}
+.tn-role {
+  display: block;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+.tn-go { flex: 0 0 auto; color: var(--senal); font-size: 15px; }
+
+/* everything else, as a list of plain links */
+.tn-more { display: block; margin: 0 0 24px; }
+.tn-more a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 54px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 13.5px;
+  letter-spacing: 0.03em;
+  color: var(--ink-2);
+  text-decoration: none;
+}
+.tn-more a:first-child { border-top: 1px solid var(--rule); }
+.tn-ar { color: var(--senal); }
+
+.tn-foot {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  line-height: 1.9;
+  color: var(--ink-soft);
+  text-align: center;
+  margin: 0;
+}
+.tn-foot a { color: var(--ink-soft); }
+.tn-full { display: inline-block; margin-top: 2px; color: var(--ink-2) !important; }
+
+/* a phone is the brief; a larger screen only gets more air */
+@media (min-width: 600px) {
+  .tn-wrap { padding: 32px 28px 72px; }
+  .tn-title { font-size: 56px; }
+  .tn-card, .tn-give { padding: 30px 28px 26px; }
+  .tn-name { font-size: 21px; }
+}
+@media (max-width: 360px) {
+  .tn-wrap { padding: 16px 16px 48px; }
+  .tn-title { font-size: 38px; }
+  .tn-card, .tn-give { padding: 20px 16px 18px; }
+}
