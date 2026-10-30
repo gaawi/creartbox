@@ -6707,27 +6707,59 @@ a.call-composer:hover .cc-name { color: var(--senal); }
    that turns it on, from the date in New York.
    ============================================================ */
 .tonight { display: none; }
-html.concert-day .tonight { display: block; }
-html.concert-day body > header,
-html.concert-day body > main,
-html.concert-day body > footer,
-html.concert-day body > .audio-dock { display: none !important; }
-html.concert-day body { background: var(--sala, #070706); }
+html.concert-day .tonight {
+  display: block;
+  border-bottom: 1px solid var(--rule);
+}
+/* On the home page the masthead is fixed and floats over the hero,
+   which is built to sit under it. The programme is not, so today the
+   masthead comes back into the flow and goes solid: the menu stays
+   plainly there and nothing of tonight hides behind it. */
+html.concert-day body.hero-transparent .masthead {
+  position: sticky;
+  background: var(--sala);
+  border-bottom-color: var(--rule);
+  text-shadow: none;
+}
 
 .tn-wrap {
   max-width: 560px;
   margin: 0 auto;
-  padding: 18px 20px 56px;
+  padding: 20px 20px 44px;
 }
 
-.tn-top {
+/* the note that says what this is, at the top where it is read */
+.tn-note {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding-bottom: 20px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  margin: 0 0 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--rule);
 }
-.tn-mark { height: 21px; width: auto; display: block; }
+.tn-note-t {
+  flex: 1 1 200px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.tn-note-t a {
+  color: var(--ink-2);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+.tn-end {
+  margin: 24px 0 0;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.tn-end a { color: var(--ink-soft); text-decoration: none; }
 .tn-badge {
   font-family: var(--sans);
   font-size: 10px;
@@ -6740,7 +6772,7 @@ html.concert-day body { background: var(--sala, #070706); }
   white-space: nowrap;
 }
 
-.tn-head { padding: 6px 0 26px; }
+.tn-head { padding: 0 0 26px; }
 .tn-series {
   font-family: var(--sans);
   font-size: 10px;
@@ -6964,13 +6996,13 @@ html.after-curtain .tn-after { display: block; }
 
 /* a phone is the brief; a larger screen only gets more air */
 @media (min-width: 600px) {
-  .tn-wrap { padding: 32px 28px 72px; }
+  .tn-wrap { padding: 34px 28px 56px; }
   .tn-title { font-size: 56px; }
   .tn-card, .tn-give { padding: 30px 28px 26px; }
   .tn-name { font-size: 21px; }
 }
 @media (max-width: 360px) {
-  .tn-wrap { padding: 16px 16px 48px; }
+  .tn-wrap { padding: 18px 16px 40px; }
   .tn-title { font-size: 38px; }
   .tn-card, .tn-give { padding: 20px 16px 18px; }
 }

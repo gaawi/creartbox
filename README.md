@@ -496,14 +496,20 @@ python3 tools/build_tonight.py --check  # fail if it is out of date
 
 Everything is read from the concert's own page, found through the
 calendar's featured row, so changing the concert page and running this
-again is the whole workflow. The block lives in `index.html` between
-`<!-- TONIGHT ... -->` markers and is hidden on every other day; a
-line of script in the head reads the date **in New York**, not on the
+again is the whole workflow. The block is the first thing inside `<main>` on `index.html`, between
+`<!-- TONIGHT ... -->` markers, and is hidden on every other day.
+**Nothing is taken away**: the menu, the hero, the footer and the rest
+of the home page are exactly where they always are, and a note at the
+top of the block says what it is and links down to the rest. A line of
+script in the head reads the date **in New York**, not on the
 visitor's device, and sets `concert-day` on `<html>` before anything
-paints, so the ordinary home page never flashes past first. After
-7:45 pm New York time it adds `after-curtain`, and the giving block
-stops offering to support the concert and asks what they thought of
-it. `?full=1` on the URL skips the whole thing.
+paints. After 7:45 pm New York time it adds `after-curtain`, and the
+giving block stops offering to support the concert and asks what they
+thought of it. `?full=1` on the URL skips the whole thing.
+
+On that day the masthead also comes back into the flow: on the home
+page it is `position: fixed` and floats over the hero, which is built
+to sit under it, and the programme is not.
 
 The Donate button carries `data-donate`, so it goes where every other
 donate button on the site goes, and falls back to `support.html` if
