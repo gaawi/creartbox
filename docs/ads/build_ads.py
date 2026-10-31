@@ -73,12 +73,12 @@ AD_GROUPS = [
         ('[dimenna center classical music]', "Exact"),
      ], SITE + "/classical-concerts-nyc.html"),
 
-    ("CB | Concerts | New York", "Currents, 30 October", [
-        ('"brahms concert new york"', "Phrase"),
-        ('"clara schumann concert new york"', "Phrase"),
-        ('"schumann piano quartet concert nyc"', "Phrase"),
+    ("CB | Concerts | New York", "Winterlight, 11 December", [
+        ('"stravinsky petrushka new york"', "Phrase"),
+        ('"ravel concert new york"', "Phrase"),
+        ('"stravinsky concert nyc december"', "Phrase"),
         ('"piano quintet concert new york"', "Phrase"),
-     ], SITE + "/concerts/currents-2026.html"),
+     ], SITE + "/concerts/tectonic-lullaby-2026.html"),
 
     ("CB | Calls for Scores | International", "Call for scores", [
         ('"call for scores 2026"', "Phrase"),
@@ -143,22 +143,23 @@ CONCERT_DESCRIPTIONS = [
 
 # For the concert on sale. REWRITE THIS AFTER EVERY CONCERT: the date,
 # the composers and the price are the ones on the ticket page, and the
-# ad is wrong the morning after. Currents, 30 October 2026, $15 and up.
+# ad is wrong the morning after. Winterlight, 11 December 2026, $15 to
+# $70, read from the Eventbrite listing on 31 October 2026.
 DATED_HEADLINES = [
-    "Brahms and Both Schumanns", "Tickets from $15",
-    "Friday 30 October, 7:30 pm", "Currents at The DiMenna",
-    "Chamber Music in New York", "An Hour, No Intermission",
-    "Clara Schumann, Op. 22", "Schumann Piano Quartet",
-    "Live at The DiMenna Center", "Midtown Manhattan, 7:30 pm",
-    "Video Art and Live Music", "CreArtBox New York Series",
-    "450 West 37th Street", "Quintet, Quartet and Trio",
-    "A New York Ensemble, 2013",
+    "Stravinsky and Ravel", "Tickets from $15",
+    "Friday 11 December, 7:30pm", "Winterlight at The DiMenna",
+    "Petroushka in New York", "A World Premiere, Dec 11",
+    "Chamber Music in New York", "Live Visual Projections",
+    "Midtown Manhattan, 7:30 pm", "CreArtBox New York Series",
+    "450 West 37th Street", "Ma Mere l'Oye, Four Hands",
+    "Quintet, Quartet and Trio", "A New York Ensemble, 2013",
+    "Stravinsky's Petroushka",
 ]
 DATED_DESCRIPTIONS = [
-    "Brahms, Clara and Robert Schumann with two contemporary works. Tickets from $15.",
-    "An hour of chamber music at The DiMenna Center, Midtown Manhattan. No intermission.",
-    "Friday 30 October 2026, 7:30 pm, 450 West 37th Street. A New York ensemble since 2013.",
-    "Five works for two to four players, with video art. Tickets through Eventbrite.",
+    "Stravinsky's Petroushka and Ravel's Ma Mere l'Oye with visual projections. From $15.",
+    "Friday 11 December 2026, 7:30 pm at The DiMenna Center, Midtown Manhattan.",
+    "A world premiere by Hannah Selin, and a work chosen through the open call.",
+    "Chamber music with projections made for the programme. Tickets through Eventbrite.",
 ]
 
 CALL_HEADLINES = [
@@ -194,8 +195,8 @@ BRAND_DESCRIPTIONS = [
 
 # keyed by ad group where the copy is specific to one, by campaign otherwise
 COPY = {
-    ("CB | Concerts | New York", "Currents, 30 October"):
-        (DATED_HEADLINES, DATED_DESCRIPTIONS, "concerts", "currents"),
+    ("CB | Concerts | New York", "Winterlight, 11 December"):
+        (DATED_HEADLINES, DATED_DESCRIPTIONS, "concerts", "winterlight"),
     "CB | Concerts | New York": (CONCERT_HEADLINES, CONCERT_DESCRIPTIONS, "concerts", "new-york"),
     "CB | Calls for Scores | International": (CALL_HEADLINES, CALL_DESCRIPTIONS, "call-for-scores", "2027-28"),
     "CB | Calls for Scores | American": (CALL_HEADLINES, CALL_DESCRIPTIONS, "call-for-scores", "american"),

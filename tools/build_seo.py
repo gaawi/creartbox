@@ -116,6 +116,16 @@ DEFAULT_TZ = "America/New_York"
 # Ticket prices are read from the seller, never guessed. Each entry was
 # taken from the live listing on the date in `checked`.
 TICKETS = {
+    "concerts/tectonic-lullaby-2026.html": {
+        "url": ("https://www.eventbrite.com/e/winterlight-ravel-ma-mere-loye-stravinsky"
+                "-petroushka-tickets-2004163929263"),
+        "lowPrice": "15",
+        "highPrice": "70",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2026-10-20T00:00:00-04:00",
+        "checked": "2026-10-31",
+    },
     "concerts/illinois-college-piano-trio-2026.html": {
         "url": ("https://www.eventbrite.com/e/fine-arts-series-engelbach-hart-music"
                 "-festival-tickets-1998923887156"),
