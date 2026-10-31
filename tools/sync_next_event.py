@@ -46,7 +46,8 @@ ROW_MONTH_RE = re.compile(r'<span style="display:block;font-size:14px[^"]*">([^<
 ROW_WHERE_RE = re.compile(r'<td class="where">(.*?)</td>', re.S)
 SERIES_RE = re.compile(r'class="event-series">(.*?)</div>', re.S)
 TITLE_RE = re.compile(r'class="event-title">(.*?)</h1>', re.S)
-HERO_RE = re.compile(r'class="concert-hero"><img src="([^"]+)"')
+HERO_RE = re.compile(r'class="concert-hero"><img src="([^"]+)"([^>]*)>')
+FOCUS_RE = re.compile(r'data-focus="([^"]+)"')
 DESC_RE = re.compile(r'<section class="event-description">(.*?)</section>', re.S)
 PARA_RE = re.compile(r"<p>(.*?)</p>", re.S)
 META_RE = re.compile(
@@ -79,6 +80,10 @@ def read_page(path):
         "title": strip_tags(TITLE_RE.search(page).group(1)),
         # the home page sits a level above the concert pages
         "hero": HERO_RE.search(page).group(1).replace("../", "", 1),
+        # key art has its title on one side, and the home page crops to 4:3.
+        # A hero may say which part of itself must survive that crop.
+        "focus": (FOCUS_RE.search(HERO_RE.search(page).group(2)).group(1)
+                  if FOCUS_RE.search(HERO_RE.search(page).group(2)) else ""),
         "blurb": PARA_RE.search(DESC_RE.search(page).group(1)).group(1).strip(),
         "meta": meta,
         "tickets": tickets.group(1) if tickets else None,
@@ -190,7 +195,7 @@ def render(ev, coming):
 
     <div class="two-col-balanced" style="gap:48px;align-items:center">
       <figure>
-        <div class="imedia" style="aspect-ratio:4/3"><img src="{hero}" alt="{title}"></div>
+        <div class="imedia" style="aspect-ratio:4/3"><img src="{hero}" alt="{title}"{focus}></div>
       </figure>
       <div>
         <h3 class="h-title next-title">{title}</h3>
@@ -211,6 +216,7 @@ def render(ev, coming):
         caption=caption,
         month=month_of(ev["meta"].get("When", "")),
         hero=ev["hero"],
+        focus=(' style="object-position:%s"' % ev["focus"]) if ev["focus"] else "",
         title=ev["title"],
         blurb=ev["blurb"],
         cells=cells,
