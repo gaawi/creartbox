@@ -85,7 +85,10 @@ def parse_row(row):
         "row": row,
         "slug": href.group(1),
         "title": text(href.group(2)),
-        "part_of": text(label.group(1)) if label else "",
+        # the calendar flags a première with a badge inside the label;
+        # it belongs on the calendar, not in the record of what happened
+        "part_of": text(re.sub(r'<span class="row-new">.*?</span>', "",
+                               label.group(1), flags=re.S)) if label else "",
         "venue": text(where.group(1)) if where else "",
         "place": text(where.group(2)) if where else "",
         "start": start, "end": end,
@@ -122,9 +125,14 @@ ENTRY = """		<div class="eventpast{bare}">
 				<strong>Part of:</strong> {part_of}
 			</h5>
 			<h5 class="address">
-				<i aria-hidden="true" class="fa fa-map-marker"></i>{place}
-			</h5>{program}{close_text}		</div>
+				<i aria-hidden="true" class="fa fa-map-marker"></i>{where}
+			</h5>{program}{booklet}{close_text}		</div>
 """
+
+# a production whose printed programme is published keeps a way back to it
+BOOKLET = ('\n\t\t\t<div class="explore">\n'
+           '\t\t\t\t<a class="button" href="programs/{slug}.html">Read the programme</a>\n'
+           '\t\t\t</div>')
 
 PHOTO = ('\t\t\t<img class="imgpastevents" alt="{alt}" height="inherit" src="{src}" '
          'width="auto" loading="lazy">\n')
@@ -147,7 +155,10 @@ def entry(event):
         open_text="\t\t\t<div>\n" if hero else "",
         close_text="\t\t\t</div>\n" if hero else "",
         program=MODAL.format(works=works) if works else "\n",
-        **{k: event[k] for k in ("year", "month", "days", "title", "part_of", "place")})
+        where=" \u00b7 ".join(x for x in (event["venue"], event["place"]) if x),
+        booklet=BOOKLET.format(slug=event["slug"]) if os.path.exists(
+            "programs/%s.html" % event["slug"]) else "",
+        **{k: event[k] for k in ("year", "month", "days", "title", "part_of")})
 
 
 def add_entry(src, event):

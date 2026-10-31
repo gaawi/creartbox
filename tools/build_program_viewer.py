@@ -31,7 +31,7 @@ PROGRAMS = [
         "title": "Currents",
         "series": "New York Series · Autumn",
         "when": "October 30, 2026 · 7:30 pm · The DiMenna Center",
-        "concert": "concerts/currents-2026.html",
+        "concert": "archive.html#y2026",
     },
 ]
 

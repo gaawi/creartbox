@@ -6,7 +6,7 @@ tag: Interview
 image: assets/img/eric-moe.jpg
 alt: Eric Moe, standing by a creek
 caption: Eric Moe. Photo: Ross Mantle.
-link: Currents, 30 October | concerts/currents-2026.html
+link: Currents, 30 October | archive.html#y2026
 link: Read the printed programme | programs/currents-2026.html
 link: ericmoe.net | https://www.ericmoe.net/
 ---
