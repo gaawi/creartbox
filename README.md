@@ -553,6 +553,50 @@ The Kuopio week is the one entry with no page of its own: the concert,
 the talk and the workshop are a single entry by hand, and its button
 goes where that entry says.
 
+## The last concert, on the home page
+
+Under the next production, the one that has just happened: four
+photographs from the night, what it was, and the way into its page in
+the archive.
+
+```bash
+python3 tools/sync_last_event.py          # rewrite the block
+python3 tools/sync_last_event.py --check  # fail if out of date
+```
+
+A production earns the block when it has photographs, which is the
+same thing as having a page in `tools/build_photo_page.py`. The most
+recent of those is the one shown, so filing the next concert and its
+photographs moves this on by itself.
+
+## A photographed production keeps a page
+
+`archive_past.py` files a date as an entry in `archive.html` and
+deletes the concert page, which is enough for a date with nothing to
+show. A production that was photographed gets a page of its own in the
+shape the archive has used since Threshold: four frames across the
+top, the text and the performers, the programme in the sidebar, and
+behind one button every web-size frame and every original.
+
+```bash
+python3 tools/build_photo_page.py          # write the pages
+python3 tools/build_photo_page.py --check  # fail if one is out of date
+```
+
+The photographs stay on Bunny, under
+`creartbox-archive.b-cdn.net/archive-creartbox/<folder>/`, in `web/`
+and in `hd/` or `hr/`. **Nothing is copied into this repository**:
+`data/archive-photos.txt` holds only the filenames, so a gallery
+rebuilds without credentials and dropping a frame is deleting a line.
+
+Each production is a row in `PAGES` at the top of the tool. `source`
+is the concert page as it stood before `archive_past.py` deleted it,
+`<rev>:<path>`, because by the time there are photographs there is no
+page left to read the text, the performers and the programme from.
+`top` is the four across the head of the page and `cover` the one that
+stands for the night in `archive.html`; both are chosen by eye, since
+file order tends to give four frames of the same two players.
+
 ## Moving a date into the archive
 
 A concert that has happened is still on the calendar as if tickets were

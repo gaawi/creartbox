@@ -7006,3 +7006,58 @@ html.after-curtain .tn-after { display: block; }
   .tn-title { font-size: 38px; }
   .tn-card, .tn-give { padding: 20px 16px 18px; }
 }
+
+/* ============================================================
+   THE LAST CONCERT, on the home page
+   Under what is coming, what has just happened: four frames from
+   the night, lighter than the block above it, because this one is
+   not selling a seat. Written by tools/sync_last_event.py.
+   ============================================================ */
+.lastev-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 8px 0 0;
+}
+.lastev-strip img {
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--rule);
+  transition: opacity 0.18s;
+}
+.lastev-strip:hover img { opacity: 0.82; }
+.lastev-strip:hover img:hover { opacity: 1; }
+
+.lastev-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 20px 48px;
+  align-items: start;
+  margin-top: 26px;
+}
+.lastev-title { margin: 0; }
+.lastev-text { margin: 0; }
+.lastev-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+/* a grid track will not shrink below its content unless it is told it
+   may, and "Photographs from the night" does not break on its own */
+.lastev-body > * { min-width: 0; }
+
+@media (max-width: 860px) {
+  .lastev-strip { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .lastev-body { grid-template-columns: 1fr; gap: 14px; margin-top: 22px; }
+  .lastev-actions { margin-top: 6px; }
+  .lastev-actions .btn {
+    width: 100%;
+    justify-content: space-between;
+    white-space: normal;
+  }
+}
