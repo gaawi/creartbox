@@ -7061,3 +7061,11 @@ html.after-curtain .tn-after { display: block; }
     white-space: normal;
   }
 }
+
+/* The second gallery on an archive page, between the performers and
+   the button to the whole set. .event-gallery was in the stylesheet
+   and used nowhere; it only wanted a sensible shape on a phone, where
+   a 220px minimum leaves one photograph per row. */
+@media (max-width: 760px) {
+  .event-gallery .g-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+}

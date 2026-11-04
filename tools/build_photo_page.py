@@ -52,6 +52,11 @@ PAGES = [
         "top": ["_DSC0634.jpg", "_DSC0603.jpg", "_DSC0550.jpg", "_MG_0661.jpg"],
         # and the one that stands for the night in archive.html
         "cover": "_DSC0634.jpg",
+        # six more in an even grid, above the button to the whole set:
+        # the three players close, one in black and white, the
+        # projections again and the room
+        "second": ["_DSC0434.jpg", "_DSC0537.jpg", "_MG_0531.jpg",
+                   "_DSC0502.jpg", "_DSC0635.jpg", "_DSC0670.jpg"],
     },
 ]
 
@@ -105,6 +110,17 @@ def page(spec, shots):
         '<a class="g-item" href="{b}/web/{n}" target="_blank">'
         '<img src="{b}/web/{n}" alt="{t}"></a>'.format(b=base, n=html.escape(n), t=title)
         for n in chosen)
+
+    second = [n for n in spec.get("second", []) if n in web]
+    more = ""
+    if second:
+        more = ('        <section class="event-gallery">\n'
+                '          <div class="g-grid">{items}</div>\n'
+                '        </section>\n\n'.format(items="".join(
+                    '<a class="g-item" href="{b}/web/{n}" target="_blank" title="{n}">'
+                    '<img src="{b}/web/{n}" alt="{t}" loading="lazy"></a>'.format(
+                        b=base, n=html.escape(n), t=title)
+                    for n in second)))
 
     originals = ""
     if raw:
@@ -200,7 +216,7 @@ def page(spec, shots):
           <ul class="art-list">{performers}</ul>
         </section>
 
-        <section class="event-allphotos">
+{more}        <section class="event-allphotos">
           <button class="btn allphotos-trigger" id="allphotos-btn">Show all {nweb} photos <span class="ar">&#8594;</span></button>
           <p class="allphotos-hint">Includes the full-resolution originals for download.</p>
         </section>
@@ -276,7 +292,7 @@ def page(spec, shots):
            css=css, js=js, top=top, topn=len(chosen),
            description=description, performers=performers, programme=programme,
            nweb=len(web), gallery=grid(web, "web", "ga-item", ""),
-           originals=originals, booklet=booklet)
+           originals=originals, booklet=booklet, more=more)
 
 
 def main():

@@ -593,9 +593,10 @@ Each production is a row in `PAGES` at the top of the tool. `source`
 is the concert page as it stood before `archive_past.py` deleted it,
 `<rev>:<path>`, because by the time there are photographs there is no
 page left to read the text, the performers and the programme from.
-`top` is the four across the head of the page and `cover` the one that
-stands for the night in `archive.html`; both are chosen by eye, since
-file order tends to give four frames of the same two players.
+`top` is the four across the head of the page, `second` the six in an
+even grid above the button to the whole set, and `cover` the one that
+stands for the night in `archive.html`. All three are chosen by eye,
+since file order tends to give four frames of the same two players.
 
 ## Moving a date into the archive
 
