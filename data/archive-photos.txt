@@ -1,0 +1,57 @@
+# Photographs on archive pages. The files live on Bunny, under
+# creartbox-archive.b-cdn.net/archive-creartbox/<folder>/, and nothing
+# is copied into this repository: this is only the list of names, so
+# that tools/build_photo_page.py can rebuild a gallery without
+# credentials. Dropping a frame is deleting its line.
+#
+#   <slug> | <what it is>
+#     web <filename>     a web-size JPG, in web/
+#     hd  <filename>     the original, in hd/ (or hr/)
+
+currents-2026-10 | Currents, The DiMenna Center, 30 October 2026
+  web _DSC0434.jpg
+  web _DSC0469.jpg
+  web _DSC0483.jpg
+  web _DSC0502.jpg
+  web _DSC0517.jpg
+  web _DSC0537.jpg
+  web _DSC0550.jpg
+  web _DSC0572.jpg
+  web _DSC0586.jpg
+  web _DSC0590.jpg
+  web _DSC0603.jpg
+  web _DSC0608.jpg
+  web _DSC0612.jpg
+  web _DSC0634.jpg
+  web _DSC0635.jpg
+  web _DSC0656.jpg
+  web _DSC0670.jpg
+  web _MG_0429.jpg
+  web _MG_0437.jpg
+  web _MG_0454.jpg
+  web _MG_0498.jpg
+  web _MG_0531.jpg
+  web _MG_0661.jpg
+  hd  _DSC0434.jpg
+  hd  _DSC0469.jpg
+  hd  _DSC0483.jpg
+  hd  _DSC0502.jpg
+  hd  _DSC0517.jpg
+  hd  _DSC0537.jpg
+  hd  _DSC0550.jpg
+  hd  _DSC0572.jpg
+  hd  _DSC0586.jpg
+  hd  _DSC0590.jpg
+  hd  _DSC0603.jpg
+  hd  _DSC0608.jpg
+  hd  _DSC0612.jpg
+  hd  _DSC0634.jpg
+  hd  _DSC0635.jpg
+  hd  _DSC0656.jpg
+  hd  _DSC0670.jpg
+  hd  _MG_0429.jpg
+  hd  _MG_0437.jpg
+  hd  _MG_0454.jpg
+  hd  _MG_0498.jpg
+  hd  _MG_0531.jpg
+  hd  _MG_0661.jpg
