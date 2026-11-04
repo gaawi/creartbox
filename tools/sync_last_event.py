@@ -42,18 +42,29 @@ def newest():
     return max(PAGES, key=key) if PAGES else None
 
 
-def opening_paragraph(path):
+def programme(path):
+    """Who was played, in the order they were played.
+
+    The home page has a line, not a paragraph, and what belongs in it
+    is the music: a thematic sentence about the evening tells a passer-by
+    nothing, and the names tell them whether they would have come.
+    """
     if not os.path.exists(path):
         return ""
     src = open(path, encoding="utf-8").read()
-    block = re.search(r'<section class="event-description">(.*?)</section>', src, re.S)
+    block = re.search(r'<ul class="pgm-list">(.*?)</ul>', src, re.S)
     if not block:
         return ""
-    for p in re.findall(r"<p[^>]*>(.*?)</p>", block.group(1), re.S):
-        text = re.sub(r"\s+", " ", p).strip()
-        if len(re.sub(r"<[^>]+>", "", text)) > 60:
-            return text
-    return ""
+    names = []
+    for li in re.findall(r"<li>(.*?)</li>", block.group(1), re.S):
+        m = re.search(r'<span class="pgm-composer">(.*?)</span>', li, re.S)
+        if not m:
+            continue
+        name = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "",
+                      m.group(1).split('<span class="pgm-tag">')[0])).strip()
+        if name and name not in names:
+            names.append(name)
+    return " \u00b7 ".join(names)
 
 
 def render(spec, shots):
@@ -95,7 +106,7 @@ def render(spec, shots):
 
     <div class="lastev-body">
       <h3 class="h-title lastev-title">{title}</h3>
-      <p class="body-l lastev-text">{blurb}</p>
+      <p class="lastev-works">{blurb}</p>
       <div class="lastev-actions">
         {buttons}
       </div>
@@ -104,7 +115,7 @@ def render(spec, shots):
 </section>
 """.format(caption=caption, month=FULL[MONTHS.index(spec["month"])], year=spec["year"],
            page=page, title=title, strip=strip,
-           blurb=opening_paragraph(page), buttons="\n        ".join(buttons))
+           blurb=programme(page), buttons="\n        ".join(buttons))
 
 
 def main():

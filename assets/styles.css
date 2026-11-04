@@ -7038,7 +7038,14 @@ html.after-curtain .tn-after { display: block; }
   margin-top: 26px;
 }
 .lastev-title { margin: 0; }
-.lastev-text { margin: 0; }
+/* the composers, in playing order: the line a passer-by actually reads */
+.lastev-works {
+  font-family: var(--display);
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  margin: 0;
+}
 .lastev-actions {
   grid-column: 1 / -1;
   display: flex;
