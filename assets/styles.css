@@ -6136,10 +6136,19 @@ button.myBtn_multi, .eventpast a.button {
   background: var(--filete); border: 1px solid var(--filete); margin-top: 26px;
 }
 .hnews-item {
-  display: block; padding: 22px; background: var(--sala);
+  display: flex; flex-direction: column; background: var(--sala);
   transition: background var(--t-fast);
 }
+/* the post's own photograph, the one the news page already uses */
+.hnews-media { display: block; overflow: hidden; }
+.hnews-media img {
+  width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block;
+  transition: transform 0.6s ease;
+}
+.hnews-item:hover .hnews-media img { transform: scale(1.04); }
+.hnews-text { display: block; padding: 22px; }
 .hnews-item:hover { background: var(--foso); }
+.hnews-item .news-meta { display: flex; }
 .hnews-item h3 {
   font-family: var(--display); font-weight: 400; font-size: 22px;
   line-height: 1.2; margin: 10px 0 0; color: var(--papel);

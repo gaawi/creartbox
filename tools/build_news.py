@@ -42,7 +42,7 @@ POSTS_DIR = "news/_posts"
 OUT_DIR = "news"
 INDEX = "news.html"
 FEED = "feed.xml"
-CSS = "assets/styles.css?v=169"
+CSS = "assets/styles.css?v=170"
 JS = "assets/site.js?v=49"
 MONTHS = ["January", "February", "March", "April", "May", "June", "July",
           "August", "September", "October", "November", "December"]
@@ -441,14 +441,24 @@ def home_block(all_posts):
     # anyone looks for it, so nothing recent should be hidden behind
     # "All news"
     for post in all_posts[:4]:
+        shot = ""
+        if post.get("image"):
+            shot = ('        <span class="hnews-media">'
+                    '<img src="{src}" alt="{alt}" loading="lazy"></span>\n'.format(
+                        src=post["image"],
+                        alt=html.escape(post.get("alt") or post["title"], quote=True)))
         rows.append(
-            '      <a class="hnews-item" href="news/{slug}.html">\n'
-            '        <div class="news-meta"><span class="news-tag">{tag}</span>'
-            '<time datetime="{iso}">{date}</time></div>\n'
-            '        <h3>{title}</h3>\n'
-            '        <p>{dek}</p>\n'
+            '      <a class="hnews-item{bare}" href="news/{slug}.html">\n'
+            '{shot}'
+            '        <span class="hnews-text">\n'
+            '          <span class="news-meta"><span class="news-tag">{tag}</span>'
+            '<time datetime="{iso}">{date}</time></span>\n'
+            '          <h3>{title}</h3>\n'
+            '          <p>{dek}</p>\n'
+            '        </span>\n'
             '      </a>'.format(
-                slug=post["slug"], tag=html.escape(post.get("tag", "News"), quote=True),
+                slug=post["slug"], shot=shot, bare="" if shot else " hnews-bare",
+                tag=html.escape(post.get("tag", "News"), quote=True),
                 iso=post["date"], date=long_date(post["dt"]),
                 title=inline(post["title"], ""), dek=inline(post["dek"], "")))
     return ('<section class="section home-news">\n'
