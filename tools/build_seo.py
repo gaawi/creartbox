@@ -128,6 +128,14 @@ TICKETS = {
     },
 }
 
+# A page whose own artwork is not the right shape to be shared. Open
+# Graph wants 1.91:1; a 16:9 hero gets letterboxed by Facebook and
+# WhatsApp, and a portrait one is cropped to a strip.
+SOCIAL = {
+    "concerts/tectonic-lullaby-2026.html":
+        "assets/img/promo/winterlight-2026-landscape.jpg",
+}
+
 SECTION = {
     "concerts": ("Calendar", "concerts.html"),
     "archive": ("Archive", "archive.html"),
@@ -666,6 +674,8 @@ def block_for(path, src):
     title = head_title(src)
     desc = head_desc(src) or first_paragraph(src)[:300]
     image, image_alt = page_image(path, src)
+    if path in SOCIAL:
+        image = SITE + "/" + SOCIAL[path]
 
     page_types = {"collection": "CollectionPage", "about": "AboutPage"}
     web = {

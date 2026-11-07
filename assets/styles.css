@@ -7087,3 +7087,29 @@ html.after-curtain .tn-after { display: block; }
 @media (max-width: 760px) {
   .event-gallery .g-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
 }
+
+/* The graphics made for a concert, offered to anyone who wants to post
+   about it. Shown at a common height so the four formats read as four
+   formats rather than four pictures. */
+.event-promo { margin: 0 0 56px; max-width: 760px; }
+.promo-note {
+  font-family: var(--sans); font-size: 13.5px; line-height: 1.65;
+  color: var(--ink-soft); margin: 0 0 18px; max-width: 60ch;
+}
+.promo-grid { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start; }
+.promo-shot { display: block; text-decoration: none; }
+.promo-shot img {
+  display: block; height: 150px; width: auto;
+  border: 1px solid var(--rule); transition: opacity 0.18s;
+}
+.promo-shot:hover img { opacity: 0.85; }
+.promo-shot span {
+  display: block; margin-top: 7px;
+  font-family: var(--sans); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft);
+}
+.promo-dl { margin: 20px 0 0; }
+@media (max-width: 760px) {
+  .promo-shot img { height: 116px; }
+  .promo-grid { gap: 10px; }
+}
