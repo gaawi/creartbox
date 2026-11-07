@@ -126,12 +126,6 @@ TICKETS = {
         "validFrom": "2026-10-20T00:00:00-04:00",
         "checked": "2026-10-31",
     },
-    "concerts/illinois-college-piano-trio-2026.html": {
-        "url": ("https://www.eventbrite.com/e/fine-arts-series-engelbach-hart-music"
-                "-festival-tickets-1998923887156"),
-        "availability": "https://schema.org/InStock",
-        "checked": "2026-10-24",
-    },
 }
 
 SECTION = {

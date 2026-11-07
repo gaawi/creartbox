@@ -508,3 +508,19 @@ Tre Pezzi |  | The DiMenna Center, New York |  | 07
  - Tre Pezzi
  César Franck
  - Violin Sonata in A major
+
+#skip Engelbach-Hart Music Festival (Illinois) | 2026
+  Nadia Boulanger
+  - Three Pieces for cello and piano - No. 1, Modéré
+  Ernest Bloch
+  - Three Nocturnes for Piano Trio
+  Andrea Casarrubios
+  - Silbo · and · 24 Mozas · for cello and piano
+  Lili Boulanger
+  - Nocturne for violin and piano
+  György Kurtág
+  - Tre Pezzi
+  Sergei Rachmaninoff
+  - Trio élégiaque in G minor, No. 1
+  Dmitri Shostakovich
+  - Piano Trio No. 1 in C minor, Op. 8
