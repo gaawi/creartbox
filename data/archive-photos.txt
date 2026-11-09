@@ -108,16 +108,23 @@ currents-2026-10 | Currents, The DiMenna Center, 30 October 2026
   hd _DSC0389.jpg
   hd _DSC0434.jpg
   hd _DSC0439.jpg
+  hd _DSC0455.jpg
+  hd _DSC0456.jpg
   hd _DSC0458.jpg
   hd _DSC0465.jpg
   hd _DSC0466.jpg
   hd _DSC0467.jpg
+  hd _DSC0468.jpg
   hd _DSC0469.jpg
   hd _DSC0483.jpg
+  hd _DSC0484.jpg
   hd _DSC0502.jpg
   hd _DSC0503.jpg
   hd _DSC0504.jpg
   hd _DSC0517.jpg
+  hd _DSC0527.jpg
+  hd _DSC0534.jpg
+  hd _DSC0535.jpg
   hd _DSC0537.jpg
   hd _DSC0549.jpg
   hd _DSC0550.jpg
@@ -127,8 +134,11 @@ currents-2026-10 | Currents, The DiMenna Center, 30 October 2026
   hd _DSC0574.jpg
   hd _DSC0576.jpg
   hd _DSC0586.jpg
+  hd _DSC0587.jpg
   hd _DSC0589.jpg
   hd _DSC0590.jpg
+  hd _DSC0593.jpg
+  hd _DSC0596_1.jpg
   hd _DSC0599.jpg
   hd _DSC0602.jpg
   hd _DSC0603.jpg
@@ -139,14 +149,18 @@ currents-2026-10 | Currents, The DiMenna Center, 30 October 2026
   hd _DSC0612.jpg
   hd _DSC0627_1.jpg
   hd _DSC0629_1.jpg
+  hd _DSC0633.jpg
   hd _DSC0634.jpg
   hd _DSC0635.jpg
+  hd _DSC0653.jpg
   hd _DSC0656.jpg
   hd _DSC0658.jpg
   hd _DSC0666.jpg
   hd _DSC0670.jpg
+  hd _MG_0426.jpg
   hd _MG_0429.jpg
   hd _MG_0437.jpg
+  hd _MG_0442.jpg
   hd _MG_0454.jpg
   hd _MG_0461.jpg
   hd _MG_0462.jpg
@@ -159,5 +173,7 @@ currents-2026-10 | Currents, The DiMenna Center, 30 October 2026
   hd _MG_0510.jpg
   hd _MG_0531.jpg
   hd _MG_0622.jpg
+  hd _MG_0637.jpg
+  hd _MG_0641.jpg
   hd _MG_0660.jpg
   hd _MG_0661.jpg
