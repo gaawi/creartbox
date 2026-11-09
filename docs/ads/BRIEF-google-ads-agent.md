@@ -12,6 +12,47 @@ the ones that will get you in trouble if you skip them.
 
 ---
 
+## 0. State of play, 9 November 2026, late evening
+
+**The account has been built from this brief, and everything in it is
+paused.** Nothing can spend. What follows is a record, not a plan.
+
+Built: 4 campaigns, 10 ad groups, 45 keywords, 20 ads (two per ad group,
+as section 9 asked), 16 sitelinks and the 4 shared negative lists, 147
+terms. Search only, no search partners, no Display. Targeting set to
+presence, not interest. Broad match, auto-created assets and AI Max all
+off. All 21 auto-apply recommendation types turned off, which had been
+adding keywords to the account on their own since 2023: **163 of them.**
+
+Analytics: a GA4 property already existed, `G-VS5SK9S98C`, and it is now
+linked to Google Ads. `tickets`, `apply` and `calendar` are conversions,
+`apply` carrying a $20 value, which is the application fee. The concerts
+campaign bids on `tickets`, both calls campaigns on `apply`, Brand on the
+account default. The tag went onto the site the same evening and was
+measured firing from the live site, so the property has data from now on.
+
+Two findings worth carrying forward:
+
+- **The account dates from May 2023**, so the 90-day CTR grace period in
+  section 4 does not apply. The 5% rule counts from the first month these
+  campaigns run.
+- **Google's compliance guide, read from inside the account, confirms the
+  structure rules I could not verify from outside:** two ad groups per
+  campaign, two ads each, two sitelinks, one conversion a month. It still
+  says nothing about a $2 CPC cap, and it says two months under 5% *can*
+  lead to temporary deactivation, not *will*.
+
+**Waiting on the owner, and only the owner can do them:**
+
+1. **An old campaign, "Website traffic-Search-1", is still enabled at
+   $500 a day.** It has not run since 2023, but it is enabled, it uses
+   Maximize clicks, which this account is not allowed to use, and its ad
+   says "World class chamber concert". It should be paused.
+2. **Advertiser verification is pending.**
+3. The decision to switch the new campaigns on at all.
+
+---
+
 ## 1. Non-negotiables
 
 1. **Nothing spends money without the owner saying so, in words, for that
@@ -463,8 +504,18 @@ than anything in this brief, is what keeps the account alive.
 - **16 December 2026:** both calls have closed. Pause both calls campaigns
   and move their $130 a day to the concerts campaign. Reopen them when the
   next cycle opens.
-- The 2026/27 New York season continues on 28 February and 23 April 2027.
-  Ask for the programmes when they are on sale.
+- **The rest of the season.** The New York Series at the DiMenna Center
+  continues with **Pressure and Release on 23 April 2027** and
+  **Feverdream on 7 May 2027**. Ask for the programmes when they go on
+  sale, and build an ad group for each the way the Winterlight one works.
+  Everything else on the calendar is touring and is not ours to sell:
+  Louisville on 28 February, Saugerties on 18 April, Festival ADAR in
+  August, Gettysburg on 28 September, The Chapel Restoration on 17
+  October. The presenter sells those seats, so no ad group and no
+  ticket keywords for them.
+  (An earlier draft of this section said the season continued on 28
+  February and 23 April. 28 February is the Louisville date. Corrected
+  after the live calendar was read event by event.)
 
 ---
 

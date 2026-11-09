@@ -13,6 +13,26 @@ Everything the ads claim is on the site and was checked there: the date
 and time of the concert, the venue, the $15 starting price read from
 the Eventbrite listing, the deadline and the $20 fee of the calls, the
 founding year. No ad promises anything the site does not say.
+
+THE LIVE ACCOUNT IS NOW AHEAD OF THIS FILE. The account was built on
+9 November 2026 from these files, and whoever built it rewrote five
+headlines that the site did not support. Those five are fixed here too,
+checked again against the site:
+
+    "Ma Mere l'Oye, Four Hands"  the page lists one pianist
+    "Quintet, Quartet and Trio"  no quartet in the programme
+    "An Hour of Chamber Music"   Winterlight runs about 80 minutes
+    "New Music Beside Brahms"    Brahms was in Currents, which has gone
+    "Your Score Beside Brahms"   the same
+    worldwide vs American        the two calls were sharing one line
+
+The last of those was the worst of them: the two calls have different
+eligibility, so an ad that said both was wrong on one of the two pages.
+They now have their own headline and their own first description.
+
+The exact wording live in the account may still differ from what this
+file writes. Reconcile from the account's own export before importing
+again, or an import will overwrite an ad somebody improved on screen.
 """
 
 import csv
@@ -135,12 +155,12 @@ AD_GROUPS = [
 # does not go stale between concerts.
 CONCERT_HEADLINES = [
     "Chamber Music in New York", "Live at The DiMenna Center",
-    "Classical Concerts in NYC", "New Music Beside Brahms",
+    "Classical Concerts in NYC", "Premieres and Classics",
     "CreArtBox New York Series", "Midtown Manhattan, 7:30 pm",
-    "Quintet, Quartet and Trio", "A New York Ensemble, 2013",
+    "Flute, Piano and Strings", "A New York Ensemble, 2013",
     "450 West 37th Street", "Video Art and Live Music",
     "Four Productions a Season", "See the Season Calendar",
-    "An Hour of Chamber Music", "Standard and New Work",
+    "A, C and E to Penn Station", "Standard and New Work",
     "Tickets Through Eventbrite",
 ]
 CONCERT_DESCRIPTIONS = [
@@ -160,8 +180,8 @@ DATED_HEADLINES = [
     "Petroushka in New York", "A World Premiere, Dec 11",
     "Chamber Music in New York", "Live Visual Projections",
     "Midtown Manhattan, 7:30 pm", "CreArtBox New York Series",
-    "450 West 37th Street", "Ma Mere l'Oye, Four Hands",
-    "Quintet, Quartet and Trio", "A New York Ensemble, 2013",
+    "450 West 37th Street", "Ravel's Ma Mere l'Oye",
+    "Flute, Piano and Strings", "A New York Ensemble, 2013",
     "Stravinsky's Petroushka",
 ]
 DATED_DESCRIPTIONS = [
@@ -171,22 +191,39 @@ DATED_DESCRIPTIONS = [
     "Chamber music with projections made for the programme. Tickets through Eventbrite.",
 ]
 
+# The two calls have different eligibility and must not share the line
+# that states it. The international call is open to composers "of any
+# nationality"; the American one asks for United States citizenship, or
+# residence in the United States or its territories for a significant
+# period. One ad saying both would be wrong on one of the two pages.
 CALL_HEADLINES = [
     "Call for Scores 2027/28", "Open to Any Instrumentation",
     "Deadline 15 December 2026", "First Round Read Blind",
-    "For Composers Worldwide", "American Composers Welcome",
     "Played in New York", "Two Works, $20 to Apply",
     "Any Age, Any Career Stage", "CreArtBox Call for Scores",
-    "Your Score Beside Brahms", "Performed and Recorded",
+    "Eleven Works This Season", "Performed and Recorded",
     "Players and Composers Read", "An Answer by Spring 2027",
+]
+INTL_HEADLINES = CALL_HEADLINES + [
+    "Composers of Any Nationality", "For the 2027/28 Season",
+    "One Form, Two Scores",
+]
+AMER_HEADLINES = CALL_HEADLINES + [
+    "For American Composers", "US Citizens and Residents",
     "One Form, Two Scores",
 ]
 CALL_DESCRIPTIONS = [
-    "Two works, any instrumentation, any career stage. Deadline 15 December 2026.",
     "The first round is read blind. Selected works are played in the 2027/28 season.",
     "Eleven works in the current season arrived through this call. $20 to apply.",
     "Read by the five musicians who would play it, and by composers chosen before.",
 ]
+# again, the eligibility line differs
+INTL_DESCRIPTIONS = [
+    "Any nationality, any instrumentation, any career stage. Deadline 15 December 2026.",
+] + CALL_DESCRIPTIONS
+AMER_DESCRIPTIONS = [
+    "For American composers. Two works, any instrumentation. Deadline 15 December 2026.",
+] + CALL_DESCRIPTIONS
 
 BRAND_HEADLINES = [
     "CreArtBox", "CreArtBox, New York", "Chamber Music Ensemble",
@@ -207,8 +244,8 @@ COPY = {
     ("CB | Concerts | New York", "Winterlight, 11 December"):
         (DATED_HEADLINES, DATED_DESCRIPTIONS, "concerts", "winterlight"),
     "CB | Concerts | New York": (CONCERT_HEADLINES, CONCERT_DESCRIPTIONS, "concerts", "new-york"),
-    "CB | Calls for Scores | International": (CALL_HEADLINES, CALL_DESCRIPTIONS, "call-for-scores", "2027-28"),
-    "CB | Calls for Scores | American": (CALL_HEADLINES, CALL_DESCRIPTIONS, "call-for-scores", "american"),
+    "CB | Calls for Scores | International": (INTL_HEADLINES, INTL_DESCRIPTIONS, "call-for-scores", "2027-28"),
+    "CB | Calls for Scores | American": (AMER_HEADLINES, AMER_DESCRIPTIONS, "call-for-scores", "american"),
     "CB | Brand": (BRAND_HEADLINES, BRAND_DESCRIPTIONS, "about", ""),
 }
 
@@ -334,9 +371,11 @@ def write(name, header, rows):
 
 
 def main():
-    for h in CONCERT_HEADLINES + DATED_HEADLINES + CALL_HEADLINES + BRAND_HEADLINES:
+    for h in (CONCERT_HEADLINES + DATED_HEADLINES + INTL_HEADLINES
+              + AMER_HEADLINES + BRAND_HEADLINES):
         check("headline", h)
-    for d in (CONCERT_DESCRIPTIONS + DATED_DESCRIPTIONS + CALL_DESCRIPTIONS
+    for d in (CONCERT_DESCRIPTIONS + DATED_DESCRIPTIONS + INTL_DESCRIPTIONS
+              + AMER_DESCRIPTIONS
               + BRAND_DESCRIPTIONS):
         check("description", d)
     for text, d1, d2, _ in SITELINKS:
