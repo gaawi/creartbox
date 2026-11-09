@@ -14,10 +14,14 @@ CB | Concerts | New York,DiMenna Center,"""dimenna center for classical music ev
 CB | Concerts | New York,DiMenna Center,"""concerts at the dimenna center""",Phrase,Enabled,https://creartbox.nyc/classical-concerts-nyc.html
 CB | Concerts | New York,DiMenna Center,[dimenna center classical music],Exact,Enabled,https://creartbox.nyc/classical-concerts-nyc.html
 CB | Concerts | New York,"Winterlight, 11 December","""stravinsky petrushka new york""",Phrase,Enabled,https://creartbox.nyc/concerts/tectonic-lullaby-2026.html
+CB | Concerts | New York,"Winterlight, 11 December","""petroushka new york""",Phrase,Enabled,https://creartbox.nyc/concerts/tectonic-lullaby-2026.html
+CB | Concerts | New York,"Winterlight, 11 December","""petroushka chamber arrangement""",Phrase,Enabled,https://creartbox.nyc/concerts/tectonic-lullaby-2026.html
 CB | Concerts | New York,"Winterlight, 11 December","""ravel concert new york""",Phrase,Enabled,https://creartbox.nyc/concerts/tectonic-lullaby-2026.html
+CB | Concerts | New York,"Winterlight, 11 December","""ma mere loye concert""",Phrase,Enabled,https://creartbox.nyc/concerts/tectonic-lullaby-2026.html
 CB | Concerts | New York,"Winterlight, 11 December","""stravinsky concert nyc december""",Phrase,Enabled,https://creartbox.nyc/concerts/tectonic-lullaby-2026.html
 CB | Concerts | New York,"Winterlight, 11 December","""piano quintet concert new york""",Phrase,Enabled,https://creartbox.nyc/concerts/tectonic-lullaby-2026.html
 CB | Calls for Scores | International,Call for scores,"""call for scores 2026""",Phrase,Enabled,https://creartbox.nyc/calls/scores-international.html
+CB | Calls for Scores | International,Call for scores,"""call for scores 2027""",Phrase,Enabled,https://creartbox.nyc/calls/scores-international.html
 CB | Calls for Scores | International,Call for scores,"""open call for scores""",Phrase,Enabled,https://creartbox.nyc/calls/scores-international.html
 CB | Calls for Scores | International,Call for scores,"""call for scores chamber music""",Phrase,Enabled,https://creartbox.nyc/calls/scores-international.html
 CB | Calls for Scores | International,Call for scores,[call for scores for composers],Exact,Enabled,https://creartbox.nyc/calls/scores-international.html

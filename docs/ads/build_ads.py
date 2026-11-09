@@ -73,15 +73,24 @@ AD_GROUPS = [
         ('[dimenna center classical music]', "Exact"),
      ], SITE + "/classical-concerts-nyc.html"),
 
+    # Both spellings of the ballet. The site writes Petroushka, the
+    # English-speaking world mostly writes Petrushka, and the two are
+    # separate keywords as far as Google is concerned.
     ("CB | Concerts | New York", "Winterlight, 11 December", [
         ('"stravinsky petrushka new york"', "Phrase"),
+        ('"petroushka new york"', "Phrase"),
+        ('"petroushka chamber arrangement"', "Phrase"),
         ('"ravel concert new york"', "Phrase"),
+        ('"ma mere loye concert"', "Phrase"),
         ('"stravinsky concert nyc december"', "Phrase"),
         ('"piano quintet concert new york"', "Phrase"),
      ], SITE + "/concerts/tectonic-lullaby-2026.html"),
 
+    # The deadline is December 2026 and the season advertised is 2027/28,
+    # so both years get typed and both need to be here.
     ("CB | Calls for Scores | International", "Call for scores", [
         ('"call for scores 2026"', "Phrase"),
+        ('"call for scores 2027"', "Phrase"),
         ('"open call for scores"', "Phrase"),
         ('"call for scores chamber music"', "Phrase"),
         ('[call for scores for composers]', "Exact"),
@@ -203,6 +212,99 @@ COPY = {
     "CB | Brand": (BRAND_HEADLINES, BRAND_DESCRIPTIONS, "about", ""),
 }
 
+# Negative keywords, which are most of what keeps the account-wide
+# click-through rate above the 5% Google requires. Each list says which
+# campaigns it applies to. Broad by default, because a negative is meant
+# to catch a whole family of queries; phrase where the bare word is too
+# common to block outright.
+#
+#   NEVER  ... everything. Free files, jobs, lessons, reference lookups,
+#              private hire, bargain hunting.
+#   VENUE  ... the concerts campaign. The DiMenna Center's own main
+#              business is renting rehearsal and recording rooms, so most
+#              of the search volume on its name is musicians looking to
+#              book one, not an audience looking for a ticket. Also other
+#              halls, and other genres.
+#   SCORES ... the calls campaigns. The word "score" belongs to sport and
+#              to standardised tests far more than it belongs to music,
+#              and this call charges a fee and awards no prize money.
+#   BRAND  ... the brand campaign. Adar is also a month in the Hebrew
+#              calendar, and Festival ADAR is not.
+NEGATIVE_LISTS = [
+    ("CB | Never", [c["name"] for c in CAMPAIGNS], """
+        free, download, downloads, mp3, pdf, torrent, streaming, youtube,
+        lyrics, karaoke, imslp, sheet music, score pdf, piano reduction,
+        backing track,
+
+        job, jobs, hiring, salary, vacancy, internship, employment,
+        audition, auditions, resume, cv,
+
+        lessons, teacher, tutor, course, courses, masterclass, degree,
+        school, conservatory, university, syllabus, tutorial, exam,
+        grade, how to play,
+
+        wikipedia, meaning, analysis, definition, biography, who wrote,
+        who composed, history of,
+
+        wedding, weddings, funeral, dj, cover band, background music,
+        buy violin, violin for sale, instrument rental, rent a piano,
+
+        cheap, coupon, refund, discount code, promo code
+    """),
+
+    ("CB | Not an audience", ["CB | Concerts | New York"], """
+        rehearsal, rehearsal space, studio, studios, recording studio,
+        practice room, book a room, rent, rental, booking, hourly,
+        rates, parking,
+
+        carnegie hall, lincoln center, metropolitan opera,
+        new york philharmonic, david geffen, 92nd street y,
+        kaufman music center, le poisson rouge, merkin, juilliard,
+        mannes, bargemusic,
+
+        opera, ballet, jazz, rock, pop, musical, broadway, choir,
+        chorus, gospel, country, hip hop
+    """),
+
+    ("CB | Not a composer", ["CB | Calls for Scores | International",
+                             "CB | Calls for Scores | American"], """
+        football, nfl, nba, soccer, cricket, baseball, hockey, fico,
+        gpa, live score, final score, credit score, sat scores,
+        act scores, test score, exam score,
+
+        scholarship, funding, no fee, no entry fee, without fee,
+        fee waiver, cash prize, prize money, grants for composers,
+        commission fee,
+
+        film scoring, video game music, library music, production music,
+        sync licensing, beat making, jingle
+    """),
+
+    ("CB | Brand noise", ["CB | Brand"], """
+        login, log in, sign in, app, careers, complaints, scam,
+        purim, torah, jewish calendar, rosh chodesh, adar sheni,
+        hebrew month
+    """),
+]
+
+
+def parse_negatives(spec):
+    """Read a negative block into (term, match type) pairs.
+
+    A single word blocks every query containing it, so it goes in broad.
+    Anything of two words or more only makes sense as a phrase: blocking
+    "sheet" and "music" separately would take out half the account.
+    """
+    out = []
+    for raw in spec.split(","):
+        term = " ".join(raw.split())
+        if not term:
+            continue
+        out.append((term, "Negative Broad" if " " not in term
+                    else "Negative Phrase"))
+    return out
+
+
 SITELINKS = [
     ("Season calendar", "Every date of the twelfth season", "Four New York productions",
      SITE + "/concerts.html"),
@@ -284,6 +386,26 @@ def main():
           ["Campaign", "Sitelink Text", "Description Line 1", "Description Line 2",
            "Final URL"],
           [[c["name"], t, d1, d2, u] for c in CAMPAIGNS for t, d1, d2, u in SITELINKS])
+
+    # Negatives, twice over: once as a campaign-level import for Google
+    # Ads Editor, and once as plain text, because the web interface takes
+    # a pasted list and that is the quicker route to a shared list.
+    rows, listing, total = [], [], 0
+    for name, campaigns, spec in NEGATIVE_LISTS:
+        terms = parse_negatives(spec)
+        total += len(terms)
+        listing.append("# %s\n# applies to: %s\n%s\n"
+                       % (name, ", ".join(campaigns),
+                          "\n".join(t for t, _ in terms)))
+        for camp in campaigns:
+            rows += [[camp, term, match] for term, match in terms]
+    write("6-negatives.csv", ["Campaign", "Keyword", "Criterion Type"], rows)
+
+    path = os.path.join(HERE, "6-negatives.txt")
+    with open(path, "w", encoding="utf-8") as fh:
+        fh.write("\n".join(listing))
+    print("wrote %-22s %d term(s) in %d list(s)"
+          % ("6-negatives.txt", total, len(NEGATIVE_LISTS)))
 
     print("\nevery headline, description and sitelink is inside Google's limits")
     return 0

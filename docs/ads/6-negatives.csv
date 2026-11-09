@@ -1,0 +1,373 @@
+Campaign,Keyword,Criterion Type
+CB | Concerts | New York,free,Negative Broad
+CB | Concerts | New York,download,Negative Broad
+CB | Concerts | New York,downloads,Negative Broad
+CB | Concerts | New York,mp3,Negative Broad
+CB | Concerts | New York,pdf,Negative Broad
+CB | Concerts | New York,torrent,Negative Broad
+CB | Concerts | New York,streaming,Negative Broad
+CB | Concerts | New York,youtube,Negative Broad
+CB | Concerts | New York,lyrics,Negative Broad
+CB | Concerts | New York,karaoke,Negative Broad
+CB | Concerts | New York,imslp,Negative Broad
+CB | Concerts | New York,sheet music,Negative Phrase
+CB | Concerts | New York,score pdf,Negative Phrase
+CB | Concerts | New York,piano reduction,Negative Phrase
+CB | Concerts | New York,backing track,Negative Phrase
+CB | Concerts | New York,job,Negative Broad
+CB | Concerts | New York,jobs,Negative Broad
+CB | Concerts | New York,hiring,Negative Broad
+CB | Concerts | New York,salary,Negative Broad
+CB | Concerts | New York,vacancy,Negative Broad
+CB | Concerts | New York,internship,Negative Broad
+CB | Concerts | New York,employment,Negative Broad
+CB | Concerts | New York,audition,Negative Broad
+CB | Concerts | New York,auditions,Negative Broad
+CB | Concerts | New York,resume,Negative Broad
+CB | Concerts | New York,cv,Negative Broad
+CB | Concerts | New York,lessons,Negative Broad
+CB | Concerts | New York,teacher,Negative Broad
+CB | Concerts | New York,tutor,Negative Broad
+CB | Concerts | New York,course,Negative Broad
+CB | Concerts | New York,courses,Negative Broad
+CB | Concerts | New York,masterclass,Negative Broad
+CB | Concerts | New York,degree,Negative Broad
+CB | Concerts | New York,school,Negative Broad
+CB | Concerts | New York,conservatory,Negative Broad
+CB | Concerts | New York,university,Negative Broad
+CB | Concerts | New York,syllabus,Negative Broad
+CB | Concerts | New York,tutorial,Negative Broad
+CB | Concerts | New York,exam,Negative Broad
+CB | Concerts | New York,grade,Negative Broad
+CB | Concerts | New York,how to play,Negative Phrase
+CB | Concerts | New York,wikipedia,Negative Broad
+CB | Concerts | New York,meaning,Negative Broad
+CB | Concerts | New York,analysis,Negative Broad
+CB | Concerts | New York,definition,Negative Broad
+CB | Concerts | New York,biography,Negative Broad
+CB | Concerts | New York,who wrote,Negative Phrase
+CB | Concerts | New York,who composed,Negative Phrase
+CB | Concerts | New York,history of,Negative Phrase
+CB | Concerts | New York,wedding,Negative Broad
+CB | Concerts | New York,weddings,Negative Broad
+CB | Concerts | New York,funeral,Negative Broad
+CB | Concerts | New York,dj,Negative Broad
+CB | Concerts | New York,cover band,Negative Phrase
+CB | Concerts | New York,background music,Negative Phrase
+CB | Concerts | New York,buy violin,Negative Phrase
+CB | Concerts | New York,violin for sale,Negative Phrase
+CB | Concerts | New York,instrument rental,Negative Phrase
+CB | Concerts | New York,rent a piano,Negative Phrase
+CB | Concerts | New York,cheap,Negative Broad
+CB | Concerts | New York,coupon,Negative Broad
+CB | Concerts | New York,refund,Negative Broad
+CB | Concerts | New York,discount code,Negative Phrase
+CB | Concerts | New York,promo code,Negative Phrase
+CB | Calls for Scores | International,free,Negative Broad
+CB | Calls for Scores | International,download,Negative Broad
+CB | Calls for Scores | International,downloads,Negative Broad
+CB | Calls for Scores | International,mp3,Negative Broad
+CB | Calls for Scores | International,pdf,Negative Broad
+CB | Calls for Scores | International,torrent,Negative Broad
+CB | Calls for Scores | International,streaming,Negative Broad
+CB | Calls for Scores | International,youtube,Negative Broad
+CB | Calls for Scores | International,lyrics,Negative Broad
+CB | Calls for Scores | International,karaoke,Negative Broad
+CB | Calls for Scores | International,imslp,Negative Broad
+CB | Calls for Scores | International,sheet music,Negative Phrase
+CB | Calls for Scores | International,score pdf,Negative Phrase
+CB | Calls for Scores | International,piano reduction,Negative Phrase
+CB | Calls for Scores | International,backing track,Negative Phrase
+CB | Calls for Scores | International,job,Negative Broad
+CB | Calls for Scores | International,jobs,Negative Broad
+CB | Calls for Scores | International,hiring,Negative Broad
+CB | Calls for Scores | International,salary,Negative Broad
+CB | Calls for Scores | International,vacancy,Negative Broad
+CB | Calls for Scores | International,internship,Negative Broad
+CB | Calls for Scores | International,employment,Negative Broad
+CB | Calls for Scores | International,audition,Negative Broad
+CB | Calls for Scores | International,auditions,Negative Broad
+CB | Calls for Scores | International,resume,Negative Broad
+CB | Calls for Scores | International,cv,Negative Broad
+CB | Calls for Scores | International,lessons,Negative Broad
+CB | Calls for Scores | International,teacher,Negative Broad
+CB | Calls for Scores | International,tutor,Negative Broad
+CB | Calls for Scores | International,course,Negative Broad
+CB | Calls for Scores | International,courses,Negative Broad
+CB | Calls for Scores | International,masterclass,Negative Broad
+CB | Calls for Scores | International,degree,Negative Broad
+CB | Calls for Scores | International,school,Negative Broad
+CB | Calls for Scores | International,conservatory,Negative Broad
+CB | Calls for Scores | International,university,Negative Broad
+CB | Calls for Scores | International,syllabus,Negative Broad
+CB | Calls for Scores | International,tutorial,Negative Broad
+CB | Calls for Scores | International,exam,Negative Broad
+CB | Calls for Scores | International,grade,Negative Broad
+CB | Calls for Scores | International,how to play,Negative Phrase
+CB | Calls for Scores | International,wikipedia,Negative Broad
+CB | Calls for Scores | International,meaning,Negative Broad
+CB | Calls for Scores | International,analysis,Negative Broad
+CB | Calls for Scores | International,definition,Negative Broad
+CB | Calls for Scores | International,biography,Negative Broad
+CB | Calls for Scores | International,who wrote,Negative Phrase
+CB | Calls for Scores | International,who composed,Negative Phrase
+CB | Calls for Scores | International,history of,Negative Phrase
+CB | Calls for Scores | International,wedding,Negative Broad
+CB | Calls for Scores | International,weddings,Negative Broad
+CB | Calls for Scores | International,funeral,Negative Broad
+CB | Calls for Scores | International,dj,Negative Broad
+CB | Calls for Scores | International,cover band,Negative Phrase
+CB | Calls for Scores | International,background music,Negative Phrase
+CB | Calls for Scores | International,buy violin,Negative Phrase
+CB | Calls for Scores | International,violin for sale,Negative Phrase
+CB | Calls for Scores | International,instrument rental,Negative Phrase
+CB | Calls for Scores | International,rent a piano,Negative Phrase
+CB | Calls for Scores | International,cheap,Negative Broad
+CB | Calls for Scores | International,coupon,Negative Broad
+CB | Calls for Scores | International,refund,Negative Broad
+CB | Calls for Scores | International,discount code,Negative Phrase
+CB | Calls for Scores | International,promo code,Negative Phrase
+CB | Calls for Scores | American,free,Negative Broad
+CB | Calls for Scores | American,download,Negative Broad
+CB | Calls for Scores | American,downloads,Negative Broad
+CB | Calls for Scores | American,mp3,Negative Broad
+CB | Calls for Scores | American,pdf,Negative Broad
+CB | Calls for Scores | American,torrent,Negative Broad
+CB | Calls for Scores | American,streaming,Negative Broad
+CB | Calls for Scores | American,youtube,Negative Broad
+CB | Calls for Scores | American,lyrics,Negative Broad
+CB | Calls for Scores | American,karaoke,Negative Broad
+CB | Calls for Scores | American,imslp,Negative Broad
+CB | Calls for Scores | American,sheet music,Negative Phrase
+CB | Calls for Scores | American,score pdf,Negative Phrase
+CB | Calls for Scores | American,piano reduction,Negative Phrase
+CB | Calls for Scores | American,backing track,Negative Phrase
+CB | Calls for Scores | American,job,Negative Broad
+CB | Calls for Scores | American,jobs,Negative Broad
+CB | Calls for Scores | American,hiring,Negative Broad
+CB | Calls for Scores | American,salary,Negative Broad
+CB | Calls for Scores | American,vacancy,Negative Broad
+CB | Calls for Scores | American,internship,Negative Broad
+CB | Calls for Scores | American,employment,Negative Broad
+CB | Calls for Scores | American,audition,Negative Broad
+CB | Calls for Scores | American,auditions,Negative Broad
+CB | Calls for Scores | American,resume,Negative Broad
+CB | Calls for Scores | American,cv,Negative Broad
+CB | Calls for Scores | American,lessons,Negative Broad
+CB | Calls for Scores | American,teacher,Negative Broad
+CB | Calls for Scores | American,tutor,Negative Broad
+CB | Calls for Scores | American,course,Negative Broad
+CB | Calls for Scores | American,courses,Negative Broad
+CB | Calls for Scores | American,masterclass,Negative Broad
+CB | Calls for Scores | American,degree,Negative Broad
+CB | Calls for Scores | American,school,Negative Broad
+CB | Calls for Scores | American,conservatory,Negative Broad
+CB | Calls for Scores | American,university,Negative Broad
+CB | Calls for Scores | American,syllabus,Negative Broad
+CB | Calls for Scores | American,tutorial,Negative Broad
+CB | Calls for Scores | American,exam,Negative Broad
+CB | Calls for Scores | American,grade,Negative Broad
+CB | Calls for Scores | American,how to play,Negative Phrase
+CB | Calls for Scores | American,wikipedia,Negative Broad
+CB | Calls for Scores | American,meaning,Negative Broad
+CB | Calls for Scores | American,analysis,Negative Broad
+CB | Calls for Scores | American,definition,Negative Broad
+CB | Calls for Scores | American,biography,Negative Broad
+CB | Calls for Scores | American,who wrote,Negative Phrase
+CB | Calls for Scores | American,who composed,Negative Phrase
+CB | Calls for Scores | American,history of,Negative Phrase
+CB | Calls for Scores | American,wedding,Negative Broad
+CB | Calls for Scores | American,weddings,Negative Broad
+CB | Calls for Scores | American,funeral,Negative Broad
+CB | Calls for Scores | American,dj,Negative Broad
+CB | Calls for Scores | American,cover band,Negative Phrase
+CB | Calls for Scores | American,background music,Negative Phrase
+CB | Calls for Scores | American,buy violin,Negative Phrase
+CB | Calls for Scores | American,violin for sale,Negative Phrase
+CB | Calls for Scores | American,instrument rental,Negative Phrase
+CB | Calls for Scores | American,rent a piano,Negative Phrase
+CB | Calls for Scores | American,cheap,Negative Broad
+CB | Calls for Scores | American,coupon,Negative Broad
+CB | Calls for Scores | American,refund,Negative Broad
+CB | Calls for Scores | American,discount code,Negative Phrase
+CB | Calls for Scores | American,promo code,Negative Phrase
+CB | Brand,free,Negative Broad
+CB | Brand,download,Negative Broad
+CB | Brand,downloads,Negative Broad
+CB | Brand,mp3,Negative Broad
+CB | Brand,pdf,Negative Broad
+CB | Brand,torrent,Negative Broad
+CB | Brand,streaming,Negative Broad
+CB | Brand,youtube,Negative Broad
+CB | Brand,lyrics,Negative Broad
+CB | Brand,karaoke,Negative Broad
+CB | Brand,imslp,Negative Broad
+CB | Brand,sheet music,Negative Phrase
+CB | Brand,score pdf,Negative Phrase
+CB | Brand,piano reduction,Negative Phrase
+CB | Brand,backing track,Negative Phrase
+CB | Brand,job,Negative Broad
+CB | Brand,jobs,Negative Broad
+CB | Brand,hiring,Negative Broad
+CB | Brand,salary,Negative Broad
+CB | Brand,vacancy,Negative Broad
+CB | Brand,internship,Negative Broad
+CB | Brand,employment,Negative Broad
+CB | Brand,audition,Negative Broad
+CB | Brand,auditions,Negative Broad
+CB | Brand,resume,Negative Broad
+CB | Brand,cv,Negative Broad
+CB | Brand,lessons,Negative Broad
+CB | Brand,teacher,Negative Broad
+CB | Brand,tutor,Negative Broad
+CB | Brand,course,Negative Broad
+CB | Brand,courses,Negative Broad
+CB | Brand,masterclass,Negative Broad
+CB | Brand,degree,Negative Broad
+CB | Brand,school,Negative Broad
+CB | Brand,conservatory,Negative Broad
+CB | Brand,university,Negative Broad
+CB | Brand,syllabus,Negative Broad
+CB | Brand,tutorial,Negative Broad
+CB | Brand,exam,Negative Broad
+CB | Brand,grade,Negative Broad
+CB | Brand,how to play,Negative Phrase
+CB | Brand,wikipedia,Negative Broad
+CB | Brand,meaning,Negative Broad
+CB | Brand,analysis,Negative Broad
+CB | Brand,definition,Negative Broad
+CB | Brand,biography,Negative Broad
+CB | Brand,who wrote,Negative Phrase
+CB | Brand,who composed,Negative Phrase
+CB | Brand,history of,Negative Phrase
+CB | Brand,wedding,Negative Broad
+CB | Brand,weddings,Negative Broad
+CB | Brand,funeral,Negative Broad
+CB | Brand,dj,Negative Broad
+CB | Brand,cover band,Negative Phrase
+CB | Brand,background music,Negative Phrase
+CB | Brand,buy violin,Negative Phrase
+CB | Brand,violin for sale,Negative Phrase
+CB | Brand,instrument rental,Negative Phrase
+CB | Brand,rent a piano,Negative Phrase
+CB | Brand,cheap,Negative Broad
+CB | Brand,coupon,Negative Broad
+CB | Brand,refund,Negative Broad
+CB | Brand,discount code,Negative Phrase
+CB | Brand,promo code,Negative Phrase
+CB | Concerts | New York,rehearsal,Negative Broad
+CB | Concerts | New York,rehearsal space,Negative Phrase
+CB | Concerts | New York,studio,Negative Broad
+CB | Concerts | New York,studios,Negative Broad
+CB | Concerts | New York,recording studio,Negative Phrase
+CB | Concerts | New York,practice room,Negative Phrase
+CB | Concerts | New York,book a room,Negative Phrase
+CB | Concerts | New York,rent,Negative Broad
+CB | Concerts | New York,rental,Negative Broad
+CB | Concerts | New York,booking,Negative Broad
+CB | Concerts | New York,hourly,Negative Broad
+CB | Concerts | New York,rates,Negative Broad
+CB | Concerts | New York,parking,Negative Broad
+CB | Concerts | New York,carnegie hall,Negative Phrase
+CB | Concerts | New York,lincoln center,Negative Phrase
+CB | Concerts | New York,metropolitan opera,Negative Phrase
+CB | Concerts | New York,new york philharmonic,Negative Phrase
+CB | Concerts | New York,david geffen,Negative Phrase
+CB | Concerts | New York,92nd street y,Negative Phrase
+CB | Concerts | New York,kaufman music center,Negative Phrase
+CB | Concerts | New York,le poisson rouge,Negative Phrase
+CB | Concerts | New York,merkin,Negative Broad
+CB | Concerts | New York,juilliard,Negative Broad
+CB | Concerts | New York,mannes,Negative Broad
+CB | Concerts | New York,bargemusic,Negative Broad
+CB | Concerts | New York,opera,Negative Broad
+CB | Concerts | New York,ballet,Negative Broad
+CB | Concerts | New York,jazz,Negative Broad
+CB | Concerts | New York,rock,Negative Broad
+CB | Concerts | New York,pop,Negative Broad
+CB | Concerts | New York,musical,Negative Broad
+CB | Concerts | New York,broadway,Negative Broad
+CB | Concerts | New York,choir,Negative Broad
+CB | Concerts | New York,chorus,Negative Broad
+CB | Concerts | New York,gospel,Negative Broad
+CB | Concerts | New York,country,Negative Broad
+CB | Concerts | New York,hip hop,Negative Phrase
+CB | Calls for Scores | International,football,Negative Broad
+CB | Calls for Scores | International,nfl,Negative Broad
+CB | Calls for Scores | International,nba,Negative Broad
+CB | Calls for Scores | International,soccer,Negative Broad
+CB | Calls for Scores | International,cricket,Negative Broad
+CB | Calls for Scores | International,baseball,Negative Broad
+CB | Calls for Scores | International,hockey,Negative Broad
+CB | Calls for Scores | International,fico,Negative Broad
+CB | Calls for Scores | International,gpa,Negative Broad
+CB | Calls for Scores | International,live score,Negative Phrase
+CB | Calls for Scores | International,final score,Negative Phrase
+CB | Calls for Scores | International,credit score,Negative Phrase
+CB | Calls for Scores | International,sat scores,Negative Phrase
+CB | Calls for Scores | International,act scores,Negative Phrase
+CB | Calls for Scores | International,test score,Negative Phrase
+CB | Calls for Scores | International,exam score,Negative Phrase
+CB | Calls for Scores | International,scholarship,Negative Broad
+CB | Calls for Scores | International,funding,Negative Broad
+CB | Calls for Scores | International,no fee,Negative Phrase
+CB | Calls for Scores | International,no entry fee,Negative Phrase
+CB | Calls for Scores | International,without fee,Negative Phrase
+CB | Calls for Scores | International,fee waiver,Negative Phrase
+CB | Calls for Scores | International,cash prize,Negative Phrase
+CB | Calls for Scores | International,prize money,Negative Phrase
+CB | Calls for Scores | International,grants for composers,Negative Phrase
+CB | Calls for Scores | International,commission fee,Negative Phrase
+CB | Calls for Scores | International,film scoring,Negative Phrase
+CB | Calls for Scores | International,video game music,Negative Phrase
+CB | Calls for Scores | International,library music,Negative Phrase
+CB | Calls for Scores | International,production music,Negative Phrase
+CB | Calls for Scores | International,sync licensing,Negative Phrase
+CB | Calls for Scores | International,beat making,Negative Phrase
+CB | Calls for Scores | International,jingle,Negative Broad
+CB | Calls for Scores | American,football,Negative Broad
+CB | Calls for Scores | American,nfl,Negative Broad
+CB | Calls for Scores | American,nba,Negative Broad
+CB | Calls for Scores | American,soccer,Negative Broad
+CB | Calls for Scores | American,cricket,Negative Broad
+CB | Calls for Scores | American,baseball,Negative Broad
+CB | Calls for Scores | American,hockey,Negative Broad
+CB | Calls for Scores | American,fico,Negative Broad
+CB | Calls for Scores | American,gpa,Negative Broad
+CB | Calls for Scores | American,live score,Negative Phrase
+CB | Calls for Scores | American,final score,Negative Phrase
+CB | Calls for Scores | American,credit score,Negative Phrase
+CB | Calls for Scores | American,sat scores,Negative Phrase
+CB | Calls for Scores | American,act scores,Negative Phrase
+CB | Calls for Scores | American,test score,Negative Phrase
+CB | Calls for Scores | American,exam score,Negative Phrase
+CB | Calls for Scores | American,scholarship,Negative Broad
+CB | Calls for Scores | American,funding,Negative Broad
+CB | Calls for Scores | American,no fee,Negative Phrase
+CB | Calls for Scores | American,no entry fee,Negative Phrase
+CB | Calls for Scores | American,without fee,Negative Phrase
+CB | Calls for Scores | American,fee waiver,Negative Phrase
+CB | Calls for Scores | American,cash prize,Negative Phrase
+CB | Calls for Scores | American,prize money,Negative Phrase
+CB | Calls for Scores | American,grants for composers,Negative Phrase
+CB | Calls for Scores | American,commission fee,Negative Phrase
+CB | Calls for Scores | American,film scoring,Negative Phrase
+CB | Calls for Scores | American,video game music,Negative Phrase
+CB | Calls for Scores | American,library music,Negative Phrase
+CB | Calls for Scores | American,production music,Negative Phrase
+CB | Calls for Scores | American,sync licensing,Negative Phrase
+CB | Calls for Scores | American,beat making,Negative Phrase
+CB | Calls for Scores | American,jingle,Negative Broad
+CB | Brand,login,Negative Broad
+CB | Brand,log in,Negative Phrase
+CB | Brand,sign in,Negative Phrase
+CB | Brand,app,Negative Broad
+CB | Brand,careers,Negative Broad
+CB | Brand,complaints,Negative Broad
+CB | Brand,scam,Negative Broad
+CB | Brand,purim,Negative Broad
+CB | Brand,torah,Negative Broad
+CB | Brand,jewish calendar,Negative Phrase
+CB | Brand,rosh chodesh,Negative Phrase
+CB | Brand,adar sheni,Negative Phrase
+CB | Brand,hebrew month,Negative Phrase
