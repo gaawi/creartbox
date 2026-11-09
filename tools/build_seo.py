@@ -41,6 +41,19 @@ from seo_block import BLOCK, CLOSE_MARK, ICON, OPEN_MARK   # noqa: E402
 
 SITE = "https://creartbox.nyc"
 
+# Google Analytics 4. It lives in the managed block so that it lands on
+# every page at once and cannot drift: a page that build_seo.py owns is a
+# page that is measured.
+#
+# The config call is guarded by hostname. The loader is harmless
+# anywhere, but gtag.js sends nothing until a measurement ID is
+# configured, so a page opened from 127.0.0.1 or from a file:// path
+# while the site is being built does not turn into a visit. Only the two
+# real hostnames count. Ad Grants requires a conversion every month and
+# the number has to mean something.
+ANALYTICS = "G-VS5SK9S98C"
+ANALYTICS_HOSTS = ("creartbox.nyc", "www.creartbox.nyc")
+
 ORG_ID = SITE + "/#organization"
 WEB_ID = SITE + "/#website"
 DEFAULT_IMAGE = "assets/img/ensemble.jpg"
@@ -747,8 +760,32 @@ def block_for(path, src):
                  + json.dumps(graph, ensure_ascii=False, separators=(",", ":"))
                  .replace("</", "<\\/")
                  + "</script>")
+    lines += analytics_lines()
     lines.append(CLOSE_MARK)
     return "\n".join(lines) + "\n"
+
+
+def analytics_lines():
+    """The Google Analytics 4 tag, or nothing if no ID is configured.
+
+    `gtag` is declared as a plain function so that it becomes a global,
+    which is what `initConversions()` in assets/site.js looks for when it
+    forwards a `data-cb-track` click.
+    """
+    if not ANALYTICS:
+        return []
+    hosts = ",".join('"%s"' % h for h in ANALYTICS_HOSTS)
+    return [
+        '<script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>'
+        % ANALYTICS,
+        "<script>",
+        "window.dataLayer=window.dataLayer||[];",
+        "function gtag(){dataLayer.push(arguments);}",
+        'gtag("js",new Date());',
+        "if([%s].indexOf(location.hostname)>-1){gtag(\"config\",\"%s\");}"
+        % (hosts, ANALYTICS),
+        "</script>",
+    ]
 
 
 STRAY = re.compile(
