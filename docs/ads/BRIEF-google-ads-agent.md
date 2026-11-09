@@ -191,27 +191,43 @@ enable anything.**
 
 ---
 
-## 5. Task zero: Google Analytics, and the measurement ID
+## 5. Analytics: done, and what is left in GA4
 
-**This blocks everything.** The site currently loads no analytics at all.
-No conversion tracking means no compliant grant account, and Maximize
-conversions bidding with zero conversion history will barely serve.
+**The tag is installed and working.** `G-VS5SK9S98C` is live on all 140
+indexable pages, written into the managed head block by
+`tools/build_seo.py`, so no page can end up without it. Verified against
+the live site with a real browser on 9 November 2026:
 
-You may have access to Google Analytics on the same login. If you do:
+- loading `/concerts/tectonic-lullaby-2026.html` sends `page_view` to
+  `G-VS5SK9S98C`;
+- clicking a ticket button sends `en=tickets` with `ep.where=masthead`
+  and `ep.event=tectonic-lullaby-2026`.
 
-1. Find the GA4 property for creartbox.nyc, or create one if none exists.
-2. Get the **Measurement ID** — the `G-XXXXXXXXXX` string.
-3. **Send that ID back to the owner.** The website side is already wired
-   for it: ticket and apply buttons carry `data-cb-track` attributes, and
-   `initConversions()` in `assets/site.js` already forwards every click to
-   `gtag`. The moment the ID arrives, the tag goes onto all 141 pages
-   through `tools/build_seo.py`, which is a single commit. Until then the
-   events have nowhere to go.
-4. Link the GA4 property to the Google Ads account (Tools → Data manager →
-   Google Analytics).
+The `config` call is guarded by hostname, so only `creartbox.nyc` and
+`www.creartbox.nyc` report. Pages opened from `127.0.0.1` while the site
+is being built load the library and send nothing. Do not remove that
+guard.
 
-Getting that ID back is the single most useful thing you can do today.
-Do it before you build campaigns.
+Four hooks exist in the site, via `data-cb-track` attributes that
+`initConversions()` in `assets/site.js` forwards to `gtag`:
+`tickets` (4 buttons), `apply` (5), `donate` (1), `calendar` (1). Every
+one carries `page`, `href`, and where on the page it was clicked.
+
+**What is left, and it is yours to do:**
+
+1. In GA4, **mark `tickets` and `apply` as key events**. They will appear
+   in Admin → Events once data has flowed; create them ahead of time if
+   you do not want to wait.
+2. **Register `where` and `event` as event-scoped custom dimensions**,
+   or the parameters arrive but never show up in a report. Without
+   `where` you cannot tell the masthead button from the hero button from
+   the one in the body, which is the only thing that will tell you which
+   placement actually sells a ticket.
+3. **Link the GA4 property to Google Ads** (Admin → Product links, or
+   Tools → Data manager on the Ads side) and import the key events as
+   conversions.
+
+Then section 6 for how to configure them.
 
 ---
 
@@ -402,9 +418,9 @@ than anything in this brief, is what keeps the account alive.
    account is linked. Note the account creation date: it decides whether
    the 22 April 2019 Smart-bidding rule applies, and when the 90-day CTR
    grace period ends.
-2. Analytics first (section 5). Get the measurement ID back to the owner.
-   Wait for the tag to be live on the site. Verify a real click fires
-   `tickets` in GA4 realtime before you believe any of it.
+2. Finish the GA4 side (section 5): key events, the two custom
+   dimensions, and the link to Ads. Watch a real click land in GA4
+   realtime before you believe any of it.
 3. Import the conversions into Google Ads and set the campaign-level goals
    (section 6).
 4. Import the CSVs, paused. Build the negative lists (section 10), write
@@ -456,8 +472,9 @@ than anything in this brief, is what keeps the account alive.
 
 Write the owner a short list, not an essay. They read on a phone.
 
-1. The GA4 measurement ID, or why there isn't one. **This is the item that
-   unblocks the website side.**
+1. Confirmation that the key events, the two custom dimensions and the
+   GA4-to-Ads link are in place, since nothing can be optimised before
+   they are.
 2. Account creation date, and therefore when the 90-day CTR grace period
    ends.
 3. Whether the compliance guide, read from inside the account, confirms or

@@ -25,33 +25,29 @@ could quote from Google and which I could not.
 
 ---
 
-## 1. The one thing that blocks everything else
+## 1. The one thing that blocked everything else
 
 **Ad Grants requires working conversion tracking and at least one
-conversion recorded per month.** No tracking, no grant. The site
-currently loads no analytics at all, so this is step one and it is your
-decision, not mine.
+conversion recorded per month.** No tracking, no grant.
 
-The wiring is already there. Ticket and apply buttons carry
-`data-cb-track`, and `initConversions()` in `assets/site.js` already
-hands every click to `gtag`, Plausible or a `dataLayer`. Adding Google
-Analytics 4 means adding the tag and nothing else:
+**Done, on 9 November 2026.** `G-VS5SK9S98C` is on all 140 indexable
+pages, written into the managed head block by `tools/build_seo.py`, so
+it cannot drift onto some pages and not others. The `config` call is
+guarded by hostname: only creartbox.nyc and www.creartbox.nyc report, so
+a page opened from 127.0.0.1 while the site is being built is not a
+visit.
 
-```html
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
-</script>
-```
+The wiring was already there. Ticket and apply buttons carry
+`data-cb-track`, and `initConversions()` in `assets/site.js` hands every
+click to `gtag`, Plausible or a `dataLayer`. Checked against the live
+site with a real browser: loading the Winterlight page sends
+`page_view`, and a click on a ticket button sends `en=tickets` with
+`ep.where=masthead` and `ep.event=tectonic-lullaby-2026`.
 
-Send me the measurement ID and I will put it on all 141 pages through
-`tools/build_seo.py`, so it cannot drift.
-
-Then, in GA4, mark these as key events and import them into Google Ads
-as conversions:
+What is left is inside GA4 and Google Ads. Mark these as key events and
+import them into Google Ads as conversions, and register `where` and
+`event` as event-scoped custom dimensions or the parameters arrive and
+never reach a report:
 
 | Event | Fires when | Counts as |
 |---|---|---|
