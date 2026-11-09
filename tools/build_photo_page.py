@@ -47,16 +47,29 @@ PAGES = [
         "venue": "The DiMenna Center · 450 W 37th St",
         "place": "New York, NY",
         "booklet": "programs/currents-2026.html",
-        # the four across the top, chosen rather than taken in order: the
-        # ensemble, the projections, a detail, the bow
-        "top": ["_DSC0634.jpg", "_DSC0603.jpg", "_DSC0550.jpg", "_MG_0661.jpg"],
-        # and the one that stands for the night in archive.html
+        # The four across the top, chosen for rhythm rather than taken in
+        # order: the room, then close, then the room again, then the
+        # people. Wide, close, wide, group -- two wide shots side by side
+        # read as one photograph repeated.
+        #   0634  the quintet on stage, the establishing shot
+        #   MG_0531  the cellist mid-bow, close
+        #   0656  the projections across the back wall, the hall in
+        #         silhouette: the thing that makes it a CreArtBox evening
+        #   MG_0661  the four of them at the bow
+        "top": ["_DSC0634.jpg", "_MG_0531.jpg", "_DSC0656.jpg", "_MG_0661.jpg"],
+        # and the one that stands for the night in archive.html: the
+        # clearest of them at thumbnail size
         "cover": "_DSC0634.jpg",
-        # six more in an even grid, above the button to the whole set:
-        # the three players close, one in black and white, the
-        # projections again and the room
-        "second": ["_DSC0434.jpg", "_DSC0537.jpg", "_MG_0531.jpg",
-                   "_DSC0502.jpg", "_DSC0635.jpg", "_DSC0670.jpg"],
+        # Six more in an even grid, above the button to the whole set.
+        # This is where the black and white and the details belong:
+        #   MG_0437  the pianist, black and white
+        #   0483     her hands on the keys
+        #   0591     the violinist in warm light against the dark
+        #   0635     the spiral projection over the audience
+        #   0653     and the window shapes
+        #   0612     the three of them taking the applause
+        "second": ["_MG_0437.jpg", "_DSC0483.jpg", "_DSC0591.jpg",
+                   "_DSC0635.jpg", "_DSC0653.jpg", "_DSC0612.jpg"],
     },
 ]
 

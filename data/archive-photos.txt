@@ -9,49 +9,155 @@
 #     hd  <filename>     the original, in hd/ (or hr/)
 
 currents-2026-10 | Currents, The DiMenna Center, 30 October 2026
+  web _DSC0388.jpg
+  web _DSC0389.jpg
+  web _DSC0408.jpg
+  web _DSC0430.jpg
+  web _DSC0432.jpg
+  web _DSC0433.jpg
   web _DSC0434.jpg
+  web _DSC0439.jpg
+  web _DSC0455.jpg
+  web _DSC0456.jpg
+  web _DSC0458.jpg
+  web _DSC0465.jpg
+  web _DSC0466.jpg
+  web _DSC0467.jpg
+  web _DSC0468.jpg
   web _DSC0469.jpg
   web _DSC0483.jpg
+  web _DSC0484.jpg
   web _DSC0502.jpg
+  web _DSC0503.jpg
+  web _DSC0504.jpg
   web _DSC0517.jpg
+  web _DSC0527.jpg
+  web _DSC0534.jpg
+  web _DSC0535.jpg
   web _DSC0537.jpg
+  web _DSC0542.jpg
+  web _DSC0549.jpg
   web _DSC0550.jpg
+  web _DSC0553.jpg
+  web _DSC0555.jpg
+  web _DSC0567.jpg
+  web _DSC0569.jpg
+  web _DSC0571.jpg
   web _DSC0572.jpg
+  web _DSC0574.jpg
+  web _DSC0576.jpg
+  web _DSC0580.jpg
+  web _DSC0581.jpg
+  web _DSC0582.jpg
   web _DSC0586.jpg
+  web _DSC0587.jpg
+  web _DSC0589.jpg
   web _DSC0590.jpg
+  web _DSC0591.jpg
+  web _DSC0591_1.jpg
+  web _DSC0593.jpg
+  web _DSC0594.jpg
+  web _DSC0595.jpg
+  web _DSC0596.jpg
+  web _DSC0596_1.jpg
+  web _DSC0597.jpg
+  web _DSC0599.jpg
+  web _DSC0602.jpg
   web _DSC0603.jpg
+  web _DSC0605.jpg
+  web _DSC0606.jpg
   web _DSC0608.jpg
+  web _DSC0608_1.jpg
+  web _DSC0609.jpg
+  web _DSC0611.jpg
   web _DSC0612.jpg
+  web _DSC0627_1.jpg
+  web _DSC0629_1.jpg
+  web _DSC0632.jpg
+  web _DSC0633.jpg
   web _DSC0634.jpg
   web _DSC0635.jpg
+  web _DSC0637.jpg
+  web _DSC0653.jpg
   web _DSC0656.jpg
+  web _DSC0658.jpg
+  web _DSC0666.jpg
   web _DSC0670.jpg
+  web _MG_0426.jpg
   web _MG_0429.jpg
   web _MG_0437.jpg
+  web _MG_0442.jpg
+  web _MG_0446.jpg
   web _MG_0454.jpg
+  web _MG_0461.jpg
+  web _MG_0462.jpg
+  web _MG_0470.jpg
+  web _MG_0473.jpg
+  web _MG_0474.jpg
+  web _MG_0489.jpg
   web _MG_0498.jpg
+  web _MG_0504.jpg
+  web _MG_0510.jpg
   web _MG_0531.jpg
+  web _MG_0622.jpg
+  web _MG_0637.jpg
+  web _MG_0641.jpg
+  web _MG_0660.jpg
   web _MG_0661.jpg
-  hd  _DSC0434.jpg
-  hd  _DSC0469.jpg
-  hd  _DSC0483.jpg
-  hd  _DSC0502.jpg
-  hd  _DSC0517.jpg
-  hd  _DSC0537.jpg
-  hd  _DSC0550.jpg
-  hd  _DSC0572.jpg
-  hd  _DSC0586.jpg
-  hd  _DSC0590.jpg
-  hd  _DSC0603.jpg
-  hd  _DSC0608.jpg
-  hd  _DSC0612.jpg
-  hd  _DSC0634.jpg
-  hd  _DSC0635.jpg
-  hd  _DSC0656.jpg
-  hd  _DSC0670.jpg
-  hd  _MG_0429.jpg
-  hd  _MG_0437.jpg
-  hd  _MG_0454.jpg
-  hd  _MG_0498.jpg
-  hd  _MG_0531.jpg
-  hd  _MG_0661.jpg
+  hd _DSC0388.jpg
+  hd _DSC0389.jpg
+  hd _DSC0434.jpg
+  hd _DSC0439.jpg
+  hd _DSC0458.jpg
+  hd _DSC0465.jpg
+  hd _DSC0466.jpg
+  hd _DSC0467.jpg
+  hd _DSC0469.jpg
+  hd _DSC0483.jpg
+  hd _DSC0502.jpg
+  hd _DSC0503.jpg
+  hd _DSC0504.jpg
+  hd _DSC0517.jpg
+  hd _DSC0537.jpg
+  hd _DSC0549.jpg
+  hd _DSC0550.jpg
+  hd _DSC0567.jpg
+  hd _DSC0571.jpg
+  hd _DSC0572.jpg
+  hd _DSC0574.jpg
+  hd _DSC0576.jpg
+  hd _DSC0586.jpg
+  hd _DSC0589.jpg
+  hd _DSC0590.jpg
+  hd _DSC0599.jpg
+  hd _DSC0602.jpg
+  hd _DSC0603.jpg
+  hd _DSC0605.jpg
+  hd _DSC0606.jpg
+  hd _DSC0608.jpg
+  hd _DSC0611.jpg
+  hd _DSC0612.jpg
+  hd _DSC0627_1.jpg
+  hd _DSC0629_1.jpg
+  hd _DSC0634.jpg
+  hd _DSC0635.jpg
+  hd _DSC0656.jpg
+  hd _DSC0658.jpg
+  hd _DSC0666.jpg
+  hd _DSC0670.jpg
+  hd _MG_0429.jpg
+  hd _MG_0437.jpg
+  hd _MG_0454.jpg
+  hd _MG_0461.jpg
+  hd _MG_0462.jpg
+  hd _MG_0470.jpg
+  hd _MG_0473.jpg
+  hd _MG_0474.jpg
+  hd _MG_0489.jpg
+  hd _MG_0498.jpg
+  hd _MG_0504.jpg
+  hd _MG_0510.jpg
+  hd _MG_0531.jpg
+  hd _MG_0622.jpg
+  hd _MG_0660.jpg
+  hd _MG_0661.jpg
