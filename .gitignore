@@ -1,0 +1,6 @@
+# Python bytecode from the generators in tools/
+__pycache__/
+*.py[cod]
+
+# macOS
+.DS_Store
