@@ -20,16 +20,23 @@ dimensions they arrive, are stored, and never appear in a report.
 
 | Parameter | Register it as | What it holds |
 |---|---|---|
-| `where` | Button placement | masthead, hero, body: which button was clicked |
+| `where` | Button placement | which button was clicked |
 | `production` | Concert | which concert, e.g. `winterlight-2026` |
 | `call` | Call for scores | which of the two calls |
 
 All three are **event-scoped**.
 
-`where` is the one that earns its keep. The site has four ticket buttons
-on a concert page; without `where` they are one undifferentiated number,
-and the question "does the masthead button sell anything, or do people
-only buy from the body of the page" cannot be asked.
+`where` takes seven values: `masthead` and `header` at the top of a page,
+`sidebar` beside the text, `hero` and `tonight` on the home page, `guide`
+on the visitor page, `hub` on the opportunities page. An earlier draft of
+this table said "masthead, hero, body", which was a guess and wrong. The
+two calls pages also said `side` where the concert page said `sidebar`;
+they all say `sidebar` now, so a report has one row for one thing.
+
+`where` is the one that earns its keep. A concert page carries three
+ticket buttons; without it they are one undifferentiated number, and the
+question "does the button in the masthead sell anything, or do people
+only buy once they have read the programme" cannot be asked.
 
 **A note on `production`.** It was called `event` until 10 November 2026.
 In GA4, where every row and report is already an event, that was the one
@@ -58,6 +65,30 @@ twice, and "Every" would teach the bidding to chase hesitation.
 Smart Bidding and the Conversions column. Leave `calendar` primary and
 the Brand campaign, which uses the account default goal, will optimise
 towards people opening a calendar rather than people buying a seat.
+
+**Secondary in Ads, still a key event in GA4.** An earlier draft of this
+section said to unmark `calendar` as a key event. That was wrong, and the
+account caught it: unmarking a key event stops it importing into Google
+Ads at all, which is not the same as importing it and not bidding on it.
+Mark it in GA4 so the data keeps flowing, set it Secondary in Ads so it
+only watches.
+
+**The account came with primary actions nobody chose.** Found on
+10 November 2026, all Primary:
+
+| Action | What to do |
+|---|---|
+| `Website traffic` (Begin checkout, **Misconfigured**) | Secondary |
+| `Lead form - Submit` (Google hosted) | Secondary |
+| YouTube subscriptions, YouTube follow-on views | Secondary |
+
+The first is the dangerous one. It is Primary, it sits in the account
+default goals, and it is **misconfigured**, so it is a broken measurement
+feeding live bidding. It is also filed under "Begin checkout", the same
+goal category as `tickets`: a campaign optimising for that *category*
+rather than for the action would be chasing both, one of which does not
+work. Demote it; do not delete it, because deleting a conversion action
+takes its history with it.
 
 ---
 
@@ -141,29 +172,33 @@ keeps the account alive.
 
 ## 5. The rejected sitelinks
 
-Three of the four sitelinks were rejected. They are generated, so the fix
-belongs in `docs/ads/build_ads.py` and not only in the account, or the
-next import puts the rejected version straight back.
+**They are not ours.** Google's reason on all three is "Destination not
+working", and the destinations say why:
 
-The four are: Season calendar, Coming to a concert, Open calls, About the
-ensemble. All four point at pages that return 200, checked on
-10 November, so a dead destination is not the reason.
+| Sitelink | Destination | Live |
+|---|---|---|
+| About Us | `/pages/about` | 404 |
+| Archive of performances | `/pages/events-archive` | 404 |
+| Opera/Film | `/pages/architecture-of-a-common-man` | 404 |
 
-**Send back the exact rejection reason for each one, as Google words it.**
-Not a summary. The wording decides the fix, and the likely causes need
-opposite remedies:
+The site used to live under `/pages/`. It does not any more, and nobody
+told the ads. These three are inherited, one per campaign, and they have
+been pointing at nothing for however long the migration is old.
 
-- *Destination mismatch*, if a sitelink points at the same page as the
-  ad's own final URL. "Coming to a concert" goes to
-  `classical-concerts-nyc.html`, which is also the final URL of three
-  concert ad groups. If that is the reason, the sitelink needs a
-  different destination, not different text.
-- *Duplicate sitelinks*, because the same four are attached to all four
-  campaigns. If that is it, they move to account level instead.
-- Anything about the text itself, which is a copy fix.
+**Delete them.** The four generated ones replace them: Season calendar,
+Coming to a concert, Open calls, About the ensemble, all pointing at
+pages that return 200, checked on 10 November.
 
-Until they are fixed, the account is below the **two sitelink minimum**
-the policy requires, which is itself a compliance failure.
+Those three addresses are also now **redirects on the site**, under
+`pages/`, because a URL live enough to sit in a Google ad is live enough
+to be in a newsletter and an old search result. `/pages/about` goes to
+`about.html`, `/pages/events-archive` to `archive.html`, and the third to
+its entry in the archive. If any other `/pages/…` address turns up, say
+so and it gets the same treatment.
+
+Until the account has two working sitelinks it is below the **two
+sitelink minimum** the policy requires, which is a compliance failure on
+its own.
 
 ---
 

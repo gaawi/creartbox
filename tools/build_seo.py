@@ -60,7 +60,10 @@ DEFAULT_IMAGE = "assets/img/ensemble.jpg"
 LOGO = "assets/logos/logo-creartbox.png"
 
 # print-only and mail-only pages: not indexed, not in the sitemap
-SKIP_DIRS = ("newsletter/", "posters/")
+# print-only, mail-only, and the redirects kept for the site's old
+# /pages/ addresses. A redirect does not want a canonical of its own and
+# must not be in the sitemap.
+SKIP_DIRS = ("newsletter/", "posters/", "pages/")
 # 404, a page that only redirects, and one kept for an old inbound link.
 # None of them should carry a managed block or appear in the sitemap: a
 # redirect in the sitemap is a page telling a crawler to index the wrong
