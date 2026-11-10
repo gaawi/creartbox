@@ -61,7 +61,12 @@ LOGO = "assets/logos/logo-creartbox.png"
 
 # print-only and mail-only pages: not indexed, not in the sitemap
 SKIP_DIRS = ("newsletter/", "posters/")
-SKIP_FILES = {"404.html", "composer-opportunities.html"}
+# 404, a page that only redirects, and one kept for an old inbound link.
+# None of them should carry a managed block or appear in the sitemap: a
+# redirect in the sitemap is a page telling a crawler to index the wrong
+# address.
+SKIP_FILES = {"404.html", "composer-opportunities.html",
+              "concerts/tectonic-lullaby-2026.html"}
 
 SAME_AS = [
     "https://www.instagram.com/creartboxnyc/",
@@ -129,7 +134,7 @@ DEFAULT_TZ = "America/New_York"
 # Ticket prices are read from the seller, never guessed. Each entry was
 # taken from the live listing on the date in `checked`.
 TICKETS = {
-    "concerts/tectonic-lullaby-2026.html": {
+    "concerts/winterlight-2026.html": {
         "url": ("https://www.eventbrite.com/e/winterlight-ravel-ma-mere-loye-stravinsky"
                 "-petroushka-tickets-2004163929263"),
         "lowPrice": "15",
@@ -145,7 +150,7 @@ TICKETS = {
 # Graph wants 1.91:1; a 16:9 hero gets letterboxed by Facebook and
 # WhatsApp, and a portrait one is cropped to a strip.
 SOCIAL = {
-    "concerts/tectonic-lullaby-2026.html":
+    "concerts/winterlight-2026.html":
         "assets/img/promo/winterlight-2026-landscape.jpg",
 }
 

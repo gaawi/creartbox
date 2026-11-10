@@ -89,7 +89,7 @@ inventory. Two things need to happen, and they both have a deadline:
 
 | Goal | Deadline | Landing page |
 |---|---|---|
-| Sell seats for **Winterlight**, 11 December 2026 | 32 days from writing | `/concerts/tectonic-lullaby-2026.html` |
+| Sell seats for **Winterlight**, 11 December 2026 | 32 days from writing | `/concerts/winterlight-2026.html` |
 | Collect **paid applications** to two calls for scores, $20 each | 15 December 2026 | `/calls/scores-international.html`, `/calls/scores-american.html` |
 
 The second is where a grant account actually earns its keep. "Call for
@@ -239,10 +239,10 @@ indexable pages, written into the managed head block by
 `tools/build_seo.py`, so no page can end up without it. Verified against
 the live site with a real browser on 9 November 2026:
 
-- loading `/concerts/tectonic-lullaby-2026.html` sends `page_view` to
+- loading `/concerts/winterlight-2026.html` sends `page_view` to
   `G-VS5SK9S98C`;
 - clicking a ticket button sends `en=tickets` with `ep.where=masthead`
-  and `ep.event=tectonic-lullaby-2026`.
+  and `ep.event=winterlight-2026`.
 
 The `config` call is guarded by hostname, so only `creartbox.nyc` and
 `www.creartbox.nyc` report. Pages opened from `127.0.0.1` while the site

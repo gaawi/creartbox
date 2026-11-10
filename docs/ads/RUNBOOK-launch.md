@@ -21,7 +21,7 @@ dimensions they arrive, are stored, and never appear in a report.
 | Parameter | Register it as | What it holds |
 |---|---|---|
 | `where` | Button placement | masthead, hero, body: which button was clicked |
-| `production` | Concert | which concert, e.g. `tectonic-lullaby-2026` |
+| `production` | Concert | which concert, e.g. `winterlight-2026` |
 | `call` | Call for scores | which of the two calls |
 
 All three are **event-scoped**.

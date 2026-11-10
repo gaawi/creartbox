@@ -104,7 +104,7 @@ AD_GROUPS = [
         ('"ma mere loye concert"', "Phrase"),
         ('"stravinsky concert nyc december"', "Phrase"),
         ('"piano quintet concert new york"', "Phrase"),
-     ], SITE + "/concerts/tectonic-lullaby-2026.html"),
+     ], SITE + "/concerts/winterlight-2026.html"),
 
     # The deadline is December 2026 and the season advertised is 2027/28,
     # so both years get typed and both need to be here.

@@ -42,7 +42,7 @@ The wiring was already there. Ticket and apply buttons carry
 click to `gtag`, Plausible or a `dataLayer`. Checked against the live
 site with a real browser: loading the Winterlight page sends
 `page_view`, and a click on a ticket button sends `en=tickets` with
-`ep.where=masthead` and `ep.event=tectonic-lullaby-2026`.
+`ep.where=masthead` and `ep.event=winterlight-2026`.
 
 What is left is inside GA4 and Google Ads. Mark these as key events and
 import them into Google Ads as conversions, and register `where` and
