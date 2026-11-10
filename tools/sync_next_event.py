@@ -283,7 +283,7 @@ def main():
     # came to buy should not land on a calendar and have to choose again.
     if ev["tickets"]:
         cta = ('<a href="{}" class="btn btn-stamp btn-l" target="_blank" rel="noopener" '
-               'data-cb-track="tickets" data-cb-event="{}" data-cb-where="hero">'
+               'data-cb-track="tickets" data-cb-production="{}" data-cb-where="hero">'
                .format(ev["tickets"],
                        os.path.splitext(os.path.basename(ev["path"]))[0]))
     else:
