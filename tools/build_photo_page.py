@@ -47,29 +47,32 @@ PAGES = [
         "venue": "The DiMenna Center · 450 W 37th St",
         "place": "New York, NY",
         "booklet": "programs/currents-2026.html",
-        # The four across the top, chosen for rhythm rather than taken in
-        # order: the room, then close, then the room again, then the
-        # people. Wide, close, wide, group -- two wide shots side by side
-        # read as one photograph repeated.
-        #   0634  the quintet on stage, the establishing shot
-        #   MG_0531  the cellist mid-bow, close
-        #   0656  the projections across the back wall, the hall in
-        #         silhouette: the thing that makes it a CreArtBox evening
+        # The first three are the photographer's own choice. They happen
+        # to fall into the rhythm the row wants anyway -- wide, close,
+        # wide -- so the fourth is the one that closes an evening:
+        #   0589     black and white, the hall in silhouette and the
+        #            piano alone under the lights
+        #   0602     the pianist in profile, warm, close
+        #   0635     the spiral projections across the back wall: the
+        #            frame that says what a CreArtBox evening is
         #   MG_0661  the four of them at the bow
-        "top": ["_DSC0634.jpg", "_MG_0531.jpg", "_DSC0656.jpg", "_MG_0661.jpg"],
-        # and the one that stands for the night in archive.html: the
-        # clearest of them at thumbnail size
-        "cover": "_DSC0634.jpg",
+        "top": ["_DSC0589.jpg", "_DSC0602.jpg", "_DSC0635.jpg", "_MG_0661.jpg"],
+        # and the one that stands for the night in archive.html. The
+        # projections, because a thumbnail has to be read at a glance and
+        # those spirals survive being made small, where five figures on a
+        # wide stage do not.
+        "cover": "_DSC0635.jpg",
         # Six more in an even grid, above the button to the whole set.
-        # This is where the black and white and the details belong:
+        # The establishing shot of the quintet lives here now, with the
+        # black and white and the details:
+        #   0634     the quintet on stage
         #   MG_0437  the pianist, black and white
         #   0483     her hands on the keys
-        #   0591     the violinist in warm light against the dark
-        #   0635     the spiral projection over the audience
-        #   0653     and the window shapes
+        #   MG_0531  the cellist mid-bow
+        #   0656     the other projection, horizontal across the wall
         #   0612     the three of them taking the applause
-        "second": ["_MG_0437.jpg", "_DSC0483.jpg", "_DSC0591.jpg",
-                   "_DSC0635.jpg", "_DSC0653.jpg", "_DSC0612.jpg"],
+        "second": ["_DSC0634.jpg", "_MG_0437.jpg", "_DSC0483.jpg",
+                   "_MG_0531.jpg", "_DSC0656.jpg", "_DSC0612.jpg"],
     },
 ]
 
@@ -308,6 +311,31 @@ def page(spec, shots):
            originals=originals, booklet=booklet, more=more)
 
 
+def sync_cover(spec, src):
+    """Point this production's thumbnail in archive.html at `cover`.
+
+    The entry is found by the link it already carries to the gallery
+    page, so nothing depends on the order of the file. Until now `cover`
+    was written down and read by nobody: the thumbnail had been typed
+    into archive.html by hand when the concert was filed, and could sit
+    there pointing at a frame the gallery no longer showed.
+    """
+    url = "%s/%s/web/%s" % (CDN, spec["folder"], spec["cover"])
+    link = 'href="archive/%s.html"' % spec["slug"]
+    at = src.find(link)
+    if at == -1:
+        return src, False
+    start = src.rfind('<div class="eventpast">', 0, at)
+    if start == -1:
+        return src, False
+    block = src[start:at]
+    new = re.sub(r'(<img class="imgpastevents"[^>]*\ssrc=")[^"]*(")',
+                 lambda m: m.group(1) + url + m.group(2), block, count=1)
+    if new == block:
+        return src, False
+    return src[:start] + new + src[at:], True
+
+
 def main():
     check = "--check" in sys.argv
     shots = photos()
@@ -329,6 +357,16 @@ def main():
         stale.append(path)
         if not check:
             open(path, "w", encoding="utf-8").write(seo_block.carry(current, wanted))
+
+    index = open("archive.html", encoding="utf-8").read()
+    out = index
+    for spec in PAGES:
+        if spec.get("cover"):
+            out, _ = sync_cover(spec, out)
+    if out != index:
+        stale.append("archive.html")
+        if not check:
+            open("archive.html", "w", encoding="utf-8").write(out)
 
     if check:
         if stale:
