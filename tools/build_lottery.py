@@ -33,6 +33,11 @@ DEK = ("Write to info@creartbox.nyc with the subject WINTERLIGHT LOTTERY and one
        "sentence on why you would like to come. Entries close 3 December.")
 GO = "Enter &#8594;"
 
+CDN = ("https://creartbox-archive.b-cdn.net/archive-creartbox/"
+       "2026-10-30-currents-photos/web")
+SHOT = "_DSC0670.jpg"
+SHOT_ALT = "CreArtBox playing at The DiMenna Center"
+
 # (path, where the band goes, the anchor it goes after or before)
 #   "after"  puts it after the anchor, "before" puts it before.
 PAGES = [
@@ -75,6 +80,8 @@ def band(prefix, where):
         '  <div class="wrap">\n'
         '    <a class="lotband" href="{href}" data-cb-track="lottery" data-cb-where="{where}">\n'
         '      <span class="lotband-inner">\n'
+        '        <span class="lotband-shot">'
+        '<img src="{cdn}/{shot}" alt="{alt}" loading="lazy"></span>\n'
         '        <span>\n'
         '          <span class="lotband-k">{kicker}</span>\n'
         '          <span class="lotband-t">{title}</span>\n'
@@ -87,7 +94,8 @@ def band(prefix, where):
         '</section>\n'
         '{c}\n'
     ).format(o=OPEN_MARK, c=CLOSE_MARK, href=href, where=where,
-             kicker=KICKER, title=TITLE, dek=DEK, go=GO)
+             kicker=KICKER, title=TITLE, dek=DEK, go=GO,
+             cdn=CDN, shot=SHOT, alt=SHOT_ALT)
 
 
 def wanted(path, position, anchor, where, src):
