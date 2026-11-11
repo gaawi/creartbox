@@ -22,6 +22,13 @@ CB | Concerts | New York,"Winterlight, 11 December","""ravel ma mere loye""",Phr
 CB | Concerts | New York,"Winterlight, 11 December","""stravinsky petrushka new york""",Phrase,Enabled,https://creartbox.nyc/concerts/winterlight-2026.html
 CB | Concerts | New York,"Winterlight, 11 December","""petroushka new york""",Phrase,Enabled,https://creartbox.nyc/concerts/winterlight-2026.html
 CB | Concerts | New York,"Winterlight, 11 December","""ma mere loye concert""",Phrase,Enabled,https://creartbox.nyc/concerts/winterlight-2026.html
+CB | Concerts | New York,Ticket lottery,"""free concert tickets nyc""",Phrase,Enabled,https://creartbox.nyc/lottery.html
+CB | Concerts | New York,Ticket lottery,"""free tickets nyc""",Phrase,Enabled,https://creartbox.nyc/lottery.html
+CB | Concerts | New York,Ticket lottery,"""free concert new york""",Phrase,Enabled,https://creartbox.nyc/lottery.html
+CB | Concerts | New York,Ticket lottery,"""free classical concert nyc""",Phrase,Enabled,https://creartbox.nyc/lottery.html
+CB | Concerts | New York,Ticket lottery,"""win concert tickets nyc""",Phrase,Enabled,https://creartbox.nyc/lottery.html
+CB | Concerts | New York,Ticket lottery,"""ticket lottery nyc""",Phrase,Enabled,https://creartbox.nyc/lottery.html
+CB | Concerts | New York,Ticket lottery,[free concert tickets nyc],Exact,Enabled,https://creartbox.nyc/lottery.html
 CB | Calls for Scores | International,Call for scores,"""call for scores""",Phrase,Enabled,https://creartbox.nyc/calls/scores-international.html
 CB | Calls for Scores | International,Call for scores,[call for scores],Exact,Enabled,https://creartbox.nyc/calls/scores-international.html
 CB | Calls for Scores | International,Call for scores,"""call for scores 2027""",Phrase,Enabled,https://creartbox.nyc/calls/scores-international.html

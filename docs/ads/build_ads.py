@@ -117,6 +117,21 @@ AD_GROUPS = [
         ('"ma mere loye concert"', "Phrase"),
      ], SITE + "/concerts/winterlight-2026.html"),
 
+    # Ten pairs of tickets given away for Winterlight. This is the only
+    # ad group in the account whose landing page costs the reader
+    # nothing, and "free concert tickets nyc" is typed far more than any
+    # composer's name, so it is likely to carry the campaign. It lives
+    # until the draw on 4 December and is paused the morning after.
+    ("CB | Concerts | New York", "Ticket lottery", [
+        ('"free concert tickets nyc"', "Phrase"),
+        ('"free tickets nyc"', "Phrase"),
+        ('"free concert new york"', "Phrase"),
+        ('"free classical concert nyc"', "Phrase"),
+        ('"win concert tickets nyc"', "Phrase"),
+        ('"ticket lottery nyc"', "Phrase"),
+        ('[free concert tickets nyc]', "Exact"),
+     ], SITE + "/lottery.html"),
+
     ("CB | Calls for Scores | International", "Call for scores", [
         ('"call for scores"', "Phrase"),
         ('[call for scores]', "Exact"),
@@ -216,6 +231,23 @@ DATED_DESCRIPTIONS = [
 # nationality"; the American one asks for United States citizenship, or
 # residence in the United States or its territories for a significant
 # period. One ad saying both would be wrong on one of the two pages.
+LOTTERY_HEADLINES = [
+    "Ten Pairs of Tickets, Free", "Free Tickets to Winterlight",
+    "Win Two Tickets in New York", "A Ticket Lottery, Dec 11",
+    "Enter by December 3", "Free Chamber Music Tickets",
+    "Ten Winners, Two Seats Each", "One Email, One Sentence",
+    "No Purchase, No Sign-Up", "The DiMenna Center, NYC",
+    "Stravinsky and Ravel", "Friday 11 December, 7:30pm",
+    "Everyone Hears the Result", "Draw on December 4",
+    "Midtown Manhattan, 7:30 pm",
+]
+LOTTERY_DESCRIPTIONS = [
+    "Ten pairs of tickets to Winterlight, free. Email one sentence on why you would come.",
+    "Entries close 3 December. The draw is 4 December and everyone who entered hears back.",
+    "Nothing to buy and nothing to sign up for. One email, subject WINTERLIGHT LOTTERY.",
+    "Stravinsky and Ravel at The DiMenna Center, Friday 11 December, 7:30 pm.",
+]
+
 CALL_HEADLINES = [
     "Call for Scores 2027/28", "Open to Any Instrumentation",
     "Deadline 15 December 2026", "First Round Read Blind",
@@ -263,6 +295,8 @@ BRAND_DESCRIPTIONS = [
 COPY = {
     ("CB | Concerts | New York", "Winterlight, 11 December"):
         (DATED_HEADLINES, DATED_DESCRIPTIONS, "concerts", "winterlight"),
+    ("CB | Concerts | New York", "Ticket lottery"):
+        (LOTTERY_HEADLINES, LOTTERY_DESCRIPTIONS, "free", "tickets"),
     "CB | Concerts | New York": (CONCERT_HEADLINES, CONCERT_DESCRIPTIONS, "concerts", "new-york"),
     "CB | Calls for Scores | International": (INTL_HEADLINES, INTL_DESCRIPTIONS, "call-for-scores", "2027-28"),
     "CB | Calls for Scores | American": (AMER_HEADLINES, AMER_DESCRIPTIONS, "call-for-scores", "american"),
@@ -276,7 +310,12 @@ COPY = {
 # common to block outright.
 #
 #   NEVER  ... everything. Free files, jobs, lessons, reference lookups,
-#              private hire, bargain hunting.
+#              private hire, bargain hunting. Note that the bare word
+#              "free" is NOT in it. It was, and it would have blocked
+#              every keyword for the ticket lottery, which is free and
+#              is the one thing in this account that can honestly say
+#              so. The free-something phrases below do the same job
+#              without taking the word away.
 #   VENUE  ... the concerts campaign. The DiMenna Center's own main
 #              business is renting rehearsal and recording rooms, so most
 #              of the search volume on its name is musicians looking to
@@ -289,9 +328,12 @@ COPY = {
 #              calendar, and Festival ADAR is not.
 NEGATIVE_LISTS = [
     ("CB | Never", [c["name"] for c in CAMPAIGNS], """
-        free, download, downloads, mp3, pdf, torrent, streaming, youtube,
+        download, downloads, mp3, pdf, torrent, streaming, youtube,
         lyrics, karaoke, imslp, sheet music, score pdf, piano reduction,
         backing track,
+
+        free download, free mp3, free sheet music, free streaming,
+        watch free, listen free, free online, free pdf,
 
         job, jobs, hiring, salary, vacancy, internship, employment,
         audition, auditions, resume, cv,
@@ -380,6 +422,10 @@ EXTRA = {
         "Live at The DiMenna Center", "Concerts at The DiMenna",
         "The DiMenna Center, NYC", "450 West 37th Street",
     ],
+    ("CB | Concerts | New York", "Ticket lottery"): [
+        "Free Concert Tickets, NYC", "A Free Ticket to Winterlight",
+        "Ten Pairs, Given Away", "Free Tickets, December 11",
+    ],
     ("CB | Calls for Scores | International"
      , "Call for scores"): [
         "An Open Call for Scores", "Call for Scores 2027/28",
@@ -442,6 +488,8 @@ SITELINKS = [
      SITE + "/opportunities.html"),
     ("About the ensemble", "A New York ensemble since 2013", "Biographies and press kit",
      SITE + "/about.html"),
+    ("Free tickets", "Ten pairs given away", "Enter by 3 December",
+     SITE + "/lottery.html"),
 ]
 
 
@@ -462,10 +510,12 @@ def write(name, header, rows):
 
 
 def main():
-    for h in (CONCERT_HEADLINES + DATED_HEADLINES + INTL_HEADLINES
+    for h in (CONCERT_HEADLINES + DATED_HEADLINES + LOTTERY_HEADLINES
+              + INTL_HEADLINES
               + AMER_HEADLINES + BRAND_HEADLINES):
         check("headline", h)
-    for d in (CONCERT_DESCRIPTIONS + DATED_DESCRIPTIONS + INTL_DESCRIPTIONS
+    for d in (CONCERT_DESCRIPTIONS + DATED_DESCRIPTIONS + LOTTERY_DESCRIPTIONS
+              + INTL_DESCRIPTIONS
               + AMER_DESCRIPTIONS
               + BRAND_DESCRIPTIONS):
         check("description", d)

@@ -1,5 +1,4 @@
 Campaign,Keyword,Criterion Type
-CB | Concerts | New York,free,Negative Broad
 CB | Concerts | New York,download,Negative Broad
 CB | Concerts | New York,downloads,Negative Broad
 CB | Concerts | New York,mp3,Negative Broad
@@ -14,6 +13,14 @@ CB | Concerts | New York,sheet music,Negative Phrase
 CB | Concerts | New York,score pdf,Negative Phrase
 CB | Concerts | New York,piano reduction,Negative Phrase
 CB | Concerts | New York,backing track,Negative Phrase
+CB | Concerts | New York,free download,Negative Phrase
+CB | Concerts | New York,free mp3,Negative Phrase
+CB | Concerts | New York,free sheet music,Negative Phrase
+CB | Concerts | New York,free streaming,Negative Phrase
+CB | Concerts | New York,watch free,Negative Phrase
+CB | Concerts | New York,listen free,Negative Phrase
+CB | Concerts | New York,free online,Negative Phrase
+CB | Concerts | New York,free pdf,Negative Phrase
 CB | Concerts | New York,job,Negative Broad
 CB | Concerts | New York,jobs,Negative Broad
 CB | Concerts | New York,hiring,Negative Broad
@@ -63,7 +70,6 @@ CB | Concerts | New York,coupon,Negative Broad
 CB | Concerts | New York,refund,Negative Broad
 CB | Concerts | New York,discount code,Negative Phrase
 CB | Concerts | New York,promo code,Negative Phrase
-CB | Calls for Scores | International,free,Negative Broad
 CB | Calls for Scores | International,download,Negative Broad
 CB | Calls for Scores | International,downloads,Negative Broad
 CB | Calls for Scores | International,mp3,Negative Broad
@@ -78,6 +84,14 @@ CB | Calls for Scores | International,sheet music,Negative Phrase
 CB | Calls for Scores | International,score pdf,Negative Phrase
 CB | Calls for Scores | International,piano reduction,Negative Phrase
 CB | Calls for Scores | International,backing track,Negative Phrase
+CB | Calls for Scores | International,free download,Negative Phrase
+CB | Calls for Scores | International,free mp3,Negative Phrase
+CB | Calls for Scores | International,free sheet music,Negative Phrase
+CB | Calls for Scores | International,free streaming,Negative Phrase
+CB | Calls for Scores | International,watch free,Negative Phrase
+CB | Calls for Scores | International,listen free,Negative Phrase
+CB | Calls for Scores | International,free online,Negative Phrase
+CB | Calls for Scores | International,free pdf,Negative Phrase
 CB | Calls for Scores | International,job,Negative Broad
 CB | Calls for Scores | International,jobs,Negative Broad
 CB | Calls for Scores | International,hiring,Negative Broad
@@ -127,7 +141,6 @@ CB | Calls for Scores | International,coupon,Negative Broad
 CB | Calls for Scores | International,refund,Negative Broad
 CB | Calls for Scores | International,discount code,Negative Phrase
 CB | Calls for Scores | International,promo code,Negative Phrase
-CB | Calls for Scores | American,free,Negative Broad
 CB | Calls for Scores | American,download,Negative Broad
 CB | Calls for Scores | American,downloads,Negative Broad
 CB | Calls for Scores | American,mp3,Negative Broad
@@ -142,6 +155,14 @@ CB | Calls for Scores | American,sheet music,Negative Phrase
 CB | Calls for Scores | American,score pdf,Negative Phrase
 CB | Calls for Scores | American,piano reduction,Negative Phrase
 CB | Calls for Scores | American,backing track,Negative Phrase
+CB | Calls for Scores | American,free download,Negative Phrase
+CB | Calls for Scores | American,free mp3,Negative Phrase
+CB | Calls for Scores | American,free sheet music,Negative Phrase
+CB | Calls for Scores | American,free streaming,Negative Phrase
+CB | Calls for Scores | American,watch free,Negative Phrase
+CB | Calls for Scores | American,listen free,Negative Phrase
+CB | Calls for Scores | American,free online,Negative Phrase
+CB | Calls for Scores | American,free pdf,Negative Phrase
 CB | Calls for Scores | American,job,Negative Broad
 CB | Calls for Scores | American,jobs,Negative Broad
 CB | Calls for Scores | American,hiring,Negative Broad
@@ -191,7 +212,6 @@ CB | Calls for Scores | American,coupon,Negative Broad
 CB | Calls for Scores | American,refund,Negative Broad
 CB | Calls for Scores | American,discount code,Negative Phrase
 CB | Calls for Scores | American,promo code,Negative Phrase
-CB | Brand,free,Negative Broad
 CB | Brand,download,Negative Broad
 CB | Brand,downloads,Negative Broad
 CB | Brand,mp3,Negative Broad
@@ -206,6 +226,14 @@ CB | Brand,sheet music,Negative Phrase
 CB | Brand,score pdf,Negative Phrase
 CB | Brand,piano reduction,Negative Phrase
 CB | Brand,backing track,Negative Phrase
+CB | Brand,free download,Negative Phrase
+CB | Brand,free mp3,Negative Phrase
+CB | Brand,free sheet music,Negative Phrase
+CB | Brand,free streaming,Negative Phrase
+CB | Brand,watch free,Negative Phrase
+CB | Brand,listen free,Negative Phrase
+CB | Brand,free online,Negative Phrase
+CB | Brand,free pdf,Negative Phrase
 CB | Brand,job,Negative Broad
 CB | Brand,jobs,Negative Broad
 CB | Brand,hiring,Negative Broad
