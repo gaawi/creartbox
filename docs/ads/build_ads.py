@@ -44,7 +44,8 @@ SITE = "https://creartbox.nyc"
 
 # Google's limits for a responsive search ad and its assets
 LIMITS = {"headline": 30, "description": 90, "path": 15,
-          "sitelink": 25, "sitelink_desc": 35}
+          "sitelink": 25, "sitelink_desc": 35,
+          "callout": 25, "snippet": 25}
 
 # The daily figures add up to the $329 a day the grant allows. The calls
 # campaign stops being useful after 15 December; move its share to the
@@ -70,73 +71,92 @@ CAMPAIGNS = [
 # account lives or dies by. No single-word keywords, which the policy
 # forbids outside its own exceptions.
 AD_GROUPS = [
+    # Shorter keywords, after the account reported Low search volume on 14
+    # of 21 concert keywords and 6 of 7 American ones. A six-word phrase
+    # describes the evening exactly and is typed by nobody. The long tail
+    # is kept where it is plausible; the short head is what will serve.
+    #
+    # None is a single word, and none is the kind of bare generic the
+    # policy forbids. "chamber music nyc" is the shape Google's own
+    # example allows: "museums in [your city name]".
     ("CB | Concerts | New York", "Chamber music NYC", [
+        ('"chamber music nyc"', "Phrase"),
+        ('[chamber music nyc]', "Exact"),
+        ('"chamber music new york"', "Phrase"),
+        ('"chamber music concert"', "Phrase"),
         ('"chamber music concerts new york"', "Phrase"),
         ('"chamber music nyc tickets"', "Phrase"),
-        ('"chamber music new york city"', "Phrase"),
-        ('[chamber music concert new york]', "Exact"),
-        ('"chamber music concerts this weekend nyc"', "Phrase"),
      ], SITE + "/classical-concerts-nyc.html"),
 
     ("CB | Concerts | New York", "Classical concerts NYC", [
-        ('"classical music concerts new york city"', "Phrase"),
-        ('"classical concerts in manhattan"', "Phrase"),
-        ('"live classical music midtown manhattan"', "Phrase"),
+        ('"classical concerts nyc"', "Phrase"),
         ('[classical concerts nyc]', "Exact"),
-        ('"classical music events new york this week"', "Phrase"),
+        ('"classical music nyc"', "Phrase"),
+        ('"classical concert new york"', "Phrase"),
+        ('"live classical music nyc"', "Phrase"),
+        ('"classical music concerts new york city"', "Phrase"),
      ], SITE + "/classical-concerts-nyc.html"),
 
     ("CB | Concerts | New York", "DiMenna Center", [
+        ('"dimenna center"', "Phrase"),
+        ('[dimenna center]', "Exact"),
         ('"dimenna center concerts"', "Phrase"),
-        ('"dimenna center for classical music events"', "Phrase"),
-        ('"concerts at the dimenna center"', "Phrase"),
-        ('[dimenna center classical music]', "Exact"),
+        ('"dimenna center for classical music"', "Phrase"),
      ], SITE + "/classical-concerts-nyc.html"),
 
-    # Both spellings of the ballet. The site writes Petroushka, the
-    # English-speaking world mostly writes Petrushka, and the two are
-    # separate keywords as far as Google is concerned.
+    # 6 of these 7 came back Low search volume. One concert, in one city,
+    # on one night is not a thing people search for by name until they
+    # have heard of it. The volume lives in the three ad groups above.
     ("CB | Concerts | New York", "Winterlight, 11 December", [
+        ('"stravinsky petrushka"', "Phrase"),
+        ('"petrushka concert"', "Phrase"),
+        ('"stravinsky concert nyc"', "Phrase"),
+        ('"ravel ma mere loye"', "Phrase"),
         ('"stravinsky petrushka new york"', "Phrase"),
         ('"petroushka new york"', "Phrase"),
-        ('"petroushka chamber arrangement"', "Phrase"),
-        ('"ravel concert new york"', "Phrase"),
         ('"ma mere loye concert"', "Phrase"),
-        ('"stravinsky concert nyc december"', "Phrase"),
-        ('"piano quintet concert new york"', "Phrase"),
      ], SITE + "/concerts/winterlight-2026.html"),
 
-    # The deadline is December 2026 and the season advertised is 2027/28,
-    # so both years get typed and both need to be here.
     ("CB | Calls for Scores | International", "Call for scores", [
-        ('"call for scores 2026"', "Phrase"),
+        ('"call for scores"', "Phrase"),
+        ('[call for scores]', "Exact"),
         ('"call for scores 2027"', "Phrase"),
         ('"open call for scores"', "Phrase"),
+        ('"composer call for scores"', "Phrase"),
         ('"call for scores chamber music"', "Phrase"),
-        ('[call for scores for composers]', "Exact"),
-        ('"call for scores deadline december"', "Phrase"),
      ], SITE + "/calls/scores-international.html"),
 
     ("CB | Calls for Scores | International", "Composer opportunities", [
+        ('"composer opportunities"', "Phrase"),
+        ('"composition opportunities"', "Phrase"),
         ('"opportunities for composers"', "Phrase"),
-        ('"composition opportunities 2027"', "Phrase"),
-        ('"where to submit my score"', "Phrase"),
+        ('"new music opportunities"', "Phrase"),
         ('"submit score to ensemble"', "Phrase"),
      ], SITE + "/opportunities.html"),
 
+    # Nearly every keyword here came back Low search volume, and the
+    # reason is structural rather than fixable: a composer looking for a
+    # call types "call for scores", not "call for scores for American
+    # composers". See the note in RUNBOOK-launch.md on merging the two
+    # calls campaigns.
     ("CB | Calls for Scores | American", "American composers", [
+        ('"call for scores american"', "Phrase"),
+        ('"american composer opportunities"', "Phrase"),
         ('"call for scores american composers"', "Phrase"),
         ('"opportunities for american composers"', "Phrase"),
-        ('"chamber music call for scores usa"', "Phrase"),
-        ('[american composers call for scores]', "Exact"),
      ], SITE + "/calls/scores-american.html"),
 
     ("CB | Calls for Scores | American", "US composition calls", [
+        ('"composition competition"', "Phrase"),
+        ('"music composition competition"', "Phrase"),
+        ('"new music competition"', "Phrase"),
         ('"composition competitions united states"', "Phrase"),
-        ('"new music opportunities usa"', "Phrase"),
-        ('"us composers submit chamber work"', "Phrase"),
      ], SITE + "/calls/scores-american.html"),
 
+    # 3 of 7 Low search volume, which is what a brand campaign for a
+    # chamber ensemble looks like and is not a problem to solve. It is
+    # here to defend the name and to hold up the account click-through
+    # rate, not to find volume.
     ("CB | Brand", "CreArtBox", [
         ('"creartbox"', "Phrase"),
         ('[creartbox]', "Exact"),
@@ -342,6 +362,77 @@ def parse_negatives(spec):
     return out
 
 
+# Headlines that belong to one ad group and name what that ad group is
+# about. Ad Strength came back Poor on five ads, and the usual reason is
+# an ad whose headlines never contain the keyword that triggered it: four
+# ad groups were sharing one set of copy. These go first, so every ad
+# leads with its own subject.
+EXTRA = {
+    ("CB | Concerts | New York", "Chamber music NYC"): [
+        "Chamber Music in NYC", "Chamber Music, Midtown",
+        "A Chamber Music Evening", "Chamber Music Tickets",
+    ],
+    ("CB | Concerts | New York", "Classical concerts NYC"): [
+        "Classical Concerts in NYC", "Live Classical in Midtown",
+        "A Classical Concert, NYC", "Classical Music Tickets",
+    ],
+    ("CB | Concerts | New York", "DiMenna Center"): [
+        "Live at The DiMenna Center", "Concerts at The DiMenna",
+        "The DiMenna Center, NYC", "450 West 37th Street",
+    ],
+    ("CB | Calls for Scores | International"
+     , "Call for scores"): [
+        "An Open Call for Scores", "Call for Scores 2027/28",
+        "Send Two Scores", "Scores Read Blind",
+    ],
+    ("CB | Calls for Scores | International", "Composer opportunities"): [
+        "Opportunities for Composers", "For Composers, Any Stage",
+        "Where to Send a Score", "An Open Call, Dec 15",
+    ],
+    ("CB | Calls for Scores | American", "American composers"): [
+        "For American Composers", "American Composers, Apply",
+        "A Call for US Composers", "US Composers, Played in NY",
+    ],
+    ("CB | Calls for Scores | American", "US composition calls"): [
+        "A Composition Call, US", "Open to US Composers",
+        "New Music, Played Live", "Composers: Deadline Dec 15",
+    ],
+}
+
+# Callouts are 25 characters and are not clickable, so every one has to
+# be a fact worth reading on its own. All of these are on the site.
+CALLOUTS = {
+    "CB | Concerts | New York": [
+        "Midtown Manhattan", "Tickets from $15",
+        "Concerts start 7:30 pm", "A 501(c)(3) non-profit",
+    ],
+    "CB | Calls for Scores | International": [
+        "$20 to apply", "Two works per entry",
+        "Any instrumentation", "First round read blind",
+    ],
+    "CB | Calls for Scores | American": [
+        "$20 to apply", "Two works per entry",
+        "Any instrumentation", "First round read blind",
+    ],
+    "CB | Brand": [
+        "A 501(c)(3) non-profit", "New York since 2013",
+        "Four productions a season", "Festival ADAR, Asturias",
+    ],
+}
+
+# One structured snippet per campaign. The header has to come from
+# Google's fixed list; "Styles" is the one that fits music.
+SNIPPETS = {
+    "CB | Concerts | New York":
+        ("Styles", ["Chamber music", "Classical", "Contemporary", "New music"]),
+    "CB | Calls for Scores | International":
+        ("Styles", ["Chamber music", "Contemporary", "New music", "Any instrumentation"]),
+    "CB | Calls for Scores | American":
+        ("Styles", ["Chamber music", "Contemporary", "New music", "Any instrumentation"]),
+    "CB | Brand":
+        ("Styles", ["Chamber music", "Classical", "Contemporary", "Video art"]),
+}
+
 SITELINKS = [
     ("Season calendar", "Every date of the twelfth season", "Four New York productions",
      SITE + "/concerts.html"),
@@ -378,6 +469,12 @@ def main():
               + AMER_DESCRIPTIONS
               + BRAND_DESCRIPTIONS):
         check("description", d)
+    for group in EXTRA.values():
+        for h in group:
+            check("headline", h)
+    for group in CALLOUTS.values():
+        for c in group:
+            check("callout", c)
     for text, d1, d2, _ in SITELINKS:
         check("sitelink", text)
         check("sitelink_desc", d1)
@@ -410,6 +507,8 @@ def main():
     rows = []
     for camp, group, _, url in AD_GROUPS:
         heads, descs, p1, p2 = COPY.get((camp, group)) or COPY[camp]
+        own = [h for h in EXTRA.get((camp, group), []) if h not in heads]
+        heads = own + list(heads)
         row = [camp, group, "Responsive search ad", url,
                check("path", p1), check("path", p2) if p2 else ""]
         row += list(heads[:15]) + [""] * (15 - len(heads[:15]))
@@ -446,7 +545,18 @@ def main():
     print("wrote %-22s %d term(s) in %d list(s)"
           % ("6-negatives.txt", total, len(NEGATIVE_LISTS)))
 
-    print("\nevery headline, description and sitelink is inside Google's limits")
+    write("7-callouts.csv", ["Campaign", "Callout text"],
+          [[camp, text] for camp, texts in CALLOUTS.items() for text in texts])
+
+    rows = []
+    for camp, (header, values) in SNIPPETS.items():
+        for v in values:
+            check("snippet", v)
+        rows.append([camp, header, "; ".join(values)])
+    write("8-snippets.csv", ["Campaign", "Header", "Values"], rows)
+
+    print("\nevery headline, description, sitelink and callout "
+          "is inside Google's limits")
     return 0
 
 
