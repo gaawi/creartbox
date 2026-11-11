@@ -7327,11 +7327,10 @@ html.after-curtain .tn-after { display: block; }
 }
 
 /* --- Ticket lottery popup -------------------------------------
-   Shaped and lit like the story graphic rather than like a dialog:
-   the photograph fills it, the type sits on top, and the gold is the
-   only colour. Home page only, and gone the day the draw is made.
-   Hidden until site.js opens it, so a visitor with JavaScript off
-   never sees a panel they cannot close. */
+   The same piece the social posts are: the Petroushka stage, labels
+   slapped on at the top, the serif line at the foot. Home page only,
+   and gone the day the draw is made. Hidden until site.js opens it, so
+   a visitor with JavaScript off never sees a panel they cannot close. */
 
 .lotpop {
   position: fixed;
@@ -7346,14 +7345,13 @@ html.after-curtain .tn-after { display: block; }
 .lotpop-bg {
   position: absolute;
   inset: 0;
-  background: rgba(7, 7, 6, .86);
+  background: rgba(7, 7, 6, .88);
   backdrop-filter: blur(4px);
 }
 
 .lotpop-card {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
   width: min(430px, 100%);
   max-height: calc(100dvh - 24px);
   overflow-y: auto;
@@ -7366,128 +7364,94 @@ html.after-curtain .tn-after { display: block; }
   from { opacity: 0; transform: translateY(18px) scale(.97); }
   to   { opacity: 1; transform: none; }
 }
+@media (prefers-reduced-motion: reduce) { .lotpop-card { animation: none; } }
 
-/* the photograph, and the three layers that make it winter light */
 .lotpop-shot,
-.lotpop-veil,
-.lotpop-warm,
-.lotpop-snow { position: absolute; inset: 0; z-index: -1; }
+.lotpop-veil { position: absolute; inset: 0; z-index: -1; }
 .lotpop-shot img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 50% 42%;
-  filter: saturate(1.25) contrast(1.06) brightness(1.05);
 }
+/* the photograph is already lit and already coloured: all it needs is
+   somewhere dark for the words to sit */
 .lotpop-veil {
   background: linear-gradient(to bottom,
-    rgba(7,7,6,.88) 0%, rgba(7,7,6,.52) 26%, rgba(7,7,6,.30) 44%,
-    rgba(7,7,6,.78) 68%, rgba(7,7,6,.96) 100%);
-}
-.lotpop-warm {
-  mix-blend-mode: soft-light;
-  background:
-    radial-gradient(85% 55% at 50% 46%, rgba(255,176,40,.90), transparent 72%),
-    linear-gradient(to bottom, rgba(255,140,20,.34), transparent 58%);
-}
-/* Winter light, falling. Two layers at different speeds so it reads as
-   depth and not as a pattern sliding down the glass. */
-.lotpop-snow::before,
-.lotpop-snow::after {
-  content: "";
-  position: absolute;
-  inset: -40% 0 -40%;
-  background-image:
-    radial-gradient(2px 2px at 12% 18%, rgba(255,196,3,.75), transparent 60%),
-    radial-gradient(1.5px 1.5px at 74% 12%, rgba(242,239,232,.60), transparent 60%),
-    radial-gradient(2px 2px at 38% 44%, rgba(255,196,3,.50), transparent 60%),
-    radial-gradient(1.5px 1.5px at 88% 52%, rgba(242,239,232,.45), transparent 60%),
-    radial-gradient(2.5px 2.5px at 58% 72%, rgba(255,196,3,.45), transparent 60%),
-    radial-gradient(1.5px 1.5px at 24% 86%, rgba(242,239,232,.38), transparent 60%);
-  animation: lotpop-fall 17s linear infinite;
-}
-.lotpop-snow::after {
-  background-image:
-    radial-gradient(1.5px 1.5px at 62% 8%, rgba(255,196,3,.50), transparent 60%),
-    radial-gradient(2px 2px at 18% 36%, rgba(242,239,232,.38), transparent 60%),
-    radial-gradient(1.5px 1.5px at 82% 64%, rgba(255,196,3,.38), transparent 60%),
-    radial-gradient(2px 2px at 44% 92%, rgba(242,239,232,.30), transparent 60%);
-  animation-duration: 26s;
-  animation-direction: reverse;
-}
-@keyframes lotpop-fall {
-  from { transform: translateY(-14%); }
-  to   { transform: translateY(14%); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .lotpop-card { animation: none; }
-  .lotpop-snow::before,
-  .lotpop-snow::after { animation: none; }
+    rgba(7,7,6,.80) 0%, rgba(7,7,6,.22) 18%, rgba(7,7,6,0) 34%,
+    rgba(7,7,6,.28) 48%, rgba(7,7,6,.86) 70%, rgba(7,7,6,.98) 100%);
 }
 
 .lotpop-body {
   position: relative;
-  padding: clamp(26px, 6vw, 38px) clamp(22px, 5vw, 32px) clamp(24px, 5vw, 32px);
-  min-height: clamp(470px, 74vh, 640px);
+  padding: clamp(22px, 5vw, 30px);
+  min-height: clamp(500px, 76vh, 660px);
   display: flex;
   flex-direction: column;
   color: var(--papel, #F2EFE8);
 }
+
+.lotpop-stickers { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; }
+.lotpop-sticker {
+  display: inline-block;
+  padding: 7px 12px;
+  font-family: var(--sans);
+  font-size: .69rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  background: #F2EFE8;
+  color: #070706;
+  box-shadow: 0 3px 14px rgba(0,0,0,.45);
+}
+.lotpop-sticker:nth-child(1) { transform: rotate(-1.8deg); }
+.lotpop-sticker:nth-child(2) { transform: rotate(1.2deg); }
+.lotpop-sticker.is-gold { background: var(--senal, #FFC403); transform: rotate(-1.1deg); }
+
+.lotpop-mid { flex: 1 1 auto; min-height: 150px; }
+
 .lotpop-k {
   font-family: var(--sans);
-  font-size: .74rem;
+  font-size: .68rem;
   font-weight: 600;
-  letter-spacing: .20em;
+  letter-spacing: .22em;
   text-transform: uppercase;
   color: var(--senal, #FFC403);
+}
+.lotpop-k::after {
+  content: "";
+  display: block;
+  width: 46px;
+  height: 2px;
+  background: var(--senal, #FFC403);
+  margin-top: 8px;
 }
 .lotpop-t {
   margin: 14px 0 0;
   font-family: var(--serif);
-  font-size: clamp(2rem, 8.5vw, 2.6rem);
+  font-size: clamp(1.75rem, 7.4vw, 2.2rem);
   font-weight: 500;
-  line-height: 1.04;
+  line-height: 1.06;
   letter-spacing: -.015em;
   color: #F2EFE8;
+  text-shadow: 0 2px 22px rgba(7,7,6,.75);
 }
 .lotpop-t em { font-style: italic; color: var(--senal, #FFC403); }
 .lotpop-sub {
   margin: 12px 0 0;
   font-family: var(--serif);
   font-style: italic;
-  font-size: 1.04rem;
+  font-size: 1rem;
   color: #C9C3B9;
-}
-.lotpop-mid { flex: 1 1 auto; min-height: 22px; }
-.lotpop-rule {
-  flex: none;
-  width: 84px;
-  height: 2px;
-  background: var(--senal, #FFC403);
-  margin: 0 0 16px;
 }
 .lotpop-how {
-  margin: 0 0 16px;
-  font-size: .97rem;
-  line-height: 1.62;
+  margin: 16px 0 18px;
+  font-size: .93rem;
+  line-height: 1.6;
   color: #C9C3B9;
 }
-.lotpop-how strong { color: var(--senal, #FFC403); font-weight: 600; }
-.lotpop-chip {
-  /* .lotpop-body is a flex column, so a child stretches to the full
-     width unless it is told not to: inline-block alone does nothing */
-  align-self: flex-start;
-  display: inline-block;
-  padding: 8px 14px;
-  margin: 0 0 20px;
-  border: 1px solid var(--senal, #FFC403);
-  font-family: var(--sans);
-  font-size: .74rem;
-  font-weight: 600;
-  letter-spacing: .13em;
-  text-transform: uppercase;
-  color: var(--senal, #FFC403);
-}
+.lotpop-how strong { color: #F2EFE8; font-weight: 600; }
+
 .lotpop-do { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .lotpop-no {
   align-self: flex-start;
