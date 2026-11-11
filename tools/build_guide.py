@@ -23,6 +23,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import build_lottery
 import seo_block                                       # noqa: E402
 from build_presenters import foot, head                # noqa: E402
 
@@ -229,14 +230,15 @@ def main():
     check = "--check" in sys.argv
     wanted = page()
     current = open(OUT, encoding="utf-8").read() if os.path.exists(OUT) else ""
-    bare = seo_block.strip(current)
+    bare = build_lottery.strip(seo_block.strip(current))
     if bare == wanted:
         print("the New York guide is current")
         return 0
     if check:
         print("the New York guide is out of date\n\nRun: python3 tools/build_guide.py")
         return 1
-    open(OUT, "w", encoding="utf-8").write(seo_block.carry(current, wanted))
+    open(OUT, "w", encoding="utf-8").write(
+        seo_block.carry(current, build_lottery.carry(current, wanted)))
     print("wrote %s (%d New York dates)" % (OUT, len(dates())))
     return 0
 

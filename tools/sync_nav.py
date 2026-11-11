@@ -24,7 +24,10 @@ NAV = [("news.html", "News")]
 # strip has no room for a tenth item
 FOOT = [("news.html", "News"), ("presenters.html", "For presenters")]
 # in the footer, under Program, next to the calendar it belongs with
-FOOT_PROGRAM = [("classical-concerts-nyc.html", "Coming to a concert")]
+FOOT_PROGRAM = [("classical-concerts-nyc.html", "Coming to a concert"),
+                # until the draw on 4 December 2026, then take this line
+                # out and run tools/build_lottery.py --off
+                ("lottery.html", "Free tickets")]
 
 # <div class="nav-item"><a href="../support.html">Donate</a></div>
 ONE_LINE = re.compile(

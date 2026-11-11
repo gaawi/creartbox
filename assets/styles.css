@@ -7113,3 +7113,125 @@ html.after-curtain .tn-after { display: block; }
   .promo-shot img { height: 116px; }
   .promo-grid { gap: 10px; }
 }
+
+/* ============================================================
+   Ticket lottery. Winterlight, December 2026. The page at
+   lottery.html, plus the band that advertises it elsewhere.
+   All of it is bounded by one concert: when the draw is made on
+   4 December, tools/build_lottery.py takes the bands out again.
+   ============================================================ */
+
+.lot-kicker {
+  font-family: var(--sans);
+  font-size: .78rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.lot-lede {
+  max-width: 54ch;
+  margin: 22px 0 0;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.lot-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .lot-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+
+.lot-steps { list-style: none; margin: 0; padding: 0; }
+.lot-steps > li {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 18px;
+  padding: 20px 0;
+  border-top: 1px solid var(--rule);
+}
+.lot-steps > li:last-child { border-bottom: 1px solid var(--rule); }
+.lot-n {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--accent);
+}
+.lot-steps h3 {
+  margin: 0 0 6px;
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  font-weight: 500;
+  line-height: 1.3;
+}
+.lot-steps p { margin: 0; color: var(--ink-soft); line-height: 1.55; }
+
+.lot-cta-line { margin: 28px 0 10px; }
+.lot-note { margin: 0; font-size: .9rem; color: var(--ink-soft); line-height: 1.5; }
+
+.lot-facts {
+  border: 1px solid var(--rule);
+  padding: clamp(20px, 3vw, 30px);
+}
+.lot-fact + .lot-fact { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--rule-2); }
+.lot-fact-h {
+  font-family: var(--sans);
+  font-size: .72rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+.lot-fact-v { line-height: 1.5; }
+
+/* The band. One row on a phone, two columns from 700px, and it has
+   to survive being dropped into three different pages. */
+.lotband {
+  display: block;
+  border: 1px solid var(--accent);
+  padding: clamp(18px, 2.6vw, 26px) clamp(18px, 3vw, 32px);
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--t-fast), border-color var(--t-fast);
+}
+.lotband:hover { background: var(--paper-2); }
+.lotband-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px 28px;
+  align-items: center;
+}
+@media (max-width: 700px) {
+  .lotband-inner { grid-template-columns: 1fr; gap: 14px; }
+}
+.lotband-k {
+  display: block;
+  font-family: var(--sans);
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 7px;
+}
+.lotband-t {
+  display: block;
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 0 0 6px;
+}
+.lotband-d { display: block; margin: 0; color: var(--ink-soft); line-height: 1.5; max-width: 56ch; }
+.lotband-go {
+  display: block;
+  font-family: var(--sans);
+  font-size: .82rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--accent);
+}
