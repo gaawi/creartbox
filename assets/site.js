@@ -150,6 +150,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Count the clicks that matter, if anything is listening
   initConversions();
 
+  // The ticket-lottery popup, home page only, once a week at most
+  initLotteryPopup();
+
   // The catalogue of past programmes, folded until asked for
   initProgramCards();
 
@@ -1399,4 +1402,85 @@ function initProgramCards() {
       button.textContent = open ? "Hide programme" : "Full programme";
     });
   });
+}
+
+
+/* ------------------------------------------------------------------
+   Ticket lottery popup
+
+   Home page only, and only while the markup is there: when
+   tools/build_lottery.py --off takes the block out on 4 December this
+   function finds nothing and does nothing.
+
+   Rules it keeps to, because a popup that ignores them is just a tax on
+   the visitor: it waits until the page has settled, it shows once and
+   then stays quiet for a week, closing it counts as an answer, and
+   anyone who has gone to the lottery page already is left alone.
+   ------------------------------------------------------------------ */
+function initLotteryPopup() {
+  const pop = document.getElementById("lot-pop");
+  if (!pop) return;
+
+  const KEY = "cb-lot-pop-winterlight-2026";
+  const QUIET = 7 * 24 * 60 * 60 * 1000;
+
+  // Private windows and blocked site data make these throw. A popup is
+  // not worth a broken page, so every touch is wrapped.
+  const seen = () => {
+    try {
+      const at = Number(localStorage.getItem(KEY) || 0);
+      return at > 0 && Date.now() - at < QUIET;
+    } catch (e) {
+      return false;
+    }
+  };
+  const remember = () => {
+    try {
+      localStorage.setItem(KEY, String(Date.now()));
+    } catch (e) {
+      /* nothing to do: it shows again next time, which is the safe way to fail */
+    }
+  };
+
+  if (seen()) return;
+
+  let opener = null;
+
+  function close() {
+    pop.classList.remove("open");
+    pop.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    remember();
+    if (opener && opener.focus) opener.focus();
+    document.removeEventListener("keydown", onKey);
+  }
+
+  function onKey(e) {
+    if (e.key === "Escape") close();
+  }
+
+  function open() {
+    opener = document.activeElement;
+    pop.classList.add("open");
+    pop.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKey);
+    // the panel, not the close button: a keyboard user still lands
+    // inside the dialog, and nothing wears a focus ring that reads as a
+    // box drawn around the X by mistake
+    const card = pop.querySelector(".lotpop-card");
+    if (card) card.focus({ preventScroll: true });
+  }
+
+  pop.querySelectorAll("[data-lotpop-close]").forEach((el) =>
+    el.addEventListener("click", close));
+  // following a link out of the popup is an answer too
+  pop.querySelectorAll("a[href]").forEach((a) =>
+    a.addEventListener("click", remember));
+
+  // let the page draw first; a popup over a half-painted screen reads
+  // as an advert for something else
+  const wait = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ? 400 : 1400;
+  window.setTimeout(open, wait);
 }

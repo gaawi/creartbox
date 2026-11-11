@@ -7325,3 +7325,109 @@ html.after-curtain .tn-after { display: block; }
   .lotband-inner { grid-template-columns: 1fr; }
   .lotband-inner > .lotband-shot { aspect-ratio: 16 / 9; min-height: 0; }
 }
+
+/* --- Ticket lottery popup -------------------------------------
+   Home page only, and gone the day the draw is made. Hidden until
+   site.js opens it, so a visitor with JavaScript off never sees a
+   panel they cannot close. */
+
+.lotpop {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: none;
+  place-items: center;
+  padding: clamp(16px, 4vw, 40px);
+}
+.lotpop.open { display: grid; }
+
+.lotpop-bg {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 7, 6, .82);
+  backdrop-filter: blur(3px);
+}
+
+.lotpop-card {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: calc(100dvh - 32px);
+  overflow: auto;
+  background: var(--paper);
+  border: 1px solid var(--accent);
+  animation: lotpop-in 320ms cubic-bezier(.2,.7,.2,1) both;
+}
+@keyframes lotpop-in {
+  from { opacity: 0; transform: translateY(14px) scale(.98); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lotpop-card { animation: none; }
+}
+
+.lotpop-shot { display: block; line-height: 0; }
+.lotpop-shot img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: 50% 46%;
+}
+
+.lotpop-body { padding: clamp(22px, 4vw, 34px); }
+.lotpop-k {
+  font-family: var(--sans);
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.lotpop-t {
+  margin: 10px 0 12px;
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 4vw, 1.85rem);
+  font-weight: 500;
+  line-height: 1.16;
+}
+.lotpop-d { margin: 0 0 18px; color: var(--ink-2); line-height: 1.6; }
+.lotpop-how {
+  margin: 0 0 22px;
+  padding: 14px 16px;
+  border: 1px solid var(--rule);
+  font-size: .94rem;
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+.lotpop-how strong { color: var(--ink); }
+
+.lotpop-do { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.lotpop-no {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-family: var(--sans);
+  font-size: .86rem;
+  color: var(--ink-soft);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.lotpop-no:hover { color: var(--ink); }
+
+.lotpop-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  background: rgba(7, 7, 6, .62);
+  color: #F2EFE8;
+  border: 0;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.lotpop-close:hover { background: rgba(7, 7, 6, .86); }
+.lotpop-card:focus { outline: none; }
