@@ -1,7 +1,7 @@
 ---
-title: Five pairs of tickets to Winterlight, free
+title: Ten pairs of tickets to Winterlight, free
 date: 2026-11-11
-dek: For the December concert we are giving away ten seats, as five pairs, to people who write and tell us they would like to come. Entries close on 3 December and the draw is a week before the concert.
+dek: For the December concert we are giving away twenty seats, as ten pairs, to people who write and tell us they would like to come. Entries close on 3 December and the draw is a week before the concert.
 tag: Tickets
 image: assets/img/ensemble.jpg
 alt: CreArtBox in performance
@@ -10,7 +10,7 @@ link: Enter the lottery | lottery.html
 link: Winterlight, 11 December | concerts/winterlight-2026.html
 ---
 
-New York, NY, 11 November 2026. For [Winterlight](concerts/winterlight-2026.html), on 11 December, CreArtBox is giving away ten tickets. They go as five pairs, by lottery, to people who write to **info@creartbox.nyc** with **WINTERLIGHT LOTTERY** in the subject line and one sentence on why they would like to come. Entries close at midnight on 3 December. The draw is on 4 December, a week before the concert, and everyone who entered hears the result the same day.
+New York, NY, 11 November 2026. For [Winterlight](concerts/winterlight-2026.html), on 11 December, CreArtBox is giving away twenty tickets. They go as ten pairs, by lottery, to people who write to **info@creartbox.nyc** with **WINTERLIGHT LOTTERY** in the subject line and one sentence on why they would like to come. Entries close at midnight on 3 December. The draw is on 4 December, a week before the concert, and everyone who entered hears the result the same day.
 
 [How to enter is here](lottery.html), and it takes about a minute.
 
@@ -24,9 +24,9 @@ So we would rather take it off the table for a few people and see who turns up.
 
 This is not new for us, it is only louder. Free and subsidised seats have been part of how this ensemble works for years, through NYC Culture Pass and through the Queens Public Library, paid for by people who give to CreArtBox so that the price of a seat is not the thing that decides who is in the room. Those programmes are quiet by design. This one is not, because the point of it is that people hear about it.
 
-## Ten seats is not a gesture
+## Twenty seats is not a gesture
 
-We want to be straight about the size of this. The DiMenna Center is not an arena. Ten tickets is a visible share of the hall, and five of them being won rather than bought is a decision about what the evening is for.
+We want to be straight about the size of this. The DiMenna Center is not an arena. Twenty tickets is a visible share of the hall, and handing them out instead of selling them is a decision about what the evening is for.
 
 Our tickets start at $15, which is low for New York, and $15 is still not nothing. The people who buy one are what pays the musicians who play that night. Nobody is being given a free concert instead of a paid one. The two things sit side by side, and the room is better for having both kinds of listener in it.
 

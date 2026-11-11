@@ -28,7 +28,7 @@ CLOSE_MARK = "<!-- /LOTTERY -->"
 BLOCK = re.compile(re.escape(OPEN_MARK) + r".*?" + re.escape(CLOSE_MARK) + r"\n?", re.S)
 
 KICKER = "Free tickets"
-TITLE = "Five pairs of tickets to Winterlight, free."
+TITLE = "Ten pairs of tickets to Winterlight, free."
 DEK = ("Write to info@creartbox.nyc with the subject WINTERLIGHT LOTTERY and one "
        "sentence on why you would like to come. Entries close 3 December.")
 GO = "Enter &#8594;"

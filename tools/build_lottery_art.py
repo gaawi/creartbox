@@ -32,7 +32,7 @@ CDN = ("https://creartbox-archive.b-cdn.net/archive-creartbox/"
 # there: the date and time and hall on the concert page, the deadline and
 # the address on lottery.html.
 LINE_TOP = "CreArtBox &#183; New York Series"
-BIG_1 = "Five pairs of tickets,"
+BIG_1 = "Ten pairs of tickets,"
 BIG_2 = "free."
 CONCERT = "Winterlight &#183; Stravinsky&#x27;s Petroushka"
 HOW_1 = "Email info@creartbox.nyc"
