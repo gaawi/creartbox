@@ -41,7 +41,8 @@ GO = "Enter &#8594;"
 
 CDN = ("https://creartbox-archive.b-cdn.net/archive-creartbox/"
        "2026-10-30-currents-photos/web")
-SHOT = "_DSC0670.jpg"
+SHOT = "_DSC0656.jpg"       # the hall, for the story-shaped popup
+BAND_SHOT = "_DSC0670.jpg"  # the players, for the band
 SHOT_ALT = "CreArtBox playing at The DiMenna Center"
 
 # (path, where the band goes, the anchor it goes after or before)
@@ -95,7 +96,7 @@ def band(prefix, where):
         '    <a class="lotband" href="{href}" data-cb-track="lottery" data-cb-where="{where}">\n'
         '      <span class="lotband-inner">\n'
         '        <span class="lotband-shot">'
-        '<img src="{cdn}/{shot}" alt="{alt}" loading="lazy"></span>\n'
+        '<img src="{cdn}/{band}" alt="{alt}" loading="lazy"></span>\n'
         '        <span>\n'
         '          <span class="lotband-k">{kicker}</span>\n'
         '          <span class="lotband-t">{title}</span>\n'
@@ -109,10 +110,17 @@ def band(prefix, where):
         '{c}\n'
     ).format(o=OPEN_MARK, c=CLOSE_MARK, href=href, where=where,
              kicker=KICKER, title=TITLE, dek=DEK, go=GO,
-             cdn=CDN, shot=SHOT, alt=SHOT_ALT)
+             cdn=CDN, band=BAND_SHOT, alt=SHOT_ALT)
 
 
 def popup():
+    """The popup, shaped like a story rather than like a dialog.
+
+    The photograph fills it, the type sits on top, and the only colour
+    is the signal gold. The falling specks are the same winter light the
+    photograph already scatters, and they stop for anyone who has asked
+    their system for less motion.
+    """
     return (
         '{o}\n'
         '<div class="lotpop" id="lot-pop" role="dialog" aria-modal="true"\n'
@@ -120,32 +128,34 @@ def popup():
         '  <div class="lotpop-bg" data-lotpop-close></div>\n'
         '  <div class="lotpop-card" tabindex="-1">\n'
         '    <button class="lotpop-close" data-lotpop-close aria-label="Close">&#215;</button>\n'
-        '    <span class="lotpop-shot">'
-        '<img src="{cdn}/{shot}" alt="{alt}"></span>\n'
+        '    <span class="lotpop-shot"><img src="{cdn}/{shot}" alt="{alt}"></span>\n'
+        '    <span class="lotpop-veil"></span>\n'
+        '    <span class="lotpop-warm"></span>\n'
+        '    <span class="lotpop-snow" aria-hidden="true"></span>\n'
         '    <div class="lotpop-body">\n'
         '      <div class="lotpop-k">{kicker}</div>\n'
-        '      <h2 class="lotpop-t" id="lot-pop-t">{title}</h2>\n'
-        '      <p class="lotpop-d">Winterlight is on Friday, December 11. '
-        'We are giving twenty of the seats away, and all it takes to enter '
-        'is an email.</p>\n'
+        '      <h2 class="lotpop-t" id="lot-pop-t">Ten pairs of tickets,<br><em>free</em>.</h2>\n'
+        '      <p class="lotpop-sub">Winterlight &#183; Friday, December 11</p>\n'
+        '      <div class="lotpop-mid"></div>\n'
+        '      <div class="lotpop-rule"></div>\n'
         '      <p class="lotpop-how">Write to <strong>info@creartbox.nyc</strong><br>'
         'Subject: <strong>WINTERLIGHT LOTTERY</strong><br>'
-        'One sentence on why you would like to come. '
-        'Entries close <strong>3 December</strong>.</p>\n'
+        'One sentence on why you would like to come.</p>\n'
+        '      <div class="lotpop-chip">Entries close December 3</div>\n'
         '      <div class="lotpop-do">\n'
-        '        <a class="btn btn-stamp" href="lottery.html" '
-        'data-cb-track="lottery" data-cb-where="popup">How it works '
+        '        <a class="btn btn-stamp" href="mailto:info@creartbox.nyc?subject=WINTERLIGHT%20LOTTERY" '
+        'data-cb-track="lottery" data-cb-where="popup-mail">Enter now '
         '<span class="ar">&#8594;</span></a>\n'
-        '        <a class="btn btn-s" href="mailto:info@creartbox.nyc?subject=WINTERLIGHT%20LOTTERY" '
-        'data-cb-track="lottery" data-cb-where="popup-mail">Enter now</a>\n'
-        '        <button class="lotpop-no" data-lotpop-close>No thanks</button>\n'
+        '        <a class="btn btn-s" href="lottery.html" '
+        'data-cb-track="lottery" data-cb-where="popup">How it works</a>\n'
         '      </div>\n'
+        '      <button class="lotpop-no" data-lotpop-close>No thanks</button>\n'
         '    </div>\n'
         '  </div>\n'
         '</div>\n'
         '{c}\n'
     ).format(o=POP_OPEN, c=POP_CLOSE, cdn=CDN, shot=SHOT, alt=SHOT_ALT,
-             kicker=KICKER, title=TITLE)
+             kicker=KICKER)
 
 
 def wanted(path, position, anchor, where, src):

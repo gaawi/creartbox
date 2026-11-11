@@ -7327,9 +7327,11 @@ html.after-curtain .tn-after { display: block; }
 }
 
 /* --- Ticket lottery popup -------------------------------------
-   Home page only, and gone the day the draw is made. Hidden until
-   site.js opens it, so a visitor with JavaScript off never sees a
-   panel they cannot close. */
+   Shaped and lit like the story graphic rather than like a dialog:
+   the photograph fills it, the type sits on top, and the gold is the
+   only colour. Home page only, and gone the day the draw is made.
+   Hidden until site.js opens it, so a visitor with JavaScript off
+   never sees a panel they cannot close. */
 
 .lotpop {
   position: fixed;
@@ -7337,97 +7339,185 @@ html.after-curtain .tn-after { display: block; }
   z-index: 1200;
   display: none;
   place-items: center;
-  padding: clamp(16px, 4vw, 40px);
+  padding: clamp(12px, 3vw, 36px);
 }
 .lotpop.open { display: grid; }
 
 .lotpop-bg {
   position: absolute;
   inset: 0;
-  background: rgba(7, 7, 6, .82);
-  backdrop-filter: blur(3px);
+  background: rgba(7, 7, 6, .86);
+  backdrop-filter: blur(4px);
 }
 
 .lotpop-card {
   position: relative;
-  width: min(560px, 100%);
-  max-height: calc(100dvh - 32px);
-  overflow: auto;
-  background: var(--paper);
-  border: 1px solid var(--accent);
-  animation: lotpop-in 320ms cubic-bezier(.2,.7,.2,1) both;
+  isolation: isolate;
+  overflow: hidden;
+  width: min(430px, 100%);
+  max-height: calc(100dvh - 24px);
+  overflow-y: auto;
+  background: var(--sala, #070706);
+  border: 1px solid var(--senal, #FFC403);
+  animation: lotpop-in 340ms cubic-bezier(.2,.7,.2,1) both;
 }
+.lotpop-card:focus { outline: none; }
 @keyframes lotpop-in {
-  from { opacity: 0; transform: translateY(14px) scale(.98); }
+  from { opacity: 0; transform: translateY(18px) scale(.97); }
   to   { opacity: 1; transform: none; }
+}
+
+/* the photograph, and the three layers that make it winter light */
+.lotpop-shot,
+.lotpop-veil,
+.lotpop-warm,
+.lotpop-snow { position: absolute; inset: 0; z-index: -1; }
+.lotpop-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 42%;
+  filter: saturate(1.25) contrast(1.06) brightness(1.05);
+}
+.lotpop-veil {
+  background: linear-gradient(to bottom,
+    rgba(7,7,6,.88) 0%, rgba(7,7,6,.52) 26%, rgba(7,7,6,.30) 44%,
+    rgba(7,7,6,.78) 68%, rgba(7,7,6,.96) 100%);
+}
+.lotpop-warm {
+  mix-blend-mode: soft-light;
+  background:
+    radial-gradient(85% 55% at 50% 46%, rgba(255,176,40,.90), transparent 72%),
+    linear-gradient(to bottom, rgba(255,140,20,.34), transparent 58%);
+}
+/* Winter light, falling. Two layers at different speeds so it reads as
+   depth and not as a pattern sliding down the glass. */
+.lotpop-snow::before,
+.lotpop-snow::after {
+  content: "";
+  position: absolute;
+  inset: -40% 0 -40%;
+  background-image:
+    radial-gradient(2px 2px at 12% 18%, rgba(255,196,3,.75), transparent 60%),
+    radial-gradient(1.5px 1.5px at 74% 12%, rgba(242,239,232,.60), transparent 60%),
+    radial-gradient(2px 2px at 38% 44%, rgba(255,196,3,.50), transparent 60%),
+    radial-gradient(1.5px 1.5px at 88% 52%, rgba(242,239,232,.45), transparent 60%),
+    radial-gradient(2.5px 2.5px at 58% 72%, rgba(255,196,3,.45), transparent 60%),
+    radial-gradient(1.5px 1.5px at 24% 86%, rgba(242,239,232,.38), transparent 60%);
+  animation: lotpop-fall 17s linear infinite;
+}
+.lotpop-snow::after {
+  background-image:
+    radial-gradient(1.5px 1.5px at 62% 8%, rgba(255,196,3,.50), transparent 60%),
+    radial-gradient(2px 2px at 18% 36%, rgba(242,239,232,.38), transparent 60%),
+    radial-gradient(1.5px 1.5px at 82% 64%, rgba(255,196,3,.38), transparent 60%),
+    radial-gradient(2px 2px at 44% 92%, rgba(242,239,232,.30), transparent 60%);
+  animation-duration: 26s;
+  animation-direction: reverse;
+}
+@keyframes lotpop-fall {
+  from { transform: translateY(-14%); }
+  to   { transform: translateY(14%); }
 }
 @media (prefers-reduced-motion: reduce) {
   .lotpop-card { animation: none; }
+  .lotpop-snow::before,
+  .lotpop-snow::after { animation: none; }
 }
 
-.lotpop-shot { display: block; line-height: 0; }
-.lotpop-shot img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  object-position: 50% 46%;
+.lotpop-body {
+  position: relative;
+  padding: clamp(26px, 6vw, 38px) clamp(22px, 5vw, 32px) clamp(24px, 5vw, 32px);
+  min-height: clamp(470px, 74vh, 640px);
+  display: flex;
+  flex-direction: column;
+  color: var(--papel, #F2EFE8);
 }
-
-.lotpop-body { padding: clamp(22px, 4vw, 34px); }
 .lotpop-k {
   font-family: var(--sans);
-  font-size: .72rem;
-  letter-spacing: .14em;
+  font-size: .74rem;
+  font-weight: 600;
+  letter-spacing: .20em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--senal, #FFC403);
 }
 .lotpop-t {
-  margin: 10px 0 12px;
+  margin: 14px 0 0;
   font-family: var(--serif);
-  font-size: clamp(1.4rem, 4vw, 1.85rem);
+  font-size: clamp(2rem, 8.5vw, 2.6rem);
   font-weight: 500;
-  line-height: 1.16;
+  line-height: 1.04;
+  letter-spacing: -.015em;
+  color: #F2EFE8;
 }
-.lotpop-d { margin: 0 0 18px; color: var(--ink-2); line-height: 1.6; }
+.lotpop-t em { font-style: italic; color: var(--senal, #FFC403); }
+.lotpop-sub {
+  margin: 12px 0 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.04rem;
+  color: #C9C3B9;
+}
+.lotpop-mid { flex: 1 1 auto; min-height: 22px; }
+.lotpop-rule {
+  flex: none;
+  width: 84px;
+  height: 2px;
+  background: var(--senal, #FFC403);
+  margin: 0 0 16px;
+}
 .lotpop-how {
-  margin: 0 0 22px;
-  padding: 14px 16px;
-  border: 1px solid var(--rule);
-  font-size: .94rem;
-  line-height: 1.65;
-  color: var(--ink-2);
+  margin: 0 0 16px;
+  font-size: .97rem;
+  line-height: 1.62;
+  color: #C9C3B9;
 }
-.lotpop-how strong { color: var(--ink); }
-
-.lotpop-do { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.lotpop-how strong { color: var(--senal, #FFC403); font-weight: 600; }
+.lotpop-chip {
+  /* .lotpop-body is a flex column, so a child stretches to the full
+     width unless it is told not to: inline-block alone does nothing */
+  align-self: flex-start;
+  display: inline-block;
+  padding: 8px 14px;
+  margin: 0 0 20px;
+  border: 1px solid var(--senal, #FFC403);
+  font-family: var(--sans);
+  font-size: .74rem;
+  font-weight: 600;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--senal, #FFC403);
+}
+.lotpop-do { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .lotpop-no {
+  align-self: flex-start;
   background: none;
   border: 0;
   padding: 0;
+  margin-top: 12px;
   font-family: var(--sans);
-  font-size: .86rem;
-  color: var(--ink-soft);
+  font-size: .84rem;
+  color: #8A847A;
   text-decoration: underline;
   text-underline-offset: 3px;
   cursor: pointer;
 }
-.lotpop-no:hover { color: var(--ink); }
+.lotpop-no:hover { color: #C9C3B9; }
 
 .lotpop-close {
   position: absolute;
   top: 10px;
   right: 10px;
+  z-index: 2;
   width: 38px;
   height: 38px;
   display: grid;
   place-items: center;
-  background: rgba(7, 7, 6, .62);
+  background: rgba(7, 7, 6, .55);
   color: #F2EFE8;
   border: 0;
   font-size: 1.3rem;
   line-height: 1;
   cursor: pointer;
 }
-.lotpop-close:hover { background: rgba(7, 7, 6, .86); }
-.lotpop-card:focus { outline: none; }
+.lotpop-close:hover { background: rgba(7, 7, 6, .88); }
