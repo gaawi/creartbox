@@ -6,6 +6,7 @@ User-agent: *
 Allow: /
 Disallow: /newsletter/
 Disallow: /posters/
+Disallow: /promo/
 Disallow: /docs/
 
 # Named here so there is no doubt: the assistants are welcome too.
@@ -31,6 +32,7 @@ User-agent: YouBot
 Allow: /
 Disallow: /newsletter/
 Disallow: /posters/
+Disallow: /promo/
 Disallow: /docs/
 
 Sitemap: https://creartbox.nyc/sitemap.xml

@@ -63,7 +63,7 @@ LOGO = "assets/logos/logo-creartbox.png"
 # print-only, mail-only, and the redirects kept for the site's old
 # /pages/ addresses. A redirect does not want a canonical of its own and
 # must not be in the sitemap.
-SKIP_DIRS = ("newsletter/", "posters/", "pages/")
+SKIP_DIRS = ("newsletter/", "posters/", "pages/", "promo/")
 # 404, a page that only redirects, and one kept for an old inbound link.
 # None of them should carry a managed block or appear in the sitemap: a
 # redirect in the sitemap is a page telling a crawler to index the wrong
@@ -845,7 +845,7 @@ AI_AGENTS = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-Sea
 
 def robots():
     rules = ("Allow: /\nDisallow: /newsletter/\nDisallow: /posters/\n"
-             "Disallow: /docs/\n")
+             "Disallow: /promo/\nDisallow: /docs/\n")
     out = ["# creartbox.nyc",
            "# Concert dates, programmes and open calls are public and meant to be",
            "# read, quoted and answered with, by search engines and by assistants.",
