@@ -7648,3 +7648,86 @@ html.after-curtain .tn-after { display: block; }
   font-size: 2rem;
   letter-spacing: .04em;
 }
+
+/* --- Composers: the top, and the filter ------------------------ */
+.comp-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 76px);
+  align-items: start;
+}
+@media (max-width: 880px) { .comp-top { grid-template-columns: 1fr; gap: 36px; } }
+
+/* The calls are open and this is the page composers land on, so the
+   banner is the loudest thing after the headline. */
+.call-banner {
+  border: 1px solid var(--accent);
+  padding: clamp(22px, 3vw, 30px);
+  position: relative;
+}
+.cb-flag {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 6px 12px;
+  background: var(--accent);
+  color: var(--sobre-senal, #0B0705);
+  font-family: var(--sans);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.cb-title {
+  margin: 0 0 14px;
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3vw, 1.95rem);
+  font-weight: 500;
+  line-height: 1.08;
+}
+.cb-title em { font-style: italic; color: var(--accent); }
+.cb-line { margin: 0 0 18px; font-size: .95rem; line-height: 1.58; color: var(--ink-2); }
+.cb-facts { margin: 0 0 22px; display: grid; gap: 10px; }
+.cb-facts > div { display: grid; grid-template-columns: 86px minmax(0, 1fr); gap: 12px; }
+.cb-facts dt {
+  font-family: var(--sans);
+  font-size: .68rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-top: 3px;
+}
+.cb-facts dd { margin: 0; font-size: .92rem; line-height: 1.45; }
+.cb-go { width: 100%; justify-content: center; }
+.cb-two { margin: 14px 0 0; font-size: .86rem; color: var(--ink-soft); }
+.cb-two span { margin: 0 6px; }
+
+.comp-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: clamp(28px, 3.5vw, 44px);
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--rule);
+}
+.cf-btn {
+  background: none;
+  border: 1px solid var(--rule);
+  padding: 9px 16px;
+  font-family: var(--sans);
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast);
+}
+.cf-btn:hover { color: var(--ink); border-color: var(--ink-soft); }
+.cf-btn.is-on { color: var(--sobre-senal, #0B0705); background: var(--accent); border-color: var(--accent); }
+.comp-group[hidden] { display: none; }
+/* the filter sits under a two-column top whose halves are different
+   heights; without this it floats a screen below the shorter one */
+.comp-top + .section,
+.section:has(> .wrap > .comp-filter) { padding-top: clamp(18px, 2.5vw, 34px); }
+.cf-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.cf-btn:focus:not(:focus-visible) { outline: none; }

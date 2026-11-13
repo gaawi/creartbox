@@ -153,6 +153,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // The ticket-lottery popup, home page only, once a week at most
   initLotteryPopup();
 
+  // Resident, Open Call winner, guest: one group at a time
+  initComposerFilter();
+
   // The catalogue of past programmes, folded until asked for
   initProgramCards();
 
@@ -1494,4 +1497,31 @@ function initLotteryPopup() {
   const wait = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     ? 400 : 1400;
   window.setTimeout(open, wait);
+}
+
+
+/* ------------------------------------------------------------------
+   Composer filter
+
+   Three buttons and three groups. Nothing is removed, only hidden, so
+   the page still carries every name for a crawler and for anyone who
+   arrives with JavaScript off: the groups are visible until a button is
+   pressed, and there is no button to press without JavaScript.
+   ------------------------------------------------------------------ */
+function initComposerFilter() {
+  const bar = document.querySelector(".comp-filter");
+  if (!bar) return;
+  const groups = [...document.querySelectorAll(".comp-group[data-group]")];
+  if (!groups.length) return;
+
+  bar.addEventListener("click", (e) => {
+    const btn = e.target.closest(".cf-btn");
+    if (!btn) return;
+    const want = btn.getAttribute("data-filter");
+    bar.querySelectorAll(".cf-btn").forEach((b) =>
+      b.classList.toggle("is-on", b === btn));
+    groups.forEach((g) => {
+      g.hidden = want !== "all" && g.getAttribute("data-group") !== want;
+    });
+  });
 }

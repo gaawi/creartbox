@@ -35,7 +35,7 @@ if(["creartbox.nyc","www.creartbox.nyc"].indexOf(location.hostname)>-1){gtag("co
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,300..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=188">
+<link rel="stylesheet" href="assets/styles.css?v=190">
 <script id="cb-theme-init">document.documentElement.setAttribute("data-theme","dark");</script>
 </head>
 <body>
@@ -125,36 +125,64 @@ if(["creartbox.nyc","www.creartbox.nyc"].indexOf(location.hostname)>-1){gtag("co
 
 <main>
 <section class="section">
-  <div class="wrap">
-    <div class="page-folio-head">
-      <span class="label">Open Call for Scores</span>
-      <hr class="rule" style="width:100%">
-      <span class="label ital">Season by season, since 2013</span>
+  <div class="wrap comp-top">
+
+    <div class="comp-intro">
+      <div class="page-folio-head">
+        <span class="label">New music</span>
+        <hr class="rule" style="width:100%">
+        <span class="label ital">Since 2013</span>
+      </div>
+      <h1 class="h-mast" style="margin-top:26px;max-width:15ch">The <em>composers</em>.</h1>
+      <p class="lede comp-lede">CreArtBox has merged classical and contemporary music since
+        2013, and new work is part of every season. Eleven of the works in the current one
+        reached the programme through an open call that any composer could enter.</p>
+      <p class="lede comp-lede">Below are the composers whose music the ensemble has played:
+        those chosen through the Call for Scores, those invited, and the four who work with
+        CreArtBox across seasons.</p>
     </div>
-    <h1 class="h-mast" style="margin-top:28px;max-width:16ch">The <em>composers</em>.</h1>
-    <p class="lede comp-lede">Each year, CreArtBox holds a Call for Scores, selecting works to perform the following season. Past selections can lead to new collaborations and repeat performances, and previously selected composers may apply again free of charge.</p>
-    <p class="lede comp-lede">The composers below include past selections and invited guests, identified individually. Four resident composers are listed first.</p>
-    <div style="margin-top:28px"><a class="btn btn-s" href="opportunities.html#scores-international">Submit to the current call <span class="ar">→</span></a></div>
+
+    <aside class="call-banner">
+      <div class="cb-flag">Open now</div>
+      <h2 class="cb-title">Call for Scores<br><em>2027/28</em></h2>
+      <p class="cb-line">Two calls, open to any instrumentation and every career stage.
+        Two works, one form, a first round read with no names attached.</p>
+      <dl class="cb-facts">
+        <div><dt>Deadline</dt><dd>15 December 2026</dd></div>
+        <div><dt>Fee</dt><dd>$20, waived for composers chosen before</dd></div>
+      </dl>
+      <a class="btn btn-stamp btn-l cb-go" href="opportunities.html#scores-international"
+         data-cb-track="apply" data-cb-where="composers">Apply <span class="ar">&#8594;</span></a>
+      <p class="cb-two"><a href="calls/scores-international.html">International</a>
+        <span>&#183;</span> <a href="calls/scores-american.html">American</a></p>
+    </aside>
+
   </div>
 </section>
 
 <section class="section">
   <div class="wrap">
 
-    <section class="comp-group">
+    <div class="comp-filter" role="group" aria-label="Filter the composers">
+      <button type="button" class="cf-btn is-on" data-filter="all">All</button>
+      <button type="button" class="cf-btn" data-filter="resident">Resident</button>
+      <button type="button" class="cf-btn" data-filter="winner">Open Call winners</button>
+      <button type="button" class="cf-btn" data-filter="guest">Guests</button>
+    </div>
+
+    <section class="comp-group" data-group="resident">
       <div class="comp-group-head">
         <span class="label">In residence</span>
         <h2 class="h-title">Resident <em>composers</em>.</h2>
       </div>
       <ul class="comp-grid">
-        <li class="comp-card"><span class="rl-name">Hannah Selin</span><span class="cc-year">2022/23 – 2026/27</span></li>
         <li class="comp-card"><span class="rl-name">Andrea Casarrubios</span><span class="cc-year">2023/24 – 2024/25</span></li>
+        <li class="comp-card"><span class="rl-name">Hannah Selin</span><span class="cc-year">2022/23 – 2026/27</span></li>
         <li class="comp-card"><span class="rl-name">Joshua Penman</span><span class="cc-year">2016/17 – 2018/19</span></li>
         <li class="comp-card"><span class="rl-name">Marcos Fernández</span><span class="cc-year">2012/13 – 2021/22</span></li>
       </ul>
     </section>
-
-    <section class="comp-group">
+    <section class="comp-group" data-group="winner">
       <div class="comp-group-head">
         <span class="label">Open Call for Scores</span>
         <h2 class="h-title">Open Call <em>winners</em>.</h2>
@@ -179,8 +207,7 @@ if(["creartbox.nyc","www.creartbox.nyc"].indexOf(location.hostname)>-1){gtag("co
         <li class="comp-card"><span class="rl-name">Cullyn Murphy</span><span class="cc-year">2021/22</span><span class="rl-work">Everywhere all ways</span></li>
       </ul>
     </section>
-
-    <section class="comp-group">
+    <section class="comp-group" data-group="guest">
       <div class="comp-group-head">
         <span class="label">By invitation</span>
         <h2 class="h-title">Guest <em>composers</em>.</h2>
@@ -223,7 +250,7 @@ if(["creartbox.nyc","www.creartbox.nyc"].indexOf(location.hostname)>-1){gtag("co
   </div>
 </footer>
 
-<script src="assets/site.js?v=58"></script>
+<script src="assets/site.js?v=59"></script>
 <div class="audio-dock" id="audio-dock" hidden aria-label="Audio player">
   <div class="ad-info">
     <div class="ad-composer" data-ad-composer>—</div>
