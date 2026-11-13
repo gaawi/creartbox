@@ -1247,7 +1247,9 @@ function initComposerRoster() {
       thumb.innerHTML = '<img src="' + data.photo + '" alt="" loading="lazy">';
       el.prepend(thumb);
     }
-    if (el.matches(".roster-list li, .comp-card") && data.base && !el.querySelector(".rl-base")) {
+    // the card is the face, the name, the season and the work. Where
+    // somebody lives is in their biography, not on the tile.
+    if (el.matches(".roster-list li") && data.base && !el.querySelector(".rl-base")) {
       const base = document.createElement("span");
       base.className = "rl-base";
       base.textContent = data.base;
