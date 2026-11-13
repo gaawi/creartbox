@@ -1097,7 +1097,7 @@ const COMPOSERS = {
   },
   "Marcos Fernández": {
     photo: null,
-    website: "https://creartbox.nyc/pages/marcos-fernandez",
+    website: null,  // the old /pages/ address, which 404s; no current site known,
     base: "Barcelona, Spain",
     bio: "Marcos Fernández is a Barcelona-born composer based between Madrid, Barcelona, and London. He creates original music for audio-visual projects across dressage, theatre, dance, opera, and multidisciplinary productions. With degrees from ESMUC, Royal Conservatoire of Scotland, and Royal College of Music, he has won over twenty European awards."
   },
@@ -1164,7 +1164,8 @@ const COMPOSERS = {
 };
 
 function initComposerRoster() {
-  const roots = document.querySelectorAll(".roster-list li, .season-names span");
+  const roots = document.querySelectorAll(
+    ".roster-list li, .season-names span, .comp-card");
   if (!roots.length) return;
 
   // Build the modal once per page
@@ -1234,13 +1235,19 @@ function initComposerRoster() {
     // Inject the thumbnail and the composer's base into the roster row.
     // Both come from this table, which is also what fills the modal, so
     // the row and the biography cannot end up saying different things.
-    if (el.matches(".roster-list li") && data.photo && !el.querySelector(".rl-thumb")) {
+    // a card with no portrait gets its initials, so the grid stays straight
+    if (el.matches(".comp-card") && !data.photo && !el.hasAttribute("data-initials")) {
+      el.classList.add("no-photo");
+      el.setAttribute("data-initials",
+        name.split(/\s+/).map((w) => w[0]).join("").slice(0, 2).toUpperCase());
+    }
+    if (el.matches(".roster-list li, .comp-card") && data.photo && !el.querySelector(".rl-thumb")) {
       const thumb = document.createElement("span");
       thumb.className = "rl-thumb";
       thumb.innerHTML = '<img src="' + data.photo + '" alt="" loading="lazy">';
       el.prepend(thumb);
     }
-    if (el.matches(".roster-list li") && data.base && !el.querySelector(".rl-base")) {
+    if (el.matches(".roster-list li, .comp-card") && data.base && !el.querySelector(".rl-base")) {
       const base = document.createElement("span");
       base.className = "rl-base";
       base.textContent = data.base;

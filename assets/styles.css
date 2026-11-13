@@ -7554,3 +7554,97 @@ html.after-curtain .tn-after { display: block; }
   .comp-main .roster-list .rl-base { grid-column: 2; grid-row: 3; }
   .comp-main .roster-list .rl-tag  { grid-column: 2; grid-row: 4; margin-top: 4px; }
 }
+
+/* --- Composers: three grids, photograph first ------------------
+   The point of the grid is the faces, so the card is the portrait
+   with four short lines under it and nothing else. */
+.comp-group + .comp-group { margin-top: clamp(52px, 6vw, 86px); }
+.comp-group-head { border-top: 1px solid var(--ink); padding-top: 18px; margin-bottom: 26px; }
+.comp-group-head .h-title { margin: 10px 0 0; }
+
+.comp-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(188px, 1fr));
+  gap: clamp(20px, 2.4vw, 34px);
+}
+.comp-card {
+  display: block;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+}
+.comp-card .rl-thumb {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 12px;
+  border-radius: 0;
+  overflow: hidden;
+  background: var(--paper-3);
+}
+.comp-card .rl-thumb img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0;
+  transition: transform var(--t), filter var(--t);
+  filter: grayscale(100%) contrast(1.04);
+}
+.comp-card:hover .rl-thumb img,
+.comp-card:focus-visible .rl-thumb img { transform: scale(1.03); filter: none; }
+.comp-card .rl-name {
+  display: block;
+  font-family: var(--serif);
+  font-size: clamp(1rem, 1.3vw, 1.12rem);
+  line-height: 1.24;
+  color: var(--ink);
+}
+.comp-card .cc-year {
+  display: block;
+  margin-top: 5px;
+  font-family: var(--sans);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  color: var(--accent);
+}
+.comp-card .rl-work {
+  display: block;
+  margin-top: 5px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: .9rem;
+  line-height: 1.35;
+  color: var(--ink-soft);
+}
+.comp-card .rl-base {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--sans);
+  font-size: .76rem;
+  color: var(--quiet);
+}
+@media (max-width: 520px) {
+  .comp-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+}
+
+/* A card whose composer has no photograph keeps the grid straight: a
+   tile of the page's own colour with the initials, rather than a
+   missing block and every card after it out of line. */
+.comp-card.no-photo::before {
+  content: attr(data-initials);
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  margin-bottom: 12px;
+  background: var(--paper-3);
+  color: var(--ink-soft);
+  font-family: var(--serif);
+  font-size: 2rem;
+  letter-spacing: .04em;
+}
