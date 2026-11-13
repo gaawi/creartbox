@@ -1096,7 +1096,7 @@ const COMPOSERS = {
     bio: "JP Jofre is a Grammy-nominated composer and bandoneon player native to San Juan, Argentina. His compositions have been recorded by ensembles including the London Symphony Orchestra and Orpheus Chamber Orchestra. He has performed at major venues worldwide, from Carnegie Hall to Beijing National Theatre, and has lectured at institutions including The Juilliard School."
   },
   "Marcos Fernández": {
-    photo: null,
+    photo: "assets/img/composers/marcos-fernandez.jpg",
     website: null,  // the old /pages/ address, which 404s; no current site known,
     base: "Barcelona, Spain",
     bio: "Marcos Fernández is a Barcelona-born composer based between Madrid, Barcelona, and London. He creates original music for audio-visual projects across dressage, theatre, dance, opera, and multidisciplinary productions. With degrees from ESMUC, Royal Conservatoire of Scotland, and Royal College of Music, he has won over twenty European awards."

@@ -777,7 +777,7 @@ def page(artist):
   </div>
 </footer>
 
-<script src="../assets/site.js?v=56"></script>
+<script src="../assets/site.js?v=57"></script>
 </body>
 </html>
 """.format(name=html.escape(artist["name"]), role=artist["role"],
