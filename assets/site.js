@@ -994,19 +994,19 @@ const COMPOSERS = {
     bio: "Driven by storytelling and imagery, Brittney Benton's music takes listeners through a lush melodic and harmonic soundscape filled with personality. She holds a Bachelor's degree in Music Composition with a Minor in Music Technology from the University of Nevada, Las Vegas. Her works have been performed by the Bellevue Chamber Chorus, ZOFO, the Beo String Quartet, the Lowell Chamber Orchestra, and the Armenian State Symphony Orchestra."
   },
   "Alex Burtzos": {
-    photo: "https://images.squarespace-cdn.com/content/v1/57630abfbe659492f03a09d1/797ad90a-8d2a-4c04-b72e-6a179863ffae/Alex+Burtzos+2024+-+3.jpg",
+    photo: "assets/img/composers/alex-burtzos.jpg",
     website: "https://alexburtzosmusic.com",
     base: "New York City / Orlando",
     bio: "Alex Burtzos is an American composer, conductor, and educator based in New York City and Orlando whose music has been performed across four continents by leading contemporary soloists and ensembles. He is the founder and artistic director of ICEBERG New Music, a NYC composer collective established in 2016, and serves as Associate Professor and Endowed Chair of Composition at the University of Central Florida."
   },
   "Oliver Caplan": {
-    photo: "https://www.olivercaplan.com/images/oliver.jpg",
+    photo: "assets/img/composers/oliver-caplan.jpg",
     website: "https://www.olivercaplan.com/",
     base: "Medford, Massachusetts",
     bio: "Oliver Caplan is an award-winning American composer who offers a voice of hope in an uncertain world. Inspired by the resiliency of the human spirit and the beauty of the natural world, his music celebrates stories of social justice, conservation, and community."
   },
   "Luke Carlson": {
-    photo: "https://www.lukecarlsonmusic.com/css/images/headshot-1.jpg",
+    photo: "assets/img/composers/luke-carlson.jpg",
     website: "https://www.lukecarlsonmusic.com/",
     base: "Branson, Missouri",
     bio: "Luke Carlson (b. 1983) is an American composer and conductor whose music has been praised by the New York Times as \"personal and strong,\" by the Philadelphia Inquirer as \"magical\" and \"otherworldly,\" and by the Washington Classical Review for its \"fascinating timbres.\" He serves as Associate Professor of Music at the College of the Ozarks."
@@ -1018,43 +1018,43 @@ const COMPOSERS = {
     bio: "Devin Cholodenko is a composer of eclectic taste and signature style whose work centers on introspection and inner emotional experience, drawing inspiration from time, memory, nature, classical mythology, and identity. His music has been performed by ensembles including the JACK Quartet, HUB New Music, and Momenta Quartet."
   },
   "Gilad Cohen": {
-    photo: "https://images.squarespace-cdn.com/content/v1/5ec82ae63a4a862322e61ce6/1590602918491-9VN9GPR2SW5BOZCBBCAS/headshot.giladcohen.jpg",
+    photo: "assets/img/composers/gilad-cohen.jpg",
     website: "https://giladcohen.com/",
     base: "New Jersey",
     bio: "Gilad Cohen (b. 1980) is a composer, performer, and theorist whose work spans concert music, rock, and theater. His compositions draw on a wide range of influences, blending rock rhythms, impressionism, klezmer, and Arabic musical traditions. He holds a Ph.D. in Composition from Princeton University and serves as Associate Professor of Music at Ramapo College of New Jersey."
   },
   "Yurui (Rain) Hou": {
-    photo: "https://www.newyorkcomposerscircle.org/composers/images/yurui-rain-hou/2025%20Yurui%20Rain%20Hou-1-topaz.jpg",
+    photo: "assets/img/composers/yurui-rain-hou.jpg",
     website: null,
     base: "New York City",
     bio: "Yurui \"Rain\" Hou is a composer and fiction writer based in New York City, currently a student at Columbia University majoring in creative writing and minoring in music, while also studying composition with Melinda Wagner at The Juilliard School. Her works have been recognized as a finalist of the ASCAP Foundation Morton Gould Young Composer Competition and first-place winner of the Belvedere Chamber Music Festival 2024 Composition Contest."
   },
   "Eric Moe": {
-    photo: "https://www.music.pitt.edu/sites/default/files/person-images/moe.jpg",
+    photo: "assets/img/composers/eric-moe.jpg",
     website: "https://www.ericmoe.net/",
     base: "Pittsburgh, Pennsylvania",
     bio: "Eric Moe is the Andrew W. Mellon Professor of Composition and codirector of Music on the Edge at the University of Pittsburgh. A composer and pianist whose work the New York Times has praised for its \"winning exuberance,\" he writes acoustic and electroacoustic music that often incorporates theatrical elements such as video, text, and staging."
   },
   "Paul Novak": {
-    photo: "https://paulnovakmusic.com/uploads/5/8/8/4/58843725/dsc-0569-v2_orig.jpg",
+    photo: "assets/img/composers/paul-novak.jpg",
     website: "https://paulnovakmusic.com",
     base: "Chicago",
     bio: "Paul Novak is a Chicago-based composer and flutist whose \"spellbinding\" (Washington Post) music immerses listeners in shimmering, subtly crafted worlds of color, motion, light, and magic. His recent projects engage with dreams and memory, queer identity, climate change and the natural world, and psychosomatic illness."
   },
   "Zygmund de Somogyi": {
-    photo: "https://static.wixstatic.com/media/555625_347f5c70bc7f4c2e8e3c97e892f4836c~mv2.jpeg",
+    photo: "assets/img/composers/zygmund-de-somogyi.jpg",
     website: "https://www.zdscomposer.co.uk/",
     base: "London, UK",
     bio: "Zygmund de Somogyi is a British-Filipino composer and interdisciplinary artist whose work draws on punk rock influences and DIY ethics. They compose across contemporary classical, opera, theatre, film, and electronic music, exploring themes of online folklore, collaborative worldbuilding, queer identity, and metamodern aesthetics."
   },
   "Eli Tausen á Lava": {
-    photo: "https://images.squarespace-cdn.com/content/v1/5c54a0eb92441b3bc683209a/77892be6-bd3a-4170-beab-d3bdfaacc6b4/Eli_Tausen_%C3%A1_Lava_Promo_Export_AKHC+1.jpg",
+    photo: "assets/img/composers/eli-tausen-a-lava.jpg",
     website: "https://elitausenalava.com/",
     base: "Tórshavn, Faroe Islands",
     bio: "Eli Tausen á Lava is a Faroese composer, producer, pianist, and electronic musician, and a Nordic Council Music Prize nominee. Classically trained at the Malmö Academy of Music with a Master's from NYU, he has collaborated with the BBC Scottish Symphony Orchestra, George Enescu Philharmonic, and Helsingborg Symphony Orchestra."
   },
   "Sam Wu": {
-    photo: "https://images.squarespace-cdn.com/content/v1/5851f4debe6594879d658e7c/1ef6080b-7522-4bd4-afad-ab2fda20503f/Screen+Shot+2022-08-14+at+8.08.20+PM.png",
+    photo: "assets/img/composers/sam-wu.jpg",
     website: "https://samwumusic.com",
     base: "Melbourne, Australia",
     bio: "Sam Wu is a composer whose works feature delicate colours, wisps of sound and sylvan textures, often exploring themes such as architecture, climate science, and the search for habitable exoplanets. He has received accolades including an ASCAP Morton Gould Young Composer Award and Harvard's Robert Levin Prize. His collaborations span five continents, including work with major orchestras and Carnegie Hall."
@@ -1078,7 +1078,7 @@ const COMPOSERS = {
     bio: "Michael Grebla is an international award-winning emerging composer from Western Australia based in New York City. With a deep conviction for the role music plays as a unifying mechanism in society, his recent works deal with ideas of journey, displacement, transience, and spirituality. He completed his Master of Music in Composition at the New England Conservatory in 2018 in the studio of Dr. Kati Agocs."
   },
   "Samantha Leigh Sacks": {
-    photo: "https://images.squarespace-cdn.com/content/v1/61062fe2f1dea7574f7cbdec/fc9dc37c-55a3-4b94-91dc-563b67dd00ae/Einsamkeitt+Protrait.jpg",
+    photo: "assets/img/composers/samantha-leigh-sacks.jpg",
     website: "https://www.samanthasack.com/",
     base: "Kansas City, MO",
     bio: "Samantha Sack is a composer and cellist for film and concert. She studied composition at Missouri State University and earned a Master of Arts in Scoring for Film and Visual Media from Dublin Institute of Technology. She creates original music for musicians worldwide and collaborates with international filmmakers."
@@ -1137,7 +1137,7 @@ const COMPOSERS = {
     base: "New York",
     bio: "Evan O. Adams (b. 1996) is a composer and guitarist who creates rhythmically intricate and playfully unconventional music blending progressive rock and jazz-fusion influences. His compositions have been performed by ensembles including JACK Quartet, Quince Ensemble, and loadbang, and he serves as Artistic Director of the interdisciplinary collective Eclective."
   },
-  "Brian Wysocki": {
+  "Bryan Wysocki": {
     photo: "https://images.squarespace-cdn.com/content/v1/63f7ee5d5d82947c233c9c4d/1686806740395-E186N5IOZMNTFD01CU8E/CTA+Headshot+-+Brian+Michael+Wysocki.jpeg",
     website: "https://commontonearts.org/biographies/bryan-michael-wysocki",
     base: "Atlanta, Georgia",
@@ -1154,12 +1154,6 @@ const COMPOSERS = {
     website: "https://celesteoram.com/",
     base: "New York City (from Aotearoa New Zealand)",
     bio: "Celeste Oram is a composer and musician from Aotearoa New Zealand now based in New York City. Her works are scenarios in which music-making is the catalyst for exploring sonic and social histories and micro-cultures. She holds a PhD in music composition from UC San Diego and has received the 2024 Christoph Delz Composition Prize."
-  },
-  "Brian Shank": {
-    photo: "https://static.wixstatic.com/media/b1a7f3_93574088ae3742a597e24bf5a57d9467~mv2.jpg",
-    website: "https://www.brianshank.com/",
-    base: "New York / San Francisco",
-    bio: "Brian Shank is a composer and percussionist whose work spans contemporary-classical, electronic and electro-acoustic music, and jazz. He earned a Bachelor's in Percussion from The Juilliard School and a Master's in Composition from the San Francisco Conservatory, and is completing a Ph.D. in the History and Theory of Music at UC Irvine. His commissions include works for the New Jersey Symphony and Rome Opera Choir."
   },
   "Cullyn Murphy": {
     photo: "https://images.squarespace-cdn.com/content/v1/6123defc7a4a471b9462459b/58c31ade-3fab-4deb-b902-a1071ed67497/cullynheadshot.png",
@@ -1237,12 +1231,20 @@ function initComposerRoster() {
     el.setAttribute("tabindex", "0");
     el.setAttribute("role", "button");
 
-    // Inject thumbnail photo into the roster row (about §04 only)
+    // Inject the thumbnail and the composer's base into the roster row.
+    // Both come from this table, which is also what fills the modal, so
+    // the row and the biography cannot end up saying different things.
     if (el.matches(".roster-list li") && data.photo && !el.querySelector(".rl-thumb")) {
       const thumb = document.createElement("span");
       thumb.className = "rl-thumb";
       thumb.innerHTML = '<img src="' + data.photo + '" alt="" loading="lazy">';
       el.prepend(thumb);
+    }
+    if (el.matches(".roster-list li") && data.base && !el.querySelector(".rl-base")) {
+      const base = document.createElement("span");
+      base.className = "rl-base";
+      base.textContent = data.base;
+      el.appendChild(base);
     }
 
     const onActivate = (e) => {

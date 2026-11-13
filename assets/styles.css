@@ -7479,3 +7479,78 @@ html.after-curtain .tn-after { display: block; }
   cursor: pointer;
 }
 .lotpop-close:hover { background: rgba(7, 7, 6, .88); }
+
+/* A composer who did not come through the call. The year is still the
+   year their work was played, so they stay in it and say why they are
+   there, rather than being filed somewhere a reader would not look. */
+.roster-list .rl-tag {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 2px 8px;
+  border: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  vertical-align: 3px;
+  white-space: nowrap;
+}
+
+/* Where a composer is based, under the name. site.js writes it from the
+   same table that fills the biography. */
+.roster-list .rl-base {
+  grid-column: 2;
+  font-family: var(--sans);
+  font-size: .82rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+/* --- Composers: the explanation beside the record ---------------
+   The shape the About block had and the page did not: why this works
+   the way it does on the left, standing still, and the seasons
+   scrolling past it on the right. One column on a phone, where
+   nothing can stand still. */
+.comp-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.28fr);
+  gap: clamp(36px, 5vw, 88px);
+  align-items: start;
+}
+.comp-aside { position: sticky; top: 104px; }
+.comp-lede { margin-top: 18px; font-size: 1rem; line-height: 1.62; }
+.comp-lede:first-of-type { margin-top: 26px; }
+.comp-main .season-block + .season-block { margin-top: clamp(34px, 4vw, 54px); }
+
+@media (max-width: 900px) {
+  .comp-layout { grid-template-columns: 1fr; gap: 40px; }
+  .comp-aside { position: static; }
+}
+
+/* Inside the right-hand column the season label goes above its list
+   instead of beside it: a 200px label column nested in a column that is
+   already half the page leaves the names wrapping two words at a time. */
+.comp-main .season-block {
+  display: block;
+  padding: 0 0 clamp(28px, 3vw, 40px);
+  border-top: 0;
+}
+.comp-main .season-block .season-label { margin-bottom: 14px; }
+.comp-main .roster-list > li {
+  grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 8px 20px;
+  padding: 14px 0;
+}
+.comp-main .roster-list > li.has-composer-bio .rl-name { grid-column: 2; grid-row: 1; }
+.comp-main .roster-list .rl-work { grid-column: 3; grid-row: 1; }
+.comp-main .roster-list .rl-base { grid-column: 2; grid-row: 2; margin-top: -4px; }
+.comp-main .roster-list .rl-tag { grid-column: 3; grid-row: 2; margin-left: 0; justify-self: start; }
+@media (max-width: 640px) {
+  .comp-main .roster-list > li { grid-template-columns: auto minmax(0, 1fr); }
+  .comp-main .roster-list .rl-work { grid-column: 2; grid-row: 2; }
+  .comp-main .roster-list .rl-base { grid-column: 2; grid-row: 3; }
+  .comp-main .roster-list .rl-tag  { grid-column: 2; grid-row: 4; margin-top: 4px; }
+}
