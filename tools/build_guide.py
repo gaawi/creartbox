@@ -118,9 +118,23 @@ FAQ = [
      "Seats are sold through Eventbrite and each concert page carries its own link and "
      "prices. {next_price} A Premium ticket puts you in the closest rows to the "
      "players, with a small treat on the night."),
-    ("How long is a concert?",
-     "{next_mins} Every concert page lists each work with its length, so the "
-     "running time can be added up before you come."),
+    ("How long is a concert, and what time will I be out?",
+     "{next_mins} There is no interval, so the music is over by about {next_ends} and "
+     "you are on the street a few minutes after. Every concert page lists each work "
+     "with its length."),
+    ("What do people wear?",
+     "Whatever they arrived in. There is no dress code, and nobody is dressed for an "
+     "opera house."),
+    ("Is this a good first classical concert?",
+     "It is a short evening: about an hour and a quarter of music, no interval, and "
+     "tickets start at $15. The programmes put the standard repertoire beside new work, "
+     "and most productions carry video art, stage design or lighting made for the room, "
+     "so there is something to watch as well as to listen to. Nobody minds if you have "
+     "never been to one."),
+    ("What else is around the hall?",
+     "The DiMenna Center is on West 37th Street between Ninth and Tenth Avenues, a few "
+     "blocks from Hudson Yards and from the northern end of the High Line, so there is "
+     "somewhere to walk before or after."),
     ("What kind of music will I hear?",
      "Chamber music, with the standard repertoire and new work in the same evening: in "
      "2026/27, Brahms and both Schumanns share a programme with Eric Moe, and Stravinsky "
@@ -144,13 +158,25 @@ def faq_fills():
     if not ev:
         return {"next_price": "New York Series tickets start at $15.",
                 "next_mins": "A programme runs about an hour to an hour and a half.",
+                "next_ends": "nine",
                 "next_prose": "Each concert page gives its programme and running time."}
     price = ("%s, on %s, starts at $%s." % (ev["title"], ev["date"], ev["price"])
              if ev["price"] else "Prices are on each concert page.")
+    ends = "nine"
+    if ev["mins"]:
+        src = open(ev["path"], encoding="utf-8").read()
+        t = re.search(r'"startDate":"\d{4}-\d{2}-\d{2}T(\d{2}):(\d{2})', src)
+        if t:
+            total = int(t.group(1)) * 60 + int(t.group(2)) + ev["mins"] + 4
+            hh, mm = total // 60, 5 * round((total % 60) / 5)
+            if mm == 60:
+                hh, mm = hh + 1, 0
+            ends = "%d:%02d %s" % (hh % 12 or 12, mm, "am" if hh % 24 < 12 else "pm")
     mins = ("%s, on %s, is about %d minutes of music."
             % (ev["title"], ev["date"], ev["mins"]) if ev["mins"]
             else "Running times are on each concert page.")
     return {"next_price": price, "next_mins": mins,
+            "next_ends": ends,
             "next_prose": ("<em>%s</em>, on %s, is about %d minutes of music."
                            % (ev["title"], ev["date"], ev["mins"])
                            if ev["mins"] else mins)}

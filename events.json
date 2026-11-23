@@ -73,8 +73,12 @@
       "evening": {
         "startsAt": "7:30 pm",
         "musicMinutes": 79,
+        "interval": false,
+        "musicEndsAbout": "8:55 pm",
+        "dress": "No dress code. People come as they are.",
         "priceFrom": "$15",
-        "gettingThere": "Midtown Manhattan, between Ninth and Tenth Avenues. The A, C and E stop at 34th Street-Penn Station and the 7 at 34th Street-Hudson Yards, both a few minutes' walk."
+        "gettingThere": "Midtown Manhattan, between Ninth and Tenth Avenues. The A, C and E stop at 34th Street-Penn Station and the 7 at 34th Street-Hudson Yards, both a few minutes' walk.",
+        "nearby": "A few blocks from Hudson Yards and from the northern end of the High Line, so there is somewhere to walk before or after."
       },
       "tickets": {
         "url": "https://www.eventbrite.com/e/winterlight-ravel-ma-mere-loye-stravinsky-petroushka-tickets-2004163929263",
@@ -147,8 +151,12 @@
       "evening": {
         "startsAt": "3:00 pm",
         "musicMinutes": 96,
+        "interval": false,
+        "musicEndsAbout": "4:40 pm",
+        "dress": "No dress code. People come as they are.",
         "priceFrom": null,
-        "gettingThere": ""
+        "gettingThere": "",
+        "nearby": ""
       },
       "tickets": null
     },
@@ -209,8 +217,12 @@
       "evening": {
         "startsAt": "3:00 pm",
         "musicMinutes": 64,
+        "interval": false,
+        "musicEndsAbout": "4:10 pm",
+        "dress": "No dress code. People come as they are.",
         "priceFrom": null,
-        "gettingThere": ""
+        "gettingThere": "",
+        "nearby": ""
       },
       "tickets": null
     },
@@ -293,8 +305,12 @@
       "evening": {
         "startsAt": "7:30 pm",
         "musicMinutes": 77,
+        "interval": false,
+        "musicEndsAbout": "8:50 pm",
+        "dress": "No dress code. People come as they are.",
         "priceFrom": null,
-        "gettingThere": "Midtown Manhattan, between Ninth and Tenth Avenues. The A, C and E stop at 34th Street-Penn Station and the 7 at 34th Street-Hudson Yards, both a few minutes' walk."
+        "gettingThere": "Midtown Manhattan, between Ninth and Tenth Avenues. The A, C and E stop at 34th Street-Penn Station and the 7 at 34th Street-Hudson Yards, both a few minutes' walk.",
+        "nearby": "A few blocks from Hudson Yards and from the northern end of the High Line, so there is somewhere to walk before or after."
       },
       "tickets": null
     },
@@ -348,8 +364,12 @@
       "evening": {
         "startsAt": "7:30 pm",
         "musicMinutes": 56,
+        "interval": false,
+        "musicEndsAbout": "8:30 pm",
+        "dress": "No dress code. People come as they are.",
         "priceFrom": null,
-        "gettingThere": "Midtown Manhattan, between Ninth and Tenth Avenues. The A, C and E stop at 34th Street-Penn Station and the 7 at 34th Street-Hudson Yards, both a few minutes' walk."
+        "gettingThere": "Midtown Manhattan, between Ninth and Tenth Avenues. The A, C and E stop at 34th Street-Penn Station and the 7 at 34th Street-Hudson Yards, both a few minutes' walk.",
+        "nearby": "A few blocks from Hudson Yards and from the northern end of the High Line, so there is somewhere to walk before or after."
       },
       "tickets": null
     },
@@ -378,8 +398,12 @@
       "evening": {
         "startsAt": "",
         "musicMinutes": null,
+        "interval": false,
+        "musicEndsAbout": "",
+        "dress": "No dress code. People come as they are.",
         "priceFrom": null,
-        "gettingThere": ""
+        "gettingThere": "",
+        "nearby": ""
       },
       "tickets": null
     },
@@ -403,8 +427,12 @@
       "evening": {
         "startsAt": "7:30 pm",
         "musicMinutes": null,
+        "interval": false,
+        "musicEndsAbout": "",
+        "dress": "No dress code. People come as they are.",
         "priceFrom": null,
-        "gettingThere": ""
+        "gettingThere": "",
+        "nearby": ""
       },
       "tickets": null
     },
@@ -428,8 +456,12 @@
       "evening": {
         "startsAt": "4:00 pm",
         "musicMinutes": null,
+        "interval": false,
+        "musicEndsAbout": "",
+        "dress": "No dress code. People come as they are.",
         "priceFrom": null,
-        "gettingThere": ""
+        "gettingThere": "",
+        "nearby": ""
       },
       "tickets": null
     }

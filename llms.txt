@@ -11,7 +11,9 @@ Machine-readable version of what follows: https://creartbox.nyc/events.json
 
 - [Winterlight](https://creartbox.nyc/concerts/winterlight-2026.html) 2026-12-11 19:30. The DiMenna Center for Classical Music, 450 West 37th Street, New York.
   Starts 7:30 pm, about 79 minutes of music, from $15.
+  No interval, so the music is over by about 8:55 pm; no dress code.
   Midtown Manhattan, between Ninth and Tenth Avenues. The A, C and E stop at 34th Street-Penn Station and the 7 at 34th Street-Hudson Yards, both a few minutes' walk.
+  A few blocks from Hudson Yards and from the northern end of the High Line, so there is somewhere to walk before or after.
   Composers: Hannah Selin; Maurice Ravel; Oliver Caplan; Igor Stravinsky.
   - Hannah Selin: *Tectonic Lullaby* (for piano quintet)
   - Maurice Ravel: *Ma Mère l'Oye*
@@ -21,6 +23,7 @@ Machine-readable version of what follows: https://creartbox.nyc/events.json
 
 - [The Chamber Music Society of Louisville](https://creartbox.nyc/concerts/louisville-chamber-music-society-2027.html) 2027-02-28 15:00. Comstock Hall, Louisville.
   Starts 3:00 pm, about 96 minutes of music.
+  No interval, so the music is over by about 4:40 pm; no dress code.
   Composers: Lili Boulanger; Maurice Ravel; Wolfgang Amadeus Mozart; Aaron Copland; Antonín Dvořák.
   - Lili Boulanger: *Nocturne*
   - Maurice Ravel: *Ma Mère l'Oye*
@@ -30,6 +33,7 @@ Machine-readable version of what follows: https://creartbox.nyc/events.json
 
 - [Masked Sounds](https://creartbox.nyc/concerts/saugerties-2027.html) 2027-04-18 15:00. Saugerties.
   Starts 3:00 pm, about 64 minutes of music.
+  No interval, so the music is over by about 4:10 pm; no dress code.
   Composers: Joseph Haydn; Felix Mendelssohn; Aaron Copland; Antonín Dvořák; Maurice Ravel.
   - Joseph Haydn: *Piano Trio in D major, Hob. XV:16* (for flute, cello & piano)
   - Felix Mendelssohn: *Piano Trio No. 1 in D minor, Op. 49* (movements I and II, for flute, cello & piano)
@@ -39,7 +43,9 @@ Machine-readable version of what follows: https://creartbox.nyc/events.json
 
 - [Pressure and Release](https://creartbox.nyc/concerts/pressure-and-release-2027.html) 2027-04-23 19:30. The DiMenna Center for Classical Music, 450 West 37th Street, New York.
   Starts 7:30 pm, about 77 minutes of music.
+  No interval, so the music is over by about 8:50 pm; no dress code.
   Midtown Manhattan, between Ninth and Tenth Avenues. The A, C and E stop at 34th Street-Penn Station and the 7 at 34th Street-Hudson Yards, both a few minutes' walk.
+  A few blocks from Hudson Yards and from the northern end of the High Line, so there is somewhere to walk before or after.
   Composers: Yurui (Rain); Alex Burtzos; Luke Carlson; Gilad Cohen; Samantha Leigh Sack; Paul Novak; Sam Wu.
   - Yurui (Rain): *Flickered* (for flute, violin, viola and piano)
   - Alex Burtzos: *Islandi* (for piano quartet)
@@ -51,19 +57,24 @@ Machine-readable version of what follows: https://creartbox.nyc/events.json
 
 - [Feverdream](https://creartbox.nyc/concerts/feverdream-2027.html) 2027-05-07 19:30. The DiMenna Center for Classical Music, 450 West 37th Street, New York.
   Starts 7:30 pm, about 56 minutes of music.
+  No interval, so the music is over by about 8:30 pm; no dress code.
   Midtown Manhattan, between Ninth and Tenth Avenues. The A, C and E stop at 34th Street-Penn Station and the 7 at 34th Street-Hudson Yards, both a few minutes' walk.
+  A few blocks from Hudson Yards and from the northern end of the High Line, so there is somewhere to walk before or after.
   Composers: Zygmund de Somogyi; Eli Tausen á Lava; Jean Sibelius.
   - Zygmund de Somogyi: *A Lighthouse Feverdream* (for piano trio and narrator)
   - Eli Tausen á Lava: *múrurin*
   - Jean Sibelius: *Piano Quintet in G minor, JS 159*
 
 - [Festival ADAR 2027](https://creartbox.nyc/concerts/festival-adar-2027.html) 2027-08-02. Multiple venues across Asturias, Asturias.
+  No dress code.
 
 - [Gettysburg Community Concert Association](https://creartbox.nyc/concerts/gettysburg-community-concert-2027.html) 2027-09-28 19:30. Gettysburg Community Concert Association.
   Starts 7:30 pm.
+  No dress code.
 
 - [The Chapel Restoration](https://creartbox.nyc/concerts/chapel-restoration-2027.html) 2027-10-17 16:00. The Chapel Restoration.
   Starts 4:00 pm.
+  No dress code.
 
 ## Open calls for composers
 

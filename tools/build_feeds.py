@@ -69,6 +69,24 @@ def minutes(iso):
     return int(m.group(1) or 0) * 60 + int(m.group(2) or 0)
 
 
+def end_time(iso, total):
+    """When the music stops: the start plus the programme, no interval.
+    Somebody booking a table needs this and no page gives it."""
+    if not total:
+        return ""
+    try:
+        h, mi = int(iso[11:13]), int(iso[14:16])
+    except (ValueError, IndexError):
+        return ""
+    mi += total + 4          # a little for applause and a word from the stage
+    h, mi = h + mi // 60, mi % 60
+    mi = 5 * round(mi / 5)
+    if mi == 60:
+        h, mi = h + 1, 0
+    suffix = "am" if h % 24 < 12 else "pm"
+    return "%d:%02d %s" % (h % 12 or 12, mi, suffix)
+
+
 def plain_time(iso):
     """7:30 pm, not 19:30. Somebody choosing an evening reads a clock."""
     try:
@@ -79,6 +97,15 @@ def plain_time(iso):
     h12 = h % 12 or 12
     return "%d:%02d %s" % (h12, mi, suffix)
 
+
+# What is around a hall, for somebody choosing an evening rather than a
+# concert. Only what the ensemble will actually vouch for: no restaurant
+# is named here, because nobody at CreArtBox has recommended one.
+NEARBY = {
+    "The DiMenna Center for Classical Music":
+        "A few blocks from Hudson Yards and from the northern end of the High Line, "
+        "so there is somewhere to walk before or after.",
+}
 
 # How to reach a hall, in the words its own page uses. Only halls the
 # ensemble plays often enough to have written this down for.
@@ -150,9 +177,13 @@ def event_record(node, path):
     rec["evening"] = {
         "startsAt": plain_time(node.get("startDate", "")),
         "musicMinutes": total or None,
+        "interval": False,
+        "musicEndsAbout": end_time(node.get("startDate", ""), total),
+        "dress": "No dress code. People come as they are.",
         "priceFrom": (("$" + str(offers.get("lowPrice")))
                       if offers.get("lowPrice") else None),
         "gettingThere": GETTING_THERE.get(loc.get("name", ""), ""),
+        "nearby": NEARBY.get(loc.get("name", ""), ""),
     }
     if offers:
         rec["tickets"] = {
@@ -245,8 +276,18 @@ def build_llms(events):
             line.append("from %s" % ev["priceFrom"])
         if line:
             L.append("  " + ", ".join(line) + ".")
+        plan = []
+        if ev.get("musicEndsAbout"):
+            plan.append("no interval, so the music is over by about %s"
+                        % ev["musicEndsAbout"])
+        if ev.get("dress"):
+            plan.append("no dress code")
+        if plan:
+            L.append("  " + ("; ".join(plan)[0].upper() + "; ".join(plan)[1:]) + ".")
         if ev.get("gettingThere"):
             L.append("  " + ev["gettingThere"])
+        if ev.get("nearby"):
+            L.append("  " + ev["nearby"])
         if e["composers"]:
             L.append("  Composers: " + "; ".join(e["composers"]) + ".")
         for w in e["programme"]:
