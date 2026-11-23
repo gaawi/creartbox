@@ -1,0 +1,389 @@
+{
+  "name": "CreArtBox",
+  "url": "https://creartbox.nyc/",
+  "description": "A New York chamber music ensemble, founded 2013. Classical and contemporary music with original stage design and visual art.",
+  "note": "Upcoming concerts only. Every event lists its composers first: in classical music that is what people search for. Tickets are sold on Eventbrite at the url under tickets.",
+  "generated": "2026-11-23",
+  "calls": [
+    {
+      "url": "https://creartbox.nyc/calls/scores-international.html",
+      "who": "International, any nationality",
+      "deadline": "15 December 2026"
+    },
+    {
+      "url": "https://creartbox.nyc/calls/scores-american.html",
+      "who": "American composers",
+      "deadline": "15 December 2026"
+    }
+  ],
+  "events": [
+    {
+      "name": "Winterlight",
+      "url": "https://creartbox.nyc/concerts/winterlight-2026.html",
+      "startDate": "2026-12-11T19:30:00-05:00",
+      "composers": [
+        "Hannah Selin",
+        "Maurice Ravel",
+        "Oliver Caplan",
+        "Igor Stravinsky"
+      ],
+      "programme": [
+        {
+          "composer": "Hannah Selin",
+          "work": "Tectonic Lullaby",
+          "scoring": "for piano quintet",
+          "duration": "PT10M"
+        },
+        {
+          "composer": "Maurice Ravel",
+          "work": "Ma Mère l'Oye",
+          "scoring": "",
+          "duration": "PT17M"
+        },
+        {
+          "composer": "Oliver Caplan",
+          "work": "Canciones de Monteverde",
+          "scoring": "for flute and string trio",
+          "duration": "PT12M"
+        },
+        {
+          "composer": "Igor Stravinsky",
+          "work": "Petroushka",
+          "scoring": "chamber arrangement",
+          "duration": "PT40M"
+        }
+      ],
+      "venue": {
+        "name": "The DiMenna Center for Classical Music",
+        "street": "450 West 37th Street",
+        "city": "New York",
+        "region": "NY",
+        "postalCode": "10018",
+        "country": "US"
+      },
+      "series": "New York Series",
+      "performers": [
+        "Guillermo Laporta",
+        "Josefina Urraca",
+        "Emilie-Anne Gendron",
+        "Matthew Cohen",
+        "Julia Yang"
+      ],
+      "description": "Stravinsky's Petroushka and Ravel's Ma Mère l'Oye with visual projections, and a world premiere by Hannah Selin. The DiMenna Center, New York, December 11, 2026.",
+      "tickets": {
+        "url": "https://www.eventbrite.com/e/winterlight-ravel-ma-mere-loye-stravinsky-petroushka-tickets-2004163929263",
+        "lowPrice": "15",
+        "highPrice": "70",
+        "currency": "USD",
+        "availability": "InStock"
+      }
+    },
+    {
+      "name": "The Chamber Music Society of Louisville",
+      "url": "https://creartbox.nyc/concerts/louisville-chamber-music-society-2027.html",
+      "startDate": "2027-02-28T15:00:00-05:00",
+      "composers": [
+        "Lili Boulanger",
+        "Maurice Ravel",
+        "Wolfgang Amadeus Mozart",
+        "Aaron Copland",
+        "Antonín Dvořák"
+      ],
+      "programme": [
+        {
+          "composer": "Lili Boulanger",
+          "work": "Nocturne",
+          "scoring": "",
+          "duration": "PT5M"
+        },
+        {
+          "composer": "Maurice Ravel",
+          "work": "Ma Mère l'Oye",
+          "scoring": "",
+          "duration": "PT17M"
+        },
+        {
+          "composer": "Wolfgang Amadeus Mozart",
+          "work": "Flute Quartet in D major, K. 285",
+          "scoring": "",
+          "duration": "PT20M"
+        },
+        {
+          "composer": "Aaron Copland",
+          "work": "Duo for flute and piano",
+          "scoring": "",
+          "duration": "PT14M"
+        },
+        {
+          "composer": "Antonín Dvořák",
+          "work": "Piano Quintet No. 2 in A major, Op. 81",
+          "scoring": "",
+          "duration": "PT40M"
+        }
+      ],
+      "venue": {
+        "name": "Comstock Hall",
+        "street": "",
+        "city": "Louisville",
+        "region": "KY",
+        "postalCode": "",
+        "country": ""
+      },
+      "series": "",
+      "performers": [
+        "Guillermo Laporta",
+        "Josefina Urraca",
+        "Karla Donehew Perez",
+        "Matthew Cohen",
+        "Julia Yang"
+      ],
+      "description": "The Chamber Music Society of Louisville - February 28, 2027. Comstock Hall, Louisville, KY. CreArtBox.",
+      "tickets": null
+    },
+    {
+      "name": "Masked Sounds",
+      "url": "https://creartbox.nyc/concerts/saugerties-2027.html",
+      "startDate": "2027-04-18T15:00:00-04:00",
+      "composers": [
+        "Joseph Haydn",
+        "Felix Mendelssohn",
+        "Aaron Copland",
+        "Antonín Dvořák",
+        "Maurice Ravel"
+      ],
+      "programme": [
+        {
+          "composer": "Joseph Haydn",
+          "work": "Piano Trio in D major, Hob. XV:16",
+          "scoring": "for flute, cello & piano",
+          "duration": "PT21M"
+        },
+        {
+          "composer": "Felix Mendelssohn",
+          "work": "Piano Trio No. 1 in D minor, Op. 49",
+          "scoring": "movements I and II, for flute, cello & piano",
+          "duration": "PT15M"
+        },
+        {
+          "composer": "Aaron Copland",
+          "work": "Duo for Flute and Piano",
+          "scoring": "",
+          "duration": "PT14M"
+        },
+        {
+          "composer": "Antonín Dvořák",
+          "work": "Dumky, Op. 90",
+          "scoring": "movements 1 and 2, for flute, cello & piano",
+          "duration": "PT10M"
+        },
+        {
+          "composer": "Maurice Ravel",
+          "work": "Kaddisch",
+          "scoring": "from Deux mélodies hébraïques, for flute & piano",
+          "duration": "PT4M"
+        }
+      ],
+      "venue": {
+        "name": "Saugerties",
+        "street": "",
+        "city": "",
+        "region": "",
+        "postalCode": "",
+        "country": ""
+      },
+      "series": "",
+      "performers": [],
+      "description": "Masked Sounds - April 18, 2027. Saugerties, New York. CreArtBox.",
+      "tickets": null
+    },
+    {
+      "name": "Pressure and Release",
+      "url": "https://creartbox.nyc/concerts/pressure-and-release-2027.html",
+      "startDate": "2027-04-23T19:30:00-04:00",
+      "composers": [
+        "Yurui (Rain)",
+        "Alex Burtzos",
+        "Luke Carlson",
+        "Gilad Cohen",
+        "Samantha Leigh Sack",
+        "Paul Novak",
+        "Sam Wu"
+      ],
+      "programme": [
+        {
+          "composer": "Yurui (Rain)",
+          "work": "Flickered",
+          "scoring": "for flute, violin, viola and piano",
+          "duration": "PT10M"
+        },
+        {
+          "composer": "Alex Burtzos",
+          "work": "Islandi",
+          "scoring": "for piano quartet",
+          "duration": "PT11M"
+        },
+        {
+          "composer": "Luke Carlson",
+          "work": "Render",
+          "scoring": "",
+          "duration": "PT10M"
+        },
+        {
+          "composer": "Gilad Cohen",
+          "work": "Ten Variations",
+          "scoring": "for flute and piano quintet",
+          "duration": "PT13M"
+        },
+        {
+          "composer": "Samantha Leigh Sack",
+          "work": "Forcing Revelation",
+          "scoring": "for piano quartet",
+          "duration": "PT10M"
+        },
+        {
+          "composer": "Paul Novak",
+          "work": "Entwining",
+          "scoring": "for clarinet, violin, cello and piano",
+          "duration": "PT10M"
+        },
+        {
+          "composer": "Sam Wu",
+          "work": "Mass Transit",
+          "scoring": "for piano quintet",
+          "duration": "PT13M"
+        }
+      ],
+      "venue": {
+        "name": "The DiMenna Center for Classical Music",
+        "street": "450 West 37th Street",
+        "city": "New York",
+        "region": "NY",
+        "postalCode": "10018",
+        "country": "US"
+      },
+      "series": "New York Series",
+      "performers": [
+        "Guillermo Laporta",
+        "Josefina Urraca",
+        "Emilie-Anne Gendron",
+        "Keiko Tokunaga",
+        "Matthew Cohen",
+        "Julia Yang",
+        "Guest clarinettist"
+      ],
+      "description": "Pressure and Release - April 23, 2027. The DiMenna Center · 450 W 37th St, New York, NY. CreArtBox.",
+      "tickets": null
+    },
+    {
+      "name": "Feverdream",
+      "url": "https://creartbox.nyc/concerts/feverdream-2027.html",
+      "startDate": "2027-05-07T19:30:00-04:00",
+      "composers": [
+        "Zygmund de Somogyi",
+        "Eli Tausen á Lava",
+        "Jean Sibelius"
+      ],
+      "programme": [
+        {
+          "composer": "Zygmund de Somogyi",
+          "work": "A Lighthouse Feverdream",
+          "scoring": "for piano trio and narrator",
+          "duration": "PT8M"
+        },
+        {
+          "composer": "Eli Tausen á Lava",
+          "work": "múrurin",
+          "scoring": "",
+          "duration": "PT8M"
+        },
+        {
+          "composer": "Jean Sibelius",
+          "work": "Piano Quintet in G minor, JS 159",
+          "scoring": "",
+          "duration": "PT40M"
+        }
+      ],
+      "venue": {
+        "name": "The DiMenna Center for Classical Music",
+        "street": "450 West 37th Street",
+        "city": "New York",
+        "region": "NY",
+        "postalCode": "10018",
+        "country": "US"
+      },
+      "series": "New York Series",
+      "performers": [
+        "Guillermo Laporta",
+        "Josefina Urraca",
+        "Emilie-Anne Gendron",
+        "Matthew Cohen",
+        "Julia Yang",
+        "Narrator"
+      ],
+      "description": "Feverdream - May 7, 2027. The DiMenna Center · 450 W 37th St, New York, NY. CreArtBox.",
+      "tickets": null
+    },
+    {
+      "name": "Festival ADAR 2027",
+      "url": "https://creartbox.nyc/concerts/festival-adar-2027.html",
+      "startDate": "2027-08-02",
+      "composers": [],
+      "programme": [],
+      "venue": {
+        "name": "Multiple venues across Asturias",
+        "street": "",
+        "city": "Asturias",
+        "region": "",
+        "postalCode": "",
+        "country": "ES"
+      },
+      "series": "Festival ADAR",
+      "performers": [
+        "Guillermo Laporta",
+        "Josefina Urraca",
+        "CreArtBox strings",
+        "Festival guests"
+      ],
+      "description": "Festival ADAR 2027 - August 2 – 15, 2027. Multiple venues across Asturias, Spain. CreArtBox.",
+      "tickets": null
+    },
+    {
+      "name": "Gettysburg Community Concert Association",
+      "url": "https://creartbox.nyc/concerts/gettysburg-community-concert-2027.html",
+      "startDate": "2027-09-28T19:30:00-04:00",
+      "composers": [],
+      "programme": [],
+      "venue": {
+        "name": "Gettysburg Community Concert Association",
+        "street": "",
+        "city": "",
+        "region": "",
+        "postalCode": "",
+        "country": ""
+      },
+      "series": "",
+      "performers": [],
+      "description": "Gettysburg Community Concert Association - September 28, 2027. Gettysburg Community Concert Association. CreArtBox.",
+      "tickets": null
+    },
+    {
+      "name": "The Chapel Restoration",
+      "url": "https://creartbox.nyc/concerts/chapel-restoration-2027.html",
+      "startDate": "2027-10-17T16:00:00-04:00",
+      "composers": [],
+      "programme": [],
+      "venue": {
+        "name": "The Chapel Restoration",
+        "street": "",
+        "city": "",
+        "region": "",
+        "postalCode": "",
+        "country": ""
+      },
+      "series": "",
+      "performers": [],
+      "description": "The Chapel Restoration - October 17, 2027. The Chapel Restoration. CreArtBox.",
+      "tickets": null
+    }
+  ]
+}

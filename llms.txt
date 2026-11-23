@@ -1,0 +1,75 @@
+# CreArtBox
+
+> A chamber music ensemble in New York, founded in 2013, playing classical and
+> contemporary music with original stage design and visual art. Four productions
+> a season at The DiMenna Center, plus touring dates and Festival ADAR in Spain.
+> A 501(c)(3) non-profit.
+
+Machine-readable version of what follows: https://creartbox.nyc/events.json
+
+## Concerts coming up
+
+- [Winterlight](https://creartbox.nyc/concerts/winterlight-2026.html) 2026-12-11 19:30. The DiMenna Center for Classical Music, 450 West 37th Street, New York.
+  Composers: Hannah Selin; Maurice Ravel; Oliver Caplan; Igor Stravinsky.
+  - Hannah Selin: *Tectonic Lullaby* (for piano quintet)
+  - Maurice Ravel: *Ma Mère l'Oye*
+  - Oliver Caplan: *Canciones de Monteverde* (for flute and string trio)
+  - Igor Stravinsky: *Petroushka* (chamber arrangement)
+  Tickets $15 to $70, InStock: https://www.eventbrite.com/e/winterlight-ravel-ma-mere-loye-stravinsky-petroushka-tickets-2004163929263
+
+- [The Chamber Music Society of Louisville](https://creartbox.nyc/concerts/louisville-chamber-music-society-2027.html) 2027-02-28 15:00. Comstock Hall, Louisville.
+  Composers: Lili Boulanger; Maurice Ravel; Wolfgang Amadeus Mozart; Aaron Copland; Antonín Dvořák.
+  - Lili Boulanger: *Nocturne*
+  - Maurice Ravel: *Ma Mère l'Oye*
+  - Wolfgang Amadeus Mozart: *Flute Quartet in D major, K. 285*
+  - Aaron Copland: *Duo for flute and piano*
+  - Antonín Dvořák: *Piano Quintet No. 2 in A major, Op. 81*
+
+- [Masked Sounds](https://creartbox.nyc/concerts/saugerties-2027.html) 2027-04-18 15:00. Saugerties.
+  Composers: Joseph Haydn; Felix Mendelssohn; Aaron Copland; Antonín Dvořák; Maurice Ravel.
+  - Joseph Haydn: *Piano Trio in D major, Hob. XV:16* (for flute, cello & piano)
+  - Felix Mendelssohn: *Piano Trio No. 1 in D minor, Op. 49* (movements I and II, for flute, cello & piano)
+  - Aaron Copland: *Duo for Flute and Piano*
+  - Antonín Dvořák: *Dumky, Op. 90* (movements 1 and 2, for flute, cello & piano)
+  - Maurice Ravel: *Kaddisch* (from Deux mélodies hébraïques, for flute & piano)
+
+- [Pressure and Release](https://creartbox.nyc/concerts/pressure-and-release-2027.html) 2027-04-23 19:30. The DiMenna Center for Classical Music, 450 West 37th Street, New York.
+  Composers: Yurui (Rain); Alex Burtzos; Luke Carlson; Gilad Cohen; Samantha Leigh Sack; Paul Novak; Sam Wu.
+  - Yurui (Rain): *Flickered* (for flute, violin, viola and piano)
+  - Alex Burtzos: *Islandi* (for piano quartet)
+  - Luke Carlson: *Render*
+  - Gilad Cohen: *Ten Variations* (for flute and piano quintet)
+  - Samantha Leigh Sack: *Forcing Revelation* (for piano quartet)
+  - Paul Novak: *Entwining* (for clarinet, violin, cello and piano)
+  - Sam Wu: *Mass Transit* (for piano quintet)
+
+- [Feverdream](https://creartbox.nyc/concerts/feverdream-2027.html) 2027-05-07 19:30. The DiMenna Center for Classical Music, 450 West 37th Street, New York.
+  Composers: Zygmund de Somogyi; Eli Tausen á Lava; Jean Sibelius.
+  - Zygmund de Somogyi: *A Lighthouse Feverdream* (for piano trio and narrator)
+  - Eli Tausen á Lava: *múrurin*
+  - Jean Sibelius: *Piano Quintet in G minor, JS 159*
+
+- [Festival ADAR 2027](https://creartbox.nyc/concerts/festival-adar-2027.html) 2027-08-02. Multiple venues across Asturias, Asturias.
+
+- [Gettysburg Community Concert Association](https://creartbox.nyc/concerts/gettysburg-community-concert-2027.html) 2027-09-28 19:30. Gettysburg Community Concert Association.
+
+- [The Chapel Restoration](https://creartbox.nyc/concerts/chapel-restoration-2027.html) 2027-10-17 16:00. The Chapel Restoration.
+
+## Open calls for composers
+
+- [Call for Scores, International, any nationality](https://creartbox.nyc/calls/scores-international.html). Deadline 15 December 2026.
+- [Call for Scores, American composers](https://creartbox.nyc/calls/scores-american.html). Deadline 15 December 2026.
+
+## Pages
+
+- [Calendar](https://creartbox.nyc/concerts.html): every date of the season.
+- [Coming to a concert](https://creartbox.nyc/classical-concerts-nyc.html): the hall, the way in, start and running times, what a seat costs.
+- [Composers](https://creartbox.nyc/composers.html): everyone whose music the ensemble has played, season by season.
+- [Repertoire](https://creartbox.nyc/repertoire.html): every work played since 2013.
+- [Archive](https://creartbox.nyc/archive.html): every concert since 2013, with programmes.
+- [About](https://creartbox.nyc/about.html) and [the ensemble](https://creartbox.nyc/ensemble.html).
+- [Press kit](https://creartbox.nyc/press/season-2026-27.html).
+
+## Contact
+
+- info@creartbox.nyc

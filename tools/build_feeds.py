@@ -1,0 +1,268 @@
+#!/usr/bin/env python3
+"""Write the two files an assistant reads instead of crawling the site.
+
+    python3 tools/build_feeds.py            # write events.json and llms.txt
+    python3 tools/build_feeds.py --check    # fail if either is out of date
+
+Both are built from the JSON-LD that tools/build_seo.py already puts on
+every concert page, so there is one source for what is on and nothing
+here can contradict the pages. Run build_seo first.
+
+    events.json   every upcoming concert in one document
+    llms.txt      the same in prose, at the address some assistants look
+                  for (llmstxt.org)
+
+In classical music the works and the composers are what people search
+for. Nobody types a violist's name; they type Ravel. So every event
+carries a flat `composers` list before anything else, and llms.txt names
+the composers on the line under the title. An assistant matching
+"Ravel in New York" should not have to walk a programme to find him.
+"""
+
+import glob
+import html
+import json
+import os
+import re
+import sys
+from datetime import datetime, timezone
+
+SITE = "https://creartbox.nyc"
+OUT_JSON = "events.json"
+OUT_LLMS = "llms.txt"
+
+LD_RE = re.compile(r'<script type="application/ld\+json">(.*?)</script>', re.S)
+
+
+def graph(path):
+    for m in LD_RE.findall(open(path, encoding="utf-8").read()):
+        try:
+            data = json.loads(html.unescape(m))
+        except ValueError:
+            continue
+        for node in data.get("@graph", []):
+            yield node
+
+
+def is_event(node):
+    t = node.get("@type")
+    return t == "MusicEvent" or (isinstance(t, list) and "MusicEvent" in t)
+
+
+def clean(name):
+    """The title alone. The programme writes the scoring after a middot."""
+    return name.split(" · ")[0].strip()
+
+
+def scoring(name):
+    parts = name.split(" · ", 1)
+    return parts[1].strip() if len(parts) > 1 else ""
+
+
+def person(p):
+    if isinstance(p, dict):
+        return p.get("name", "")
+    return str(p)
+
+
+def event_record(node, path):
+    works = node.get("workPerformed") or []
+    if isinstance(works, dict):
+        works = [works]
+
+    composers = []
+    for w in works:
+        n = person(w.get("composer", {}))
+        if n and n not in composers:
+            composers.append(n)
+
+    loc = node.get("location") or {}
+    addr = loc.get("address") or {}
+    offers = node.get("offers") or {}
+
+    performers = []
+    for p in (node.get("performer") or []):
+        n = person(p)
+        if n and n not in performers:
+            performers.append(n)
+
+    rec = {
+        "name": node.get("name", ""),
+        "url": node.get("url") or (SITE + "/" + path),
+        "startDate": node.get("startDate", ""),
+        # the thing people actually search for, before anything else
+        "composers": composers,
+        "programme": [{
+            "composer": person(w.get("composer", {})),
+            "work": clean(w.get("name", "")),
+            "scoring": scoring(w.get("name", "")),
+            "duration": w.get("duration", ""),
+        } for w in works],
+        "venue": {
+            "name": loc.get("name", ""),
+            "street": addr.get("streetAddress", ""),
+            "city": addr.get("addressLocality", ""),
+            "region": addr.get("addressRegion", ""),
+            "postalCode": addr.get("postalCode", ""),
+            "country": addr.get("addressCountry", ""),
+        },
+        "series": (node.get("superEvent") or {}).get("name", ""),
+        "performers": performers,
+        "description": node.get("description", ""),
+    }
+    if offers:
+        rec["tickets"] = {
+            "url": offers.get("url", ""),
+            "lowPrice": offers.get("lowPrice") or offers.get("price", ""),
+            "highPrice": offers.get("highPrice") or offers.get("price", ""),
+            "currency": offers.get("priceCurrency", ""),
+            "availability": (offers.get("availability", "") or "").rsplit("/", 1)[-1],
+        }
+    else:
+        rec["tickets"] = None
+    return rec
+
+
+def collect():
+    today = datetime.now(timezone.utc).date().isoformat()
+    out = []
+    for path in sorted(glob.glob("concerts/*.html")):
+        for node in graph(path):
+            if not is_event(node):
+                continue
+            rec = event_record(node, path)
+            if rec["startDate"][:10] >= today:
+                out.append(rec)
+            break
+    out.sort(key=lambda r: r["startDate"])
+    return out
+
+
+# The open calls, read off the pages rather than typed here twice
+CALL_PAGES = [("calls/scores-international.html", "International, any nationality"),
+              ("calls/scores-american.html", "American composers")]
+DEADLINE_RE = re.compile(r"Deadline (\d{1,2} \w+ \d{4})")
+
+
+def calls():
+    out = []
+    for path, who in CALL_PAGES:
+        if not os.path.exists(path):
+            continue
+        src = open(path, encoding="utf-8").read()
+        m = re.search(r"<title>([^<]*)</title>", src)
+        d = DEADLINE_RE.search(html.unescape(m.group(1) if m else ""))
+        out.append({"url": SITE + "/" + path, "who": who,
+                    "deadline": d.group(1) if d else ""})
+    return out
+
+
+def build_json(events):
+    return json.dumps({
+        "name": "CreArtBox",
+        "url": SITE + "/",
+        "description": ("A New York chamber music ensemble, founded 2013. Classical and "
+                        "contemporary music with original stage design and visual art."),
+        "note": ("Upcoming concerts only. Every event lists its composers first: in "
+                 "classical music that is what people search for. Tickets are sold on "
+                 "Eventbrite at the url under tickets."),
+        "generated": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+        "calls": calls(),
+        "events": events,
+    }, indent=2, ensure_ascii=False) + "\n"
+
+
+def build_llms(events):
+    L = ["# CreArtBox", "",
+         "> A chamber music ensemble in New York, founded in 2013, playing classical and",
+         "> contemporary music with original stage design and visual art. Four productions",
+         "> a season at The DiMenna Center, plus touring dates and Festival ADAR in Spain.",
+         "> A 501(c)(3) non-profit.", "",
+         "Machine-readable version of what follows: " + SITE + "/events.json", ""]
+
+    L.append("## Concerts coming up")
+    L.append("")
+    if not events:
+        L.append("- Nothing on sale at the moment. The calendar is at "
+                 + SITE + "/concerts.html")
+    for e in events:
+        when = e["startDate"][:16].replace("T", " ")
+        v = e["venue"]
+        where = ", ".join(x for x in [v["name"], v["street"], v["city"]] if x)
+        L.append("- [%s](%s) %s. %s." % (e["name"], e["url"], when, where))
+        if e["composers"]:
+            L.append("  Composers: " + "; ".join(e["composers"]) + ".")
+        for w in e["programme"]:
+            bits = [w["composer"], w["work"]]
+            tail = ", ".join(x for x in [w["scoring"]] if x)
+            L.append("  - %s: *%s*%s" % (bits[0], bits[1], (" (%s)" % tail) if tail else ""))
+        t = e["tickets"]
+        if t and t.get("url"):
+            price = ("$%s" % t["lowPrice"] if t["lowPrice"] == t["highPrice"]
+                     else "$%s to $%s" % (t["lowPrice"], t["highPrice"]))
+            L.append("  Tickets %s, %s: %s" % (price, t["availability"], t["url"]))
+        L.append("")
+
+    cs = calls()
+    if cs:
+        L.append("## Open calls for composers")
+        L.append("")
+        for c in cs:
+            L.append("- [Call for Scores, %s](%s)%s" % (
+                c["who"], c["url"],
+                (". Deadline " + c["deadline"] + ".") if c["deadline"] else "."))
+        L.append("")
+
+    L += ["## Pages",
+          "",
+          "- [Calendar](%s/concerts.html): every date of the season." % SITE,
+          "- [Coming to a concert](%s/classical-concerts-nyc.html): the hall, the way in, "
+          "start and running times, what a seat costs." % SITE,
+          "- [Composers](%s/composers.html): everyone whose music the ensemble has "
+          "played, season by season." % SITE,
+          "- [Repertoire](%s/repertoire.html): every work played since 2013." % SITE,
+          "- [Archive](%s/archive.html): every concert since 2013, with programmes." % SITE,
+          "- [About](%s/about.html) and [the ensemble](%s/ensemble.html)." % (SITE, SITE),
+          "- [Press kit](%s/press/season-2026-27.html)." % SITE,
+          "",
+          "## Contact",
+          "",
+          "- info@creartbox.nyc",
+          ""]
+    return "\n".join(L)
+
+
+def main():
+    check = "--check" in sys.argv
+    os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    events = collect()
+    if not events:
+        print("  !! no upcoming concerts found; run tools/build_seo.py first")
+
+    stale = []
+    for path, text in [(OUT_JSON, build_json(events)), (OUT_LLMS, build_llms(events))]:
+        have = open(path, encoding="utf-8").read() if os.path.exists(path) else ""
+        # the generated date alone is not a reason to rewrite a file
+        a = re.sub(r'"generated": "[^"]*"', "", text)
+        b = re.sub(r'"generated": "[^"]*"', "", have)
+        if a != b:
+            stale.append(path)
+            if not check:
+                open(path, "w", encoding="utf-8").write(text)
+
+    if check:
+        if stale:
+            print("feeds out of date: " + ", ".join(stale))
+            print("\nRun: python3 tools/build_feeds.py")
+            return 1
+        print("events.json and llms.txt are current (%d concert(s))" % len(events))
+        return 0
+    print("wrote %s: %d concert(s), %d composer(s)"
+          % (", ".join(stale) or "nothing new",
+             len(events),
+             len({c for e in events for c in e["composers"]})))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
