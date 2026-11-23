@@ -2,7 +2,7 @@
   "name": "CreArtBox",
   "url": "https://creartbox.nyc/",
   "description": "A New York chamber music ensemble, founded 2013. Classical and contemporary music with original stage design and visual art.",
-  "note": "Upcoming concerts only. Every event lists its composers first: in classical music that is what people search for. Tickets are sold on Eventbrite at the url under tickets.",
+  "note": "Upcoming concerts only. Each event carries two things: `composers` for anyone searching by name, and `evening` for anyone choosing what to do on a given night, which is most people. Tickets are sold on Eventbrite at the url under tickets.",
   "generated": "2026-11-23",
   "calls": [
     {
@@ -70,6 +70,12 @@
         "Julia Yang"
       ],
       "description": "Stravinsky's Petroushka and Ravel's Ma Mère l'Oye with visual projections, and a world premiere by Hannah Selin. The DiMenna Center, New York, December 11, 2026.",
+      "evening": {
+        "startsAt": "7:30 pm",
+        "musicMinutes": 79,
+        "priceFrom": "$15",
+        "gettingThere": "Midtown Manhattan, between Ninth and Tenth Avenues. The A, C and E stop at 34th Street-Penn Station and the 7 at 34th Street-Hudson Yards, both a few minutes' walk."
+      },
       "tickets": {
         "url": "https://www.eventbrite.com/e/winterlight-ravel-ma-mere-loye-stravinsky-petroushka-tickets-2004163929263",
         "lowPrice": "15",
@@ -138,6 +144,12 @@
         "Julia Yang"
       ],
       "description": "The Chamber Music Society of Louisville - February 28, 2027. Comstock Hall, Louisville, KY. CreArtBox.",
+      "evening": {
+        "startsAt": "3:00 pm",
+        "musicMinutes": 96,
+        "priceFrom": null,
+        "gettingThere": ""
+      },
       "tickets": null
     },
     {
@@ -194,6 +206,12 @@
       "series": "",
       "performers": [],
       "description": "Masked Sounds - April 18, 2027. Saugerties, New York. CreArtBox.",
+      "evening": {
+        "startsAt": "3:00 pm",
+        "musicMinutes": 64,
+        "priceFrom": null,
+        "gettingThere": ""
+      },
       "tickets": null
     },
     {
@@ -272,6 +290,12 @@
         "Guest clarinettist"
       ],
       "description": "Pressure and Release - April 23, 2027. The DiMenna Center · 450 W 37th St, New York, NY. CreArtBox.",
+      "evening": {
+        "startsAt": "7:30 pm",
+        "musicMinutes": 77,
+        "priceFrom": null,
+        "gettingThere": "Midtown Manhattan, between Ninth and Tenth Avenues. The A, C and E stop at 34th Street-Penn Station and the 7 at 34th Street-Hudson Yards, both a few minutes' walk."
+      },
       "tickets": null
     },
     {
@@ -321,6 +345,12 @@
         "Narrator"
       ],
       "description": "Feverdream - May 7, 2027. The DiMenna Center · 450 W 37th St, New York, NY. CreArtBox.",
+      "evening": {
+        "startsAt": "7:30 pm",
+        "musicMinutes": 56,
+        "priceFrom": null,
+        "gettingThere": "Midtown Manhattan, between Ninth and Tenth Avenues. The A, C and E stop at 34th Street-Penn Station and the 7 at 34th Street-Hudson Yards, both a few minutes' walk."
+      },
       "tickets": null
     },
     {
@@ -345,6 +375,12 @@
         "Festival guests"
       ],
       "description": "Festival ADAR 2027 - August 2 – 15, 2027. Multiple venues across Asturias, Spain. CreArtBox.",
+      "evening": {
+        "startsAt": "",
+        "musicMinutes": null,
+        "priceFrom": null,
+        "gettingThere": ""
+      },
       "tickets": null
     },
     {
@@ -364,6 +400,12 @@
       "series": "",
       "performers": [],
       "description": "Gettysburg Community Concert Association - September 28, 2027. Gettysburg Community Concert Association. CreArtBox.",
+      "evening": {
+        "startsAt": "7:30 pm",
+        "musicMinutes": null,
+        "priceFrom": null,
+        "gettingThere": ""
+      },
       "tickets": null
     },
     {
@@ -383,6 +425,12 @@
       "series": "",
       "performers": [],
       "description": "The Chapel Restoration - October 17, 2027. The Chapel Restoration. CreArtBox.",
+      "evening": {
+        "startsAt": "4:00 pm",
+        "musicMinutes": null,
+        "priceFrom": null,
+        "gettingThere": ""
+      },
       "tickets": null
     }
   ]

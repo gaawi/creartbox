@@ -59,6 +59,37 @@ def scoring(name):
     return parts[1].strip() if len(parts) > 1 else ""
 
 
+DUR_RE = re.compile(r"PT(?:(\d+)H)?(?:(\d+)M)?")
+
+
+def minutes(iso):
+    m = DUR_RE.fullmatch(iso or "")
+    if not m:
+        return 0
+    return int(m.group(1) or 0) * 60 + int(m.group(2) or 0)
+
+
+def plain_time(iso):
+    """7:30 pm, not 19:30. Somebody choosing an evening reads a clock."""
+    try:
+        h, mi = int(iso[11:13]), int(iso[14:16])
+    except (ValueError, IndexError):
+        return ""
+    suffix = "am" if h < 12 else "pm"
+    h12 = h % 12 or 12
+    return "%d:%02d %s" % (h12, mi, suffix)
+
+
+# How to reach a hall, in the words its own page uses. Only halls the
+# ensemble plays often enough to have written this down for.
+GETTING_THERE = {
+    "The DiMenna Center for Classical Music":
+        "Midtown Manhattan, between Ninth and Tenth Avenues. The A, C and E stop at "
+        "34th Street-Penn Station and the 7 at 34th Street-Hudson Yards, both a few "
+        "minutes' walk.",
+}
+
+
 def person(p):
     if isinstance(p, dict):
         return p.get("name", "")
@@ -109,6 +140,19 @@ def event_record(node, path):
         "series": (node.get("superEvent") or {}).get("name", ""),
         "performers": performers,
         "description": node.get("description", ""),
+    }
+
+    # What somebody choosing an evening needs, in the terms they choose
+    # in. Most people are not looking for Ravel; they are looking for
+    # something to do on a Friday, and they want to know when it starts,
+    # how long it takes, what it costs and how to get there.
+    total = sum(minutes(w.get("duration", "")) for w in works)
+    rec["evening"] = {
+        "startsAt": plain_time(node.get("startDate", "")),
+        "musicMinutes": total or None,
+        "priceFrom": (("$" + str(offers.get("lowPrice")))
+                      if offers.get("lowPrice") else None),
+        "gettingThere": GETTING_THERE.get(loc.get("name", ""), ""),
     }
     if offers:
         rec["tickets"] = {
@@ -163,8 +207,9 @@ def build_json(events):
         "url": SITE + "/",
         "description": ("A New York chamber music ensemble, founded 2013. Classical and "
                         "contemporary music with original stage design and visual art."),
-        "note": ("Upcoming concerts only. Every event lists its composers first: in "
-                 "classical music that is what people search for. Tickets are sold on "
+        "note": ("Upcoming concerts only. Each event carries two things: `composers` "
+                 "for anyone searching by name, and `evening` for anyone choosing what "
+                 "to do on a given night, which is most people. Tickets are sold on "
                  "Eventbrite at the url under tickets."),
         "generated": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
         "calls": calls(),
@@ -190,6 +235,18 @@ def build_llms(events):
         v = e["venue"]
         where = ", ".join(x for x in [v["name"], v["street"], v["city"]] if x)
         L.append("- [%s](%s) %s. %s." % (e["name"], e["url"], when, where))
+        ev = e.get("evening") or {}
+        line = []
+        if ev.get("startsAt"):
+            line.append("Starts %s" % ev["startsAt"])
+        if ev.get("musicMinutes"):
+            line.append("about %d minutes of music" % ev["musicMinutes"])
+        if ev.get("priceFrom"):
+            line.append("from %s" % ev["priceFrom"])
+        if line:
+            L.append("  " + ", ".join(line) + ".")
+        if ev.get("gettingThere"):
+            L.append("  " + ev["gettingThere"])
         if e["composers"]:
             L.append("  Composers: " + "; ".join(e["composers"]) + ".")
         for w in e["programme"]:

@@ -20,6 +20,7 @@ named in the comment beside it.
 import html
 import os
 import re
+from datetime import datetime
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -71,6 +72,35 @@ def dates():
     return out
 
 
+MINS_RE = re.compile(r'class="pgm-mins">(\d+)')
+PRICE_RE = re.compile(r"\$(\d+)")
+
+
+def next_nys():
+    """Title, date, minutes of music and starting price of the next New
+    York Series concert, read off its own page.
+
+    The answers below used to name Currents and its running time. Currents
+    was played on 30 October; three weeks later the live site was still
+    telling a visitor what a concert that had already happened cost and
+    how long it ran. Anything that names one concert has to be generated.
+    """
+    today = datetime.now().strftime("%Y-%m-%d")
+    for row in dates():
+        path = row["path"]
+        if not os.path.exists(path):
+            continue
+        src = open(path, encoding="utf-8").read()
+        m = re.search(r'"startDate":"(\d{4}-\d{2}-\d{2})', src)
+        if m and m.group(1) < today:
+            continue
+        mins = sum(int(x) for x in MINS_RE.findall(src))
+        low = re.search(r'"lowPrice":"(\d+)"', src)
+        return {"title": row["title"], "date": row["date"], "path": path,
+                "mins": mins, "price": low.group(1) if low else ""}
+    return None
+
+
 FAQ = [
     ("Where does CreArtBox perform in New York?",
      "At The DiMenna Center for Classical Music, 450 West 37th Street, between Ninth and "
@@ -86,11 +116,11 @@ FAQ = [
      "own times, which are on each concert page."),
     ("How much are tickets?",
      "Seats are sold through Eventbrite and each concert page carries its own link and "
-     "prices. Currents, on 30 October 2026, starts at $15. A Premium ticket puts you in the "
-     "closest rows to the players, with a small treat on the night."),
-    ("How long is a concert, and is there an intermission?",
-     "Currents runs about an hour and is played without an intermission. Running times are "
-     "given on the concert page once the programme is set."),
+     "prices. {next_price} A Premium ticket puts you in the closest rows to the "
+     "players, with a small treat on the night."),
+    ("How long is a concert?",
+     "{next_mins} Every concert page lists each work with its length, so the "
+     "running time can be added up before you come."),
     ("What kind of music will I hear?",
      "Chamber music, with the standard repertoire and new work in the same evening: in "
      "2026/27, Brahms and both Schumanns share a programme with Eric Moe, and Stravinsky "
@@ -109,10 +139,29 @@ FAQ = [
 ]
 
 
+def faq_fills():
+    ev = next_nys()
+    if not ev:
+        return {"next_price": "New York Series tickets start at $15.",
+                "next_mins": "A programme runs about an hour to an hour and a half.",
+                "next_prose": "Each concert page gives its programme and running time."}
+    price = ("%s, on %s, starts at $%s." % (ev["title"], ev["date"], ev["price"])
+             if ev["price"] else "Prices are on each concert page.")
+    mins = ("%s, on %s, is about %d minutes of music."
+            % (ev["title"], ev["date"], ev["mins"]) if ev["mins"]
+            else "Running times are on each concert page.")
+    return {"next_price": price, "next_mins": mins,
+            "next_prose": ("<em>%s</em>, on %s, is about %d minutes of music."
+                           % (ev["title"], ev["date"], ev["mins"])
+                           if ev["mins"] else mins)}
+
+
 def faq_block():
+    fills = faq_fills()
     items = "\n".join(
         '      <details><summary><span style="flex:1">{q}</span>'
-        '<span class="ind"></span></summary><p>{a}</p></details>'.format(q=q, a=a)
+        '<span class="ind"></span></summary><p>{a}</p></details>'.format(
+            q=q, a=a.format(**fills))
         for q, a in FAQ)
     return """
 <section class="section tinted">
@@ -210,8 +259,7 @@ def page():
         </p>
         <p class="body-l">
           Most productions carry something besides the music: video art, stage design or
-          lighting made for the room. <em>Currents</em>, on 30 October 2026, runs about an
-          hour and is played without an intermission.
+          lighting made for the room. {next_prose}
         </p>
         <div style="display:flex;gap:10px;margin-top:22px;flex-wrap:wrap">
           <a class="btn" href="concerts.html">Calendar <span class="ar">&#8594;</span></a>
@@ -223,7 +271,8 @@ def page():
     </div>
   </div>
 </section>
-{faq}""".format(dates=dates_block(rows), faq=faq_block())
+{faq}""".format(dates=dates_block(rows), faq=faq_block(),
+                **{k: v for k, v in faq_fills().items() if k == "next_prose"})
     return head(TITLE, DESC, SITE + "/" + OUT) + body + foot()
 
 
