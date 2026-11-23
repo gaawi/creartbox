@@ -7731,3 +7731,52 @@ html.after-curtain .tn-after { display: block; }
 .section:has(> .wrap > .comp-filter) { padding-top: clamp(18px, 2.5vw, 34px); }
 .cf-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .cf-btn:focus:not(:focus-visible) { outline: none; }
+
+/* --- The buy bar ----------------------------------------------
+   At the top of the two pages the ads land on. Until this existed,
+   somebody who clicked an ad to buy a ticket arrived on a calendar or
+   a visitor guide and needed three more clicks to find a checkout. */
+.buybar {
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-2);
+  padding: clamp(16px, 2.4vw, 24px) 0;
+}
+.buybar-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px clamp(20px, 3vw, 40px);
+  align-items: center;
+}
+.buybar-k {
+  display: block;
+  font-family: var(--sans);
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.buybar-t {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--serif);
+  font-size: clamp(1.18rem, 2.2vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.2;
+}
+.buybar-d {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--sans);
+  font-size: .88rem;
+  color: var(--ink-soft);
+}
+.buybar-do { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.buybar-more { font-size: .84rem; color: var(--ink-soft); white-space: nowrap; }
+.buybar-more:hover { color: var(--ink); }
+@media (max-width: 720px) {
+  .buybar-inner { grid-template-columns: 1fr; }
+  .buybar-do { align-items: stretch; }
+  .buybar-do .btn { justify-content: center; }
+  .buybar-more { text-align: center; }
+}

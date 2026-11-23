@@ -61,8 +61,8 @@ PAGES = [
     ("index.html", "after", "<!-- /NEXT EVENT -->", "home"),
     ("concerts/winterlight-2026.html", "before", '        <section class="event-promo">',
      "concert"),
-    ("classical-concerts-nyc.html", "after", "<main>", "guide"),
-    ("concerts.html", "after", "<main>", "calendar"),
+    ("classical-concerts-nyc.html", "after", "<!-- /BUY -->", "guide"),
+    ("concerts.html", "after", "<!-- /BUY -->", "calendar"),
 ]
 
 
@@ -165,7 +165,11 @@ def wanted(path, position, anchor, where, src):
     """The page as it should look, with the band in its place."""
     body = BLOCK.sub("", src)
     if anchor not in body:
-        return None
+        # the buy bar is only there while something is on sale; with
+        # nothing on sale the band goes back to the top of the page
+        anchor = "<main>"
+        if anchor not in body:
+            return None
     prefix = "../" * path.count("/")
     piece = band(prefix, where)
     at = body.index(anchor)
