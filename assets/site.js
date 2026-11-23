@@ -150,6 +150,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Count the clicks that matter, if anything is listening
   initConversions();
 
+  // A page that only exists because something was completed
+  initDoneEvent();
+
   // The ticket-lottery popup, home page only, once a week at most
   initLotteryPopup();
 
@@ -1524,4 +1527,32 @@ function initComposerFilter() {
       g.hidden = want !== "all" && g.getAttribute("data-group") !== want;
     });
   });
+}
+
+
+/* ------------------------------------------------------------------
+   A completion page
+
+   initConversions() counts a click on the way out to a form. That is
+   not the same as the form coming back filled in, and on a grant
+   account the difference is the one Google is being asked to optimise
+   for. A page carrying data-cb-done exists only because somebody
+   finished something, so it reports once, on arrival.
+   ------------------------------------------------------------------ */
+function initDoneEvent() {
+  const el = document.querySelector("[data-cb-done]");
+  if (!el) return;
+  const name = el.getAttribute("data-cb-done");
+  if (!name) return;
+  const props = { page: location.pathname };
+  try {
+    if (typeof window.gtag === "function") window.gtag("event", name, props);
+    if (typeof window.plausible === "function") window.plausible(name, { props: props });
+    if (window.dataLayer && typeof window.dataLayer.push === "function" &&
+        typeof window.gtag !== "function") {
+      window.dataLayer.push(Object.assign({ event: name }, props));
+    }
+  } catch (e) {
+    /* measurement is never worth a broken page */
+  }
 }

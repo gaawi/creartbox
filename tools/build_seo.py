@@ -71,6 +71,12 @@ SKIP_DIRS = ("newsletter/", "posters/", "pages/", "promo/")
 SKIP_FILES = {"404.html", "composer-opportunities.html",
               "concerts/tectonic-lullaby-2026.html"}
 
+# Pages that get the managed block but stay out of the sitemap. The
+# analytics tag lives in that block, so skipping a page outright takes
+# its measurement with it, and a confirmation page is precisely the one
+# that has to report. It carries its own noindex.
+NOINDEX_FILES = {"calls/thank-you.html"}
+
 SAME_AS = [
     "https://www.instagram.com/creartboxnyc/",
     "https://www.facebook.com/creartbox",
@@ -862,11 +868,13 @@ def robots():
 
 # ------------------------------------------------------------------- main
 
-def pages():
+def pages(sitemap_only=False):
     out = []
     for pattern in ("*.html", "*/*.html"):
         for path in sorted(glob.glob(pattern)):
             if path in SKIP_FILES or path.startswith(SKIP_DIRS):
+                continue
+            if sitemap_only and path in NOINDEX_FILES:
                 continue
             out.append(path)
     return out
@@ -889,7 +897,7 @@ def main():
             if not check:
                 open(path, "w", encoding="utf-8").write(out)
 
-    want_map = sitemap(paths)
+    want_map = sitemap(pages(sitemap_only=True))
     have_map = open("sitemap.xml", encoding="utf-8").read() if os.path.exists("sitemap.xml") else ""
     if strip_lastmod(want_map) != strip_lastmod(have_map):
         stale.append("sitemap.xml")
