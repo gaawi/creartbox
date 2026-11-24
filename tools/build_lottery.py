@@ -59,8 +59,10 @@ POPUP_ANCHOR = re.compile(r"<body[^>]*>")
 
 PAGES = [
     ("index.html", "after", "<!-- /NEXT EVENT -->", "home"),
-    ("concerts/winterlight-2026.html", "before", '        <section class="event-promo">',
-     "concert"),
+    # after the evening block, not before event-promo: build_evening
+    # anchors there too, and two generators fighting for one slot means
+    # each reports itself stale for ever
+    ("concerts/winterlight-2026.html", "after", "<!-- /EVENING -->", "concert"),
     ("classical-concerts-nyc.html", "after", "<!-- /BUY -->", "guide"),
     ("concerts.html", "after", "<!-- /BUY -->", "calendar"),
 ]
