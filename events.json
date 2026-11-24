@@ -3,7 +3,7 @@
   "url": "https://creartbox.nyc/",
   "description": "A New York chamber music ensemble, founded 2013. Classical and contemporary music with original stage design and visual art.",
   "note": "Upcoming concerts only. Each event carries two things: `composers` for anyone searching by name, and `evening` for anyone choosing what to do on a given night, which is most people. Tickets are sold on Eventbrite at the url under tickets.",
-  "generated": "2026-11-23",
+  "generated": "2026-11-24",
   "calls": [
     {
       "url": "https://creartbox.nyc/calls/scores-international.html",
@@ -78,7 +78,69 @@
         "dress": "No dress code. People come as they are.",
         "priceFrom": "$15",
         "gettingThere": "Midtown Manhattan, between Ninth and Tenth Avenues. The A, C and E stop at 34th Street-Penn Station and the 7 at 34th Street-Hudson Yards, both a few minutes' walk.",
-        "nearby": "A few blocks from Hudson Yards and from the northern end of the High Line, so there is somewhere to walk before or after."
+        "nearby": "A few blocks from Hudson Yards and from the northern end of the High Line, so there is somewhere to walk before or after.",
+        "eatNearby": [
+          {
+            "name": "Ci Siamo",
+            "what": "Italian, smart",
+            "price": "$$$",
+            "ensemblePick": true
+          },
+          {
+            "name": "Zou Zou's",
+            "what": "Mediterranean, remarkable room",
+            "price": "$$$",
+            "ensemblePick": true
+          },
+          {
+            "name": "Casa Louie",
+            "what": "Italian, small and warm",
+            "price": "$$",
+            "ensemblePick": true
+          },
+          {
+            "name": "Mercado Little Spain",
+            "what": "Spanish, informal and loud",
+            "price": "$$",
+            "ensemblePick": false
+          },
+          {
+            "name": "Kyma",
+            "what": "Greek, fish and shellfish",
+            "price": "$$$",
+            "ensemblePick": false
+          },
+          {
+            "name": "BondST Hudson Yards",
+            "what": "Japanese, modern",
+            "price": "$$$",
+            "ensemblePick": false
+          },
+          {
+            "name": "Queensyard",
+            "what": "Contemporary British, looks at the Vessel",
+            "price": "$$$",
+            "ensemblePick": false
+          },
+          {
+            "name": "The Tavern by WS",
+            "what": "American, smart and comfortable",
+            "price": "$$$",
+            "ensemblePick": false
+          },
+          {
+            "name": "Peak",
+            "what": "The view across Manhattan",
+            "price": "$$$$",
+            "ensemblePick": false
+          },
+          {
+            "name": "Estiatorio Milos",
+            "what": "Greek, the grand one",
+            "price": "$$$$",
+            "ensemblePick": false
+          }
+        ]
       },
       "tickets": {
         "url": "https://www.eventbrite.com/e/winterlight-ravel-ma-mere-loye-stravinsky-petroushka-tickets-2004163929263",
@@ -310,7 +372,69 @@
         "dress": "No dress code. People come as they are.",
         "priceFrom": null,
         "gettingThere": "Midtown Manhattan, between Ninth and Tenth Avenues. The A, C and E stop at 34th Street-Penn Station and the 7 at 34th Street-Hudson Yards, both a few minutes' walk.",
-        "nearby": "A few blocks from Hudson Yards and from the northern end of the High Line, so there is somewhere to walk before or after."
+        "nearby": "A few blocks from Hudson Yards and from the northern end of the High Line, so there is somewhere to walk before or after.",
+        "eatNearby": [
+          {
+            "name": "Ci Siamo",
+            "what": "Italian, smart",
+            "price": "$$$",
+            "ensemblePick": true
+          },
+          {
+            "name": "Zou Zou's",
+            "what": "Mediterranean, remarkable room",
+            "price": "$$$",
+            "ensemblePick": true
+          },
+          {
+            "name": "Casa Louie",
+            "what": "Italian, small and warm",
+            "price": "$$",
+            "ensemblePick": true
+          },
+          {
+            "name": "Mercado Little Spain",
+            "what": "Spanish, informal and loud",
+            "price": "$$",
+            "ensemblePick": false
+          },
+          {
+            "name": "Kyma",
+            "what": "Greek, fish and shellfish",
+            "price": "$$$",
+            "ensemblePick": false
+          },
+          {
+            "name": "BondST Hudson Yards",
+            "what": "Japanese, modern",
+            "price": "$$$",
+            "ensemblePick": false
+          },
+          {
+            "name": "Queensyard",
+            "what": "Contemporary British, looks at the Vessel",
+            "price": "$$$",
+            "ensemblePick": false
+          },
+          {
+            "name": "The Tavern by WS",
+            "what": "American, smart and comfortable",
+            "price": "$$$",
+            "ensemblePick": false
+          },
+          {
+            "name": "Peak",
+            "what": "The view across Manhattan",
+            "price": "$$$$",
+            "ensemblePick": false
+          },
+          {
+            "name": "Estiatorio Milos",
+            "what": "Greek, the grand one",
+            "price": "$$$$",
+            "ensemblePick": false
+          }
+        ]
       },
       "tickets": null
     },
@@ -369,7 +493,69 @@
         "dress": "No dress code. People come as they are.",
         "priceFrom": null,
         "gettingThere": "Midtown Manhattan, between Ninth and Tenth Avenues. The A, C and E stop at 34th Street-Penn Station and the 7 at 34th Street-Hudson Yards, both a few minutes' walk.",
-        "nearby": "A few blocks from Hudson Yards and from the northern end of the High Line, so there is somewhere to walk before or after."
+        "nearby": "A few blocks from Hudson Yards and from the northern end of the High Line, so there is somewhere to walk before or after.",
+        "eatNearby": [
+          {
+            "name": "Ci Siamo",
+            "what": "Italian, smart",
+            "price": "$$$",
+            "ensemblePick": true
+          },
+          {
+            "name": "Zou Zou's",
+            "what": "Mediterranean, remarkable room",
+            "price": "$$$",
+            "ensemblePick": true
+          },
+          {
+            "name": "Casa Louie",
+            "what": "Italian, small and warm",
+            "price": "$$",
+            "ensemblePick": true
+          },
+          {
+            "name": "Mercado Little Spain",
+            "what": "Spanish, informal and loud",
+            "price": "$$",
+            "ensemblePick": false
+          },
+          {
+            "name": "Kyma",
+            "what": "Greek, fish and shellfish",
+            "price": "$$$",
+            "ensemblePick": false
+          },
+          {
+            "name": "BondST Hudson Yards",
+            "what": "Japanese, modern",
+            "price": "$$$",
+            "ensemblePick": false
+          },
+          {
+            "name": "Queensyard",
+            "what": "Contemporary British, looks at the Vessel",
+            "price": "$$$",
+            "ensemblePick": false
+          },
+          {
+            "name": "The Tavern by WS",
+            "what": "American, smart and comfortable",
+            "price": "$$$",
+            "ensemblePick": false
+          },
+          {
+            "name": "Peak",
+            "what": "The view across Manhattan",
+            "price": "$$$$",
+            "ensemblePick": false
+          },
+          {
+            "name": "Estiatorio Milos",
+            "what": "Greek, the grand one",
+            "price": "$$$$",
+            "ensemblePick": false
+          }
+        ]
       },
       "tickets": null
     },

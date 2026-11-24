@@ -72,6 +72,26 @@ def dates():
     return out
 
 
+NEARBY_DATA = "data/nearby.txt"
+
+
+def nearby():
+    """Places to eat, from data/nearby.txt. The feed reads the same file."""
+    out = []
+    if not os.path.exists(NEARBY_DATA):
+        return out
+    for line in open(NEARBY_DATA, encoding="utf-8"):
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        bits = [b.strip() for b in line.split("|")]
+        if len(bits) < 3:
+            continue
+        out.append({"name": bits[0], "what": bits[1], "price": bits[2],
+                    "pick": len(bits) > 3 and bits[3] == "*"})
+    return out
+
+
 MINS_RE = re.compile(r'class="pgm-mins">(\d+)')
 PRICE_RE = re.compile(r"\$(\d+)")
 
@@ -134,7 +154,8 @@ FAQ = [
     ("What else is around the hall?",
      "The DiMenna Center is on West 37th Street between Ninth and Tenth Avenues, a few "
      "blocks from Hudson Yards and from the northern end of the High Line, so there is "
-     "somewhere to walk before or after."),
+     "somewhere to walk before or after. There is a list of places to eat further down "
+     "this page."),
     ("What kind of music will I hear?",
      "Chamber music, with the standard repertoire and new work in the same evening: in "
      "2026/27, Brahms and both Schumanns share a programme with Eric Moe, and Stravinsky "
@@ -180,6 +201,43 @@ def faq_fills():
             "next_prose": ("<em>%s</em>, on %s, is about %d minutes of music."
                            % (ev["title"], ev["date"], ev["mins"])
                            if ev["mins"] else mins)}
+
+
+def nearby_block():
+    places = nearby()
+    if not places:
+        return ""
+    def row(p):
+        star = '<span class="nb-pick" title="One of ours">&#9733;</span>' if p["pick"] else ""
+        return ('      <li{cls}><span class="nb-name">{name}{star}</span>'
+                '<span class="nb-what">{what}</span>'
+                '<span class="nb-price">{price}</span></li>'.format(
+                    cls=' class="is-pick"' if p["pick"] else "",
+                    name=p["name"], star=star, what=p["what"], price=p["price"]))
+    return """
+<section class="section" id="nearby">
+  <div class="wrap two-col">
+    <div>
+      <span class="label">Before or after</span>
+      <h2 class="h-title" style="margin-top:14px">Make an <em>evening</em> of it.</h2>
+      <p class="body" style="margin-top:18px">The hall is on West 37th Street between Ninth
+        and Tenth Avenues. Three blocks west is Hudson Yards, and the High Line starts there
+        and runs south along the old railway: it is the best walk in this part of the city,
+        and it is lit after dark.</p>
+      <p class="body" style="margin-top:14px">There is no interval, so the music is over by
+        about {next_ends} and the evening is still young. These are places we send people
+        when they ask. They are suggestions, not reviews, and we have no arrangement with
+        any of them. A star marks the three we go to.</p>
+    </div>
+    <div>
+      <ul class="nb-list">
+{items}
+      </ul>
+    </div>
+  </div>
+</section>
+""".format(items="\n".join(row(p) for p in places),
+           next_ends=faq_fills()["next_ends"])
 
 
 def faq_block():
@@ -297,7 +355,8 @@ def page():
     </div>
   </div>
 </section>
-{faq}""".format(dates=dates_block(rows), faq=faq_block(),
+{faq}\n{nearby}""".format(dates=dates_block(rows), faq=faq_block(),
+                nearby=nearby_block(),
                 **{k: v for k, v in faq_fills().items() if k == "next_prose"})
     return head(TITLE, DESC, SITE + "/" + OUT) + body + foot()
 

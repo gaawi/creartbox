@@ -99,8 +99,9 @@ def plain_time(iso):
 
 
 # What is around a hall, for somebody choosing an evening rather than a
-# concert. Only what the ensemble will actually vouch for: no restaurant
-# is named here, because nobody at CreArtBox has recommended one.
+# concert. The places to eat come from data/nearby.txt, the same file the
+# visitor page reads, so the page and the feed cannot suggest different
+# things.
 NEARBY = {
     "The DiMenna Center for Classical Music":
         "A few blocks from Hudson Yards and from the northern end of the High Line, "
@@ -115,6 +116,25 @@ GETTING_THERE = {
         "34th Street-Penn Station and the 7 at 34th Street-Hudson Yards, both a few "
         "minutes' walk.",
 }
+
+
+NEARBY_DATA = "data/nearby.txt"
+
+
+def places():
+    out = []
+    if not os.path.exists(NEARBY_DATA):
+        return out
+    for line in open(NEARBY_DATA, encoding="utf-8"):
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        bits = [b.strip() for b in line.split("|")]
+        if len(bits) < 3:
+            continue
+        out.append({"name": html.unescape(bits[0]), "what": bits[1],
+                    "price": bits[2], "ensemblePick": len(bits) > 3 and bits[3] == "*"})
+    return out
 
 
 def person(p):
@@ -185,6 +205,8 @@ def event_record(node, path):
         "gettingThere": GETTING_THERE.get(loc.get("name", ""), ""),
         "nearby": NEARBY.get(loc.get("name", ""), ""),
     }
+    if loc.get("name", "") in NEARBY:
+        rec["evening"]["eatNearby"] = places()
     if offers:
         rec["tickets"] = {
             "url": offers.get("url", ""),
@@ -288,6 +310,10 @@ def build_llms(events):
             L.append("  " + ev["gettingThere"])
         if ev.get("nearby"):
             L.append("  " + ev["nearby"])
+        picks = [p["name"] for p in (ev.get("eatNearby") or []) if p["ensemblePick"]]
+        if picks:
+            L.append("  The ensemble eats at " + ", ".join(picks[:-1])
+                     + " and " + picks[-1] + "; the full list is on the visitor page.")
         if e["composers"]:
             L.append("  Composers: " + "; ".join(e["composers"]) + ".")
         for w in e["programme"]:

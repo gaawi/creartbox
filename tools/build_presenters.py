@@ -20,7 +20,7 @@ import sys
 import unicodedata
 
 SITE = "https://creartbox.nyc"
-CSS = "assets/styles.css?v=191"
+CSS = "assets/styles.css?v=192"
 JS = "assets/site.js?v=60"
 REPERTOIRE = "data/repertoire.txt"
 CONTACT = "info@creartbox.nyc"

@@ -7780,3 +7780,47 @@ html.after-curtain .tn-after { display: block; }
   .buybar-do .btn { justify-content: center; }
   .buybar-more { text-align: center; }
 }
+
+/* --- Before or after -------------------------------------------
+   Places to eat near the hall. A suggestion list, not a guide: the
+   three the ensemble actually uses carry a star and nothing else is
+   ranked. */
+.nb-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+.nb-list > li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 16px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: baseline;
+}
+.nb-name {
+  grid-column: 1;
+  font-family: var(--serif);
+  font-size: 1.04rem;
+  line-height: 1.25;
+}
+.nb-pick {
+  margin-left: 7px;
+  font-size: .78rem;
+  color: var(--accent);
+  vertical-align: 1px;
+}
+.nb-what {
+  grid-column: 1;
+  grid-row: 2;
+  font-family: var(--sans);
+  font-size: .86rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+.nb-price {
+  grid-column: 2;
+  grid-row: 1;
+  font-family: var(--sans);
+  font-size: .82rem;
+  letter-spacing: .06em;
+  color: var(--quiet);
+  white-space: nowrap;
+}
+.nb-list > li.is-pick .nb-name { color: var(--ink); }

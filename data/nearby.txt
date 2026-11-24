@@ -1,0 +1,22 @@
+# Places to eat near The DiMenna Center, 450 West 37th Street, and around
+# Hudson Yards. These are CreArtBox's own suggestions, given because
+# people ask: they are not reviews, there is no arrangement with any of
+# them, and nothing here was checked for opening hours. A star marks the
+# three the ensemble actually sends people to.
+#
+# Read by tools/build_guide.py, for the visitor page, and by
+# tools/build_feeds.py, for llms.txt and events.json. One list, so the
+# page and the feed cannot recommend different things.
+#
+#   <name> | <what it is> | <price> | [*]
+
+Ci Siamo             | Italian, smart                            | $$$  | *
+Zou Zou&#x27;s       | Mediterranean, remarkable room            | $$$  | *
+Casa Louie           | Italian, small and warm                   | $$   | *
+Mercado Little Spain | Spanish, informal and loud                | $$
+Kyma                 | Greek, fish and shellfish                 | $$$
+BondST Hudson Yards  | Japanese, modern                          | $$$
+Queensyard           | Contemporary British, looks at the Vessel | $$$
+The Tavern by WS     | American, smart and comfortable           | $$$
+Peak                 | The view across Manhattan                 | $$$$
+Estiatorio Milos     | Greek, the grand one                      | $$$$

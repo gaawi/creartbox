@@ -14,6 +14,7 @@ Machine-readable version of what follows: https://creartbox.nyc/events.json
   No interval, so the music is over by about 8:55 pm; no dress code.
   Midtown Manhattan, between Ninth and Tenth Avenues. The A, C and E stop at 34th Street-Penn Station and the 7 at 34th Street-Hudson Yards, both a few minutes' walk.
   A few blocks from Hudson Yards and from the northern end of the High Line, so there is somewhere to walk before or after.
+  The ensemble eats at Ci Siamo, Zou Zou's and Casa Louie; the full list is on the visitor page.
   Composers: Hannah Selin; Maurice Ravel; Oliver Caplan; Igor Stravinsky.
   - Hannah Selin: *Tectonic Lullaby* (for piano quintet)
   - Maurice Ravel: *Ma Mère l'Oye*
@@ -46,6 +47,7 @@ Machine-readable version of what follows: https://creartbox.nyc/events.json
   No interval, so the music is over by about 8:50 pm; no dress code.
   Midtown Manhattan, between Ninth and Tenth Avenues. The A, C and E stop at 34th Street-Penn Station and the 7 at 34th Street-Hudson Yards, both a few minutes' walk.
   A few blocks from Hudson Yards and from the northern end of the High Line, so there is somewhere to walk before or after.
+  The ensemble eats at Ci Siamo, Zou Zou's and Casa Louie; the full list is on the visitor page.
   Composers: Yurui (Rain); Alex Burtzos; Luke Carlson; Gilad Cohen; Samantha Leigh Sack; Paul Novak; Sam Wu.
   - Yurui (Rain): *Flickered* (for flute, violin, viola and piano)
   - Alex Burtzos: *Islandi* (for piano quartet)
@@ -60,6 +62,7 @@ Machine-readable version of what follows: https://creartbox.nyc/events.json
   No interval, so the music is over by about 8:30 pm; no dress code.
   Midtown Manhattan, between Ninth and Tenth Avenues. The A, C and E stop at 34th Street-Penn Station and the 7 at 34th Street-Hudson Yards, both a few minutes' walk.
   A few blocks from Hudson Yards and from the northern end of the High Line, so there is somewhere to walk before or after.
+  The ensemble eats at Ci Siamo, Zou Zou's and Casa Louie; the full list is on the visitor page.
   Composers: Zygmund de Somogyi; Eli Tausen á Lava; Jean Sibelius.
   - Zygmund de Somogyi: *A Lighthouse Feverdream* (for piano trio and narrator)
   - Eli Tausen á Lava: *múrurin*
