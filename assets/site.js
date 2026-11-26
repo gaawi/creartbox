@@ -880,13 +880,36 @@ function initAudioDock() {
   function reflectListUI() {
     tracksUI.forEach((li, i) => li.classList.toggle("playing", i === idx && !audio.paused));
   }
+  /* How much of the file has arrived, 0 to 1.
+     The discography streams the uncompressed masters, and one of those
+     is 350 MB, so between the click and the first note there is a wait
+     that has to be visible or the page looks dead. */
+  function bufferedPct() {
+    try {
+      if (!audio.buffered || !audio.buffered.length) return 0;
+      if (!isFinite(audio.duration) || !audio.duration) return 0;
+      return Math.min(1, audio.buffered.end(audio.buffered.length - 1) / audio.duration);
+    } catch (_) { return 0; }
+  }
+  function showLoading(on) {
+    dock.classList.toggle("is-loading", !!on);
+    if (on) {
+      elCur.textContent = "loading";
+      elDur.textContent = Math.round(bufferedPct() * 100) + "%";
+    }
+  }
+
   function load(i, autoplay) {
     if (i < 0 || i >= queue.length) return;
     idx = i;
     const t = queue[i];
-    if (audio.src !== t.src) audio.src = t.src;
+    if (audio.src !== t.src) {
+      audio.src = t.src;
+      elFill.style.width = "0%";
+      showLoading(true);
+    }
     elComposer.textContent = t.composer || "—";
-    elTitle.textContent = t.title || "";
+    elTitle.textContent = (t.title || "") + (t.note ? " · " + t.note : "");
     showDock();
     persist();
     if (autoplay) audio.play().catch(() => {});
@@ -945,7 +968,21 @@ function initAudioDock() {
     elCur.textContent = fmtTime(audio.currentTime);
     sessionStorage.setItem("cb-audio-t", String(audio.currentTime));
   });
-  audio.addEventListener("loadedmetadata", () => { elDur.textContent = fmtTime(audio.duration); });
+  audio.addEventListener("loadedmetadata", () => {
+    if (!dock.classList.contains("is-loading")) elDur.textContent = fmtTime(audio.duration);
+  });
+  audio.addEventListener("progress", () => {
+    if (!dock.classList.contains("is-loading")) return;
+    const pct = bufferedPct();
+    elDur.textContent = Math.round(pct * 100) + "%";
+    elFill.style.width = (pct * 100) + "%";
+  });
+  audio.addEventListener("waiting", () => { showLoading(true); });
+  ["canplay", "playing"].forEach((ev) => audio.addEventListener(ev, () => {
+    showLoading(false);
+    elFill.style.width = "0%";
+    elDur.textContent = fmtTime(audio.duration);
+  }));
   audio.addEventListener("play", () => { dock.classList.add("playing"); reflectListUI(); persist(); });
   audio.addEventListener("pause", () => { dock.classList.remove("playing"); reflectListUI(); persist(); });
   audio.addEventListener("ended", () => { next(); });
@@ -955,10 +992,12 @@ function initAudioDock() {
   // it, which reads as a broken site. Say so instead.
   audio.addEventListener("error", () => {
     if (!audio.getAttribute("src")) return;
-    elTitle.textContent = "This track will not load right now";
+    elTitle.textContent = "This browser will not play this file";
+    elCur.textContent = "0:00";
     elDur.textContent = "0:00";
     elFill.style.width = "0%";
     dock.classList.remove("playing");
+    showLoading(false);
     dock.classList.add("has-error");
     if (idx >= 0 && tracksUI[idx]) tracksUI[idx].classList.add("failed");
   });

@@ -352,15 +352,17 @@ def build_llms(events):
         p = recs["prices"]
         L.append("## Records")
         L.append("")
-        L.append("All three play in full on the page. A CD is $%d and a vinyl LP is $%d, "
-                 "every copy signed and sent with a personal note from the artists, "
-                 "postage extra. Orders go to info@creartbox.nyc."
-                 % (p["cd"], p["vinyl"]))
+        L.append("All three play in full on the page, streamed as the uncompressed "
+                 "masters rather than a squeezed copy, so a track takes a moment to "
+                 "load. A CD is $%d and a vinyl LP is $%d, every copy signed and sent "
+                 "with a personal note from the artists, postage extra. Orders go to "
+                 "info@creartbox.nyc." % (p["cd"], p["vinyl"]))
         L.append("")
         for r in recs["records"]:
-            L.append("- [%s](%s/discography.html#%s), %s. %s, %d tracks, %s."
+            L.append("- [%s](%s/discography.html#%s), %s. %s, %d tracks, %s, %s."
                      % (r["title"], SITE, r["slug"], r["composerLine"],
-                        r["subtitle"], len(r["tracks"]), r["totalTime"]))
+                        r["subtitle"], len(r["tracks"]), r["totalTime"],
+                        r.get("format", "")))
             if r.get("performers"):
                 L.append("  " + r["performers"] + ".")
         L.append("")

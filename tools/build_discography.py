@@ -63,7 +63,13 @@ def order_link(rec, fmt, price, to):
     return "mailto:%s?subject=%s&body=%s" % (to, quote(subject), quote(body))
 
 
-def track_rows(rec, base):
+def megabytes(n):
+    if n >= 1000 * 1000 * 1000:
+        return "%.1f GB" % (n / 1000.0 ** 3)
+    return "%d MB" % round(n / 1000.0 ** 2)
+
+
+def track_rows(rec, base=None):
     out = []
     for t in rec["tracks"]:
         title = t["work"]
@@ -76,13 +82,14 @@ def track_rows(rec, base):
         if note:
             line += ' <span class="track-note">%s</span>' % esc(note)
         num = "%02d" % t["n"]
-        if rec.get("audio"):
-            src = "%s/%s/%s.mp3" % (base.rstrip("/"), rec["slug"], num)
+        size = megabytes(t["bytes"])
+        if rec.get("audio") and t.get("url"):
             # the separator is an entity and must not be escaped again
             label = " &#183; ".join(esc(x) for x in (title, note) if x)
             attrs = (' class="track" data-track-src="%s" data-track-composer="%s"'
-                     ' data-track-title="%s"'
-                     % (esc(src), esc(t["composer"]), label))
+                     ' data-track-title="%s" data-track-note="%s"'
+                     % (esc(t["url"]), esc(t["composer"]), label,
+                        esc("%s, %s" % (rec["format"], size))))
             button = ('<button type="button" class="track-play" aria-label="Play">'
                       '<span class="tp-glyph" aria-hidden="true"></span></button>')
         else:
@@ -93,9 +100,9 @@ def track_rows(rec, base):
             '            %s\n'
             '            <div class="track-meta"><div class="track-composer">%s</div>'
             '<div class="track-title">%s</div></div>\n'
-            '            <span class="track-dur">%s</span>\n'
+            '            <span class="track-dur">%s<span class="track-mb">%s</span></span>\n'
             '          </li>'
-            % (attrs, button, esc(t["composer"]), line, esc(t["duration"])))
+            % (attrs, button, esc(t["composer"]), line, esc(t["duration"]), esc(size)))
     return "\n".join(out)
 
 
@@ -108,13 +115,14 @@ def record_block(rec, data):
     if rec.get("engineer"):
         facts.append(("Sound", esc(rec["engineer"])))
     facts.append(("Running time", esc(rec["totalTime"]) + " &#183; %d tracks" % len(rec["tracks"])))
+    facts.append(("Streaming", esc(rec["format"]) + ", the master itself &#183; "
+                  + esc(megabytes(rec["bytes"])) + " in all"))
     fact_rows = "".join(
         '<li><span class="rec-f-h">%s</span><span class="rec-f-v">%s</span></li>' % (h, v)
         for h, v in facts)
 
-    recorded = ""
-    if rec.get("recordedNote"):
-        recorded = '\n        <p class="rec-note">%s</p>' % esc(rec["recordedNote"])
+    notes = [rec.get("recordedNote", ""), rec.get("sourceNote", "")]
+    recorded = "".join('\n        <p class="rec-note">%s</p>' % esc(n) for n in notes if n)
 
     vinyl_note = ""
     if rec.get("vinylNote"):
@@ -153,7 +161,7 @@ def record_block(rec, data):
     ).format(slug=esc(rec["slug"]), title=esc(rec["title"]),
              sub=esc(rec["composerLine"]), tag=esc(rec.get("coverTag", "")),
              facts=fact_rows, recorded=recorded, quiet=quiet,
-             tracks=track_rows(rec, data["audioBase"]),
+             tracks=track_rows(rec),
              cd=esc(order_link(rec, "CD", p["cd"], to)), cdp=money(p["cd"]),
              lp=esc(order_link(rec, "vinyl", p["vinyl"], to)), lpp=money(p["vinyl"]),
              vinyl=vinyl_note)
@@ -182,7 +190,7 @@ TEMPLATE = """<!doctype html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,300..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=195">
+<link rel="stylesheet" href="assets/styles.css?v=196">
 <script id="cb-theme-init">document.documentElement.setAttribute("data-theme","dark");</script>
 </head>
 <body>
@@ -278,13 +286,18 @@ TEMPLATE = """<!doctype html>
   <div class="wrap">
     <div class="two-col">
       <div>
-        <span class="label">Discography</span>
+        <span class="label">Discography &#183; lossless</span>
         <h2 class="h-title" style="margin-top:14px">The <em>records</em>.</h2>
       </div>
       <div>
-        <p class="body">Three records, {tracks} tracks, all of it here to play from
-        beginning to end. The player follows you around the site, so you can start
-        a quartet here and keep listening while you read something else.</p>
+        <p class="body">Three records, {tracks} tracks, and what plays here is the
+        master: the uncompressed studio file, note for note, not a copy squeezed
+        down for streaming. Give it a moment to load. The player then follows you
+        around the site, so you can start a quartet here and keep listening while
+        you read something else.</p>
+        <p class="body" style="margin-top:14px">A track is between 15 MB and 350 MB,
+        which is the price of hearing it properly. Each one says its size below.
+        On a phone, wait for Wi-Fi.</p>
         <p class="body" style="margin-top:14px">Every record is also a physical object:
         a CD at {cd} and a vinyl LP at {lp}, each one signed, each one sent with a
         personal note from the artists. Shipping is charged on top and depends on
@@ -328,7 +341,7 @@ TEMPLATE = """<!doctype html>
   </div>
 </footer>
 
-<script src="assets/site.js?v=62"></script>
+<script src="assets/site.js?v=63"></script>
 <div class="audio-dock" id="audio-dock" hidden aria-label="Audio player">
   <div class="ad-info">
     <div class="ad-composer" data-ad-composer>&#8212;</div>

@@ -86,13 +86,13 @@ Machine-readable version of what follows: https://creartbox.nyc/events.json
 
 ## Records
 
-All three play in full on the page. A CD is $15 and a vinyl LP is $50, every copy signed and sent with a personal note from the artists, postage extra. Orders go to info@creartbox.nyc.
+All three play in full on the page, streamed as the uncompressed masters rather than a squeezed copy, so a track takes a moment to load. A CD is $15 and a vinyl LP is $50, every copy signed and sent with a personal note from the artists, postage extra. Orders go to info@creartbox.nyc.
 
-- [Noctum](https://creartbox.nyc/discography.html#noctum), Marcos Fernández. Music from the opera, 12 tracks, 61:10.
+- [Noctum](https://creartbox.nyc/discography.html#noctum), Marcos Fernández. Music from the opera, 12 tracks, 61:10, 24-bit / 44.1 kHz WAV.
   CreArtBox.
-- [Mozart · Crumb · Schumann](https://creartbox.nyc/discography.html#mozart-crumb-schumann), Wolfgang Amadeus Mozart · George Crumb · Robert Schumann. Live in Berneck, 2009, 8 tracks, 75:43.
+- [Mozart · Crumb · Schumann](https://creartbox.nyc/discography.html#mozart-crumb-schumann), Wolfgang Amadeus Mozart · George Crumb · Robert Schumann. Live in Berneck, 2009, 8 tracks, 75:43, 24-bit / 96 kHz WAV.
   Daniel del Pino, piano · Lyonel Schmit, violin · David Quiggle, viola · Viturin Döring, cello · Guillermo Laporta, flute.
-- [Stravinsky · Dutilleux · Jolivet](https://creartbox.nyc/discography.html#le-chant-du-rossignol), Igor Stravinsky · Henri Dutilleux · André Jolivet. Live recordings, 2006, 3 tracks, 39:22.
+- [Stravinsky · Dutilleux · Jolivet](https://creartbox.nyc/discography.html#le-chant-du-rossignol), Igor Stravinsky · Henri Dutilleux · André Jolivet. Live recordings, 2006, 3 tracks, 39:22, 24-bit / 44.1 kHz WAV.
   Musikene Symphony Orchestra · Guillermo Laporta, flute.
 
 ## Pages

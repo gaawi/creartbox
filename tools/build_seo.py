@@ -717,12 +717,15 @@ def record_nodes():
                 "duration": duration_iso(t["duration"]),
                 "byArtist": {"@type": "Person", "name": t["composer"]},
             }
-            if rec.get("audio"):
+            if rec.get("audio") and t.get("url"):
+                # the master itself, uncompressed, which is the point of
+                # the page and worth saying in the graph as well
                 node["audio"] = {
                     "@type": "AudioObject",
-                    "contentUrl": "%s/%s/%02d.mp3" % (
-                        data["audioBase"].rstrip("/"), rec["slug"], t["n"]),
-                    "encodingFormat": "audio/mpeg",
+                    "contentUrl": t["url"],
+                    "encodingFormat": "audio/wav",
+                    "contentSize": str(t["bytes"]),
+                    "description": rec["format"],
                 }
             tracks.append(node)
         offers = []

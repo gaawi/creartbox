@@ -1,98 +1,291 @@
 {
-  "_comment": [
-    "The records CreArtBox has made, read by tools/build_discography.py and",
-    "by tools/build_seo.py. Edit this, never discography.html.",
-    "",
-    "Every field here is taken from the Tracklist.txt that sits beside the",
-    "masters in Bunny, or off the cover itself. Nothing is invented: if a",
-    "player is not named on the tracklist, the player is not named here.",
-    "",
-    "audioBase is where the mp3s live. A record whose audio has not been",
-    "uploaded yet sets \"audio\": false and its tracks print without a play",
-    "button, which is better than twenty-three buttons that 404."
-  ],
-  "audioBase": "https://creartbox-archive.b-cdn.net/discography",
-  "prices": {
-    "cd": 15,
-    "vinyl": 50,
-    "currency": "USD",
-    "note": "Every copy is signed, with a personal note from the artists. Shipping is charged on top and depends on where you are."
-  },
-  "orderTo": "info@creartbox.nyc",
-  "records": [
+ "_comment": [
+  "The records CreArtBox has made, read by tools/build_discography.py and",
+  "by tools/build_seo.py. Edit this, never discography.html.",
+  "",
+  "Every field here is taken from the Tracklist.txt that sits beside the",
+  "masters in Bunny, or off the cover itself. Nothing is invented: if a",
+  "player is not named on the tracklist, the player is not named here.",
+  "",
+  "Each track's url is the master itself, streamed from the CDN, which is",
+  "the point of the page: lossless, not a compressed copy. The paths hold",
+  "decomposed accents (Fernandez is spelled with a combining acute), so",
+  "they are stored here already percent-encoded. Do not retype them."
+ ],
+ "prices": {
+  "cd": 15,
+  "vinyl": 50,
+  "currency": "USD",
+  "note": "Every copy is signed, with a personal note from the artists. Shipping is charged on top and depends on where you are."
+ },
+ "orderTo": "info@creartbox.nyc",
+ "records": [
+  {
+   "slug": "noctum",
+   "live": false,
+   "title": "Noctum",
+   "subtitle": "Music from the opera",
+   "composerLine": "Marcos Fernández",
+   "year": "2012–2013",
+   "coverTag": "Music from the opera",
+   "performers": "CreArtBox",
+   "engineer": "Guillermo Laporta Castillo",
+   "recordedNote": "",
+   "totalTime": "61:10",
+   "audio": true,
+   "vinylNote": "",
+   "tracks": [
     {
-      "slug": "noctum",
-      "live": false,
-      "title": "Noctum",
-      "subtitle": "Music from the opera",
-      "composerLine": "Marcos Fernández",
-      "year": "2012–2013",
-      "coverTag": "Music from the opera",
-      "performers": "CreArtBox",
-      "engineer": "Guillermo Laporta Castillo",
-      "recordedNote": "",
-      "totalTime": "61:10",
-      "audio": true,
-      "vinylNote": "",
-      "tracks": [
-        {"n": 1, "composer": "Marcos Fernández", "work": "Noctum", "movement": "Obertura", "duration": "6:00"},
-        {"n": 2, "composer": "Marcos Fernández", "work": "Noctum", "movement": "Mundo de Ëlhua", "duration": "4:52"},
-        {"n": 3, "composer": "Marcos Fernández", "work": "Noctum", "movement": "Oración a la luna", "duration": "3:29"},
-        {"n": 4, "composer": "Marcos Fernández", "work": "Noctum", "movement": "Robo de la luna", "duration": "6:00"},
-        {"n": 5, "composer": "Marcos Fernández", "work": "Noctum", "movement": "Despertar de Ëlhua", "duration": "2:20"},
-        {"n": 6, "composer": "Marcos Fernández", "work": "Noctum", "movement": "Seres del aire", "duration": "3:30"},
-        {"n": 7, "composer": "Marcos Fernández", "work": "Noctum", "movement": "Experimento de Erebo", "duration": "0:54"},
-        {"n": 8, "composer": "Marcos Fernández", "work": "Noctum", "movement": "Mundo del agua", "duration": "11:47"},
-        {"n": 9, "composer": "Marcos Fernández", "work": "Noctum", "movement": "Agobio de Ëlhua", "duration": "2:00"},
-        {"n": 10, "composer": "Marcos Fernández", "work": "Noctum", "movement": "Mundo teriaco", "duration": "11:36"},
-        {"n": 11, "composer": "Marcos Fernández", "work": "Noctum", "movement": "Aria del recuerdo", "duration": "4:44"},
-        {"n": 12, "composer": "Marcos Fernández", "work": "Noctum", "movement": "Eclipse final", "duration": "3:56"}
-      ]
+     "n": 1,
+     "composer": "Marcos Fernández",
+     "work": "Noctum",
+     "movement": "Obertura",
+     "duration": "6:00",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Ferna%CC%81ndez%20-%20Noctum/01%20Ferna%CC%81ndez%20-%20Noctum%20-%20Obertura.wav",
+     "bytes": 95275110
     },
     {
-      "slug": "mozart-crumb-schumann",
-      "live": true,
-      "title": "Mozart · Crumb · Schumann",
-      "subtitle": "Live in Berneck, 2009",
-      "composerLine": "Wolfgang Amadeus Mozart · George Crumb · Robert Schumann",
-      "year": "2009",
-      "coverTag": "Live in Berneck · 2009",
-      "performers": "Daniel del Pino, piano · Lyonel Schmit, violin · David Quiggle, viola · Viturin Döring, cello · Guillermo Laporta, flute",
-      "engineer": "Guillermo Laporta Castillo",
-      "recordedNote": "Recorded live at the Catholic Church of Berneck, Switzerland, on 9 January 2009.",
-      "totalTime": "75:43",
-      "audio": true,
-      "vinylNote": "The vinyl comes in two editions, Schumann&#x27;s Op. 47 or Mozart&#x27;s K. 493. Say which one you would like.",
-      "tracks": [
-        {"n": 1, "composer": "Wolfgang Amadeus Mozart", "work": "Piano Quartet No. 2 in E-flat major, K. 493", "movement": "I. Allegro", "duration": "10:14"},
-        {"n": 2, "composer": "Wolfgang Amadeus Mozart", "work": "Piano Quartet No. 2 in E-flat major, K. 493", "movement": "II. Larghetto", "duration": "9:16"},
-        {"n": 3, "composer": "Wolfgang Amadeus Mozart", "work": "Piano Quartet No. 2 in E-flat major, K. 493", "movement": "III. Allegretto", "duration": "8:10"},
-        {"n": 4, "composer": "George Crumb", "work": "Vox Balaenae (Voice of the Whale)", "movement": "for electric flute, electric cello and amplified piano", "duration": "21:57"},
-        {"n": 5, "composer": "Robert Schumann", "work": "Piano Quartet in E-flat major, Op. 47", "movement": "I. Sostenuto assai – Allegro ma non troppo", "duration": "8:52"},
-        {"n": 6, "composer": "Robert Schumann", "work": "Piano Quartet in E-flat major, Op. 47", "movement": "II. Scherzo. Molto vivace", "duration": "3:42"},
-        {"n": 7, "composer": "Robert Schumann", "work": "Piano Quartet in E-flat major, Op. 47", "movement": "III. Andante cantabile", "duration": "6:33"},
-        {"n": 8, "composer": "Robert Schumann", "work": "Piano Quartet in E-flat major, Op. 47", "movement": "IV. Finale. Vivace", "duration": "7:00"}
-      ]
+     "n": 2,
+     "composer": "Marcos Fernández",
+     "work": "Noctum",
+     "movement": "Mundo de Ëlhua",
+     "duration": "4:52",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Ferna%CC%81ndez%20-%20Noctum/02%20Ferna%CC%81ndez%20-%20Noctum%20-%20Mundo%20de%20E%CC%88lhua.wav",
+     "bytes": 77344272
     },
     {
-      "slug": "le-chant-du-rossignol",
-      "live": true,
-      "title": "Stravinsky · Dutilleux · Jolivet",
-      "subtitle": "Live recordings, 2006",
-      "composerLine": "Igor Stravinsky · Henri Dutilleux · André Jolivet",
-      "year": "2006",
-      "coverTag": "Live recordings · 2006",
-      "performers": "Musikene Symphony Orchestra · Guillermo Laporta, flute",
-      "engineer": "Guillermo Laporta Castillo",
-      "recordedNote": "Recorded live in 2006: the Stravinsky at Musikene, San Sebastián, the Dutilleux and the Jolivet at an Ibercaja concert in April.",
-      "totalTime": "39:22",
-      "audio": true,
-      "vinylNote": "",
-      "tracks": [
-        {"n": 1, "composer": "Igor Stravinsky", "work": "Le chant du rossignol", "movement": "symphonic poem", "duration": "19:53"},
-        {"n": 2, "composer": "Henri Dutilleux", "work": "Sonatine for flute and piano", "movement": "", "duration": "9:01"},
-        {"n": 3, "composer": "André Jolivet", "work": "Chant de Linos", "movement": "", "duration": "10:28"}
-      ]
+     "n": 3,
+     "composer": "Marcos Fernández",
+     "work": "Noctum",
+     "movement": "Oración a la luna",
+     "duration": "3:29",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Ferna%CC%81ndez%20-%20Noctum/03%20Ferna%CC%81ndez%20-%20Noctum%20-%20Oracio%CC%81n%20a%20la%20luna.wav",
+     "bytes": 55254630
+    },
+    {
+     "n": 4,
+     "composer": "Marcos Fernández",
+     "work": "Noctum",
+     "movement": "Robo de la luna",
+     "duration": "6:00",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Ferna%CC%81ndez%20-%20Noctum/04%20Ferna%CC%81ndez%20-%20Noctum%20-%20Robo%20de%20la%20luna.wav",
+     "bytes": 95331516
+    },
+    {
+     "n": 5,
+     "composer": "Marcos Fernández",
+     "work": "Noctum",
+     "movement": "Despertar de Ëlhua",
+     "duration": "2:20",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Ferna%CC%81ndez%20-%20Noctum/05%20Ferna%CC%81ndez%20-%20Noctum%20-%20Despertar%20de%20E%CC%88lhua.wav",
+     "bytes": 37062246
+    },
+    {
+     "n": 6,
+     "composer": "Marcos Fernández",
+     "work": "Noctum",
+     "movement": "Seres del aire",
+     "duration": "3:30",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Ferna%CC%81ndez%20-%20Noctum/06%20Ferna%CC%81ndez%20-%20Noctum%20-%20Seres%20del%20aire.wav",
+     "bytes": 55586406
+    },
+    {
+     "n": 7,
+     "composer": "Marcos Fernández",
+     "work": "Noctum",
+     "movement": "Experimento de Erebo",
+     "duration": "0:54",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Ferna%CC%81ndez%20-%20Noctum/07%20Ferna%CC%81ndez%20-%20Noctum%20-%20Experimento%20de%20Erebo.wav",
+     "bytes": 14379792
+    },
+    {
+     "n": 8,
+     "composer": "Marcos Fernández",
+     "work": "Noctum",
+     "movement": "Mundo del agua",
+     "duration": "11:47",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Ferna%CC%81ndez%20-%20Noctum/08%20Ferna%CC%81ndez%20-%20Noctum%20-%20Mundo%20del%20agua.wav",
+     "bytes": 187156710
+    },
+    {
+     "n": 9,
+     "composer": "Marcos Fernández",
+     "work": "Noctum",
+     "movement": "Agobio de Ëlhua",
+     "duration": "2:00",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Ferna%CC%81ndez%20-%20Noctum/09%20Ferna%CC%81ndez%20-%20Noctum%20-%20Agobio%20de%20E%CC%88lhua.wav",
+     "bytes": 31767654
+    },
+    {
+     "n": 10,
+     "composer": "Marcos Fernández",
+     "work": "Noctum",
+     "movement": "Mundo teriaco",
+     "duration": "11:36",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Ferna%CC%81ndez%20-%20Noctum/10%20Ferna%CC%81ndez%20-%20Noctum%20-%20Mundo%20teriaco.wav",
+     "bytes": 184206948
+    },
+    {
+     "n": 11,
+     "composer": "Marcos Fernández",
+     "work": "Noctum",
+     "movement": "Aria del recuerdo",
+     "duration": "4:44",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Ferna%CC%81ndez%20-%20Noctum/11%20Ferna%CC%81ndez%20-%20Noctum%20-%20Aria%20del%20recuerdo.wav",
+     "bytes": 75161058
+    },
+    {
+     "n": 12,
+     "composer": "Marcos Fernández",
+     "work": "Noctum",
+     "movement": "Eclipse final",
+     "duration": "3:56",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Ferna%CC%81ndez%20-%20Noctum/12%20Ferna%CC%81ndez%20-%20Noctum%20-%20Eclipse%20final.wav",
+     "bytes": 62532492
     }
-  ]
+   ],
+   "format": "24-bit / 44.1 kHz WAV",
+   "bytes": 971058834,
+   "sourceNote": "The only surviving source for this music is a 320 kbps master, so this transfer is as close to the original as there is."
+  },
+  {
+   "slug": "mozart-crumb-schumann",
+   "live": true,
+   "title": "Mozart · Crumb · Schumann",
+   "subtitle": "Live in Berneck, 2009",
+   "composerLine": "Wolfgang Amadeus Mozart · George Crumb · Robert Schumann",
+   "year": "2009",
+   "coverTag": "Live in Berneck · 2009",
+   "performers": "Daniel del Pino, piano · Lyonel Schmit, violin · David Quiggle, viola · Viturin Döring, cello · Guillermo Laporta, flute",
+   "engineer": "Guillermo Laporta Castillo",
+   "recordedNote": "Recorded live at the Catholic Church of Berneck, Switzerland, on 9 January 2009.",
+   "totalTime": "75:43",
+   "audio": true,
+   "vinylNote": "The vinyl comes in two editions, Schumann&#x27;s Op. 47 or Mozart&#x27;s K. 493. Say which one you would like.",
+   "tracks": [
+    {
+     "n": 1,
+     "composer": "Wolfgang Amadeus Mozart",
+     "work": "Piano Quartet No. 2 in E-flat major, K. 493",
+     "movement": "I. Allegro",
+     "duration": "10:14",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Schumann%20-%20Piano%20Quartet%20Op.%2047/01%20Mozart%20-%20Piano%20Quartet%2C%20K.%20493%20-%20I.%20Allegro.wav",
+     "bytes": 353510886
+    },
+    {
+     "n": 2,
+     "composer": "Wolfgang Amadeus Mozart",
+     "work": "Piano Quartet No. 2 in E-flat major, K. 493",
+     "movement": "II. Larghetto",
+     "duration": "9:16",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Schumann%20-%20Piano%20Quartet%20Op.%2047/02%20Mozart%20-%20Piano%20Quartet%2C%20K.%20493%20-%20II.%20Larghetto.wav",
+     "bytes": 320018214
+    },
+    {
+     "n": 3,
+     "composer": "Wolfgang Amadeus Mozart",
+     "work": "Piano Quartet No. 2 in E-flat major, K. 493",
+     "movement": "III. Allegretto",
+     "duration": "8:10",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Schumann%20-%20Piano%20Quartet%20Op.%2047/03%20Mozart%20-%20Piano%20Quartet%2C%20K.%20493%20-%20III.%20Allegretto.wav",
+     "bytes": 282182502
+    },
+    {
+     "n": 4,
+     "composer": "George Crumb",
+     "work": "Vox Balaenae (Voice of the Whale)",
+     "movement": "for electric flute, electric cello and amplified piano",
+     "duration": "21:57",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Schumann%20-%20Piano%20Quartet%20Op.%2047/04%20Crumb%20-%20Vox%20Balaenae.wav",
+     "bytes": 758327604
+    },
+    {
+     "n": 5,
+     "composer": "Robert Schumann",
+     "work": "Piano Quartet in E-flat major, Op. 47",
+     "movement": "I. Sostenuto assai – Allegro ma non troppo",
+     "duration": "8:52",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Schumann%20-%20Piano%20Quartet%20Op.%2047/05%20Schumann%20-%20Piano%20Quartet%2C%20Op.%2047%20-%20I.%20Sostenuto%20assai%20-%20Allegro%20ma%20non%20troppo.wav",
+     "bytes": 306179814
+    },
+    {
+     "n": 6,
+     "composer": "Robert Schumann",
+     "work": "Piano Quartet in E-flat major, Op. 47",
+     "movement": "II. Scherzo. Molto vivace",
+     "duration": "3:42",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Schumann%20-%20Piano%20Quartet%20Op.%2047/06%20Schumann%20-%20Piano%20Quartet%2C%20Op.%2047%20-%20II.%20Scherzo.%20Molto%20vivace.wav",
+     "bytes": 127919910
+    },
+    {
+     "n": 7,
+     "composer": "Robert Schumann",
+     "work": "Piano Quartet in E-flat major, Op. 47",
+     "movement": "III. Andante cantabile",
+     "duration": "6:33",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Schumann%20-%20Piano%20Quartet%20Op.%2047/07%20Schumann%20-%20Piano%20Quartet%2C%20Op.%2047%20-%20III.%20Andante%20cantabile.wav",
+     "bytes": 226453236
+    },
+    {
+     "n": 8,
+     "composer": "Robert Schumann",
+     "work": "Piano Quartet in E-flat major, Op. 47",
+     "movement": "IV. Finale. Vivace",
+     "duration": "7:00",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Schumann%20-%20Piano%20Quartet%20Op.%2047/08%20Schumann%20-%20Piano%20Quartet%2C%20Op.%2047%20-%20IV.%20Finale.%20Vivace.wav",
+     "bytes": 241937382
+    }
+   ],
+   "format": "24-bit / 96 kHz WAV",
+   "bytes": 2616529548,
+   "sourceNote": ""
+  },
+  {
+   "slug": "le-chant-du-rossignol",
+   "live": true,
+   "title": "Stravinsky · Dutilleux · Jolivet",
+   "subtitle": "Live recordings, 2006",
+   "composerLine": "Igor Stravinsky · Henri Dutilleux · André Jolivet",
+   "year": "2006",
+   "coverTag": "Live recordings · 2006",
+   "performers": "Musikene Symphony Orchestra · Guillermo Laporta, flute",
+   "engineer": "Guillermo Laporta Castillo",
+   "recordedNote": "Recorded live in 2006: the Stravinsky at Musikene, San Sebastián, the Dutilleux and the Jolivet at an Ibercaja concert in April.",
+   "totalTime": "39:22",
+   "audio": true,
+   "vinylNote": "",
+   "tracks": [
+    {
+     "n": 1,
+     "composer": "Igor Stravinsky",
+     "work": "Le chant du rossignol",
+     "movement": "symphonic poem",
+     "duration": "19:53",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Stravinsky%20-%20Le%20chant%20du%20rossignol/01%20Stravinsky%20-%20Le%20chant%20du%20rossignol.wav",
+     "bytes": 315584286
+    },
+    {
+     "n": 2,
+     "composer": "Henri Dutilleux",
+     "work": "Sonatine for flute and piano",
+     "movement": "",
+     "duration": "9:01",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Stravinsky%20-%20Le%20chant%20du%20rossignol/02%20Dutilleux%20-%20Sonatine.wav",
+     "bytes": 143126214
+    },
+    {
+     "n": 3,
+     "composer": "André Jolivet",
+     "work": "Chant de Linos",
+     "movement": "",
+     "duration": "10:28",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/Stravinsky%20-%20Le%20chant%20du%20rossignol/03%20Jolivet%20-%20Chant%20de%20Linos.wav",
+     "bytes": 166253574
+    }
+   ],
+   "format": "24-bit / 44.1 kHz WAV",
+   "bytes": 624964074,
+   "sourceNote": ""
+  }
+ ]
 }

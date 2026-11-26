@@ -7996,3 +7996,9 @@ html.after-curtain .tn-after { display: block; }
 .track.failed .track-title { opacity: .55; }
 .track.failed .track-dur::after { content: " ·"; }
 .audio-dock.has-error .ad-title { color: var(--red); }
+
+/* the lossless masters are large, so the wait before the first note is
+   shown rather than left to look like a dead button */
+.track-mb { display: block; font-size: .72rem; opacity: .62; margin-top: 2px; }
+.audio-dock.is-loading .ad-fill { opacity: .45; }
+.audio-dock.is-loading .ad-time { color: var(--accent); }
