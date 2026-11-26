@@ -137,7 +137,9 @@ def record_block(rec, data):
         facts.append(("Played by", esc(rec["performers"])))
     if rec.get("engineer"):
         facts.append(("Sound", esc(rec["engineer"])))
-    facts.append(("Running time", esc(rec["totalTime"]) + " &#183; %d tracks" % len(rec["tracks"])))
+    n = len(rec["tracks"])
+    facts.append(("Running time", esc(rec["totalTime"])
+                  + " &#183; %d %s" % (n, "track" if n == 1 else "tracks")))
     facts.append(("Streaming", esc(rec["format"]) + ", the master itself &#183; "
                   + esc(megabytes(rec["bytes"])) + " in all"))
     fact_rows = "".join(
@@ -149,12 +151,39 @@ def record_block(rec, data):
 
     vinyl_note = ""
     if rec.get("vinylNote"):
-        vinyl_note = '\n          <p class="rec-vinyl-note">%s</p>' % rec["vinylNote"]
+        vinyl_note = '\n          <p class="rec-vinyl-note">%s</p>' % esc(rec["vinylNote"])
 
     quiet = ""
     if not rec.get("audio"):
         quiet = ('\n        <p class="rec-quiet">The recording is being prepared '
                  'for streaming. Write to us and we will tell you when it is up.</p>')
+
+    # Which formats this record is actually sold in. A record with none
+    # gets no buttons: it is here to listen to, and a price on a disc
+    # nobody has confirmed exists is a promise the ensemble would have
+    # to keep.
+    formats = rec.get("formats", ["cd", "vinyl"])
+    buttons = []
+    if "cd" in formats:
+        buttons.append(
+            '          <a class="btn btn-stamp" href="%s" data-cb-track="record_order"\n'
+            '             data-cb-record="%s" data-cb-format="cd">CD %s '
+            '<span class="ar">&#8594;</span></a>\n'
+            % (esc(order_link(rec, "CD", p["cd"], to)), esc(rec["slug"]), money(p["cd"])))
+    if "vinyl" in formats:
+        buttons.append(
+            '          <a class="btn btn-s" href="%s" data-cb-track="record_order"\n'
+            '             data-cb-record="%s" data-cb-format="vinyl">Vinyl %s</a>\n'
+            % (esc(order_link(rec, "vinyl", p["vinyl"], to)), esc(rec["slug"]),
+               money(p["vinyl"])))
+    buy = ""
+    if buttons:
+        buy = (
+            '        <div class="rec-buy">\n'
+            + "".join(buttons)
+            + '          <span class="rec-buy-note">Signed, with a personal note. '
+              'Plus shipping.</span>' + vinyl_note + '\n'
+            '        </div>\n')
 
     return (
         '    <article class="rec" id="{slug}">\n'
@@ -170,24 +199,13 @@ def record_block(rec, data):
         '        <ol class="track-list">\n'
         '{tracks}\n'
         '        </ol>\n'
-        '        <div class="rec-buy">\n'
-        '          <a class="btn btn-stamp" href="{cd}" data-cb-track="record_order"\n'
-        '             data-cb-record="{slug}" data-cb-format="cd">CD {cdp} '
-        '<span class="ar">&#8594;</span></a>\n'
-        '          <a class="btn btn-s" href="{lp}" data-cb-track="record_order"\n'
-        '             data-cb-record="{slug}" data-cb-format="vinyl">Vinyl {lpp}</a>\n'
-        '          <span class="rec-buy-note">Signed, with a personal note. Plus shipping.</span>'
-        '{vinyl}\n'
-        '        </div>\n'
+        '{buy}'
         '      </div>\n'
         '    </article>\n'
     ).format(slug=esc(rec["slug"]), title=esc(rec["title"]),
              sub=esc(rec["composerLine"]), tag=esc(rec.get("coverTag", "")),
              facts=fact_rows, recorded=recorded, quiet=quiet,
-             tracks=track_rows(rec),
-             cd=esc(order_link(rec, "CD", p["cd"], to)), cdp=money(p["cd"]),
-             lp=esc(order_link(rec, "vinyl", p["vinyl"], to)), lpp=money(p["vinyl"]),
-             vinyl=vinyl_note)
+             tracks=track_rows(rec), buy=buy)
 
 
 def page(data):

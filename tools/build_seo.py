@@ -729,8 +729,11 @@ def record_nodes():
                 }
             tracks.append(node)
         offers = []
+        sold = rec.get("formats", ["cd", "vinyl"])
         for kind, label, price in (("cd", "CD", prices["cd"]),
                                    ("vinyl", "Vinyl LP", prices["vinyl"])):
+            if kind not in sold:
+                continue
             offers.append({
                 "@type": "Offer",
                 "@id": rid + "-" + kind,
@@ -768,8 +771,9 @@ def record_nodes():
             "numTracks": len(rec["tracks"]),
             "publisher": {"@id": ORG_ID},
             "track": tracks,
-            "offers": offers,
         }
+        if offers:
+            album["offers"] = offers
         if by:
             album["byArtist"] = by
         if rec.get("live"):

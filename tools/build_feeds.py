@@ -361,13 +361,22 @@ def build_llms(events):
                  % ("It plays" if one else "They all play",
                     "master" if one else "masters", p["cd"], p["vinyl"]))
         L.append("")
+        L.append("Not every record is sold as a disc; the ones that are say so below.")
+        L.append("")
         for r in recs["records"]:
-            L.append("- [%s](%s/discography.html#%s), %s. %s, %d tracks, %s, %s."
+            n = len(r["tracks"])
+            L.append("- [%s](%s/discography.html#%s), %s. %s, %d %s, %s, %s."
                      % (r["title"], SITE, r["slug"], r["composerLine"],
-                        r["subtitle"], len(r["tracks"]), r["totalTime"],
-                        r.get("format", "")))
+                        r["subtitle"], n, "track" if n == 1 else "tracks",
+                        r["totalTime"], r.get("format", "")))
+            tail = []
             if r.get("performers"):
-                L.append("  " + r["performers"] + ".")
+                tail.append(r["performers"])
+            sold = r.get("formats", ["cd", "vinyl"])
+            tail.append("Signed CD and LP to order" if len(sold) > 1
+                        else ("Signed CD to order" if sold
+                              else "Listening only, not sold as a disc"))
+            L.append("  " + ". ".join(tail) + ".")
         L.append("")
 
     L += ["## Pages",

@@ -146,7 +146,41 @@
    ],
    "format": "24-bit / 44.1 kHz WAV",
    "bytes": 971058834,
-   "sourceNote": "The only surviving source for this music is a 320 kbps master, so this transfer is as close to the original as there is."
+   "sourceNote": "The only surviving source for this music is a 320 kbps master, so this transfer is as close to the original as there is.",
+   "formats": [
+    "cd",
+    "vinyl"
+   ]
+  },
+  {
+   "slug": "couperin-concerts-royaux",
+   "live": true,
+   "title": "Couperin · Concerts royaux",
+   "subtitle": "Live in New York, 2023",
+   "composerLine": "François Couperin",
+   "year": "2023",
+   "coverTag": "Live in New York · 2023",
+   "performers": "CreArtBox",
+   "engineer": "",
+   "recordedNote": "Recorded live at Culture Lab LIC, New York, on 9 December 2023, at the concert Mountains we love to climb, part of the CreArt Music Festival.",
+   "sourceNote": "The cover is the album from that night, which also held Couperin's Barricades mystérieuses, Hannah Selin's Chesapeake, Mozart's K. 285 and Vivaldi's La Notte. This is the Concerts royaux from it.",
+   "totalTime": "24:50",
+   "format": "24-bit / 48 kHz WAV",
+   "audio": true,
+   "formats": [],
+   "vinylNote": "",
+   "bytes": 429385734,
+   "tracks": [
+    {
+     "n": 1,
+     "composer": "François Couperin",
+     "work": "Concerts royaux",
+     "movement": "selection",
+     "duration": "24:50",
+     "url": "https://creartbox-archive.b-cdn.net/CD%20Y%20VINILOS/_to_delete/Couperin%2005%20sin%20dividir/master%2005%20Couperin%20-%20Concerts%20royaux%20%28selection%29.wav",
+     "bytes": 429385734
+    }
+   ]
   }
  ]
 }
