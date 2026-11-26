@@ -11,9 +11,9 @@ fixes that, from the one data file, so the tracklist on the page and the
 tracklist beside the masters cannot drift apart.
 
 Audio is the dock that already carries the media page: a single
-#featured-tracks container holds all three records, so the queue runs
-from the first track of the first record to the last of the third, and
-it keeps playing while the visitor walks around the site.
+#featured-tracks container holds every record on the page, so the queue
+runs from the first track of the first to the last of the last, and it
+keeps playing while the visitor walks around the site.
 
 A record sets "audio": false while its mp3s are not uploaded yet, and
 then its tracks print with no play button. Twenty-three buttons that all
@@ -36,9 +36,32 @@ DATA = "data/records.json"
 PAGE = "discography.html"
 
 TITLE = "Recordings - CreArtBox &#183; Discography"
-DESC = ("The three records CreArtBox has made: Marcos Fern&#xE1;ndez&#x27;s Noctum, "
-        "Mozart, Crumb and Schumann live in Berneck, and Stravinsky, Dutilleux "
-        "and Jolivet live in 2006. Listen in full, or order a signed CD or LP.")
+
+WORDS = {1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five", 6: "Six"}
+
+
+def count_word(n):
+    return WORDS.get(n, str(n))
+
+
+def describe(recs):
+    """The meta description, from whatever records are on the page.
+
+    It used to name all three by hand, which went stale the moment two
+    of them came off.
+    """
+    if not recs:
+        return "CreArtBox recordings."
+    tail = ("Listen in full, streamed as the uncompressed master, or order a "
+            "signed CD or LP.")
+    if len(recs) == 1:
+        r = recs[0]
+        return "The record CreArtBox has made: %s, %s. %s" % (
+            esc(r["title"]), esc(r["composerLine"]), tail)
+    names = [esc(r["title"]) for r in recs]
+    which = ", ".join(names[:-1]) + " and " + names[-1]
+    return "The %s records CreArtBox has made: %s. %s" % (
+        count_word(len(recs)).lower(), which, tail)
 
 
 def esc(text):
@@ -172,9 +195,15 @@ def page(data):
     p = data["prices"]
     blocks = "\n".join(record_block(r, data) for r in recs)
     total_tracks = sum(len(r["tracks"]) for r in recs)
+    sizes = [t["bytes"] for r in recs for t in r["tracks"] if t.get("bytes")]
     return TEMPLATE.format(
-        title=TITLE, desc=DESC, blocks=blocks,
-        count=len(recs), tracks=total_tracks,
+        title=TITLE, desc=describe(recs), blocks=blocks,
+        countw=count_word(len(recs)),
+        noun="record" if len(recs) == 1 else "records",
+        thisrec=("The record is" if len(recs) == 1 else "Every record is"),
+        small=megabytes(min(sizes)) if sizes else "15 MB",
+        big=megabytes(max(sizes)) if sizes else "350 MB",
+        tracks=total_tracks,
         cd=money(p["cd"]), lp=money(p["vinyl"]),
         order=esc(data["orderTo"]))
 
@@ -287,19 +316,19 @@ TEMPLATE = """<!doctype html>
     <div class="two-col">
       <div>
         <span class="label">Discography &#183; lossless</span>
-        <h2 class="h-title" style="margin-top:14px">The <em>records</em>.</h2>
+        <h2 class="h-title" style="margin-top:14px">The <em>{noun}</em>.</h2>
       </div>
       <div>
-        <p class="body">Three records, {tracks} tracks, and what plays here is the
+        <p class="body">{countw} {noun}, {tracks} tracks, and what plays here is the
         master: the uncompressed studio file, note for note, not a copy squeezed
         down for streaming. Give it a moment to load. The player then follows you
-        around the site, so you can start a quartet here and keep listening while
+        around the site, so you can start something here and keep listening while
         you read something else.</p>
-        <p class="body" style="margin-top:14px">A track is between 15 MB and 350 MB,
+        <p class="body" style="margin-top:14px">A track is between {small} and {big},
         which is the price of hearing it properly. Each one says its size below.
         On a phone, wait for Wi-Fi.</p>
-        <p class="body" style="margin-top:14px">Every record is also a physical object:
-        a CD at {cd} and a vinyl LP at {lp}, each one signed, each one sent with a
+        <p class="body" style="margin-top:14px">{thisrec} also a physical object:
+        a CD at {cd} and a vinyl LP at {lp}, signed, and sent with a
         personal note from the artists. Shipping is charged on top and depends on
         where you are. Orders and questions go to
         <a href="mailto:{order}">{order}</a>.</p>

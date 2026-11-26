@@ -352,11 +352,14 @@ def build_llms(events):
         p = recs["prices"]
         L.append("## Records")
         L.append("")
-        L.append("All three play in full on the page, streamed as the uncompressed "
-                 "masters rather than a squeezed copy, so a track takes a moment to "
-                 "load. A CD is $%d and a vinyl LP is $%d, every copy signed and sent "
-                 "with a personal note from the artists, postage extra. Orders go to "
-                 "info@creartbox.nyc." % (p["cd"], p["vinyl"]))
+        one = len(recs["records"]) == 1
+        L.append("%s in full on the page, streamed as the uncompressed %s rather "
+                 "than a squeezed copy, so a track takes a moment to load. A CD is "
+                 "$%d and a vinyl LP is $%d, every copy signed and sent with a "
+                 "personal note from the artists, postage extra. Orders go to "
+                 "info@creartbox.nyc."
+                 % ("It plays" if one else "They all play",
+                    "master" if one else "masters", p["cd"], p["vinyl"]))
         L.append("")
         for r in recs["records"]:
             L.append("- [%s](%s/discography.html#%s), %s. %s, %d tracks, %s, %s."
@@ -370,8 +373,8 @@ def build_llms(events):
     L += ["## Pages",
           "",
           "- [Calendar](%s/concerts.html): every date of the season." % SITE,
-          "- [Recordings](%s/discography.html): the three records, playable in full, "
-          "with signed CDs and LPs to order." % SITE,
+          "- [Recordings](%s/discography.html): the records, playable in full as "
+          "uncompressed masters, with signed CDs and LPs to order." % SITE,
           "- [Coming to a concert](%s/classical-concerts-nyc.html): the hall, the way in, "
           "start and running times, what a seat costs." % SITE,
           "- [Composers](%s/composers.html): everyone whose music the ensemble has "
