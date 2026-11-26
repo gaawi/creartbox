@@ -9,6 +9,7 @@
 const { chromium } = require("/opt/node22/lib/node_modules/playwright");
 const fs = require("fs");
 const path = require("path");
+const chromiumPath = require("./chromium_path");
 
 const DIR = "posters";
 // A3 portrait in CSS pixels: 297x420mm at the browser's 96dpi. Sizing the
@@ -26,7 +27,7 @@ const DPI = 150;
   }
 
   const browser = await chromium.launch({
-    executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome",
+    executablePath: chromiumPath(),
     args: ["--no-sandbox"],
   });
 

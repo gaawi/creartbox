@@ -8,6 +8,7 @@
 const { chromium } = require("/opt/node22/lib/node_modules/playwright");
 const fs = require("fs");
 const path = require("path");
+const chromiumPath = require("./chromium_path");
 
 const PAGE = "press/season-2026-27.html";
 const OUT = "downloads/creartbox-season-2026-27.pdf";
@@ -36,7 +37,7 @@ async function serveFonts(page) {
 
 (async () => {
   const browser = await chromium.launch({
-    executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome",
+    executablePath: chromiumPath(),
     args: ["--no-sandbox"],
   });
   const page = await browser.newPage({ viewport: { width: 900, height: 1200 } });

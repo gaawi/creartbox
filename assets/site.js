@@ -994,7 +994,7 @@ function initAudioDock() {
 /* === Composer roster: tap a name to open a bio modal ================= */
 const COMPOSERS = {
   "Brittney Benton": {
-    photo: "https://images.squarespace-cdn.com/content/v1/61882168ea70585aab41a750/c201892f-260d-41e0-8529-61fc9ccee630/Brittney+Benton+Headshot.png",
+    photo: "assets/img/composers/brittney-benton.jpg",
     website: "https://brittneybentonmusic.wixsite.com/composer",
     base: "Las Vegas, NV",
     bio: "Driven by storytelling and imagery, Brittney Benton's music takes listeners through a lush melodic and harmonic soundscape filled with personality. She holds a Bachelor's degree in Music Composition with a Minor in Music Technology from the University of Nevada, Las Vegas. Her works have been performed by the Bellevue Chamber Chorus, ZOFO, the Beo String Quartet, the Lowell Chamber Orchestra, and the Armenian State Symphony Orchestra."
@@ -1018,7 +1018,7 @@ const COMPOSERS = {
     bio: "Luke Carlson (b. 1983) is an American composer and conductor whose music has been praised by the New York Times as \"personal and strong,\" by the Philadelphia Inquirer as \"magical\" and \"otherworldly,\" and by the Washington Classical Review for its \"fascinating timbres.\" He serves as Associate Professor of Music at the College of the Ozarks."
   },
   "Devin Cholodenko": {
-    photo: "https://images.squarespace-cdn.com/content/v1/60528ee1b13334437997346f/b2efdd45-30a2-4891-8617-d1dd4334e66d/Devin+Cholodenko+Portraits.jpg",
+    photo: "assets/img/composers/devin-cholodenko.jpg",
     website: "https://www.devincholodenko.com/",
     base: "Miami, Florida",
     bio: "Devin Cholodenko is a composer of eclectic taste and signature style whose work centers on introspection and inner emotional experience, drawing inspiration from time, memory, nature, classical mythology, and identity. His music has been performed by ensembles including the JACK Quartet, HUB New Music, and Momenta Quartet."
@@ -1066,19 +1066,19 @@ const COMPOSERS = {
     bio: "Sam Wu is a composer whose works feature delicate colours, wisps of sound and sylvan textures, often exploring themes such as architecture, climate science, and the search for habitable exoplanets. He has received accolades including an ASCAP Morton Gould Young Composer Award and Harvard's Robert Levin Prize. His collaborations span five continents, including work with major orchestras and Carnegie Hall."
   },
   "Hannah Selin": {
-    photo: "https://hannahselin.com/wp-content/uploads/2026/06/03_selin-hannah_alice-and-chris-photography-1.jpg",
+    photo: "assets/img/composers/hannah-selin.jpg",
     website: "https://hannahselin.com/",
     base: "New York, NY",
     bio: "Composer, violist and vocalist Hannah Selin juxtaposes acoustic instruments with electronics and field recordings to create striking and vibrant sound-spaces. She is a co-founder of the band GADADU and a founding member of Violalia Duo and Xanthoria Quartet. Hannah holds a PhD in composition from Temple University."
   },
   "Andrea Casarrubios": {
-    photo: "https://www.andreacasarrubios.com/uploads/2/9/2/6/29264845/ac-photo-by-titilayo-ayangade_orig.png",
+    photo: "assets/img/composers/andrea-casarrubios.jpg",
     website: "https://www.andreacasarrubios.com/",
     base: "New York, NY",
     bio: "Grammy-nominated Spanish cellist and composer Andrea Casarrubios has performed as a soloist and chamber musician across Europe, Asia, Africa, and the Americas. Her compositions have been programmed by major orchestras including the Chicago Symphony Orchestra and Philadelphia Orchestra, with her acclaimed piece SEVEN receiving its Carnegie Hall premiere in 2021. She earned her Doctoral degree in New York, where she studied composition with John Corigliano."
   },
   "Michael Grebla": {
-    photo: "https://www.michaelgrebla.com/wp-content/uploads/2015/07/DSC_6029-scaled-uai-258x172.jpg",
+    photo: "assets/img/composers/michael-grebla.jpg",
     website: "https://www.michaelgrebla.com/",
     base: "New York, NY",
     bio: "Michael Grebla is an international award-winning emerging composer from Western Australia based in New York City. With a deep conviction for the role music plays as a unifying mechanism in society, his recent works deal with ideas of journey, displacement, transience, and spirituality. He completed his Master of Music in Composition at the New England Conservatory in 2018 in the studio of Dr. Kati Agocs."
@@ -1090,13 +1090,13 @@ const COMPOSERS = {
     bio: "Samantha Sack is a composer and cellist for film and concert. She studied composition at Missouri State University and earned a Master of Arts in Scoring for Film and Visual Media from Dublin Institute of Technology. She creates original music for musicians worldwide and collaborates with international filmmakers."
   },
   "Nathan Schram": {
-    photo: "https://static.wixstatic.com/media/6d9549_e5870bdf27ef4e89899cfcf7e3f79012~mv2_d_1502_4370_s_2.jpg",
+    photo: "assets/img/composers/nathan-schram.jpg",
     website: "https://www.nathanschramnoise.com/",
     base: "Brooklyn, New York",
     bio: "Nathan Schram is a Grammy Award-winning composer and violist of the Attacca Quartet, described by The New York Times as an \"elegant soloist\" with a \"devotional\" sound. He has collaborated with artists including Björk, James Blake, and Billie Eilish. He is also founder of Musicambia, which develops music education programs in correctional facilities across the United States."
   },
   "JP Jofre": {
-    photo: "https://static.wixstatic.com/media/21a346_4636aba243b5415db1ca6b774e427b99~mv2.jpg",
+    photo: "assets/img/composers/jp-jofre.jpg",
     website: "https://www.jpjofre.com/",
     base: "San Juan, Argentina",
     bio: "JP Jofre is a Grammy-nominated composer and bandoneon player native to San Juan, Argentina. His compositions have been recorded by ensembles including the London Symphony Orchestra and Orpheus Chamber Orchestra. He has performed at major venues worldwide, from Carnegie Hall to Beijing National Theatre, and has lectured at institutions including The Juilliard School."
@@ -1108,61 +1108,61 @@ const COMPOSERS = {
     bio: "Marcos Fernández is a Barcelona-born composer based between Madrid, Barcelona, and London. He creates original music for audio-visual projects across dressage, theatre, dance, opera, and multidisciplinary productions. With degrees from ESMUC, Royal Conservatoire of Scotland, and Royal College of Music, he has won over twenty European awards."
   },
   "Sebastian Currier": {
-    photo: "https://upload.wikimedia.org/wikipedia/commons/7/78/Sebastian_Currier_at_the_2015_Cabrillo_Festival_of_Contemporary_Music.jpg",
+    photo: "assets/img/composers/sebastian-currier.jpg",
     website: "https://www.sebastiancurrier.com/",
     base: "United States",
     bio: "Sebastian Currier (b. 1959) is an American composer specializing in chamber and orchestral music. He was a music professor at Columbia University from 1999 to 2007 and has received prestigious awards including the 2007 Grawemeyer Award for Music Composition. He was raised in Providence, Rhode Island."
   },
   "Todd Reynolds": {
-    photo: "https://images.squarespace-cdn.com/content/v1/50380a1fe4b0a82378035673/1611709975631-PD0O35GGGV0ML9AS6YHI/ToddReynolds_Straight_4x5+1.jpg",
+    photo: "assets/img/composers/todd-reynolds.jpg",
     website: "https://www.toddreynolds.com/",
     base: "North Adams, Massachusetts",
     bio: "Todd Reynolds is a violinist, composer, and educator known as a founding figure in the hybrid-musician movement. He performs \"present music\" that blends classical violin with digital technology, improvisation, and multiple genres. He founded the amplified string quartet ETHEL and teaches at Manhattan School of Music."
   },
   "Joshua Penman": {
-    photo: "https://cdn.prod.website-files.com/6475f0f2d52f9bc52f2347a0/6605b965927594c9fae4ee23_Joshua-Penman.avif",
+    photo: "assets/img/composers/joshua-penman.jpg",
     website: "https://smoke-clam.squarespace.com/",
     base: "Los Angeles",
     bio: "Joshua Penman writes and produces music at the intersection of concert music, ambient music, world music, and experimental pop. He has received commissions from the Albany Symphony, New York Youth Symphony, and Bang on a Can, and his work spans concert halls, Indian classical vocal training, and electronic production."
   },
   "Wei Dai": {
-    photo: "https://static.wixstatic.com/media/17a428_6060243f230848a686c4f27dfd4f23d7~mv2.jpg",
+    photo: "assets/img/composers/wei-dai.jpg",
     website: "https://www.daiweimusic.com/",
     base: null,
     bio: "Dai Wei is a Chinese-born composer, vocalist, and multimedia artist whose work spans contemporary music, electro-acoustic sound, visual art, and performance. She merges pop, folk, electronic, and art music to challenge conventional labels and amplify underrepresented voices, drawing from eastern philosophy and aesthetics."
   },
   "Philip Lasser": {
-    photo: "https://images.squarespace-cdn.com/content/v1/5d01b63a5e29310001a63835/1561563899482-L3OU8XLIO7CWCTJZXE9A/lasser+head+smaller+with+buffer.png",
+    photo: "assets/img/composers/philip-lasser.jpg",
     website: "https://www.philiplasser.com/",
     base: "New York",
     bio: "Philip Lasser is a Franco-American composer whose works blend French Impressionist sonorities with the dynamic rhythms of American music. His compositions have been performed worldwide by renowned soloists and orchestras including Midori, Simone Dinnerstein, and the Atlanta Symphony. He has been a faculty member at The Juilliard School since 1994 and directs the EAMA-Nadia Boulanger Institute in Paris."
   },
   "Evan O. Adams": {
-    photo: "https://images.squarespace-cdn.com/content/v1/551e05a5e4b088bf54fcb264/1478318695105-UX55SKC05R9NSDXRTL1I/Super_Serious_Picture_of_Evan_at_Piano.JPG",
+    photo: "assets/img/composers/evan-o-adams.jpg",
     website: "https://www.evanoadams.com/",
     base: "New York",
     bio: "Evan O. Adams (b. 1996) is a composer and guitarist who creates rhythmically intricate and playfully unconventional music blending progressive rock and jazz-fusion influences. His compositions have been performed by ensembles including JACK Quartet, Quince Ensemble, and loadbang, and he serves as Artistic Director of the interdisciplinary collective Eclective."
   },
   "Bryan Wysocki": {
-    photo: "https://images.squarespace-cdn.com/content/v1/63f7ee5d5d82947c233c9c4d/1686806740395-E186N5IOZMNTFD01CU8E/CTA+Headshot+-+Brian+Michael+Wysocki.jpeg",
+    photo: "assets/img/composers/bryan-wysocki.jpg",
     website: "https://commontonearts.org/biographies/bryan-michael-wysocki",
     base: "Atlanta, Georgia",
     bio: "Brian (Bryan) Michael Wysocki is a Maryland-born, Atlanta-based composer and percussionist interested in exploring the blurry relationships between time, memory, and perception in the music of today. He often uses non-traditional elements such as spoken word, guided improvisation, and interactive electronics, and is a doctoral student in composition at the University of Georgia."
   },
   "Annamaria Kowalsky": {
-    photo: "https://images.squarespace-cdn.com/content/v1/607e9541f21c665c1a84ddf6/6269f0f4-9806-469f-8138-863edec2eb63/DSC_83211web.jpg",
+    photo: "assets/img/composers/annamaria-kowalsky.jpg",
     website: "https://www.annamariakowalsky.com/",
     base: "Vienna, Austria",
     bio: "Annamaria Kowalsky is a Croatian-Austrian composer, musician, and multidisciplinary artist born in 1991. She studied viola at Vienna's University of Music and Performing Arts, and since 2018 has been composing works that explore the connection between music and image. Her practice spans composition, visual art, ceramics, and olfactory installations, with pieces recorded at Abbey Road Studios."
   },
   "Celeste Oram": {
-    photo: "https://payload.cargocollective.com/1/15/490537/7413172/IMG_1874_1000.jpg",
+    photo: "assets/img/composers/celeste-oram.jpg",
     website: "https://celesteoram.com/",
     base: "New York City (from Aotearoa New Zealand)",
     bio: "Celeste Oram is a composer and musician from Aotearoa New Zealand now based in New York City. Her works are scenarios in which music-making is the catalyst for exploring sonic and social histories and micro-cultures. She holds a PhD in music composition from UC San Diego and has received the 2024 Christoph Delz Composition Prize."
   },
   "Cullyn Murphy": {
-    photo: "https://images.squarespace-cdn.com/content/v1/6123defc7a4a471b9462459b/58c31ade-3fab-4deb-b902-a1071ed67497/cullynheadshot.png",
+    photo: "assets/img/composers/cullyn-murphy.jpg",
     website: "https://www.cullynmurphy.com/",
     base: "Beloit, Wisconsin",
     bio: "Cullyn D. Murphy is an American composer, conductor, vocalist, and educator who creates music engaging multiple sensory components beyond sound. His compositions employ unconventional notation and co-composition rooted in communal music-making, often accompanied by extramusical objects such as video game program notes and augmented reality filters. He is currently a Visiting Assistant Professor of Music at Beloit College."

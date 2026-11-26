@@ -8,6 +8,7 @@
 const { chromium } = require("/opt/node22/lib/node_modules/playwright");
 const fs = require("fs");
 const path = require("path");
+const chromiumPath = require("./chromium_path");
 
 // The brand faces come from Google Fonts. Where there is no route to
 // them, CB_FONT_CACHE points at a directory holding fonts.css and the
@@ -35,7 +36,7 @@ const OUT = "downloads/creartbox-program-dossier.pdf";
 
 (async () => {
   const browser = await chromium.launch({
-    executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome",
+    executablePath: chromiumPath(),
     args: ["--no-sandbox"],
   });
   const page = await browser.newPage({ viewport: { width: 900, height: 1200 } });

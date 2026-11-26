@@ -21,7 +21,7 @@ import unicodedata
 
 SITE = "https://creartbox.nyc"
 CSS = "assets/styles.css?v=193"
-JS = "assets/site.js?v=60"
+JS = "assets/site.js?v=61"
 REPERTOIRE = "data/repertoire.txt"
 CONTACT = "info@creartbox.nyc"
 

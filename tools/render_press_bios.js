@@ -6,6 +6,7 @@
 const fs = require("fs");
 const path = require("path");
 const { chromium } = require("/opt/node22/lib/node_modules/playwright");
+const chromiumPath = require("./chromium_path");
 
 const ABOUT = fs.readFileSync("about.html", "utf8");
 const LABEL = { long: "Long biography", medium: "Medium biography", short: "Short biography" };
@@ -77,7 +78,7 @@ async function serveFonts(page) {
 
 (async () => {
   const browser = await chromium.launch({
-    executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome",
+    executablePath: chromiumPath(),
   });
   const page = await browser.newPage();
   await serveFonts(page);
