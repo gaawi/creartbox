@@ -270,6 +270,16 @@ def build_json(events):
     }, indent=2, ensure_ascii=False) + "\n"
 
 
+RECORDS_DATA = "data/records.json"
+
+
+def records():
+    """The discography, or nothing if the data file has gone."""
+    if not os.path.exists(RECORDS_DATA):
+        return None
+    return json.load(open(RECORDS_DATA, encoding="utf-8"))
+
+
 def build_llms(events):
     L = ["# CreArtBox", "",
          "> A chamber music ensemble in New York, founded in 2013, playing classical and",
@@ -337,9 +347,29 @@ def build_llms(events):
                 (". Deadline " + c["deadline"] + ".") if c["deadline"] else "."))
         L.append("")
 
+    recs = records()
+    if recs:
+        p = recs["prices"]
+        L.append("## Records")
+        L.append("")
+        L.append("All three play in full on the page. A CD is $%d and a vinyl LP is $%d, "
+                 "every copy signed and sent with a personal note from the artists, "
+                 "postage extra. Orders go to info@creartbox.nyc."
+                 % (p["cd"], p["vinyl"]))
+        L.append("")
+        for r in recs["records"]:
+            L.append("- [%s](%s/discography.html#%s), %s. %s, %d tracks, %s."
+                     % (r["title"], SITE, r["slug"], r["composerLine"],
+                        r["subtitle"], len(r["tracks"]), r["totalTime"]))
+            if r.get("performers"):
+                L.append("  " + r["performers"] + ".")
+        L.append("")
+
     L += ["## Pages",
           "",
           "- [Calendar](%s/concerts.html): every date of the season." % SITE,
+          "- [Recordings](%s/discography.html): the three records, playable in full, "
+          "with signed CDs and LPs to order." % SITE,
           "- [Coming to a concert](%s/classical-concerts-nyc.html): the hall, the way in, "
           "start and running times, what a seat costs." % SITE,
           "- [Composers](%s/composers.html): everyone whose music the ensemble has "

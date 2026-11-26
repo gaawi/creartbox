@@ -950,6 +950,20 @@ function initAudioDock() {
   audio.addEventListener("pause", () => { dock.classList.remove("playing"); reflectListUI(); persist(); });
   audio.addEventListener("ended", () => { next(); });
 
+  // A file that is not there used to do nothing at all: the button was
+  // pressed, play() rejected, and the dock sat silent with a title on
+  // it, which reads as a broken site. Say so instead.
+  audio.addEventListener("error", () => {
+    if (!audio.getAttribute("src")) return;
+    elTitle.textContent = "This track will not load right now";
+    elDur.textContent = "0:00";
+    elFill.style.width = "0%";
+    dock.classList.remove("playing");
+    dock.classList.add("has-error");
+    if (idx >= 0 && tracksUI[idx]) tracksUI[idx].classList.add("failed");
+  });
+  audio.addEventListener("loadstart", () => { dock.classList.remove("has-error"); });
+
   // Hydrate UI from saved state on load
   if (queue.length && idx >= 0 && idx < queue.length) {
     load(idx, false);

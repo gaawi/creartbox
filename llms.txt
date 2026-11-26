@@ -84,9 +84,21 @@ Machine-readable version of what follows: https://creartbox.nyc/events.json
 - [Call for Scores, International, any nationality](https://creartbox.nyc/calls/scores-international.html). Deadline 15 December 2026.
 - [Call for Scores, American composers](https://creartbox.nyc/calls/scores-american.html). Deadline 15 December 2026.
 
+## Records
+
+All three play in full on the page. A CD is $15 and a vinyl LP is $50, every copy signed and sent with a personal note from the artists, postage extra. Orders go to info@creartbox.nyc.
+
+- [Noctum](https://creartbox.nyc/discography.html#noctum), Marcos Fernández. Music from the opera, 12 tracks, 61:10.
+  CreArtBox.
+- [Mozart · Crumb · Schumann](https://creartbox.nyc/discography.html#mozart-crumb-schumann), Wolfgang Amadeus Mozart · George Crumb · Robert Schumann. Live in Berneck, 2009, 8 tracks, 75:43.
+  Daniel del Pino, piano · Lyonel Schmit, violin · David Quiggle, viola · Viturin Döring, cello · Guillermo Laporta, flute.
+- [Stravinsky · Dutilleux · Jolivet](https://creartbox.nyc/discography.html#le-chant-du-rossignol), Igor Stravinsky · Henri Dutilleux · André Jolivet. Live recordings, 2006, 3 tracks, 39:22.
+  Musikene Symphony Orchestra · Guillermo Laporta, flute.
+
 ## Pages
 
 - [Calendar](https://creartbox.nyc/concerts.html): every date of the season.
+- [Recordings](https://creartbox.nyc/discography.html): the three records, playable in full, with signed CDs and LPs to order.
 - [Coming to a concert](https://creartbox.nyc/classical-concerts-nyc.html): the hall, the way in, start and running times, what a seat costs.
 - [Composers](https://creartbox.nyc/composers.html): everyone whose music the ensemble has played, season by season.
 - [Repertoire](https://creartbox.nyc/repertoire.html): every work played since 2013.

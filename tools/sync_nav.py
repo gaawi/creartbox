@@ -27,7 +27,11 @@ FOOT = [("news.html", "News"), ("presenters.html", "For presenters")]
 FOOT_PROGRAM = [("classical-concerts-nyc.html", "Coming to a concert"),
                 # until the draw on 4 December 2026, then take this line
                 # out and run tools/build_lottery.py --off
-                ("lottery.html", "Free tickets")]
+                ("lottery.html", "Free tickets"),
+                ("discography.html", "Recordings")]
+# inside a submenu, after an item that is already there:
+#   (the submenu link to sit behind, the page, the label)
+SUBMENU = [("media.html#audio", "discography.html", "Recordings")]
 
 # <div class="nav-item"><a href="../support.html">Donate</a></div>
 ONE_LINE = re.compile(
@@ -79,6 +83,30 @@ def add_foot(src, page, item):
         src, count=1)
 
 
+def add_submenu(src, after, page, item):
+    """Put a link in the dropdown, behind one that is already there.
+
+    The submenus are written out by hand on every page, so a new section
+    in one of them is otherwise forty-odd identical edits and a fresh
+    generated page that quietly lacks it.
+    """
+    anchor = re.compile(
+        r'([ \t]*)<a href="((?:\.\./)*){}">([^<]*)</a>'.format(re.escape(after)))
+    m = anchor.search(src)
+    if not m:
+        return src
+    # Look for it right here, not anywhere on the page: the same link is
+    # in the footer by now, and a page-wide check would read that as done
+    # and leave every submenu without it.
+    tail = src[m.end():m.end() + 200]
+    if re.search(r'<a href="(?:\.\./)*{}">{}</a>'.format(
+            re.escape(page), re.escape(item)), tail):
+        return src
+    pad, prefix = m.group(1), m.group(2)
+    link = '<a href="{p}{page}">{item}</a>'.format(p=prefix, page=page, item=item)
+    return src[:m.end()] + "\n" + pad + link + src[m.end():]
+
+
 def add_foot_program(src, page, item):
     if has_foot(src, page, item):
         return src
@@ -109,6 +137,8 @@ def main():
             out = add_foot(out, page, item)
         for page, item in FOOT_PROGRAM:
             out = add_foot_program(out, page, item)
+        for after, page, item in SUBMENU:
+            out = add_submenu(out, after, page, item)
         if out != src:
             stale.append(path)
             if not check:

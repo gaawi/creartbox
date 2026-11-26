@@ -175,7 +175,13 @@ SECTION = {
 
 COLLECTIONS = {"concerts.html", "archive.html", "news.html", "projects.html",
                "media.html", "opportunities.html", "composers.html",
-               "repertoire.html", "classical-concerts-nyc.html"}
+               "repertoire.html", "classical-concerts-nyc.html",
+               "discography.html"}
+
+# The records, for the album and offer nodes on discography.html. Read
+# from the same file the page is built from, so the price in the graph
+# and the price on the button cannot disagree.
+RECORDS_DATA = "data/records.json"
 
 MONTHS = ("january february march april may june july august september "
           "october november december").split()
@@ -677,6 +683,98 @@ def faq_node(path, src):
 
 # ------------------------------------------------------------- the block
 
+def duration_iso(text):
+    """"10:14" as ISO 8601, which is what MusicRecording wants."""
+    bits = [int(x) for x in text.split(":")]
+    if len(bits) != 2:
+        return ""
+    return "PT%dM%dS" % (bits[0], bits[1])
+
+
+def record_nodes():
+    """A MusicAlbum per record, each with its tracks and its two offers.
+
+    This is the part a shopping assistant reads. A visitor who asks one
+    for a signed copy of the Schumann should be told the price, that it
+    is signed, and that postage is extra, without anybody having to
+    e-mail first. So the offers carry the price, the currency and the
+    condition, and the album carries the tracks with their timings.
+    """
+    if not os.path.exists(RECORDS_DATA):
+        return []
+    data = json.load(open(RECORDS_DATA, encoding="utf-8"))
+    prices, out = data["prices"], []
+    page = SITE + "/discography.html"
+    for rec in data["records"]:
+        rid = page + "#" + rec["slug"]
+        tracks = []
+        for t in rec["tracks"]:
+            name = " · ".join(x for x in (t["work"], t["movement"]) if x)
+            node = {
+                "@type": "MusicRecording",
+                "position": t["n"],
+                "name": name,
+                "duration": duration_iso(t["duration"]),
+                "byArtist": {"@type": "Person", "name": t["composer"]},
+            }
+            if rec.get("audio"):
+                node["audio"] = {
+                    "@type": "AudioObject",
+                    "contentUrl": "%s/%s/%02d.mp3" % (
+                        data["audioBase"].rstrip("/"), rec["slug"], t["n"]),
+                    "encodingFormat": "audio/mpeg",
+                }
+            tracks.append(node)
+        offers = []
+        for kind, label, price in (("cd", "CD", prices["cd"]),
+                                   ("vinyl", "Vinyl LP", prices["vinyl"])):
+            offers.append({
+                "@type": "Offer",
+                "@id": rid + "-" + kind,
+                "name": "%s - %s" % (rec["title"], label),
+                "price": str(price),
+                "priceCurrency": prices["currency"],
+                "availability": "https://schema.org/InStock",
+                "itemCondition": "https://schema.org/NewCondition",
+                "url": page + "#" + rec["slug"],
+                "description": prices["note"],
+                "seller": {"@id": ORG_ID},
+            })
+        # The ensemble made the Noctum record; the other two are the
+        # named players, and crediting CreArtBox for them would be a
+        # claim nobody made.
+        performers = rec.get("performers", "")
+        if performers.strip() == "CreArtBox":
+            by = {"@id": ORG_ID}
+        else:
+            by = []
+            for bit in performers.split("·"):
+                name = bit.split(",")[0].strip()
+                if not name:
+                    continue
+                group = any(w in name for w in ("Orchestra", "Ensemble", "Quartet",
+                                                "Choir", "Symphony"))
+                by.append({"@type": "MusicGroup" if group else "Person", "name": name})
+        album = {
+            "@type": "MusicAlbum",
+            "@id": rid,
+            "name": rec["title"],
+            "alternateName": rec["composerLine"],
+            "url": page + "#" + rec["slug"],
+            "image": "%s/assets/img/records/%s.jpg" % (SITE, rec["slug"]),
+            "numTracks": len(rec["tracks"]),
+            "publisher": {"@id": ORG_ID},
+            "track": tracks,
+            "offers": offers,
+        }
+        if by:
+            album["byArtist"] = by
+        if rec.get("live"):
+            album["albumProductionType"] = "https://schema.org/LiveAlbum"
+        out.append(album)
+    return out
+
+
 def page_type(path, src):
     if path == "index.html":
         return "home"
@@ -736,6 +834,12 @@ def block_for(path, src):
             web["mainEntity"] = {"@id": extra["@id"]}
         if kind == "person":
             web["mainEntity"] = {"@id": extra["@id"]}
+
+    if path == "discography.html":
+        albums = record_nodes()
+        nodes.extend(albums)
+        if albums:
+            web["mainEntity"] = {"@id": albums[0]["@id"]}
 
     faq = faq_node(path, src)
     if faq:

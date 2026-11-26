@@ -7877,3 +7877,122 @@ html.after-curtain .tn-after { display: block; }
   .ev-facts > li { grid-template-columns: 1fr; }
   .ev-f-h { padding-top: 0; }
 }
+
+/* ============================================================
+   DISCOGRAPHY
+   Three records on one page, each a cover beside its tracklist.
+   The tracklist reuses .track, so a record plays through the same
+   dock that carries the media page, and the whole page is one queue.
+   ============================================================ */
+.rec {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 48px;
+  padding: 56px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: start;
+}
+.rec:last-child { border-bottom: 0; }
+/* a tracklist is taller than a sleeve, so the sleeve rides down with it */
+.rec-cover { position: sticky; top: 104px; }
+.rec-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+}
+.rec-tag {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--sans);
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.rec-t { margin: 0; font-family: var(--serif); font-size: clamp(1.7rem, 3.4vw, 2.4rem); line-height: 1.08; }
+.rec-sub { margin: 10px 0 0; font-size: 1rem; line-height: 1.5; color: var(--ink-2); }
+
+.rec-facts { list-style: none; margin: 24px 0 0; padding: 0; }
+.rec-facts > li {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 6px 18px;
+  padding: 9px 0;
+  border-top: 1px solid var(--rule-2);
+  align-items: baseline;
+}
+.rec-f-h {
+  font-family: var(--sans);
+  font-size: .67rem;
+  font-weight: 600;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--quiet);
+}
+.rec-f-v { line-height: 1.5; font-size: .95rem; }
+.rec-note { margin: 18px 0 0; font-size: .92rem; line-height: 1.6; color: var(--ink-soft); }
+.rec-quiet {
+  margin: 18px 0 0;
+  padding: 12px 14px;
+  font-size: .9rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+  border-left: 2px solid var(--accent);
+  background: var(--rule-2);
+}
+
+/* the duration sits where the track number sits on the media page */
+.track-dur {
+  font-family: var(--sans);
+  font-size: .82rem;
+  color: var(--quiet);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.track.is-quiet { cursor: default; }
+.track.is-quiet:hover { background: transparent; }
+.track-num-only {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  font-family: var(--sans);
+  font-size: .8rem;
+  color: var(--quiet);
+  font-variant-numeric: tabular-nums;
+}
+
+.rec-buy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+.rec-buy-note { font-size: .84rem; line-height: 1.5; color: var(--ink-soft); }
+.rec-vinyl-note {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: .84rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 860px) {
+  .rec { grid-template-columns: 1fr; gap: 28px; padding: 40px 0; }
+  .rec-cover { position: static; max-width: 320px; }
+}
+@media (max-width: 560px) {
+  .rec-facts > li { grid-template-columns: 1fr; }
+  .rec-buy { gap: 10px 12px; }
+  .rec-buy-note { flex-basis: 100%; }
+}
+
+/* a track whose file will not load: say it on the row and in the dock */
+.track.failed .track-title { opacity: .55; }
+.track.failed .track-dur::after { content: " ·"; }
+.audio-dock.has-error .ad-title { color: var(--red); }
